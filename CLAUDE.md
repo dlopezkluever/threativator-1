@@ -29,3 +29,7 @@ This is a React + TypeScript + Vite project called "Threativator" - a standard m
 - **TypeScript**: Targets ES2020, uses bundler module resolution, strict linting rules
 - **ESLint**: Configured for TypeScript/React with recommended rules, ignores dist folder
 - **React**: Uses React 18 with StrictMode enabled
+
+## Task Master AI Instructions
+**Import Task Master's development workflow commands and guidelines, treat as if import is in the main CLAUDE.md file.**
+@./.taskmaster/CLAUDE.md

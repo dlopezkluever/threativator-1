@@ -1,0 +1,429 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Implement Authentication System",
+        "description": "Set up Supabase Auth with email/password authentication, create login and signup pages with proper form validation, and establish protected routes",
+        "details": "Create auth context provider using React Context API to manage authentication state. Implement signup page at /signup with email/password fields using controlled components. Add login page at /login with remember me option. Set up protected route wrapper component that redirects to login if user is not authenticated. Use Supabase's signUp() and signIn() methods. Handle auth state changes with onAuthStateChange listener. Store auth tokens securely using Supabase's built-in session management. Create logout functionality that clears session. Add password reset flow using Supabase's resetPasswordForEmail. Implement proper error handling with user-friendly messages for common auth errors (invalid credentials, email already exists, etc.)",
+        "testStrategy": "Test signup with valid/invalid emails and weak/strong passwords. Verify login works with correct credentials and fails with incorrect ones. Ensure protected routes redirect unauthenticated users. Test password reset email delivery and token validation. Verify session persistence across page refreshes. Test logout clears all auth data",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Supabase Auth Context Provider",
+            "description": "Build React Context API provider to manage authentication state globally across the application",
+            "dependencies": [],
+            "details": "Create AuthContext using React.createContext with TypeScript interfaces for User, Session, and AuthState. Implement AuthProvider component that wraps the app and manages auth state using useState. Initialize Supabase client and set up onAuthStateChange listener in useEffect to track session changes. Expose methods for signIn, signUp, signOut, and resetPassword through context value. Handle loading states during auth initialization. Create useAuth custom hook for consuming auth context in components. Store session in localStorage for persistence across page refreshes. Implement error state management for auth operations.",
+            "status": "pending",
+            "testStrategy": "Test context provider renders children correctly. Verify auth state updates when session changes. Test custom hook throws error when used outside provider. Ensure session persistence works across page refreshes. Test loading state during initialization."
+          },
+          {
+            "id": 2,
+            "title": "Build Signup and Login Pages with Form Validation",
+            "description": "Create responsive signup and login pages with comprehensive form validation and error handling",
+            "dependencies": [
+              "1.1"
+            ],
+            "details": "Create SignupPage component at /signup route with email, password, and confirm password fields using controlled components. Implement real-time validation for email format, password strength (minimum 8 characters, uppercase, lowercase, number), and password match. Build LoginPage at /login with email/password fields and 'Remember Me' checkbox that controls session persistence. Add loading spinners during auth operations. Display user-friendly error messages for common scenarios: email already registered, invalid credentials, network errors. Style forms using existing project CSS framework or Tailwind. Include links between signup/login pages. Implement auto-redirect to dashboard after successful authentication.",
+            "status": "pending",
+            "testStrategy": "Test email validation accepts valid formats and rejects invalid ones. Verify password strength requirements are enforced. Test error messages display correctly for various failure scenarios. Ensure form submission is disabled with invalid inputs. Test remember me functionality affects session duration."
+          },
+          {
+            "id": 3,
+            "title": "Implement Protected Route Wrapper Component",
+            "description": "Create HOC or wrapper component to protect routes that require authentication",
+            "dependencies": [
+              "1.1"
+            ],
+            "details": "Build ProtectedRoute component that checks authentication status from AuthContext. Implement loading state while checking auth status to prevent flashing of protected content. Redirect unauthenticated users to /login with return URL in query params. Store attempted route in sessionStorage to redirect after successful login. Create PublicRoute component that redirects authenticated users away from login/signup pages. Handle edge cases like expired sessions mid-navigation. Implement role-based access control foundation for future admin routes. Add layout wrapper that shows different navigation based on auth status.",
+            "status": "pending",
+            "testStrategy": "Test unauthenticated users are redirected to login. Verify authenticated users can access protected routes. Test return URL works after login. Ensure public routes redirect authenticated users. Test session expiry handling during navigation."
+          },
+          {
+            "id": 4,
+            "title": "Add Password Reset Flow with Email Integration",
+            "description": "Implement complete password reset functionality using Supabase's built-in email service",
+            "dependencies": [
+              "1.1",
+              "1.2"
+            ],
+            "details": "Create ForgotPasswordPage at /forgot-password with email input form. Implement resetPasswordForEmail() call with proper error handling for non-existent emails. Configure Supabase email templates for password reset in project dashboard. Create ResetPasswordPage at /reset-password that reads token from URL params. Build form for new password entry with confirmation field and strength validation. Handle updateUser() call to save new password. Display success message and auto-redirect to login after password update. Implement rate limiting feedback to prevent abuse. Add password reset link to login page.",
+            "status": "pending",
+            "testStrategy": "Test reset email is sent for valid accounts. Verify non-existent emails show generic success message. Test password update with valid reset token. Ensure expired tokens are handled gracefully. Test new password validation requirements."
+          },
+          {
+            "id": 5,
+            "title": "Implement Comprehensive Error Handling and User Feedback",
+            "description": "Create robust error handling system with user-friendly messages and recovery options",
+            "dependencies": [
+              "1.1",
+              "1.2",
+              "1.3",
+              "1.4"
+            ],
+            "details": "Create centralized error handler utility that maps Supabase error codes to user-friendly messages. Implement toast notification system for auth feedback (success/error/info). Handle specific scenarios: email not confirmed, rate limiting, network errors, invalid tokens. Add retry logic for transient failures with exponential backoff. Create error boundary for auth components to catch unexpected errors. Implement session refresh logic for expired tokens. Add helpful tooltips for password requirements and form fields. Create loading states with skeleton screens during auth operations. Log errors to console in development, prepare for production error tracking.",
+            "status": "pending",
+            "testStrategy": "Test each error code produces correct user message. Verify toast notifications appear and dismiss correctly. Test retry logic for network failures. Ensure error boundary catches and displays fallback UI. Test session refresh works seamlessly."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Build Onboarding Wizard Flow",
+        "description": "Create mandatory multi-step onboarding wizard that guides new users through Stripe setup, Kompromat upload, contact addition, and optional social media connection",
+        "details": "Build OnboardingWizard component with 4 steps using a state machine pattern. Step 1: Stripe integration - use Stripe Elements to collect payment method, create SetupIntent on backend, save stripe_customer_id. Step 2: Kompromat upload - create file upload component with drag-and-drop, validate file types (images/videos), upload to Supabase Storage in user-specific bucket, save references in kompromat table with severity levels. Step 3: Contact management - form to add email contacts with name/email validation, assign roles (witness/consequence_target), save to contacts table. Step 4: Social media connection (optional) - implement Twitter OAuth 2.0 flow with PKCE, store encrypted tokens. Use stepper UI component to show progress. Prevent navigation away until completion. Update user.onboarding_completed flag on finish",
+        "testStrategy": "Verify each step validates inputs before allowing progression. Test file upload size limits and type restrictions. Ensure Stripe customer creation succeeds. Validate contacts are saved with correct roles. Test skip functionality for optional social media step. Verify onboarding_completed flag is set only after all required steps",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement Stripe Payment Integration",
+            "description": "Set up Stripe Elements for payment method collection and create backend endpoints for SetupIntent creation and customer management",
+            "dependencies": [],
+            "details": "Install @stripe/stripe-js and @stripe/react-stripe-js packages. Create Stripe account and obtain API keys. Build StripePaymentStep component using CardElement from Stripe Elements. Create Supabase Edge Function 'create-setup-intent' that initializes a SetupIntent and returns client_secret. Implement payment method attachment flow with proper error handling. Create Edge Function 'create-stripe-customer' to generate customer ID and store in users table. Add loading states and validation for card details. Handle 3D Secure authentication if required. Store stripe_customer_id in user profile upon successful setup",
+            "status": "pending",
+            "testStrategy": "Test with Stripe test cards including successful, declining, and 3DS-required cards. Verify SetupIntent is created with correct metadata. Ensure stripe_customer_id is properly saved to database. Test error handling for network failures and invalid card details. Verify payment method can be attached to customer"
+          },
+          {
+            "id": 2,
+            "title": "Build Kompromat Upload Component",
+            "description": "Create drag-and-drop file upload interface for Kompromat with Supabase Storage integration and severity level assignment",
+            "dependencies": [],
+            "details": "Build KompromatUploadStep component with react-dropzone for drag-and-drop functionality. Implement file type validation for images (jpg, png, gif) and videos (mp4, mov, avi) with max 50MB size limit. Create Supabase Storage bucket 'kompromat' with RLS policies for user-specific folders. Build upload progress indicator using XMLHttpRequest upload events. Add preview thumbnails for uploaded files using URL.createObjectURL(). Implement severity level selector (Low/Medium/High/Critical) for each file. Create database records in kompromat table with file_url, type, severity, and user_id. Add ability to remove files before final submission. Handle multiple file uploads with batch processing",
+            "status": "pending",
+            "testStrategy": "Test file type restrictions reject invalid formats. Verify size limit enforcement at 50MB. Ensure files upload to correct user-specific bucket path. Test preview generation for images and video thumbnails. Verify database records are created with correct metadata. Test batch upload of multiple files"
+          },
+          {
+            "id": 3,
+            "title": "Create Contact Management Interface",
+            "description": "Develop contact addition form with role assignment and validation for witness and consequence target contacts",
+            "dependencies": [],
+            "details": "Build ContactManagementStep component with dynamic form for adding multiple contacts. Create contact input fields with email validation using regex pattern. Implement role selector dropdown for each contact (witness/consequence_target). Add name field with character limit validation. Build contact list preview showing added contacts with edit/delete capabilities. Implement bulk contact import from CSV option. Create validation to require at least one witness contact. Save contacts to contacts table with proper role assignments and user association. Add duplicate email detection to prevent adding same contact twice. Include optional relationship/notes field for each contact",
+            "status": "pending",
+            "testStrategy": "Test email validation rejects invalid formats. Verify minimum one witness requirement is enforced. Test CSV import parses correctly and handles errors. Ensure contacts are saved with correct roles and user_id. Test duplicate detection prevents same email twice. Verify edit and delete operations work correctly"
+          },
+          {
+            "id": 4,
+            "title": "Implement Social Media OAuth Connection",
+            "description": "Build optional Twitter/X OAuth 2.0 integration with PKCE flow for social media deadline posting",
+            "dependencies": [],
+            "details": "Create SocialMediaStep component with Twitter/X connection option and skip button. Register Twitter App and obtain OAuth 2.0 credentials. Implement PKCE (Proof Key for Code Exchange) flow with code_challenge generation. Create Edge Function 'twitter-oauth-callback' to handle authorization code exchange. Store encrypted access_token and refresh_token in social_connections table using Supabase Vault. Build connection status indicator showing linked accounts. Add disconnect option for already connected accounts. Implement token refresh logic for expired access tokens. Create test post functionality to verify connection works. Handle OAuth errors and provide user-friendly error messages",
+            "status": "pending",
+            "testStrategy": "Test OAuth flow redirects to Twitter and back correctly. Verify PKCE parameters are properly generated and validated. Ensure tokens are encrypted before storage. Test token refresh when access token expires. Verify skip functionality allows proceeding without connection. Test disconnect removes stored tokens"
+          },
+          {
+            "id": 5,
+            "title": "Build Wizard Navigation and State Management",
+            "description": "Create stepper UI component with state machine pattern for wizard flow control and progress tracking",
+            "dependencies": [
+              "2.1",
+              "2.2",
+              "2.3",
+              "2.4"
+            ],
+            "details": "Implement OnboardingWizard parent component using XState or custom state machine for flow control. Create StepperUI component showing visual progress with step numbers and labels. Build navigation controls with Next/Previous buttons and step validation. Implement beforeUnload event listener to warn users about leaving incomplete onboarding. Store wizard progress in localStorage for resume capability. Add step transition animations using Framer Motion or CSS transitions. Create validation logic that prevents advancing until current step requirements are met. Implement completion handler that updates user.onboarding_completed flag. Add error boundary to handle component failures gracefully. Build responsive layout that works on mobile devices",
+            "status": "pending",
+            "testStrategy": "Test step progression requires valid data before advancing. Verify localStorage saves and restores wizard state. Ensure navigation prevention works when trying to leave page. Test completion updates onboarding flag in database. Verify mobile responsive layout adapts correctly. Test error recovery when individual steps fail"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Create Main Dashboard Interface",
+        "description": "Develop the main dashboard with upcoming deadlines sidebar, calendar view, visible stakes display, and navigation to all major features",
+        "details": "Build Dashboard layout component with responsive grid using Tailwind CSS. Implement UpcomingDeadlines sidebar component that queries checkpoints table for next 7 days, sorted by deadline. Create Calendar component using a library like react-big-calendar, showing all goals and checkpoints color-coded by status. Add VisibleStakes component displaying total monetary stake from holding_cell_balance and Kompromat count with thumbnails. Include QuickActions panel with 'Create New Goal' and 'Submit Proof' CTAs. Fetch user data and active goals using Supabase real-time subscriptions for live updates. Add navigation menu with links to Goals, Submissions, Settings. Use Magic UI components for animations and polish. Implement loading states and error boundaries",
+        "testStrategy": "Test dashboard loads all user data correctly. Verify upcoming deadlines are sorted and filtered properly. Ensure calendar displays all goals and checkpoints with correct dates. Test real-time updates when data changes. Verify responsive layout on mobile/tablet/desktop. Test navigation to all linked pages",
+        "priority": "high",
+        "dependencies": [
+          1,
+          2
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Dashboard Layout Component",
+            "description": "Build the main dashboard container with responsive grid layout using Tailwind CSS for desktop, tablet, and mobile views",
+            "dependencies": [],
+            "details": "Create DashboardLayout.tsx component with a responsive grid structure using Tailwind's grid system. Implement a 12-column layout with sidebar (3 cols), main content area (6 cols), and right panel (3 cols) on desktop. Add responsive breakpoints for tablet (stacked layout) and mobile (single column). Include header navigation bar with user profile dropdown and main navigation links. Set up proper spacing, padding, and container max-width. Add dark mode support using Tailwind's dark variant classes. Structure the layout to accommodate all dashboard widgets and ensure proper overflow handling.",
+            "status": "pending",
+            "testStrategy": "Test responsive behavior at all breakpoints (mobile: 320px, tablet: 768px, desktop: 1024px+). Verify grid columns collapse properly on smaller screens. Test dark mode toggle functionality. Ensure layout maintains aspect ratios and doesn't break with varying content lengths. Test accessibility with screen readers."
+          },
+          {
+            "id": 2,
+            "title": "Implement Upcoming Deadlines Sidebar",
+            "description": "Create a sidebar component that displays upcoming checkpoints and deadlines for the next 7 days with real-time updates",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "Build UpcomingDeadlines.tsx component that queries the checkpoints table using Supabase. Filter checkpoints where deadline is within next 7 days and status is not 'completed'. Sort by deadline ascending with closest deadlines first. Display each deadline with goal title, checkpoint name, time remaining (using relative time like '2 days'), and color-coded urgency indicators (red for <24h, yellow for <3 days, green for >3 days). Implement Supabase real-time subscription to update list when checkpoints change. Add loading skeleton while data fetches. Include empty state message when no upcoming deadlines exist. Add click handler to open submission modal for each deadline.",
+            "status": "pending",
+            "testStrategy": "Mock Supabase queries with various deadline scenarios. Test real-time updates by simulating checkpoint changes. Verify correct sorting and filtering logic. Test time remaining calculations across different time zones. Ensure click handlers properly trigger submission modal with correct checkpoint data."
+          },
+          {
+            "id": 3,
+            "title": "Build Calendar View Component",
+            "description": "Integrate react-big-calendar to display all goals and checkpoints with color-coding and interactive features",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "Install and configure react-big-calendar with moment.js for date handling. Create CalendarView.tsx component that fetches all user goals and checkpoints from Supabase. Map data to calendar events with title, start/end dates, and custom properties. Implement color-coding system: green for completed, yellow for pending, red for overdue, gray for future. Add event click handlers to show goal/checkpoint details in a modal. Configure calendar views (month, week, day) with view switcher. Add toolbar with navigation buttons and today button. Style calendar using custom CSS to match app theme. Implement drag-and-drop for rescheduling checkpoints (if allowed). Add legend showing color meanings.",
+            "status": "pending",
+            "testStrategy": "Test calendar renders correctly with multiple events on same day. Verify color-coding logic matches checkpoint/goal status. Test view switching maintains selected date range. Ensure event clicks open correct detail modals. Test drag-and-drop updates database correctly. Verify calendar handles timezone differences properly."
+          },
+          {
+            "id": 4,
+            "title": "Create Visible Stakes Display Component",
+            "description": "Build a component showing total monetary stakes and Kompromat count with visual thumbnails and animations",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "Create VisibleStakes.tsx component with two main sections. For monetary stakes: query holding_cell_balance from user profile, display with currency formatting and animated counter using Magic UI NumberTicker component. Add visual indicator (lock icon or vault graphic) and show breakdown by goal if applicable. For Kompromat section: query kompromat table for count and thumbnails, display total count with severity indicators, show grid of blurred thumbnails (3-4 max) with hover effect revealing slight clarity. Implement privacy-first approach with heavy blur and no actual content visible. Add 'View All' link to settings page. Use Magic UI Card component for container with gradient border. Include tooltips explaining what stakes mean.",
+            "status": "pending",
+            "testStrategy": "Test component loads and displays correct balance from database. Verify number animation works smoothly without performance issues. Test Kompromat thumbnails are sufficiently blurred for privacy. Ensure component handles empty states (zero balance, no Kompromat). Test responsive layout maintains visual hierarchy on all screen sizes."
+          },
+          {
+            "id": 5,
+            "title": "Implement Quick Actions Panel and Navigation",
+            "description": "Create quick action buttons for common tasks and implement main navigation menu with routing",
+            "dependencies": [
+              "3.1",
+              "3.2",
+              "3.3",
+              "3.4"
+            ],
+            "details": "Build QuickActions.tsx panel with two primary CTA buttons using Magic UI Button components with gradient backgrounds. 'Create New Goal' button opens goal creation modal/page, 'Submit Proof' button opens submission modal with dropdown to select checkpoint. Add secondary actions like 'View Analytics' and 'Invite Friend'. Implement NavigationMenu.tsx with links to main sections: Goals (list view), Submissions (history), Settings (profile/preferences), Help (documentation). Use React Router for navigation with active state highlighting. Add breadcrumb navigation for nested routes. Include notification badge on menu items when applicable. Add user profile section with avatar, name, and logout option. Ensure all navigation maintains current dashboard state.",
+            "status": "pending",
+            "testStrategy": "Test all navigation links route to correct pages. Verify active states update based on current route. Test CTA buttons trigger appropriate modals/navigation. Ensure breadcrumbs show correct hierarchy. Test notification badges update in real-time. Verify logout properly clears session and redirects to login."
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Implement Goal Creation Flow",
+        "description": "Build comprehensive multi-step goal creation process including goal definition, checkpoint setting, stake assignment, and referee selection",
+        "details": "Create GoalCreation multi-step form component. Step 1: Goal definition - title, description, final deadline picker (must be future date), grading rubric textarea with template options (Word Count, Code Commits, etc) or custom prompt. Step 2: Checkpoints - allow adding multiple checkpoints with title, deadline, requirements, implement AI suggestion feature using Gemini API to auto-generate checkpoints based on goal. Step 3: Stakes - monetary stake input with validation against holding_cell_balance, charity selection dropdown (3 pre-set options), Kompromat assignment with Minor for checkpoints and Major for final deadline. Step 4: Referee selection - radio buttons for AI Grader vs Human Witness, if human selected show contact dropdown filtered to witnesses. Final review screen showing all selections with edit buttons. On submit, create goal record and all associated checkpoints in transaction. Navigate to dashboard on success",
+        "testStrategy": "Test form validation at each step. Verify deadlines must be in future and checkpoints before final deadline. Test monetary stake cannot exceed balance. Ensure all required fields are validated. Test goal and checkpoints are created atomically. Verify AI checkpoint generation returns relevant suggestions",
+        "priority": "high",
+        "dependencies": [
+          2,
+          3
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Multi-Step Form Component Structure",
+            "description": "Set up the base GoalCreation component with step management, navigation controls, and state management for all form data",
+            "dependencies": [],
+            "details": "Create GoalCreation.tsx component with useState hooks for currentStep (1-5), formData object containing all fields across steps, and validation errors. Implement StepIndicator component showing progress through 4 main steps plus review. Add navigation buttons (Back/Next/Submit) with proper enabling/disabling based on step validation. Use React Hook Form or similar for form state management. Create transitions between steps with smooth animations. Store form data in component state to persist across step changes.",
+            "status": "pending",
+            "testStrategy": "Test step navigation works correctly with Back/Next buttons. Verify form data persists when navigating between steps. Ensure step indicator updates correctly. Test that Next button is disabled when current step has validation errors. Verify all form data is retained during step transitions."
+          },
+          {
+            "id": 2,
+            "title": "Implement Goal Definition Step with Template Rubrics",
+            "description": "Build Step 1 of the form for entering goal title, description, deadline, and grading rubric with pre-defined templates",
+            "dependencies": [
+              "4.1"
+            ],
+            "details": "Create GoalDefinitionStep component with controlled inputs for title (max 100 chars), description (rich text editor using Tiptap or similar), and final deadline picker using react-datepicker configured to only allow future dates. Implement grading rubric section with dropdown for template selection (Word Count, Code Commits, Daily Check-ins, Custom). Create template objects with pre-filled prompts that populate the rubric textarea when selected. For custom option, provide editable textarea with placeholder text guiding AI prompt creation. Add character counters and validation messages. Store all data in parent component's formData state.",
+            "status": "pending",
+            "testStrategy": "Test that deadline picker only allows future dates. Verify template selection populates rubric textarea correctly. Ensure custom rubric allows free text input. Test character limits on title field. Verify rich text editor saves formatted content properly. Test validation prevents progression with empty required fields."
+          },
+          {
+            "id": 3,
+            "title": "Build Checkpoint Management with AI Suggestions",
+            "description": "Create Step 2 for adding multiple checkpoints with Gemini API integration for auto-generating checkpoint suggestions",
+            "dependencies": [
+              "4.1",
+              "4.2"
+            ],
+            "details": "Create CheckpointStep component with dynamic form array for multiple checkpoints. Each checkpoint has title, deadline (react-datepicker), and requirements fields. Implement 'Add Checkpoint' button to append new checkpoint form. Add 'Generate AI Suggestions' button that calls Supabase Edge Function which integrates with Gemini API, passing goal title, description, and final deadline. Display AI suggestions in a modal with checkboxes to select which ones to add. Validate that checkpoint deadlines are before final deadline and in chronological order. Allow reordering checkpoints with drag-and-drop using react-beautiful-dnd. Include delete buttons for each checkpoint.",
+            "status": "pending",
+            "testStrategy": "Test adding and removing multiple checkpoints. Verify checkpoint deadlines must be before final deadline. Test AI suggestion generation returns relevant checkpoints. Ensure selected AI suggestions populate form correctly. Test drag-and-drop reordering works. Verify validation prevents invalid deadline ordering."
+          },
+          {
+            "id": 4,
+            "title": "Develop Stakes and Referee Selection Steps",
+            "description": "Implement Steps 3 and 4 for monetary stakes, charity selection, Kompromat assignment, and referee type selection",
+            "dependencies": [
+              "4.1"
+            ],
+            "details": "Create StakesStep component with monetary stake input field that validates against user's holding_cell_balance fetched from database. Add charity selection dropdown with 3 pre-configured options (Red Cross, UNICEF, Local Food Bank). Implement Kompromat assignment section with two subsections: Minor Kompromat for checkpoints (multi-select from user's uploaded items filtered by severity='minor'), and Major Kompromat for final deadline (single select from severity='major' items). Create RefereeStep component with radio button group for AI Grader vs Human Witness selection. When Human Witness selected, show dropdown populated with user's contacts filtered by type='witness'. Add help tooltips explaining each option.",
+            "status": "pending",
+            "testStrategy": "Test monetary stake validation against actual balance. Verify charity dropdown shows all options. Test Kompromat items are filtered by severity correctly. Ensure referee type toggles contact dropdown visibility. Test that only witness contacts appear in dropdown. Verify all selections are saved to form state."
+          },
+          {
+            "id": 5,
+            "title": "Create Review Screen and Database Transaction Logic",
+            "description": "Build final review step with editable summary and implement atomic database transaction to create goal and checkpoints",
+            "dependencies": [
+              "4.1",
+              "4.2",
+              "4.3",
+              "4.4"
+            ],
+            "details": "Create ReviewStep component displaying all form data in organized sections with edit buttons that jump back to specific steps. Show goal details, all checkpoints in a timeline view, stake amounts and assignments, and selected referee. Implement submitGoal async function that uses Supabase transaction to: create goal record in goals table, create all checkpoint records in checkpoints table with foreign key to goal, update holding_cell_balance if monetary stake exists, create stake_assignments records linking Kompromat to checkpoints/goal. Add loading state during submission with spinner. On success, show success toast and navigate to dashboard using React Router. On error, display specific error message and allow retry.",
+            "status": "pending",
+            "testStrategy": "Test review screen displays all entered data correctly. Verify edit buttons navigate to correct steps. Test database transaction creates all records atomically. Ensure transaction rollback on any error. Test navigation to dashboard after successful submission. Verify error handling shows appropriate messages."
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Build Submission and Proof Upload System",
+        "description": "Create submission interface for users to upload proof of work with file uploads, external links, or text descriptions",
+        "details": "Build SubmissionModal component triggered from dashboard deadline clicks. Implement three submission types: File Upload (drag-and-drop zone, accept images/PDFs/videos up to 10MB, upload to Supabase Storage), External URL (input with URL validation, test link is accessible), Text Description (rich text editor for written proof). Add submission preview before final submit. Create submission record with status 'pending'. For file uploads, use Supabase Storage with path pattern /users/{userId}/submissions/{submissionId}. Show upload progress bar for large files. After submission, update UI to show 'Grading in Progress' status. Implement real-time status updates using Supabase subscriptions. Add ability to view previous submissions with their feedback",
+        "testStrategy": "Test file upload with various formats and sizes. Verify files over 10MB are rejected. Test URL validation accepts only valid URLs. Ensure submissions are saved with correct checkpoint association. Test real-time status updates work. Verify storage permissions prevent cross-user access",
+        "priority": "high",
+        "dependencies": [
+          3,
+          4
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create SubmissionModal Component Structure",
+            "description": "Build the base SubmissionModal component with state management and UI layout for the three submission types",
+            "dependencies": [],
+            "details": "Create SubmissionModal.tsx with React state to track submission type (file/url/text), current step (type selection, input, preview, submitting), and submission data. Implement modal UI with header showing checkpoint title/deadline, type selector buttons with icons, and footer with Cancel/Next/Submit buttons. Use controlled components for form state management. Add loading states and error handling. Integrate with existing dashboard to trigger modal on deadline clicks. Set up props interface to receive checkpoint data and onClose callback.",
+            "status": "pending",
+            "testStrategy": "Test modal opens correctly when deadline is clicked from dashboard. Verify type selection updates state and shows correct input UI. Test Cancel button closes modal and resets state. Ensure modal is accessible with proper ARIA attributes. Test responsive design on mobile/tablet viewports."
+          },
+          {
+            "id": 2,
+            "title": "Implement File Upload Functionality with Supabase Storage",
+            "description": "Build drag-and-drop file upload zone with validation, progress tracking, and Supabase Storage integration",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Create FileUploadZone component with react-dropzone for drag-and-drop functionality. Implement file validation: accept images (jpg/png/gif), PDFs, and videos (mp4/mov), enforce 10MB size limit with clear error messages. Set up Supabase Storage bucket 'submissions' with RLS policies allowing users to upload to /users/{userId}/submissions/{submissionId} path. Implement upload progress tracking using XMLHttpRequest or fetch with progress events. Show progress bar during upload with percentage and estimated time. Handle upload errors gracefully with retry option. Generate unique submissionId using UUID. Store file metadata (name, size, type, url) in component state for preview.",
+            "status": "pending",
+            "testStrategy": "Test drag-and-drop accepts valid file types and rejects invalid ones. Verify 10MB size limit shows appropriate error for larger files. Test upload progress bar updates smoothly from 0-100%. Ensure files are uploaded to correct Supabase Storage path. Test network error handling and retry functionality. Verify different file types (image, PDF, video) upload successfully."
+          },
+          {
+            "id": 3,
+            "title": "Build URL and Text Input Components",
+            "description": "Create external URL input with validation and rich text editor for written proof descriptions",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "For URL input: Create URLInput component with input field and validation using URL constructor to check validity. Implement 'Test Link' button that makes HEAD request to verify URL is accessible (handle CORS with backend proxy if needed). Show validation states with checkmark for valid URLs and error messages for invalid ones. For text input: Integrate rich text editor (Quill or TipTap) with formatting toolbar (bold, italic, lists, headings). Set character limit of 5000 characters with counter. Support basic markdown if using TipTap. Auto-save draft to localStorage every 30 seconds. Add placeholder text with helpful prompts about what to include in proof description.",
+            "status": "pending",
+            "testStrategy": "Test URL validation accepts various valid formats (http, https, with/without www). Verify invalid URLs show appropriate error messages. Test 'Test Link' functionality with accessible and inaccessible URLs. For text editor, verify formatting tools work correctly. Test character limit enforcement. Verify auto-save preserves content on page refresh. Test markdown parsing if implemented."
+          },
+          {
+            "id": 4,
+            "title": "Create Submission Preview and Database Integration",
+            "description": "Build preview screen for all submission types and implement database submission creation with proper associations",
+            "dependencies": [
+              "5.2",
+              "5.3"
+            ],
+            "details": "Create SubmissionPreview component that displays: file preview (thumbnails for images, file icon for others), URL as clickable link with favicon, formatted text with preserved styling. Add 'Edit' button to go back and modify submission. Implement submitProof function that creates submission record in submissions table with: checkpoint_id, user_id, submission_type, content (file URL from Storage, external URL, or text), status 'pending', submitted_at timestamp. For file submissions, ensure Storage URL is saved after successful upload. Handle submission errors with user-friendly messages. After successful submission, close modal and show success toast notification. Update UI to immediately show 'Grading in Progress' status badge.",
+            "status": "pending",
+            "testStrategy": "Test preview displays correctly for each submission type. Verify Edit button allows modifying submission before final submit. Test submission creates correct database record with all required fields. Ensure file submissions save Storage URL correctly. Test error handling for database failures. Verify success feedback and modal closure after submission."
+          },
+          {
+            "id": 5,
+            "title": "Implement Real-time Status Updates and Submission History",
+            "description": "Set up Supabase real-time subscriptions for status updates and create UI to view previous submissions with feedback",
+            "dependencies": [
+              "5.4"
+            ],
+            "details": "Set up Supabase real-time subscription on submissions table filtering by user_id and checkpoint_id. Listen for UPDATE events on status field changes (pending -> passed/failed). When status changes, update UI immediately with new badge and show notification. Create SubmissionHistory component accessible from goal detail page showing all submissions for a checkpoint with: submission date, type icon, status badge, AI feedback when available, option to view full submission content. Implement pagination or infinite scroll for long submission history. Add filters for status (all/passed/failed) and sort by date. Cache submission history in React Query or SWR for performance. Handle subscription cleanup on component unmount.",
+            "status": "pending",
+            "testStrategy": "Test real-time subscription receives updates when submission status changes. Verify UI updates immediately without page refresh. Test submission history displays all past submissions correctly. Verify pagination/infinite scroll loads more items properly. Test filters and sorting work as expected. Ensure subscription cleanup prevents memory leaks."
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Integrate AI Grading with Gemini API",
+        "description": "Implement AI grading system using Google Gemini API to analyze submissions against user-defined rubrics",
+        "details": "Create Supabase Edge Function 'gradeSubmission' in TypeScript. Function triggered when submission status is 'pending' and referee_type is 'ai'. Implement pre-checks before API call: word count for documents using simple regex, parse URLs to check if accessible, OCR for images if needed. Construct Gemini API prompt with rubric from goal and submission content. Sanitize user rubric to prevent prompt injection. For MVP, focus on quantitative checks: document word count, GitHub commit verification, number recognition in images. Parse Gemini response to extract pass/fail verdict and confidence score. Update submission record with ai_analysis_result, status, and feedback. Implement retry logic for API failures. Add cost optimization by checking simple criteria first. Store API usage metrics for monitoring",
+        "testStrategy": "Test with various submission types and rubrics. Verify prompt injection prevention works. Test API error handling and retries. Ensure simple checks work without API call. Verify grading results are stored correctly. Test with edge cases like empty submissions or malformed rubrics",
+        "priority": "high",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Implement Consequence Engine with Scheduled Jobs",
+        "description": "Build automated system to check for missed deadlines and trigger appropriate consequences using pg_cron and Edge Functions",
+        "details": "Set up pg_cron extension in Supabase to run job every 5 minutes. Create database function that identifies overdue checkpoints where status is 'pending' and deadline has passed. Create Edge Function 'triggerConsequence' that processes identified failures. For checkpoint failures, implement Russian Roulette with 33% probability using crypto.randomInt(). For monetary consequences, integrate Stripe API to transfer funds from holding cell to charity. For humiliation consequences, randomly select contact from consequence_targets and send email via SendGrid with selected Kompromat. For final deadline failures, guarantee 100% consequence execution. Create consequence records for audit trail. Implement failure notifications with mysterious 'Great dishonor' message. Add in-app failure modal with dramatic animation. Handle edge cases like insufficient funds or missing Kompromat",
+        "testStrategy": "Test cron job runs on schedule. Verify overdue deadlines are detected correctly. Test Russian Roulette probability distribution. Ensure Stripe transfers work with test mode. Verify SendGrid emails are sent with correct content. Test consequence records are created. Verify edge cases are handled gracefully",
+        "priority": "high",
+        "dependencies": [
+          4,
+          5,
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Add Twitter Integration for Social Consequences",
+        "description": "Implement Twitter OAuth 2.0 authentication and posting functionality for Major Kompromat consequences",
+        "details": "Implement Twitter OAuth 2.0 Authorization Code Flow with PKCE in Edge Function. Create callback endpoint to handle OAuth redirect and exchange code for tokens. Encrypt and store access_token and refresh_token in database using Supabase vault. Add Twitter connection UI in settings and onboarding Step 4. Implement token refresh logic when access token expires. In triggerConsequence function, add logic for social media posts when consequence_type is 'humiliation_social'. Use Twitter API v2 to create tweets with text and media (images from Kompromat). Handle API rate limits with exponential backoff. Gracefully handle revoked permissions by falling back to email consequences. Add option to disconnect Twitter in user settings. Log all social media posts in consequences table with tweet ID",
+        "testStrategy": "Test OAuth flow completes successfully. Verify tokens are encrypted in database. Test token refresh when expired. Verify tweets are posted with correct content. Test rate limiting handling. Ensure revoked permissions don't break consequence flow. Test disconnect functionality removes tokens",
+        "priority": "medium",
+        "dependencies": [
+          2,
+          7
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Create Notification System with SendGrid",
+        "description": "Build comprehensive email notification system for deadlines, submission results, and consequences using SendGrid",
+        "details": "Set up SendGrid account and verify sending domain with SPF/DKIM records. Create dynamic email templates in SendGrid for: upcoming deadline reminder, submission passed, submission failed, consequence triggered, welcome email. Build Edge Function 'sendNotification' that interfaces with SendGrid API. Implement notification triggers: deadline reminders (1 day before based on user preferences), submission grading complete, consequence execution. Add unsubscribe links in all emails updating notification_preferences. Create notification queue to handle bulk sends without hitting rate limits. Add email open/click tracking for analytics. Implement themed email design matching app personality with avatars and witty copy. Store email send history in audit_log table",
+        "testStrategy": "Verify domain authentication improves deliverability. Test all email templates render correctly. Ensure notifications trigger at correct times. Test unsubscribe functionality updates preferences. Verify rate limiting prevents SendGrid errors. Test emails contain correct personalized content",
+        "priority": "medium",
+        "dependencies": [
+          5,
+          6,
+          7
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Polish UI with Gamification and Magic UI",
+        "description": "Enhance user interface with gamified elements, animations, themed avatars, and personality-driven design using Magic UI components",
+        "details": "Install and configure Magic UI components for enhanced animations. Create Avatar system with contextual expressions (happy, sad, threatening) for different scenarios. Implement Russian Roulette animation sequence using Magic UI's animation primitives - spinning wheel, suspenseful timing, dramatic reveal. Add satisfying micro-interactions to all buttons with spring animations. Create toast notifications with avatars for all user actions. Design and implement failure modal with dramatic entrance animation and 'Great dishonor' messaging. Add progress indicators and achievement badges for completed goals. Implement the color palette from PRD: Primary-Blue (#5D5FEF), Success-Green (#34D399), Danger-Red (#EF4444). Apply Fredoka One font for headings and Inter for body text. Add loading skeletons for all data-fetching states. Create celebratory animations for goal completion. Ensure all animations respect prefers-reduced-motion",
+        "testStrategy": "Test animations perform well without frame drops. Verify accessibility with screen readers. Ensure reduced motion preference disables animations. Test color contrast meets WCAG standards. Verify fonts load correctly with fallbacks. Test responsive design on all screen sizes",
+        "priority": "low",
+        "dependencies": [
+          3,
+          4,
+          5,
+          7
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-08-31T08:33:10.007Z",
+      "updated": "2025-08-31T08:33:10.007Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
