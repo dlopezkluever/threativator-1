@@ -80,7 +80,7 @@
         "dependencies": [
           1
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -88,7 +88,7 @@
             "description": "Set up Stripe Elements for payment method collection and create backend endpoints for SetupIntent creation and customer management",
             "dependencies": [],
             "details": "Install @stripe/stripe-js and @stripe/react-stripe-js packages. Create Stripe account and obtain API keys. Build StripePaymentStep component using CardElement from Stripe Elements. Create Supabase Edge Function 'create-setup-intent' that initializes a SetupIntent and returns client_secret. Implement payment method attachment flow with proper error handling. Create Edge Function 'create-stripe-customer' to generate customer ID and store in users table. Add loading states and validation for card details. Handle 3D Secure authentication if required. Store stripe_customer_id in user profile upon successful setup",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test with Stripe test cards including successful, declining, and 3DS-required cards. Verify SetupIntent is created with correct metadata. Ensure stripe_customer_id is properly saved to database. Test error handling for network failures and invalid card details. Verify payment method can be attached to customer"
           },
           {
@@ -97,7 +97,7 @@
             "description": "Create drag-and-drop file upload interface for Kompromat with Supabase Storage integration and severity level assignment",
             "dependencies": [],
             "details": "Build KompromatUploadStep component with react-dropzone for drag-and-drop functionality. Implement file type validation for images (jpg, png, gif) and videos (mp4, mov, avi) with max 50MB size limit. Create Supabase Storage bucket 'kompromat' with RLS policies for user-specific folders. Build upload progress indicator using XMLHttpRequest upload events. Add preview thumbnails for uploaded files using URL.createObjectURL(). Implement severity level selector (Low/Medium/High/Critical) for each file. Create database records in kompromat table with file_url, type, severity, and user_id. Add ability to remove files before final submission. Handle multiple file uploads with batch processing",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test file type restrictions reject invalid formats. Verify size limit enforcement at 50MB. Ensure files upload to correct user-specific bucket path. Test preview generation for images and video thumbnails. Verify database records are created with correct metadata. Test batch upload of multiple files"
           },
           {
@@ -106,7 +106,7 @@
             "description": "Develop contact addition form with role assignment and validation for witness and consequence target contacts",
             "dependencies": [],
             "details": "Build ContactManagementStep component with dynamic form for adding multiple contacts. Create contact input fields with email validation using regex pattern. Implement role selector dropdown for each contact (witness/consequence_target). Add name field with character limit validation. Build contact list preview showing added contacts with edit/delete capabilities. Implement bulk contact import from CSV option. Create validation to require at least one witness contact. Save contacts to contacts table with proper role assignments and user association. Add duplicate email detection to prevent adding same contact twice. Include optional relationship/notes field for each contact",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test email validation rejects invalid formats. Verify minimum one witness requirement is enforced. Test CSV import parses correctly and handles errors. Ensure contacts are saved with correct roles and user_id. Test duplicate detection prevents same email twice. Verify edit and delete operations work correctly"
           },
           {
@@ -115,7 +115,7 @@
             "description": "Build optional Twitter/X OAuth 2.0 integration with PKCE flow for social media deadline posting",
             "dependencies": [],
             "details": "Create SocialMediaStep component with Twitter/X connection option and skip button. Register Twitter App and obtain OAuth 2.0 credentials. Implement PKCE (Proof Key for Code Exchange) flow with code_challenge generation. Create Edge Function 'twitter-oauth-callback' to handle authorization code exchange. Store encrypted access_token and refresh_token in social_connections table using Supabase Vault. Build connection status indicator showing linked accounts. Add disconnect option for already connected accounts. Implement token refresh logic for expired access tokens. Create test post functionality to verify connection works. Handle OAuth errors and provide user-friendly error messages",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test OAuth flow redirects to Twitter and back correctly. Verify PKCE parameters are properly generated and validated. Ensure tokens are encrypted before storage. Test token refresh when access token expires. Verify skip functionality allows proceeding without connection. Test disconnect removes stored tokens"
           },
           {
@@ -129,7 +129,7 @@
               "2.4"
             ],
             "details": "Implement OnboardingWizard parent component using XState or custom state machine for flow control. Create StepperUI component showing visual progress with step numbers and labels. Build navigation controls with Next/Previous buttons and step validation. Implement beforeUnload event listener to warn users about leaving incomplete onboarding. Store wizard progress in localStorage for resume capability. Add step transition animations using Framer Motion or CSS transitions. Create validation logic that prevents advancing until current step requirements are met. Implement completion handler that updates user.onboarding_completed flag. Add error boundary to handle component failures gracefully. Build responsive layout that works on mobile devices",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test step progression requires valid data before advancing. Verify localStorage saves and restores wizard state. Ensure navigation prevention works when trying to leave page. Test completion updates onboarding flag in database. Verify mobile responsive layout adapts correctly. Test error recovery when individual steps fail"
           }
         ]
@@ -422,7 +422,7 @@
     ],
     "metadata": {
       "created": "2025-08-31T08:33:10.007Z",
-      "updated": "2025-08-31T08:57:29.648Z",
+      "updated": "2025-08-31T17:18:52.222Z",
       "description": "Tasks for master context"
     }
   }

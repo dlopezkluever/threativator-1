@@ -9,22 +9,17 @@ import LoginPage from './components/auth/LoginPage'
 import SignupPage from './components/auth/SignupPage'
 import ForgotPasswordPage from './components/auth/ForgotPasswordPage'
 import ResetPasswordPage from './components/auth/ResetPasswordPage'
+import AuthTestPage from './components/auth/AuthTestPage'
+import TwitterCallbackPage from './components/auth/TwitterCallbackPage'
+import OnboardingWizard from './components/onboarding/OnboardingWizard'
+import OnboardingTestPage from './components/onboarding/OnboardingTestPage'
 
 // Placeholder components for routes that will be implemented later
 const DashboardPage: React.FC = () => (
   <div className="min-h-screen flex items-center justify-center bg-gray-50">
     <div className="max-w-md w-full text-center">
       <h2 className="text-3xl font-extrabold text-gray-900">Dashboard</h2>
-      <p className="mt-2 text-sm text-gray-600">Welcome to Threativator! This page will be implemented in Task 2.</p>
-    </div>
-  </div>
-)
-
-const OnboardingPage: React.FC = () => (
-  <div className="min-h-screen flex items-center justify-center bg-gray-50">
-    <div className="max-w-md w-full text-center">
-      <h2 className="text-3xl font-extrabold text-gray-900">Onboarding</h2>
-      <p className="mt-2 text-sm text-gray-600">Complete your setup. This will be implemented in Task 2.</p>
+      <p className="mt-2 text-sm text-gray-600">Welcome to Threativator! Your goals and progress will appear here.</p>
     </div>
   </div>
 )
@@ -58,6 +53,11 @@ function App() {
                     <ResetPasswordPage />
                   </PublicRoute>
                 } />
+                <Route path="/auth/twitter/callback" element={
+                  <ProtectedRoute>
+                    <TwitterCallbackPage />
+                  </ProtectedRoute>
+                } />
 
                 {/* Protected routes - require authentication */}
                 <Route path="/dashboard" element={
@@ -68,9 +68,13 @@ function App() {
                 
                 <Route path="/onboarding" element={
                   <ProtectedRoute>
-                    <OnboardingPage />
+                    <OnboardingWizard />
                   </ProtectedRoute>
                 } />
+
+                {/* Test pages - can be accessed by anyone */}
+                <Route path="/test" element={<AuthTestPage />} />
+                <Route path="/test-onboarding" element={<OnboardingTestPage />} />
 
                 {/* Default redirect */}
                 <Route path="/" element={<Navigate to="/dashboard" replace />} />

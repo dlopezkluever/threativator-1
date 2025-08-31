@@ -84,7 +84,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     // Listen for auth state changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      async (_event, session) => {
         if (mounted) {
           setSession(session)
           setUser(session?.user ?? null)
@@ -107,20 +107,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, [])
 
   // Sign in with email and password
-  const signIn = async (email: string, password: string, rememberMe = false) => {
+  const signIn = async (email: string, password: string, _rememberMe = false) => {
     try {
       setLoading(true)
       setError(null)
       
       const { error } = await supabase.auth.signInWithPassword({
         email,
-        password,
-        options: {
-          // Control session persistence based on remember me
-          ...(rememberMe && { 
-            data: { rememberMe: true }
-          })
-        }
+        password
       })
       
       return { error }

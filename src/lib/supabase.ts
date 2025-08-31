@@ -116,6 +116,70 @@ export type Database = {
           completed_at?: string | null;
         };
       };
+      contacts: {
+        Row: {
+          id: string;
+          user_id: string;
+          name: string;
+          email: string;
+          roles: ('witness' | 'consequence_target')[];
+          verified: boolean;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          name: string;
+          email: string;
+          roles: ('witness' | 'consequence_target')[];
+          verified?: boolean;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          name?: string;
+          email?: string;
+          roles?: ('witness' | 'consequence_target')[];
+          verified?: boolean;
+          created_at?: string;
+        };
+      };
+      kompromat: {
+        Row: {
+          id: string;
+          user_id: string;
+          original_filename: string;
+          file_path: string;
+          file_type: string;
+          file_size_bytes: number | null;
+          severity: 'minor' | 'major';
+          description: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          original_filename: string;
+          file_path: string;
+          file_type: string;
+          file_size_bytes?: number | null;
+          severity: 'minor' | 'major';
+          description?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          original_filename?: string;
+          file_path?: string;
+          file_type?: string;
+          file_size_bytes?: number | null;
+          severity?: 'minor' | 'major';
+          description?: string | null;
+          created_at?: string;
+        };
+      };
     };
     Views: {
       [_ in never]: never;
@@ -127,6 +191,8 @@ export type Database = {
       grading_type: 'ai' | 'human_witness';
       goal_status: 'active' | 'completed' | 'failed' | 'paused';
       charity_enum: 'doctors_without_borders' | 'red_cross' | 'unicef';
+      kompromat_severity: 'minor' | 'major';
+      contact_role: 'witness' | 'consequence_target';
     };
     CompositeTypes: {
       [_ in never]: never;

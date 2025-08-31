@@ -86,13 +86,20 @@ export const createRetriableAuthOperation = <T extends any[], R>(
 }
 
 // Pre-configured retry operations for common auth functions
-export const retryableSignIn = createRetriableAuthOperation(
-  async (email: string, password: string) => {
-    const { supabase } = await import('../lib/supabase')
-    return supabase.auth.signInWithPassword({ email, password })
-  },
-  'Sign In'
-)
+export const retryableSignIn = async (email: string, password: string) => {
+  const { supabase } = await import('../lib/supabase')
+  return withRetry(
+    async () => {
+      const result = await supabase.auth.signInWithPassword({ email, password })
+      if (result.error) {
+        throw result.error
+      }
+      return result
+    },
+    {},
+    'Sign In'
+  )
+}
 
 export const retryableSignUp = createRetriableAuthOperation(
   async (email: string, password: string) => {

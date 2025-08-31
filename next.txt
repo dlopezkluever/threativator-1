@@ -1,85 +1,150 @@
- Based on my analysis of the task list and current codebase, let me assess Phase 1, Task 1.1 completion:
 
-● Phase 1.1 Status Assessment
+reset-password#error=access_denied&error_code=otp_expired&error_description=Email+link+is+invalid+or+has+expired:1 Unchecked runtime.lastError: The message port closed before a response was received.
+chunk-GKJBSOWT.js?v=a5d9b576:21551 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+@stripe_stripe-js.js?v=a47eca6d:115 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'match')
+    at initStripe2 (@stripe_stripe-js.js?v=a47eca6d:115:22)
+    at @stripe_stripe-js.js?v=a47eca6d:151:12
+js.stripe.com/v3/m-outer-3437aaddcdf6922d623e172c2d6f9278.html#url=http%3A%2F%2Flocalhost%3A5174%2Fauth%2Freset-password%23error%3Daccess_denied%26error_code%3Dotp_expired%26error_description%3DEmail%2Blink%2Bis%2Binvalid%2Bor%2Bhas%2Bexpired&title=Vite%20%2B%20React%20%2B%20TS&referrer=&muid=24f7588d-740c-417e-b5a7-d5b6a377d21bad52c8&sid=6587afa3-11af-4b4b-9a70-63df9b4abdf4cb4422&version=6&preview=false&__shared_params__[version]=basil:1 Unchecked runtime.lastError: The message port closed before a response was received.
+m.stripe.network/inner.html#url=http%3A%2F%2Flocalhost%3A5174%2Fauth%2Freset-password%23error%3Daccess_denied%26error_code%3Dotp_expired%26error_description%3DEmail%2Blink%2Bis%2Binvalid%2Bor%2Bhas%2Bexpired&title=Vite%20%2B%20React%20%2B%20TS&referrer=&muid=24f7588d-740c-417e-b5a7-d5b6a377d21bad52c8&sid=6587afa3-11af-4b4b-9a70-63df9b4abdf4cb4422&version=6&preview=false&__shared_params__[version]=basil:1 Unchecked runtime.lastError: The message port closed before a response was received.
 
-  ✅ Action 1: React + Vite + TypeScript - COMPLETE
-  - Project initialized with Vite TypeScript template
-  - Strict TypeScript configuration enabled
-  - ES2020 target with proper module resolution
+📋 Complete Testing Guide
 
-● ⚠️ Action 3: ESLint & Prettier - PARTIAL
-  - ESLint configured with TypeScript + React rules
-  - Missing: Prettier configuration and strict code quality rules
+  1. Basic Authentication Flow Test
 
-  Let me check for Prettier:
+  Visit: http://localhost:5174
 
-● Search(pattern: "**/.prettierrc*")
-  ⎿  Found 0 files
+  Test Steps:
+  1. Sign Up Test:
+    - Go to signup page
+    - Create account with valid email
+    - Check email for verification link
+    - Click verification link
+  2. Login Test:
+    - Use credentials to log in
+    - Verify redirect to onboarding (since onboarding_completed = false)
 
-● Search(pattern: "**/prettier.config.*")
-  ⎿  Found 0 files
+  2. Onboarding Wizard Testing
 
-● ❌ Action 4: Tailwind CSS - MISSING
-  - Not installed or configured
-  - Required for the design system
+  Once logged in, you'll be redirected to /onboarding. Test each step:
 
-  Let me check if Tailwind is installed:
+  Step 1: Payment Setup
 
-● Bash(cd "C:\Users\Daniel Lopez\Desktop\Neet-a-thon\Threativator\threativator-1" && npm list tailwindcss)
-  ⎿  Error: vite-react@0.0.0 C:\Users\Daniel Lopez\Desktop\Neet-a-thon\Threativator\threativator-1
-     └── (empty)
+  🔧 Setup Required: Add Stripe test keys to .env
+  # Get test keys from: https://dashboard.stripe.com/test/apikeys
+  VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...
 
-● ❌ Magic UI - MISSING
-  - Not installed or configured
-  - Required for the animated UI components
+  Test Cases:
+  - ✅ Valid test card: 4242424242424242
+  - ❌ Declined card: 4000000000000002
+  - ⚠️ 3D Secure card: 4000000000003220
+  - Test without Stripe keys (should show config error)
 
-● Phase 1.1 Status: INCOMPLETE       
+  Step 2: Kompromat Upload
 
-  What's Complete:
-  - ✅ React + Vite + TypeScript setup
-  - ✅ Basic ESLint configuration     
+  Test Cases:
+  - Drag and drop image files (JPG, PNG, GIF)
+  - Upload video files (MP4, MOV, AVI)
+  - Test file size limit (>50MB should fail)
+  - Test invalid file types (PDF, TXT should fail)
+  - Test severity selection (minor/major)
+  - Test description requirement
+  - Test file removal before upload
+  - Test skip functionality
 
-  What's Missing:
-  - ❌ Prettier configuration
-  - ❌ Tailwind CSS installation & configuration
-  - ❌ Magic UI setup
-  - ❌ GitHub repository setup with branch protection
+  Step 3: Contact Management
 
-  The environment is only 50% complete for Phase 1.1 requirements.
+  Test Cases:
+  - Add contact with valid email
+  - Test email validation with invalid formats
+  - Select different roles (witness, consequence_target)
+  - Test duplicate email prevention
+  - Add multiple contacts
+  - Test contact removal
+  - Test skip functionality
 
-## MAGICUI Info:
+  Step 4: Social Media Connection
 
-How to install dependencies and structure your app.
+  🔧 Setup Required: Twitter OAuth (optional)
+  VITE_TWITTER_CLIENT_ID=your_client_id
 
-Note: We have the exact same installation process as shadcn/ui.
+  Test Cases:
+  - Test Twitter connection (if configured)
+  - Test skip functionality
+  - Complete onboarding
 
-Create project
-Run the init command to create a new Next.js project or to setup an existing one:
+  3. Database Verification
 
-pnpm
-npm
-yarn
-bun
-npx shadcn@latest init
-Copy
-Add components
-You can now start adding components to your project.
+  Check your Supabase dashboard to verify:
+  - User profile updated with onboarding_completed = true
+  - Stripe customer ID saved
+  - Kompromat files uploaded to storage
+  - Contacts saved with correct roles
+  - Social media tokens stored (if connected)
 
-pnpm
-npm
-yarn
-bun
-npx shadcn@latest add "https://magicui.design/r/globe.json"
-Copy
-Import component
-The command above will add the Globe component to your project. You can then import it like this:
+  4. Error Handling Tests
 
-import { Globe } from "@/components/ui/globe";
- 
-export default function Home() {
-  return (
-    <div>
-      <Globe />
-    </div>
-  );
-}
+  Test Network Issues:
+  - Disconnect internet during onboarding steps
+  - Check retry functionality
+  - Verify error messages
+
+  Test Validation:
+  - Submit empty forms
+  - Use invalid data formats
+  - Test browser back/refresh during onboarding
+
+  5. Mobile/Responsive Testing
+
+  Test on different screen sizes:
+  - Desktop (>1024px)
+  - Tablet (768-1024px)
+  - Mobile (<768px)
+
+  🎮 Quick Test Commands
+
+  For automated testing, I can create a simple test helper:
+
+● Write(TESTING.md)
+  ⎿  Wrote 1 lines to TESTING.md
+     # Testing Guide for Threativator Onboarding
+     ## 🚀 Quick Start
+     1. **Start the dev server:**
+        ```bash
+        npm run dev
+        ```
+     2. **Visit:** `http://localhost:5174`      
+
+● 🎯 Immediate Testing Steps
+
+  Right now you can test:
+
+  1. Visit the app: http://localhost:5174
+  2. Test authentication without external dependencies:
+    - Sign up with a test email
+    - Test the login flow
+    - Verify onboarding wizard loads
+  3. Test UI components:
+    - Onboarding stepper navigation
+    - Form validations
+    - Responsive design
+  4. Test with limited functionality:
+    - File upload validation (without actual upload)
+    - Contact form validation
+    - Social media skip functionality
+
+  🔧 For Full Testing (Optional Setup)
+
+  To test Stripe integration:
+  1. Create a free Stripe account
+  2. Get test keys from https://dashboard.stripe.com/test/apikeys
+  3. Add to .env and restart server
+
+  To test Twitter integration:
+  1. Create Twitter Developer account
+  2. Create OAuth app
+  3. Add client ID to .env
+
+  🎮 Test Right Now
+
+  The most important test is that the onboarding flow works end-to-end with proper navigation and state management. Try creating an account and going through     
+  the wizard to see the UI and flow in action!
