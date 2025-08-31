@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/setuptest.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/healthcheck.tsx","./src/components/ui/test-card.tsx","./src/lib/supabase.ts","./src/lib/utils.ts"],"version":"5.9.2"}
