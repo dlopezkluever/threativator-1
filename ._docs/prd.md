@@ -40,9 +40,9 @@ This application is explicitly designed for finishing major, demonstrable projec
 
 ### **6\. Notifications & User Engagement**
 
-- **What it does:** This system keeps the user informed about their progress, upcoming deadlines, and the outcomes of their submissions and failures. It also injects the app's personality through themed avatars and witty copy.
-- **Why it's important:** Timely notifications are critical for a deadline-driven app. The personality-driven elements enhance the gamified experience, making the app more engaging and less of a chore to use.
-- **How it works at a high level:** The system sends automated emails for upcoming deadlines and pass/fail statuses. Failure notifications are intentionally mysterious about humiliation consequences to create suspense. The UI uses themed avatars (e.g., a "boss" for professional goals) and a prominent in-app modal to announce failures with dramatic copy.
+- **What it does:** This system keeps the user informed about their progress, upcoming deadlines, and the outcomes of their submissions and failures. It also injects the app's authoritative personality through Soviet KGB spy-themed avatars and stern, official copy.
+- **Why it's important:** Timely notifications are critical for a deadline-driven app. The authoritative design elements create a disciplined experience that reinforces the accountability mechanism through official, state-like communication.
+- **How it works at a high level:** The system sends automated emails for upcoming deadlines and pass/fail statuses. Failure notifications are intentionally mysterious about humiliation consequences to create tension. The UI uses a couple of KGB spy-style avatars consistently throughout the interface and a prominent in-app modal to announce failures with official, dramatic copy.
 
 ## **User Experience**
 
@@ -116,26 +116,24 @@ The target users are individuals who require strong external motivators to compl
 
 #### **1\. Core Design Principles**
 
-1. **Gamify Everything:** The UI must treat the user's journey as a high-stakes game, using clear, animated feedback for every interaction. The dashboard must always display the core stakes (dollar amount and Kompromat thumbnail). High-impact moments like the "Russian Roulette" consequence must be treated as significant, animated UI events.
-2. **Personality-Driven Design:** The app's quirky personality must be evident in all elements. Avatars should appear in modals and emails with context-matching expressions. Microcopy should be witty and aligned with the app's voice (e.g., "Prove It" instead of "Submit").
-3. **Clarity and Trust Above All:** Due to the high-stakes nature, there can be zero ambiguity. Confirmation modals must explicitly list all stakes and consequences before commitment. The most time-sensitive information (the next deadline) must be the most visually dominant element. Visual cues like lock icons must be used to reassure the user of security.
+1. **Authoritative & Unambiguous Tone:** The design must feel stern, official, and powerful, following Soviet Constructivist principles. It is a tool for discipline, not entertainment. The dashboard must always display the core stakes (dollar amount and Kompromat file references) like official state records. High-impact moments like the "Russian Roulette" consequence must be treated as mechanical, state-like processes with stark transitions.
+2. **Personality-Driven Design:** The app's authoritative personality is expressed through Soviet KGB spy-themed avatars that appear in modals and emails. Microcopy should be direct and imperative, aligned with state authority voice (e.g., "SUBMIT PROOF," "COMMIT STAKES"). The tone is that of a state authority enforcing discipline.
+3. **Functional Clarity & Trust:** Due to the high-stakes nature, there can be zero ambiguity. Confirmation modals must be brutally clear, using official document styling with bold text: "COMRADE, YOU ARE COMMITTING: **$100** AND **FILE: K-01.JPG**. FAILURE IS NOT AN OPTION. CONFIRM DIRECTIVE." Visual metaphors like vault icons reassure users of security.
 
 #### **2\. Component-Specific Rules**
 
-- **Buttons:** Will be categorized as Primary, Secondary, and Danger, each with a specific use case. All buttons should have a satisfying animation on click, leveraging Magic UI.
-- **Modals & Pop-ups:** Reserved for critical, focused tasks like submissions and confirmations. They should enter the screen with a playful animation.
-- **Dashboard & Calendar:** The "Upcoming Deadlines" sidebar is the primary call to action, with the calendar providing secondary, long-term context. All deadlines must be interactive, triggering the submission modal on click.
-- **Notifications & Feedback:** Non-blocking feedback will use toast-style notifications, always paired with an appropriate avatar and semantic color (green for success, red for error).
+- **Buttons:** Hard-edged rectangles with no rounded corners. Primary buttons use bold `Primary-Red` (#DA291C). All button text rendered in uppercase **STALINIST ONE** typography. Sharp, functional click animations only.
+- **Modals & Pop-ups:** Should feel like official communiqués or stamped documents with hard borders and structured content. Sharp fade-in animations only - no playful bouncing.
+- **Dashboard & Calendar:** Rigid, grid-based layout with "IMMEDIATE DIRECTIVES" (upcoming deadlines) sidebar as primary focus. Simple, stark calendar grid. Clicking deadlines triggers submission modal instantly without transitions.
+- **Notifications & Feedback:** Toast-style notifications paired with KGB spy avatars and stark color contrast (muted green for success, Primary-Red for failures).
 
-#### **3\. Visual Theme & Style Guide**
+#### **3\. Visual Theme & Style Guide (Soviet Constructivist)**
 
-- **Color Palette:** The palette is energetic and clear, using a `Primary-Blue` (`#5D5FEF`) for actions, `Success-Green` (`#34D399`) for positive outcomes, and `Danger-Red` (`#EF4444`) for failures and warnings. The background will be a light gray (  
-  `#F3F4F6`) with white containers (`#FFFFFF`).
-- **Typography:** Headings will use **Fredoka One** from Google Fonts for a rounded, bold, and friendly personality. Body text will use  
-   **Inter**, a highly legible and clean sans-serif.
-- **Iconography & Illustrations:** All icons and avatars will follow a consistent cartoon style with thick, bold outlines and expressive features.
-- **Layout & Spacing:** An 8-point grid system will be used for all spacing and sizing to ensure visual consistency.
-- **Borders & Shadows:** Elements will have a generous border-radius (`12px` or `16px`) for a soft aesthetic, paired with hard, distinct shadows to give a "sticker-like" feel.
+- **Color Palette:** Minimalist, high-contrast palette: `Primary-Red` (`#DA291C`) for actions and authority, `Accent-Black` (`#000000`) for text, `Background-Parchment` (`#F5EEDC`) for main background giving an aged document feel, `Success-Muted` (`#5A7761`) for functional success states.
+- **Typography:** Headings use **Stalinist One** (always UPPERCASE) for authoritative impact. Body text uses **Roboto Condensed** for efficient, structured information display.
+- **Iconography & Illustrations:** Stark, single-color icons (black or red) reminiscent of woodblock prints or stencils. KGB spy-style avatars drawn in high-contrast, graphic style.
+- **Layout & Spacing:** Strict 8-point grid system enforces structured, authoritative feel with consistent container padding (16px or 24px).
+- **Borders & Shadows:** **Zero border radius** - all elements have sharp 90-degree corners. Simple solid black borders (1px or 2px). **No shadows** - design relies on stark color contrast and strong lines.
 
 ## **Technical Architecture**
 

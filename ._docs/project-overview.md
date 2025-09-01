@@ -74,9 +74,9 @@
 - **\[ \] Standard Notifications:** Automatic emails for upcoming deadlines and submission status (pass/fail).
 - **\[ \] Failure Notification:**
   - **\[ \] Email:** An email is sent summarizing the failure. For humiliation consequences, the email **will not** specify what was sent or to whom, creating mystery.
-  - **\[ \] In-App Popup:** Upon next login after a failure, a modal appears with the message: "You've unfortunately failed. We have sent these out. This is great shame. Great dishonor comes on you, but hopefully this will only make you better, friend."
-- **\[ \] Avatars:** The UI and notifications will feature themed avatars to enhance the app's personality.
-  - **\[ \] Examples:** A "boss" for professional work, a "gym trainer" (e.g., resembling Dwayne "The Rock" Johnson) for fitness goals, an "art critic" for creative projects.
+  - **\[ \] In-App Popup:** Upon next login after a failure, a modal appears with official, Soviet-style messaging: "CONSEQUENCE TRIGGERED. STATE DIRECTIVE HAS BEEN EXECUTED. GREAT DISHONOR COMES UPON YOU, COMRADE. LEARN FROM THIS FAILURE."
+- **\[ \] Avatars:** The UI and notifications will feature a couple of Soviet KGB spy-style avatars to reinforce the app's authoritative personality.
+  - **\[ \] Style:** High-contrast, graphic-style KGB spy avatars used consistently in emails and on-screen interactions to maintain the Soviet Constructivist theme.
 
 **\#\# 4\. Design & UI/UX Requests**
 
