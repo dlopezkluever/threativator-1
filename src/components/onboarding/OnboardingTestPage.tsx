@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import StripePaymentTestStep from './StripePaymentTestStep'
-import KompromatUploadStep from './KompromatUploadStep'
-import ContactManagementStep from './ContactManagementStep'
-import SocialMediaStep from './SocialMediaStep'
+import KompromatUploadTestStep from './KompromatUploadTestStep'
+import ContactManagementTestStep from './ContactManagementTestStep'
+import SocialMediaTestStep from './SocialMediaTestStep'
 
 interface OnboardingState {
   currentStep: number
@@ -124,7 +124,7 @@ const OnboardingTestPage: React.FC = () => {
       
       case 'kompromat':
         return (
-          <KompromatUploadStep
+          <KompromatUploadTestStep
             {...commonProps}
             onComplete={(kompromatIds: string[]) => 
               handleStepComplete(2, { kompromatIds })
@@ -134,7 +134,7 @@ const OnboardingTestPage: React.FC = () => {
       
       case 'contacts':
         return (
-          <ContactManagementStep
+          <ContactManagementTestStep
             {...commonProps}
             onComplete={(contactIds: string[]) => 
               handleStepComplete(3, { contactIds })
@@ -144,7 +144,7 @@ const OnboardingTestPage: React.FC = () => {
       
       case 'social':
         return (
-          <SocialMediaStep
+          <SocialMediaTestStep
             {...commonProps}
             onComplete={(socialMediaConnected: boolean) => 
               handleStepComplete(4, { socialMediaConnected })
@@ -174,10 +174,10 @@ const OnboardingTestPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50" style={{ width: '100vw', maxWidth: 'none' }}>
       {/* Test Mode Banner */}
-      <div className="bg-blue-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+      <div className="bg-blue-600 text-white" style={{ width: '100%' }}>
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-2">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <span className="text-sm">🧪 <strong>TEST MODE</strong> - UI testing without backend integration</span>
@@ -193,8 +193,8 @@ const OnboardingTestPage: React.FC = () => {
       </div>
 
       {/* Header */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="bg-white border-b border-gray-200" style={{ width: '100%' }}>
+        <div className="w-full px-4 sm:px-6 lg:px-8" style={{ width: '100%', maxWidth: 'none' }}>
           <div className="py-6">
             <h1 className="text-2xl font-bold text-gray-900">
               Welcome to Threativator! 🚀
@@ -207,8 +207,8 @@ const OnboardingTestPage: React.FC = () => {
       </div>
 
       {/* Progress Stepper */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="bg-white border-b border-gray-200" style={{ width: '100%' }}>
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-4" style={{ width: '100%', maxWidth: 'none' }}>
           <nav aria-label="Progress">
             <ol className="flex items-center justify-between">
               {STEPS.map((step, stepIdx) => {
@@ -265,15 +265,17 @@ const OnboardingTestPage: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          {renderCurrentStep()}
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-8" style={{ width: '100%', maxWidth: 'none' }}>
+        <div className="w-full bg-white rounded-lg shadow-lg p-8" style={{ width: '100%', maxWidth: 'none' }}>
+          <div className="w-full max-w-none" style={{ width: '100%', maxWidth: 'none' }}>
+            {renderCurrentStep()}
+          </div>
         </div>
       </div>
 
       {/* Footer */}
       <div className="bg-gray-100 border-t border-gray-200 mt-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between text-sm text-gray-500">
             <div className="flex items-center space-x-1">
               <span>Step {state.currentStep} of {STEPS.length}</span>

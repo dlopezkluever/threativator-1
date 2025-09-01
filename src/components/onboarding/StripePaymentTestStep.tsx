@@ -160,7 +160,7 @@ const StripePaymentTestStep: React.FC<StripePaymentTestStepProps> = ({ onComplet
 
   if (stripeError) {
     return (
-      <div className="max-w-2xl mx-auto">
+      <div className="w-full max-w-none">
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
             💳 Payment Method Setup
@@ -198,7 +198,7 @@ const StripePaymentTestStep: React.FC<StripePaymentTestStepProps> = ({ onComplet
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="w-full max-w-none">
       <div className="text-center mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
           💳 Payment Method Setup
