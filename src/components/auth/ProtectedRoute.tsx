@@ -4,36 +4,34 @@ import { useAuth } from '../../contexts/AuthContext'
 
 interface ProtectedRouteProps {
   children: React.ReactNode
-  requiredOnboarding?: boolean
   redirectTo?: string
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ 
   children, 
-  requiredOnboarding = false,
   redirectTo = '/login' 
 }) => {
-  const { user, userProfile, loading } = useAuth()
+  const { user, loading } = useAuth()
   const location = useLocation()
 
-  console.log('🛡️ [ProtectedRoute] Checking protection for:', location.pathname)
-  console.log('🛡️ [ProtectedRoute] State - loading:', loading, 'user:', !!user, 'userProfile:', !!userProfile, 'requiredOnboarding:', requiredOnboarding)
-  
-  if (userProfile) {
-    console.log('🛡️ [ProtectedRoute] UserProfile onboarding_completed:', userProfile.onboarding_completed)
-  }
+  console.log('🛡️ [ProtectedRoute] Simple auth check for:', location.pathname)
+  console.log('🛡️ [ProtectedRoute] State - loading:', loading, 'user:', !!user)
 
-  // Show loading spinner while checking auth status
+  // Show Soviet-themed loading spinner while checking auth status
   if (loading) {
-    console.log('⏳ [ProtectedRoute] Still loading, showing spinner')
+    console.log('⏳ [ProtectedRoute] Loading auth state, showing Soviet spinner')
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-[#F5EEDC]">
         <div className="text-center">
-          <svg className="animate-spin -ml-1 mr-3 h-12 w-12 text-indigo-600 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-          <p className="mt-4 text-sm text-gray-600">Loading...</p>
+          <div className="w-16 h-16 bg-[#DA291C] border-2 border-[#000000] flex items-center justify-center mb-4 mx-auto animate-pulse">
+            <span className="text-[#FFFFFF] font-['Stalinist_One'] text-2xl">★</span>
+          </div>
+          <p className="text-[#000000] font-['Stalinist_One'] text-sm uppercase tracking-wider">
+            ACCESSING STATE NETWORK...
+          </p>
+          <p className="text-[#333333] font-['Roboto_Condensed'] text-xs mt-2">
+            Verifying operative credentials
+          </p>
         </div>
       </div>
     )
@@ -51,20 +49,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
     )
   }
 
-  // If onboarding is required but not completed, redirect to onboarding
-  if (requiredOnboarding && userProfile && !userProfile.onboarding_completed) {
-    console.log('🔄 [ProtectedRoute] Onboarding required but not completed, redirecting to /onboarding')
-    return (
-      <Navigate 
-        to="/onboarding" 
-        state={{ from: location }}
-        replace 
-      />
-    )
-  }
-
-  // User is authenticated and meets requirements, render children
-  console.log('✅ [ProtectedRoute] All checks passed, rendering children')
+  // User is authenticated - render children immediately
+  console.log('✅ [ProtectedRoute] User authenticated, rendering dashboard')
   return <>{children}</>
 }
 

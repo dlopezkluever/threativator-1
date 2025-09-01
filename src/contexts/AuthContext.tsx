@@ -1,12 +1,11 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 import { User, Session, AuthError } from '@supabase/supabase-js'
 import { supabase } from '../lib/supabase'
-import type { Tables } from '../lib/supabase'
+// Removed Tables import - no longer using userProfile
 
 export interface AuthState {
   user: User | null
   session: Session | null
-  userProfile: Tables<'profiles'> | null
   loading: boolean
   error: AuthError | null
 }
@@ -36,35 +35,12 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null)
   const [session, setSession] = useState<Session | null>(null)
-  const [userProfile, setUserProfile] = useState<Tables<'profiles'> | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<AuthError | null>(null)
 
-  // Fetch user profile from database
-  const fetchUserProfile = async (userId: string) => {
-    console.log('🔍 [AuthContext] Starting fetchUserProfile for userId:', userId)
-    try {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', userId)
-        .single()
-      
-      if (error) {
-        console.error('❌ [AuthContext] Error fetching user profile:', error)
-        return
-      }
-      
-      console.log('✅ [AuthContext] User profile fetched successfully:', data)
-      setUserProfile(data)
-    } catch (err) {
-      console.error('💥 [AuthContext] Exception in fetchUserProfile:', err)
-    }
-  }
-
   // Initialize auth state and set up listener
   useEffect(() => {
-    console.log('🚀 [AuthContext] useEffect started - initializing auth')
+    console.log('🚀 [AuthContext] Simple auth initialization started')
     let mounted = true
 
     // Get initial session
@@ -77,15 +53,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         if (mounted) {
           setSession(session)
           setUser(session?.user ?? null)
-          
-          if (session?.user) {
-            console.log('👤 [AuthContext] User found, fetching profile...')
-            await fetchUserProfile(session.user.id)
-          } else {
-            console.log('🚫 [AuthContext] No user found')
-          }
-          
-          console.log('✅ [AuthContext] Initial session setup complete, setting loading=false')
+          console.log('✅ [AuthContext] Simple session setup complete, setting loading=false')
           setLoading(false)
         } else {
           console.log('⚠️ [AuthContext] Component unmounted during initial session setup')
@@ -101,23 +69,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     getInitialSession()
 
     // Listen for auth state changes
-    console.log('👂 [AuthContext] Setting up auth state change listener')
+    console.log('👂 [AuthContext] Setting up simple auth state change listener')
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         console.log('🔄 [AuthContext] Auth state change:', event, session ? 'Session exists' : 'No session')
         if (mounted) {
           setSession(session)
           setUser(session?.user ?? null)
-          
-          if (session?.user) {
-            console.log('👤 [AuthContext] User in auth change, fetching profile...')
-            await fetchUserProfile(session.user.id)
-          } else {
-            console.log('🚫 [AuthContext] No user in auth change, clearing profile')
-            setUserProfile(null)
-          }
-          
-          console.log('✅ [AuthContext] Auth state change complete, setting loading=false')
+          console.log('✅ [AuthContext] Simple auth state change complete, setting loading=false')
           setLoading(false)
         } else {
           console.log('⚠️ [AuthContext] Component unmounted during auth state change')
@@ -126,7 +85,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     )
 
     return () => {
-      console.log('🧹 [AuthContext] Cleanup: unmounting and unsubscribing')
+      console.log('🧹 [AuthContext] Simple cleanup: unmounting and unsubscribing')
       mounted = false
       subscription.unsubscribe()
     }
@@ -186,7 +145,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       // Clear local state
       setUser(null)
       setSession(null)
-      setUserProfile(null)
       
       return { error }
     } catch (err) {
@@ -224,7 +182,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const value: AuthContextType = {
     user,
     session,
-    userProfile,
     loading,
     error,
     signIn,

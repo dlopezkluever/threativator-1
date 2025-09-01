@@ -65,3 +65,61 @@
   Your instinct is 100% correct - onboarding is often the biggest source of user friction and development headaches. The dashboard-first approach with contextual prompting is much more user-friendly and maintainable.
 
   Should we proceed with this refactor? It'll solve your auth issues AND improve the user experience significantly.
+
+  #####
+  *Note this is the query that failed mention in my chat:
+   -- 1. Profiles table (for user profiles)
+  CREATE TABLE profiles (
+    id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+    email TEXT,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    holding_cell_balance DECIMAL(10,2) DEFAULT 0,
+    onboarding_completed BOOLEAN DEFAULT FALSE
+  );
+
+  -- 2. Goals table (for user goals)
+  CREATE TABLE goals (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+    title TEXT NOT NULL,
+    description TEXT,
+    final_deadline TIMESTAMPTZ,
+    status TEXT DEFAULT 'pending',
+    priority TEXT DEFAULT 'medium',
+    created_at TIMESTAMPTZ DEFAULT NOW()
+  );
+
+  -- 3. Checkpoints table (for goal milestones)
+  CREATE TABLE checkpoints (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    goal_id UUID REFERENCES goals(id) ON DELETE CASCADE,
+    title TEXT NOT NULL,
+    deadline TIMESTAMPTZ NOT NULL,
+    status TEXT DEFAULT 'pending',
+    created_at TIMESTAMPTZ DEFAULT NOW()
+  );
+
+  -- 4. Kompromat table (for uploaded files)
+  CREATE TABLE kompromat (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+    file_name TEXT NOT NULL,
+    file_path TEXT,
+    severity TEXT CHECK (severity IN ('minor', 'major')),
+    created_at TIMESTAMPTZ DEFAULT NOW()
+  );
+
+  -- Enable Row Level Security
+  ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
+  ALTER TABLE goals ENABLE ROW LEVEL SECURITY;
+  ALTER TABLE checkpoints ENABLE ROW LEVEL SECURITY;
+  ALTER TABLE kompromat ENABLE ROW LEVEL SECURITY;
+
+  -- RLS Policies (users can only access their own data)
+  CREATE POLICY "Users can view own profile" ON profiles FOR SELECT USING (auth.uid() = id);
+  CREATE POLICY "Users can update own profile" ON profiles FOR UPDATE USING (auth.uid() = id);
+  CREATE POLICY "Users can view own goals" ON goals FOR ALL USING (auth.uid() = user_id);
+  CREATE POLICY "Users can view own checkpoints" ON checkpoints FOR ALL USING (
+    auth.uid() IN (SELECT user_id FROM goals WHERE goals.id = checkpoints.goal_id)
+  );
+  CREATE POLICY "Users can view own kompromat" ON kompromat FOR ALL USING (auth.uid() = user_id);

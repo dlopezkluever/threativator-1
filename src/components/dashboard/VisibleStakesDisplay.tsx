@@ -138,6 +138,15 @@ const VisibleStakesDisplay: React.FC = () => {
               <div className="text-[#888888] font-['Roboto_Condensed'] text-xs mt-1 uppercase">
                 AVAILABLE FOR STAKES
               </div>
+              
+              {(!profile || profile.holding_cell_balance === 0) && (
+                <button
+                  onClick={() => console.log('Opening financial collateral setup...')}
+                  className="w-full mt-3 bg-[#DA291C] text-[#FFFFFF] border border-[#000000] py-2 px-3 font-['Stalinist_One'] text-xs uppercase hover:bg-[#FFFFFF] hover:text-[#DA291C] transition-colors"
+                >
+                  + ESTABLISH COLLATERAL
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -165,9 +174,12 @@ const VisibleStakesDisplay: React.FC = () => {
                 <p className="text-[#888888] font-['Roboto_Condensed'] text-xs uppercase">
                   NO CLASSIFIED MATERIAL
                 </p>
-                <p className="text-[#666666] font-['Roboto_Condensed'] text-xs mt-1">
-                  Upload during onboarding
-                </p>
+                <button
+                  onClick={() => console.log('Opening kompromat upload...')}
+                  className="w-full mt-3 bg-[#DA291C] text-[#FFFFFF] border border-[#000000] py-2 px-3 font-['Stalinist_One'] text-xs uppercase hover:bg-[#FFFFFF] hover:text-[#DA291C] transition-colors"
+                >
+                  + UPLOAD KOMPROMAT
+                </button>
               </div>
             ) : (
               <>

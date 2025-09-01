@@ -21,10 +21,46 @@ const QuickActionsPanel: React.FC = () => {
   const [availableCheckpoints, setAvailableCheckpoints] = useState<CheckpointData[]>([])
   const [loadingCheckpoints, setLoadingCheckpoints] = useState(false)
 
-  const handleRequestNewMission = () => {
-    // TODO: Navigate to goal creation flow
-    console.log('Opening goal creation flow...')
-    // navigate('/goals/create')
+  const handleRequestNewMission = async () => {
+    // Check if user has sufficient collateral for mission creation
+    try {
+      // Quick check for user profile and collateral
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('holding_cell_balance')
+        .eq('id', user?.id)
+        .single()
+
+      const { data: kompromat } = await supabase
+        .from('kompromat')
+        .select('id')
+        .eq('user_id', user?.id)
+        .limit(1)
+
+      const hasFinancialCollateral = profile?.holding_cell_balance && profile.holding_cell_balance > 0
+      const hasKompromat = kompromat && kompromat.length > 0
+
+      if (!hasFinancialCollateral && !hasKompromat) {
+        // Show clearance requirement modal
+        alert(`⚠️ INSUFFICIENT SECURITY CLEARANCE ⚠️
+
+To establish new directives, operatives must demonstrate commitment through collateral. 
+
+MINIMUM REQUIREMENTS (choose one or both):
+• ESTABLISH FINANCIAL COLLATERAL - Deposit funds for penalties
+• UPLOAD CLASSIFIED MATERIAL - Provide compromising content
+
+Please establish security clearance before requesting missions, Comrade.`)
+        return
+      }
+
+      // Proceed to goal creation
+      console.log('Security clearance verified, opening goal creation flow...')
+      // navigate('/goals/create')
+    } catch (error) {
+      console.log('Unable to verify clearance, allowing mission request anyway')
+      // navigate('/goals/create')
+    }
   }
 
   const handleSubmitProof = async () => {
@@ -70,6 +106,30 @@ const QuickActionsPanel: React.FC = () => {
     // TODO: Navigate to analytics page
     console.log('Opening analytics...')
     // navigate('/analytics')
+  }
+
+  const handleEstablishFinancialCollateral = () => {
+    // TODO: Open Stripe payment modal/page
+    console.log('Opening financial collateral setup...')
+    // Could navigate to /onboarding?step=stripe or open modal
+  }
+
+  const handleUploadKompromat = () => {
+    // TODO: Open Kompromat upload modal/page
+    console.log('Opening kompromat upload...')
+    // Could navigate to /onboarding?step=kompromat or open modal
+  }
+
+  const handleRecruitContacts = () => {
+    // TODO: Open contacts management modal/page
+    console.log('Opening contact recruitment...')
+    // Could navigate to /onboarding?step=contacts or open modal
+  }
+
+  const handleConnectSocialMedia = () => {
+    // TODO: Open social media connection modal/page
+    console.log('Opening social media integration...')
+    // Could navigate to /onboarding?step=social or open modal
   }
 
   const handleEmergencyExit = async () => {
@@ -121,6 +181,43 @@ const QuickActionsPanel: React.FC = () => {
               <span className="group-hover:text-[#F5EEDC]">📋</span>
             </div>
           </button>
+
+          {/* Security Clearance Actions */}
+          <div className="border-t border-[#000000] pt-3 mt-3">
+            <div className="text-[#000000] font-['Stalinist_One'] text-xs uppercase mb-3 text-center">
+              SECURITY CLEARANCE
+            </div>
+            
+            <div className="grid grid-cols-1 gap-2">
+              <button
+                onClick={handleEstablishFinancialCollateral}
+                className="bg-[#5A7761] text-[#FFFFFF] border border-[#000000] py-2 px-3 font-['Roboto_Condensed'] text-xs uppercase hover:bg-[#000000] hover:text-[#5A7761] transition-colors"
+              >
+                💰 ESTABLISH FINANCIAL COLLATERAL
+              </button>
+              
+              <button
+                onClick={handleUploadKompromat}
+                className="bg-[#333333] text-[#F5EEDC] border border-[#DA291C] py-2 px-3 font-['Roboto_Condensed'] text-xs uppercase hover:bg-[#DA291C] hover:text-[#000000] transition-colors"
+              >
+                📁 UPLOAD CLASSIFIED MATERIAL
+              </button>
+              
+              <button
+                onClick={handleRecruitContacts}
+                className="bg-[#333333] text-[#F5EEDC] border border-[#DA291C] py-2 px-3 font-['Roboto_Condensed'] text-xs uppercase hover:bg-[#DA291C] hover:text-[#000000] transition-colors"
+              >
+                👥 RECRUIT CONTACTS
+              </button>
+              
+              <button
+                onClick={handleConnectSocialMedia}
+                className="bg-[#333333] text-[#F5EEDC] border border-[#DA291C] py-2 px-3 font-['Roboto_Condensed'] text-xs uppercase hover:bg-[#DA291C] hover:text-[#000000] transition-colors"
+              >
+                📱 CONNECT SOCIAL PLATFORMS
+              </button>
+            </div>
+          </div>
 
           {/* Secondary Actions */}
           <div className="grid grid-cols-2 gap-2 mt-4">
