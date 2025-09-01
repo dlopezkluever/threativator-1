@@ -116,24 +116,49 @@ The target users are individuals who require strong external motivators to compl
 
 #### **1\. Core Design Principles**
 
-1. **Authoritative & Unambiguous Tone:** The design must feel stern, official, and powerful, following Soviet Constructivist principles. It is a tool for discipline, not entertainment. The dashboard must always display the core stakes (dollar amount and Kompromat file references) like official state records. High-impact moments like the "Russian Roulette" consequence must be treated as mechanical, state-like processes with stark transitions.
-2. **Personality-Driven Design:** The app's authoritative personality is expressed through Soviet KGB spy-themed avatars that appear in modals and emails. Microcopy should be direct and imperative, aligned with state authority voice (e.g., "SUBMIT PROOF," "COMMIT STAKES"). The tone is that of a state authority enforcing discipline.
-3. **Functional Clarity & Trust:** Due to the high-stakes nature, there can be zero ambiguity. Confirmation modals must be brutally clear, using official document styling with bold text: "COMRADE, YOU ARE COMMITTING: **$100** AND **FILE: K-01.JPG**. FAILURE IS NOT AN OPTION. CONFIRM DIRECTIVE." Visual metaphors like vault icons reassure users of security.
+1. **Authoritative & Unambiguous Tone:** The design follows Soviet Constructivist principles with rigid structure and clear hierarchy. Information is presented with strong lines, boxes, and a clear grid system. The UI feels stern, official, and powerful—a tool for discipline, not entertainment. Deadlines are presented as commands, not suggestions, through stark visual hierarchy.
+
+2. **Direct & Imperative Communication:** All microcopy uses direct, imperative language with uppercase **STALINIST ONE** typography for headings and button text (e.g., "SUBMIT PROOF," "COMMIT STAKES"). The tone is that of a state authority enforcing discipline, using symbolism over frivolous decoration.
+
+3. **Impactful Feedback & Consequences:** User actions feel significant through high-contrast visual feedback. Success states use muted colors (`Success-Muted`: `#5A7761`) while failures use bold, unmissable red (`Primary-Red`: `#DA291C`). The "Russian Roulette" moment feels mechanical and tense—like an official stamp process rather than a game.
+
+4. **Functional Clarity & Trust:** Zero ambiguity in high-stakes interactions. Confirmation modals use official document styling with brutal clarity: "COMRADE, YOU ARE COMMITTING: **$100** AND **FILE: K-01.JPG**. FAILURE IS NOT AN OPTION. CONFIRM DIRECTIVE." Security elements use vault metaphors with "SECURE STATE ARCHIVE" messaging.
 
 #### **2\. Component-Specific Rules**
 
-- **Buttons:** Hard-edged rectangles with no rounded corners. Primary buttons use bold `Primary-Red` (#DA291C). All button text rendered in uppercase **STALINIST ONE** typography. Sharp, functional click animations only.
-- **Modals & Pop-ups:** Should feel like official communiqués or stamped documents with hard borders and structured content. Sharp fade-in animations only - no playful bouncing.
-- **Dashboard & Calendar:** Rigid, grid-based layout with "IMMEDIATE DIRECTIVES" (upcoming deadlines) sidebar as primary focus. Simple, stark calendar grid. Clicking deadlines triggers submission modal instantly without transitions.
-- **Notifications & Feedback:** Toast-style notifications paired with KGB spy avatars and stark color contrast (muted green for success, Primary-Red for failures).
+- **Buttons:** Hard-edged rectangles with **zero border radius** (`border-radius: 0px`). Primary buttons use `Primary-Red` (#DA291C) with solid fill. Secondary buttons use outlined or muted styling. All button text rendered in uppercase **STALINIST ONE** typography. Sharp, functional animations only—no bouncy or playful effects.
+
+- **Modals & Pop-ups:** Designed as official communiqués or stamped documents with hard black borders (1px or 2px solid), clear titles, and structured content. Sharp fade-in animations only. No soft shadows—design relies on stark color contrast and strong lines.
+
+- **Dashboard & Calendar:** Rigid, 8-point grid-based layout with "IMMEDIATE DIRECTIVES" (upcoming deadlines) sidebar as primary focus. Calendar uses simple, stark grid of days. Clicking deadlines triggers submission modal instantly without playful transitions. Stakes always visible like official state records.
+
+- **Forms & Inputs:** Simple, rectangular input fields with clear borders and **zero rounded corners**. Labels positioned directly above inputs in uppercase formatting. Background uses `Background-Parchment` (#F5EEDC) for aged document feel.
+
+- **Notifications & Feedback:** High-contrast feedback with KGB spy-themed avatars. Success uses `Success-Muted` (#5A7761), failures use `Primary-Red` (#DA291C). Minimalist animations with sharp transitions that feel mechanical rather than celebratory.
 
 #### **3\. Visual Theme & Style Guide (Soviet Constructivist)**
 
-- **Color Palette:** Minimalist, high-contrast palette: `Primary-Red` (`#DA291C`) for actions and authority, `Accent-Black` (`#000000`) for text, `Background-Parchment` (`#F5EEDC`) for main background giving an aged document feel, `Success-Muted` (`#5A7761`) for functional success states.
-- **Typography:** Headings use **Stalinist One** (always UPPERCASE) for authoritative impact. Body text uses **Roboto Condensed** for efficient, structured information display.
-- **Iconography & Illustrations:** Stark, single-color icons (black or red) reminiscent of woodblock prints or stencils. KGB spy-style avatars drawn in high-contrast, graphic style.
-- **Layout & Spacing:** Strict 8-point grid system enforces structured, authoritative feel with consistent container padding (16px or 24px).
-- **Borders & Shadows:** **Zero border radius** - all elements have sharp 90-degree corners. Simple solid black borders (1px or 2px). **No shadows** - design relies on stark color contrast and strong lines.
+- **Color Palette (Minimalist & High-Contrast):**
+  - `Primary-Red`: `#DA291C` - Dominant color for primary buttons, headings, active states, critical alerts, and failure states
+  - `Accent-Black`: `#000000` - Body text, secondary UI elements, and illustration fills
+  - `Background-Parchment`: `#F5EEDC` - Main background giving aged paper/official document feel
+  - `Container-Light`: `#FFFFFF` - Sparingly used for containers/inputs needing contrast against parchment
+  - `Text-Primary`: `#000000` - All primary text content
+  - `Text-Muted`: `#333333` - Less important text (used minimally to maintain high contrast)
+  - `Success-Muted`: `#5A7761` - Militaristic green for successful submissions (functional, not celebratory)
+
+- **Typography (Bold & Impactful):**
+  - **Headings:** **Stalinist One** (Google Fonts) - All `<h1>`, `<h2>`, `<h3>` tags, button text, major UI titles. **Always UPPERCASE**
+  - **Body Text:** **Roboto Condensed** (Google Fonts) - Paragraphs, labels, descriptions. Condensed nature allows efficient space usage
+
+- **Iconography & Illustrations:** Stark, single-color (black or red) icons reminiscent of woodblock prints or stencils. Custom SVG format for unique aesthetic. KGB spy-style avatars in high-contrast, graphic style for consistent personality expression.
+
+- **Layout & Spacing:** Strict 8-point grid system (all spacing/sizing in multiples of 8px) enforces structured, authoritative feel. Consistent container padding (16px or 24px) maintains order and structure.
+
+- **Borders & Shadows (Critical Design Rule):**
+  - **Zero border radius** - All elements (buttons, inputs, containers) have sharp 90-degree corners (`border-radius: 0px`)
+  - Simple solid black borders (1px or 2px) define containers and separate sections
+  - **No shadows whatsoever** - Design relies entirely on stark color contrast and strong geometric lines, avoiding any depth effects
 
 ## **Technical Architecture**
 
