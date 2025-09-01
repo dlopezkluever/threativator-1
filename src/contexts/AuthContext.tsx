@@ -6,7 +6,7 @@ import type { Tables } from '../lib/supabase'
 export interface AuthState {
   user: User | null
   session: Session | null
-  userProfile: Tables<'users'> | null
+  userProfile: Tables<'profiles'> | null
   loading: boolean
   error: AuthError | null
 }
@@ -36,71 +36,97 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null)
   const [session, setSession] = useState<Session | null>(null)
-  const [userProfile, setUserProfile] = useState<Tables<'users'> | null>(null)
+  const [userProfile, setUserProfile] = useState<Tables<'profiles'> | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<AuthError | null>(null)
 
   // Fetch user profile from database
   const fetchUserProfile = async (userId: string) => {
+    console.log('🔍 [AuthContext] Starting fetchUserProfile for userId:', userId)
     try {
       const { data, error } = await supabase
-        .from('users')
+        .from('profiles')
         .select('*')
         .eq('id', userId)
         .single()
       
       if (error) {
-        console.error('Error fetching user profile:', error)
+        console.error('❌ [AuthContext] Error fetching user profile:', error)
         return
       }
       
+      console.log('✅ [AuthContext] User profile fetched successfully:', data)
       setUserProfile(data)
     } catch (err) {
-      console.error('Error fetching user profile:', err)
+      console.error('💥 [AuthContext] Exception in fetchUserProfile:', err)
     }
   }
 
   // Initialize auth state and set up listener
   useEffect(() => {
+    console.log('🚀 [AuthContext] useEffect started - initializing auth')
     let mounted = true
 
     // Get initial session
     const getInitialSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession()
-      
-      if (mounted) {
-        setSession(session)
-        setUser(session?.user ?? null)
+      console.log('🔄 [AuthContext] Getting initial session...')
+      try {
+        const { data: { session } } = await supabase.auth.getSession()
+        console.log('📋 [AuthContext] Initial session retrieved:', session ? 'Found session' : 'No session')
         
-        if (session?.user) {
-          await fetchUserProfile(session.user.id)
+        if (mounted) {
+          setSession(session)
+          setUser(session?.user ?? null)
+          
+          if (session?.user) {
+            console.log('👤 [AuthContext] User found, fetching profile...')
+            await fetchUserProfile(session.user.id)
+          } else {
+            console.log('🚫 [AuthContext] No user found')
+          }
+          
+          console.log('✅ [AuthContext] Initial session setup complete, setting loading=false')
+          setLoading(false)
+        } else {
+          console.log('⚠️ [AuthContext] Component unmounted during initial session setup')
         }
-        
-        setLoading(false)
+      } catch (error) {
+        console.error('💥 [AuthContext] Error in getInitialSession:', error)
+        if (mounted) {
+          setLoading(false)
+        }
       }
     }
 
     getInitialSession()
 
     // Listen for auth state changes
+    console.log('👂 [AuthContext] Setting up auth state change listener')
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
+      async (event, session) => {
+        console.log('🔄 [AuthContext] Auth state change:', event, session ? 'Session exists' : 'No session')
         if (mounted) {
           setSession(session)
           setUser(session?.user ?? null)
           
           if (session?.user) {
+            console.log('👤 [AuthContext] User in auth change, fetching profile...')
             await fetchUserProfile(session.user.id)
           } else {
+            console.log('🚫 [AuthContext] No user in auth change, clearing profile')
             setUserProfile(null)
           }
           
+          console.log('✅ [AuthContext] Auth state change complete, setting loading=false')
           setLoading(false)
+        } else {
+          console.log('⚠️ [AuthContext] Component unmounted during auth state change')
         }
       }
     )
 
     return () => {
+      console.log('🧹 [AuthContext] Cleanup: unmounting and unsubscribing')
       mounted = false
       subscription.unsubscribe()
     }

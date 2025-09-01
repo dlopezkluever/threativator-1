@@ -13,16 +13,7 @@ import AuthTestPage from './components/auth/AuthTestPage'
 import TwitterCallbackPage from './components/auth/TwitterCallbackPage'
 import OnboardingWizard from './components/onboarding/OnboardingWizard'
 import OnboardingTestPage from './components/onboarding/OnboardingTestPage'
-
-// Placeholder components for routes that will be implemented later
-const DashboardPage: React.FC = () => (
-  <div className="min-h-screen flex items-center justify-center bg-gray-50">
-    <div className="max-w-md w-full text-center">
-      <h2 className="text-3xl font-extrabold text-gray-900">Dashboard</h2>
-      <p className="mt-2 text-sm text-gray-600">Welcome to Threativator! Your goals and progress will appear here.</p>
-    </div>
-  </div>
-)
+import DashboardLayout from './components/dashboard/DashboardLayout'
 
 function App() {
   return (
@@ -61,8 +52,8 @@ function App() {
 
                 {/* Protected routes - require authentication */}
                 <Route path="/dashboard" element={
-                  <ProtectedRoute requiredOnboarding>
-                    <DashboardPage />
+                  <ProtectedRoute>
+                    <DashboardLayout />
                   </ProtectedRoute>
                 } />
                 

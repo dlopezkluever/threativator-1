@@ -11,7 +11,20 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        'stalinist': ['Stalinist One', 'serif'],
+        'roboto-condensed': ['Roboto Condensed', 'sans-serif'],
+      },
       colors: {
+        // Soviet Constructivist Color Palette
+        'primary-red': '#DA291C',
+        'accent-black': '#000000',
+        'background-parchment': '#F5EEDC',
+        'container-light': '#FFFFFF',
+        'text-primary': '#000000',
+        'text-muted': '#333333',
+        'success-muted': '#5A7761',
+        'failure-red': '#DA291C',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

@@ -16,8 +16,16 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   const { user, userProfile, loading } = useAuth()
   const location = useLocation()
 
+  console.log('🛡️ [ProtectedRoute] Checking protection for:', location.pathname)
+  console.log('🛡️ [ProtectedRoute] State - loading:', loading, 'user:', !!user, 'userProfile:', !!userProfile, 'requiredOnboarding:', requiredOnboarding)
+  
+  if (userProfile) {
+    console.log('🛡️ [ProtectedRoute] UserProfile onboarding_completed:', userProfile.onboarding_completed)
+  }
+
   // Show loading spinner while checking auth status
   if (loading) {
+    console.log('⏳ [ProtectedRoute] Still loading, showing spinner')
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
@@ -33,6 +41,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
 
   // If user is not authenticated, redirect to login with return URL
   if (!user) {
+    console.log('🚫 [ProtectedRoute] No user, redirecting to:', redirectTo)
     return (
       <Navigate 
         to={redirectTo} 
@@ -44,6 +53,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
 
   // If onboarding is required but not completed, redirect to onboarding
   if (requiredOnboarding && userProfile && !userProfile.onboarding_completed) {
+    console.log('🔄 [ProtectedRoute] Onboarding required but not completed, redirecting to /onboarding')
     return (
       <Navigate 
         to="/onboarding" 
@@ -54,6 +64,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   }
 
   // User is authenticated and meets requirements, render children
+  console.log('✅ [ProtectedRoute] All checks passed, rendering children')
   return <>{children}</>
 }
 

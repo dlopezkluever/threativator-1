@@ -1,78 +1,87 @@
-# **Threativator User Flow**
+# **Threativator User Flow: Operation Discipline**
 
-This document outlines the user journey through the Threativator application, from initial setup to the completion or failure of a goal. It is based on the features defined in the `project-overview.md`.
+This document outlines the user journey through the Threativator application, from initial recruitment to the completion or failure of assigned directives. Our USSR-style spy operatives will ensure your motivation issues become a thing of the past—we'll make sure of it, at all costs.
 
-## **1.0 First-Time User: Onboarding & Setup**
+## **The Soviet Spy Experience**
 
-This flow describes the journey of a new user from landing on the site to being fully set up and ready to create their first goal.
+Throughout the entire application, users interact with our menacing USSR-style spy avatar who delivers threatening communications:
 
-- **1.1. Sign Up:** User creates an account using standard authentication (email/password).
-- **1.2. Welcome & Concept Explanation:** User is shown a brief, engaging walkthrough of the Threativator concept (setting stakes, consequences for failure).
-- **1.3. Initial Setup Wizard:** The user is guided through a mandatory setup process before accessing the main dashboard.
-  - **Step 1: Connect Payment Method:** User is prompted to connect their Stripe account to create their "Holding Cell." They must deposit an initial amount to proceed.
-  - **Step 2: Upload Initial Kompromat:** User is required to upload at least one "Minor" and one "Major" piece of Kompromat. The UI clearly explains the difference and provides examples.
-  - **Step 3: Add Initial Contacts:** User is prompted to add a few email contacts, with the ability to tag them as "Witness/Referee" and/or "Consequence Target."
-  - **Step 4: Connect Social Media (Optional):** User is given the option to connect their Twitter account (for MVP). This step can be skipped.
-- **1.4. Landing on Dashboard:** After completing the setup, the user lands on the main dashboard, which is now populated with their information (e.g., Holding Cell balance). The app is now ready for use.
+- **Landing Page Recruitment:** "Trust us, your motivation issues will be a thing of the past; we'll make sure of it, at all costs."
+- **Email Notifications:** Feature the spy logo with threatening messages like "You have 3 days to complete your mission: {DIRECTIVE NAME}, or else, let's just say, there will be consequences. Remember, we have more than enough unfortunate material to ruin you."
+- **Interface Personality:** All interactions maintain the authoritative, state-controlled tone with terms like "DIRECTIVES," "OPERATIVES," "STATE INTELLIGENCE," and "KOMPROMAT."
+- **Visual Design:** High-contrast, stark Soviet Constructivist aesthetic with red, black, and parchment colors, zero border radius, and **STALINIST ONE** typography for maximum authoritative impact.
 
-## **2.0 Creating & Activating a New Goal**
+## **1.0 New Recruit: Operative Onboarding & Security Clearance**
 
-This flow describes the process of a registered user setting up and committing to a new goal.
+This flow describes the recruitment process from initial contact to full operational readiness. Our agents will ensure you understand the severity of your commitment—trust us, your motivation issues will be a thing of the past.
 
-- **2.1. Initiate Goal Creation:** User clicks a "Create New Goal" button on the dashboard.
-- **2.2. Define the Goal:**
-  - **Path A (Template):** User selects a "Common Goal" template (e.g., "Write a Novel"). The goal title, rubric, and suggested checkpoints are pre-filled.
-  - **Path B (Custom):** User manually enters their goal title, the final deadline, and writes a custom prompt to serve as the AI's grading rubric.
-- **2.3. Set Checkpoints:**
-  - If using a template, the user can accept the suggested weekly checkpoints or modify them.
-  - If creating a custom goal, the user can add checkpoints manually or click "Generate Checkpoints" to have the AI suggest them.
-- **2.4. Assign Stakes & Consequences (The Commitment Step):**
-  - **Step 1: Set Monetary Stake:** The user allocates a specific amount from their "Holding Cell" to this goal. They must also select one of the three charities to receive the funds upon failure.
-  - **Step 2: Assign Kompromat:** The user selects which of their uploaded Kompromat to attach to this goal's checkpoints ("Minor") and final deadline ("Major").
-  - **Step 3: Choose Referee:** The user selects who will grade their submissions: the "AI Grader" (default) or a "Human Witness" from their contact list.
-- **2.5. Activate Goal:** The user reviews a summary of the goal, deadlines, and all associated stakes. They click a final confirmation button, and the goal becomes active.
-- **2.6. Goal Appears on Dashboard:** The main goal and all its checkpoints are now visible and color-coded on the dashboard calendar and in the "upcoming deadlines" sidebar.
+- **1.1. Recruitment Registration:** New operative creates secure credentials (email/password) to access the State Discipline Network.
+- **1.2. Briefing & Indoctrination:** The USSR spy avatar appears with a stern warning: "Welcome, Comrade. Your days of procrastination are numbered. We have methods to ensure compliance—methods involving your most embarrassing secrets. Let's just say, there will be consequences for failure."
+- **1.3. Mandatory Security Clearance Process:** The operative must complete classified setup procedures before accessing operational headquarters.
+  - **Step 1: Establish Financial Collateral:** Operative connects payment method to the "STATE HOLDING CELL." Initial deposit required for operational security. Agent warns: "This is not a game, Comrade. Real stakes, real consequences."
+  - **Step 2: Surrender Compromising Material:** Operative must upload "KOMPROMAT" to the SECURE STATE ARCHIVE. The spy avatar explains menacingly: "We require insurance of your compliance. Upload your most unfortunate material—photos, videos, embarrassing confessions. We will use these... judiciously... should you fail us."
+  - **Step 3: Identify Associates:** Operative provides contact intelligence, classifying each as "WITNESS/OPERATIVE" or "CONSEQUENCE TARGET." The system warns: "Choose wisely—these contacts may receive your shameful failures."
+  - **Step 4: Social Media Integration (Optional):** Connect social platforms for public humiliation protocols. Warning displayed: "For maximum embarrassment reach, should disciplinary action be required."
+- **1.4. Access to Operational Command Center:** Upon clearance completion, operative gains access to the DIRECTIVE CONTROL DASHBOARD. The interface displays STATE HOLDING CELL balance and secured KOMPROMAT inventory. A final warning from the spy avatar: "Excellent, Comrade. You are now under our watch. Fail us, and we have more than enough unfortunate material to ruin you. Your missions await."
 
-## **3.0 The Active Goal Loop: Managing Deadlines**
+## **2.0 Mission Assignment & Directive Activation**
 
-This flow describes the primary loop of the app: submitting proof for an upcoming deadline.
+This flow describes the process of an operative receiving new state directives and committing resources for enforcement action.
 
-- **3.1. Notification:** The user receives an email notification that a checkpoint or final deadline is approaching. The avatar for the goal type is featured in the email.
-- **3.2. Initiate Submission:**
-  - The user logs into the app.
-  - They click on the upcoming deadline in either the calendar or the sidebar.
-- **3.3. Submit Proof:**
-  - A modal pops up with details of what needs to be submitted.
-  - The user clicks "Submit Proof," uploads the required file(s) or links, and confirms the submission.
-- **3.4. The Grading Process:**
-  - **If AI Grader:** The submission is sent for AI analysis. The user sees a "Grading in Progress" status.
-  - **If Human Witness:** The designated witness receives an email with a unique link to a page where they can vote "Pass" or "Fail." The user sees a "Waiting for Witness" status.
-- **3.5. Outcome \- Pass:**
-  - The user receives a "Congratulations\!" email.
-  - The deadline on the dashboard is marked as complete (e.g., turns green).
-  - The loop repeats for the next checkpoint, or the goal is marked as successfully completed if it was the final deadline.
-- **3.6. Outcome \- Fail (AI Grader):**
-  - The user receives a "Submission Failed" email explaining that the proof did not meet the rubric.
-  - The deadline on the dashboard is marked as failed (e.g., turns red).
-  - The user has the option to **resubmit** before the deadline passes or **contest** the decision (see Flow 4.2).
+- **2.1. Request New Directive:** Operative clicks "REQUEST NEW MISSION" button on command center dashboard.
+- **2.2. Define the Objective:**
+  - **Path A (Standard Operations):** Operative selects a "CLASSIFIED DIRECTIVE" template (e.g., "Complete Novel Manuscript"). Mission parameters, success criteria, and checkpoint protocols are pre-configured by State Intelligence.
+  - **Path B (Special Assignment):** Operative manually defines custom mission objective, final deadline, and success verification protocols for State Grader analysis.
+- **2.3. Establish Operational Milestones:**
+  - For standard directives, operative may accept State-recommended checkpoint schedule or request modifications.
+  - For special assignments, operative defines milestones manually or requests "GENERATE CHECKPOINT PROTOCOL" for AI-suggested surveillance intervals.
+- **2.4. Commit Resources & Authorize Disciplinary Action:**
+  - **Step 1: Allocate Financial Collateral:** Operative transfers funds from STATE HOLDING CELL to mission account. Must designate charity recipient for penalty funds. System warns: "Failure means forfeiture—the State does not negotiate."
+  - **Step 2: Assign Leverage Material:** Operative selects specific KOMPROMAT for enforcement: "MINOR" material for checkpoint failures, "MAJOR" material for complete mission failure. Spy avatar reminds: "Remember, we have enough unfortunate material to destroy your reputation."
+  - **Step 3: Designate Verification Authority:** Choose between "STATE AI GRADER" (default surveillance) or "HUMAN OPERATIVE" from contact network for mission verification.
+- **2.5. Mission Authorization:** Operative reviews complete directive summary: objectives, deadlines, financial stakes, and compromising material assignments. Final confirmation declares: "BY CONFIRMING THIS DIRECTIVE, YOU SUBMIT TO STATE AUTHORITY. FAILURE WILL RESULT IN IMMEDIATE DISCIPLINARY ACTION."
+- **2.6. Mission Deployment:** The directive and all checkpoints appear on the OPERATIONAL CALENDAR and "IMMEDIATE DIRECTIVES" command sidebar. The spy avatar delivers final warning: "Your mission is now active, Comrade. We are watching."
 
-## **4.0 The Consequence Flow: Handling Failure**
+## **3.0 Active Operations: Surveillance & Compliance Protocol**
 
-This flow describes the different paths that occur when a deadline is not met.
+This flow describes the primary surveillance loop: operative reporting and verification of mission progress.
 
-- **4.1. Failure by Missing a Deadline:**
-  - The system detects that a deadline has passed with no successful submission.
-  - The appropriate consequence is triggered automatically (Russian Roulette for checkpoints, guaranteed for the final deadline).
-  - The user receives the "Great dishonor" email, which is intentionally vague about humiliation consequences.
-  - Upon next login, the user sees the "You've unfortunately failed" pop-up modal.
-  - The failed deadline is archived, and the user continues with the next checkpoint or the goal is marked as "Failed."
-- **4.2. Failure by AI Rejection (Contesting Path):**
-  - The user's submission is failed by the AI, but the deadline has **not** yet passed.
-  - The user clicks the "Contest AI Decision" button.
-  - The UI instructs the user to have a friend sign up for Threativator and "Vouch" for them.
-  - The user's friend creates an account, finds the user's goal page, and clicks "Vouch."
-  - The AI failure is overridden, and the submission is marked as a "Pass." The user is notified.
-- **4.3. Failure by Human Witness:**
-  - The designated witness votes "Fail" on the submission.
-  - This action is final and cannot be contested.
-  - The submission is marked as failed, and the user must resubmit before the deadline or face the consequences as described in Flow 4.1.
+- **3.1. State Communication:** The operative receives classified email transmission as deadline approaches. The USSR spy avatar delivers the threat: "You have 3 days to complete your mission: {DIRECTIVE NAME}, or else, let's just say, there will be consequences. Remember, we have more than enough unfortunate material to ruin you."
+- **3.2. Report for Verification:**
+  - Operative accesses DIRECTIVE CONTROL DASHBOARD.
+  - Clicks on approaching deadline in OPERATIONAL CALENDAR or "IMMEDIATE DIRECTIVES" sidebar.
+- **3.3. Submit Mission Evidence:**
+  - Official communiqué modal appears with submission requirements and warning protocols.
+  - Operative clicks "SUBMIT PROOF OF COMPLIANCE," uploads required evidence, and confirms transmission to State Intelligence.
+- **3.4. State Verification Process:**
+  - **If State AI Grader:** Submission undergoes automated intelligence analysis. Operative sees "EVIDENCE UNDER REVIEW" status with ominous warning: "State analysts are examining your submission. Deception will be detected."
+  - **If Human Operative:** Designated contact receives classified email with unique verification link to vote "MISSION ACCOMPLISHED" or "OPERATIVE FAILED." Status shows "AWAITING WITNESS TESTIMONY."
+- **3.5. Outcome - Mission Accomplished:**
+  - Operative receives "DIRECTIVE COMPLETED" transmission with grudging approval: "Acceptable work, Comrade. The State acknowledges your compliance... for now."
+  - Deadline marked as "MISSION ACCOMPLISHED" (`Success-Muted` green) on command dashboard.
+  - Surveillance continues to next checkpoint, or complete directive marked "OPERATIONAL SUCCESS" if final deadline achieved.
+- **3.6. Outcome - Intelligence Rejection:**
+  - Operative receives "SUBMISSION REJECTED" transmission: "Your pathetic attempt fails to meet State standards. Disciplinary protocols may be activated unless immediate corrective action is taken."
+  - Deadline marked as "UNDER INVESTIGATION" (`Primary-Red`) on dashboard.
+  - Operative may **resubmit evidence** before deadline or **appeal to higher authority** (see Flow 4.2).
+
+## **4.0 Disciplinary Action Protocol: Consequence Enforcement**
+
+This flow describes the various punishment mechanisms activated when operative compliance fails. Remember, we have methods to ensure discipline.
+
+- **4.1. Failure by Missing Operational Deadline:**
+  - State surveillance detects deadline violation with no successful compliance.
+  - Disciplinary action triggers automatically ("ROULETTE OF CONSEQUENCES" for checkpoints, guaranteed punishment for final deadlines).
+  - Operative receives ominous "GREAT DISHONOR" transmission: "The State is disappointed, Comrade. Disciplinary measures have been implemented. You will learn the extent of your shame in due time."
+  - Upon next access, official modal appears: "CONSEQUENCE TRIGGERED. STATE DIRECTIVE HAS BEEN EXECUTED. GREAT DISHONOR COMES UPON YOU, COMRADE. LEARN FROM THIS FAILURE."
+  - Failed deadline archived to "DISCIPLINARY RECORD," surveillance continues or directive marked "OPERATIVE FAILURE."
+- **4.2. Intelligence Rejection (Appeal Protocol):**
+  - State AI rejects submission but deadline remains active.
+  - Operative clicks "APPEAL TO HIGHER AUTHORITY" button.
+  - System demands: "Find a trusted associate willing to vouch for your work. They must register with State Intelligence and stake their reputation on your behalf."
+  - Associate creates operative account, locates mission file, and clicks "VOUCH FOR COMRADE."
+  - AI rejection overridden, submission upgraded to "VERIFIED BY WITNESS." Both operatives notified of successful appeal.
+- **4.3. Witness Testimony Against Operative:**
+  - Designated human operative votes "MISSION FAILED" on submission evidence.
+  - This verdict is FINAL and cannot be appealed—"The State trusts its operatives completely."
+  - Submission marked as "CONDEMNED BY WITNESS." Operative must provide new evidence before deadline expires or face full disciplinary action as described in Flow 4.1.

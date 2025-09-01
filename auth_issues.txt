@@ -1,0 +1,45 @@
+Most Likely Culprits (in order of probability):
+
+  1. ProtectedRoute + Onboarding Logic Conflict (90% likely)
+
+  - The ProtectedRoute with requiredOnboarding is probably creating an infinite redirect loop
+  - User is authenticated but onboarding status check is failing/slow
+  - This would explain why incognito works initially but breaks on reload
+
+  2. AuthContext Session Restoration Issues (85% likely)
+
+  - useEffect in AuthContext may not be properly waiting for Supabase session restoration
+  - Race condition between session check and component mounting
+  - Session might be getting cleared prematurely during the auth state initialization
+
+  3. Supabase Session Persistence Problems (75% likely)
+
+  - Session storage/localStorage issues
+  - Supabase client configuration might not be persisting sessions properly
+  - Browser security settings or extensions interfering with session storage
+
+  4. Onboarding Status Database Query Bottleneck (60% likely)
+
+  - The onboarding status check in ProtectedRoute might be slow/failing
+  - Database connection timeout during the profiles table query
+  - Missing user profile record causing the query to hang
+
+  5. Multiple AuthContext Providers or React Strict Mode (40% likely)
+
+  - Double mounting in development mode causing auth state confusion
+  - Multiple auth checks running simultaneously
+
+  Quick Diagnostic Questions:
+
+  1. Are you seeing any console errors during the loading screen?
+  2. Does the loading screen show any specific message or just blank?
+  3. Are you completing the onboarding flow or skipping it somehow?
+
+  Most Efficient Fix Strategy:
+
+  1. First: Add detailed logging to AuthContext to see exactly where it's hanging
+  2. Second: Temporarily remove requiredOnboarding from the dashboard route to isolate the issue
+  3. Third: Check if onboarding status query is actually completing
+
+  The fact that it works in incognito initially but breaks on reload strongly suggests a session restoration + onboarding check conflict. This is a classic authentication flow issue where the app gets stuck between "user is
+  authenticated" and "user needs onboarding."
