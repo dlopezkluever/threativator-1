@@ -10,7 +10,7 @@ const Card = React.forwardRef<
     ref={ref}
     className={cn(
       // Kompromator Propaganda styling - thick borders, beige background
-      "border-[var(--border-width-thick)] border-[var(--color-border-primary)] bg-[var(--color-background-beige)] text-[var(--color-text-primary)] shadow-none",
+      "border-[6px] border-[var(--color-border-primary)] bg-[var(--color-background-beige)] text-[var(--color-text-primary)] shadow-none",
       className
     )}
     {...props}
@@ -26,7 +26,7 @@ const CardHeader = React.forwardRef<
     ref={ref}
     className={cn(
       // Kompromator propaganda header - thick borders, strong typography
-      "flex flex-col space-y-2 p-[var(--space-6)] bg-[var(--color-background-beige)] text-[var(--color-text-primary)] border-b-[var(--border-width-thick)] border-[var(--color-border-primary)]",
+      "flex flex-col space-y-2 p-[var(--space-6)] bg-[var(--color-background-beige)] text-[var(--color-text-primary)] border-b-[4px] border-[var(--color-border-primary)]",
       className
     )}
     {...props}
@@ -86,7 +86,7 @@ const CardFooter = React.forwardRef<
     ref={ref}
     className={cn(
       // Kompromator footer with thick borders
-      "flex items-center p-[var(--space-4)] bg-[var(--color-background-beige)] text-[var(--color-text-primary)] border-t-[var(--border-width-thick)] border-[var(--color-border-primary)]",
+      "flex items-center p-[var(--space-4)] bg-[var(--color-background-beige)] text-[var(--color-text-primary)] border-t-[4px] border-[var(--color-border-primary)]",
       className
     )}
     {...props}

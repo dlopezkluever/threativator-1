@@ -187,6 +187,19 @@ const OperationalCalendar: React.FC = () => {
     <>
       <style>
         {`
+          .rbc-calendar {
+            font-family: 'Roboto Condensed', sans-serif !important;
+            background: white !important;
+            border: none !important;
+            height: 100% !important;
+          }
+
+          .rbc-month-view {
+            border: 2px solid #000000 !important;
+            background: white !important;
+            height: 400px !important;
+          }
+          
           .rbc-header {
             background-color: #000000 !important;
             color: #F5EEDC !important;
@@ -194,63 +207,95 @@ const OperationalCalendar: React.FC = () => {
             text-transform: uppercase !important;
             font-weight: normal !important;
             padding: 8px !important;
-            border: 1px solid #DA291C !important;
+            border: 1px solid #C11B17 !important;
             border-radius: 0px !important;
-          }
-          
-          .rbc-month-view, .rbc-time-view {
-            border: none !important;
+            font-size: 12px !important;
           }
           
           .rbc-date-cell {
-            border: 1px solid #000000 !important;
+            border-right: 1px solid #000000 !important;
+            border-bottom: 1px solid #000000 !important;
             min-height: 60px !important;
             padding: 4px !important;
+            background: white !important;
+          }
+
+          .rbc-date-cell a {
+            color: #000000 !important;
+            font-family: 'Stalinist One', sans-serif !important;
+            font-size: 12px !important;
+            text-decoration: none !important;
+            font-weight: normal !important;
           }
           
           .rbc-today {
-            background-color: #F5EEDC !important;
+            background-color: #C11B17 !important;
+          }
+
+          .rbc-today a {
+            color: #F5EEDC !important;
           }
           
-          .rbc-off-range-bg {
-            background-color: #EEEEEE !important;
+          .rbc-off-range {
+            background-color: #f8f8f8 !important;
+            color: #999999 !important;
+          }
+
+          .rbc-off-range a {
+            color: #999999 !important;
           }
           
           .rbc-toolbar {
             margin-bottom: 16px !important;
+            padding: 8px 0 !important;
+            background: #F5EEDC !important;
+            border-bottom: 2px solid #000000 !important;
           }
           
+          .rbc-btn-group {
+            display: inline-flex !important;
+          }
+
           .rbc-btn-group button {
             background-color: #000000 !important;
             color: #F5EEDC !important;
-            border: 1px solid #DA291C !important;
+            border: 1px solid #C11B17 !important;
             font-family: 'Stalinist One', sans-serif !important;
             text-transform: uppercase !important;
             font-size: 10px !important;
             padding: 8px 12px !important;
             border-radius: 0px !important;
+            margin: 0 !important;
           }
           
           .rbc-btn-group button:hover {
-            background-color: #DA291C !important;
-            color: #000000 !important;
+            background-color: #C11B17 !important;
+            color: #F5EEDC !important;
           }
           
           .rbc-btn-group button.rbc-active {
-            background-color: #DA291C !important;
-            color: #000000 !important;
+            background-color: #C11B17 !important;
+            color: #F5EEDC !important;
           }
 
           .rbc-toolbar-label {
             font-family: 'Stalinist One', sans-serif !important;
             text-transform: uppercase !important;
             color: #000000 !important;
-            font-size: 14px !important;
+            font-size: 16px !important;
+            font-weight: normal !important;
           }
 
           .rbc-event {
             border-radius: 0px !important;
             border: 1px solid #000000 !important;
+            font-size: 10px !important;
+            font-weight: bold !important;
+            text-transform: uppercase !important;
+          }
+
+          .rbc-month-row + .rbc-month-row {
+            border-top: 1px solid #000000 !important;
           }
         `}
       </style>
@@ -260,11 +305,15 @@ const OperationalCalendar: React.FC = () => {
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: '100%', fontFamily: 'Roboto Condensed, sans-serif' }}
+        style={{ height: '400px', fontFamily: 'Roboto Condensed, sans-serif' }}
         eventPropGetter={eventStyleGetter}
         onSelectEvent={handleEventClick}
-        views={['month', 'week', 'day']}
+        views={['month']}
         defaultView="month"
+        showMultiDayTimes={false}
+        step={60}
+        timeslots={1}
+        popup={false}
         messages={{
           today: 'TODAY',
           previous: 'PREV',

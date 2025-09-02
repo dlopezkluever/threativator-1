@@ -65,7 +65,7 @@ const DashboardLayout: React.FC = () => {
   return (
     <div className="min-h-screen bg-[var(--color-main-crimson)] text-body">
       {/* Header - Dominant Kompromator Banner */}
-      <header className="bg-[var(--color-background-beige)] border-b-[var(--border-width-propaganda)] border-[var(--color-accent-black)]">
+      <header className="bg-[var(--color-background-beige)] border-b-[6px] border-[var(--color-accent-black)]">
         <div className="container mx-auto px-[var(--space-6)] py-[var(--space-6)] max-w-[var(--container-max-width)]">
           <div className="flex justify-between items-center">
             
@@ -83,7 +83,7 @@ const DashboardLayout: React.FC = () => {
                 <h1 className="text-propaganda-title text-[var(--color-primary-crimson)]">
                   KOMPROMATOR
                 </h1>
-                <div className="text-[var(--color-text-primary)] text-[var(--font-size-base)] font-[var(--font-family-body)] uppercase tracking-wide opacity-80 mt-1">
+                <div className="text-[var(--color-text-primary)] text-[var(--font-size-base)] font-[var(--font-family-body)] uppercase tracking-wide opacity-80 mt-1" style={{color: 'var(--color-text-primary)'}}>
                   STATE DISCIPLINE NETWORK
                 </div>
               </div>
@@ -91,11 +91,11 @@ const DashboardLayout: React.FC = () => {
             
             {/* Right: User Status */}
             <div className="flex flex-col items-end gap-2 text-right">
-              <div className="text-[var(--color-text-primary)] text-[var(--font-size-sm)] font-[var(--font-family-body)] uppercase font-bold">
+              <div className="text-[var(--color-text-primary)] text-[var(--font-size-sm)] font-[var(--font-family-body)] uppercase font-bold" style={{color: 'var(--color-text-primary)'}}>
                 OPERATIONAL COMMAND CENTER
               </div>
               <div className="flex items-center gap-[var(--space-3)]">
-                <div className="text-[var(--color-text-primary)] text-[var(--font-size-sm)] font-[var(--font-family-body)]">
+                <div className="text-[var(--color-text-primary)] text-[var(--font-size-sm)] font-[var(--font-family-body)]" style={{color: 'var(--color-text-primary)'}}>
                   <span className="uppercase font-bold">OPERATIVE:</span> <span className="text-[var(--color-primary-crimson)] font-bold">{user?.email?.split('@')[0].toUpperCase()}</span>
                 </div>
                 <div className="w-[2px] h-6 bg-[var(--color-primary-crimson)]"></div>
@@ -158,10 +158,10 @@ const DashboardLayout: React.FC = () => {
         </div>
 
         {/* Bottom Row: State Management - FORCE HORIZONTAL */}
-        <div className="flex gap-[var(--space-4)] h-[200px]">
+        <div className="flex gap-[var(--space-4)] h-[250px]">
           
-          {/* State Collateral (33% width) */}
-          <div className="flex-1">
+          {/* State Collateral (25% width) */}
+          <div className="flex-[1]">
             <Card className="h-full">
               <CardHeader className="py-[var(--space-3)]">
                 <CardTitle>STATE COLLATERAL</CardTitle>
@@ -173,49 +173,49 @@ const DashboardLayout: React.FC = () => {
             </Card>
           </div>
 
-          {/* Command Actions (33% width) */}
-          <div className="flex-1">
+          {/* Command Actions (50% width) */}
+          <div className="flex-[2]">
             <Card className="h-full">
               <CardHeader className="py-[var(--space-3)]">
                 <CardTitle>COMMAND ACTIONS</CardTitle>
                 <CardDescription>AUTHORIZED OPERATIONS</CardDescription>
               </CardHeader>
               <CardContent className="py-[var(--space-3)]">
-                <div className="grid grid-cols-2 gap-[var(--space-3)]">
-                  <Button variant="command" size="default" onClick={handleRequestNewMission} className="h-12">
-                    <div className="flex flex-col items-center gap-1">
-                      <span className="text-lg">⚡</span>
-                      <span className="text-[var(--font-size-xs)]">NEW MISSION</span>
+                <div className="grid grid-cols-3 gap-[var(--space-2)] h-full">
+                  <Button variant="command" size="default" onClick={handleRequestNewMission} className="h-16 text-center">
+                    <div className="flex flex-col items-center justify-center gap-1">
+                      <span className="text-xl">⚡</span>
+                      <span className="text-[var(--font-size-sm)] font-bold leading-tight">NEW MISSION</span>
                     </div>
                   </Button>
-                  <Button variant="action" size="default" onClick={handleSubmitProof} className="h-12">
-                    <div className="flex flex-col items-center gap-1">
-                      <span className="text-lg">📋</span>
-                      <span className="text-[var(--font-size-xs)]">SUBMIT PROOF</span>
+                  <Button variant="action" size="default" onClick={handleSubmitProof} className="h-16 text-center">
+                    <div className="flex flex-col items-center justify-center gap-1">
+                      <span className="text-xl">📋</span>
+                      <span className="text-[var(--font-size-sm)] font-bold leading-tight">SUBMIT PROOF</span>
                     </div>
                   </Button>
-                  <Button variant="success" size="default" onClick={handleEstablishCollateral} className="h-12">
-                    <div className="flex flex-col items-center gap-1">
-                      <span className="text-lg">💰</span>
-                      <span className="text-[var(--font-size-xs)]">COLLATERAL</span>
+                  <Button variant="success" size="default" onClick={handleEstablishCollateral} className="h-16 text-center">
+                    <div className="flex flex-col items-center justify-center gap-1">
+                      <span className="text-xl">💰</span>
+                      <span className="text-[var(--font-size-sm)] font-bold leading-tight">COLLATERAL</span>
                     </div>
                   </Button>
-                  <Button variant="ghost" size="default" onClick={handleUploadKompromat} className="h-12">
-                    <div className="flex flex-col items-center gap-1">
-                      <span className="text-lg">📁</span>
-                      <span className="text-[var(--font-size-xs)]">KOMPROMAT</span>
+                  <Button variant="ghost" size="default" onClick={handleUploadKompromat} className="h-16 text-center">
+                    <div className="flex flex-col items-center justify-center gap-1">
+                      <span className="text-xl">📁</span>
+                      <span className="text-[var(--font-size-sm)] font-bold leading-tight">KOMPROMAT</span>
                     </div>
                   </Button>
-                  <Button variant="ghost" size="default" onClick={handleRecruitContacts} className="h-12">
-                    <div className="flex flex-col items-center gap-1">
-                      <span className="text-lg">👥</span>
-                      <span className="text-[var(--font-size-xs)]">CONTACTS</span>
+                  <Button variant="ghost" size="default" onClick={handleRecruitContacts} className="h-16 text-center">
+                    <div className="flex flex-col items-center justify-center gap-1">
+                      <span className="text-xl">👥</span>
+                      <span className="text-[var(--font-size-sm)] font-bold leading-tight">CONTACTS</span>
                     </div>
                   </Button>
-                  <Button variant="danger" size="default" onClick={handleEmergencyExit} className="h-12">
-                    <div className="flex flex-col items-center gap-1">
-                      <span className="text-lg">⚠️</span>
-                      <span className="text-[var(--font-size-xs)]">EXIT</span>
+                  <Button variant="danger" size="default" onClick={handleEmergencyExit} className="h-16 text-center">
+                    <div className="flex flex-col items-center justify-center gap-1">
+                      <span className="text-xl">⚠️</span>
+                      <span className="text-[var(--font-size-sm)] font-bold leading-tight">EXIT</span>
                     </div>
                   </Button>
                 </div>
@@ -223,8 +223,8 @@ const DashboardLayout: React.FC = () => {
             </Card>
           </div>
 
-          {/* Classified Intel (33% width) */}
-          <div className="flex-1">
+          {/* Classified Intel (25% width) */}
+          <div className="flex-[1]">
             <Card className="h-full">
               <CardHeader className="py-[var(--space-3)]">
                 <CardTitle>CLASSIFIED INTEL</CardTitle>
@@ -252,8 +252,8 @@ const DashboardLayout: React.FC = () => {
       </div>
 
       {/* Bottom Status Bar - Compressed */}
-      <footer className="bg-[var(--color-background-beige)] border-t-[var(--border-width-thick)] border-[var(--color-accent-black)]">
-        <div className="container mx-auto px-[var(--space-4)] py-[var(--space-2)] max-w-[var(--container-max-width)]">
+      <footer className="bg-[var(--color-background-beige)] border-t-[6px] border-[var(--color-accent-black)]">
+        <div className="container mx-auto px-[var(--space-4)] py-[var(--space-1)] max-w-[var(--container-max-width)]">
           <div className="flex justify-between items-center">
             {/* Left: System Status */}
             <div className="flex items-center gap-[var(--space-4)] text-[var(--color-text-primary)] text-[var(--font-size-sm)] font-[var(--font-family-body)]">
@@ -263,12 +263,12 @@ const DashboardLayout: React.FC = () => {
             </div>
             
             {/* Right: Warning Message */}
-            <div className="flex items-center gap-[var(--space-2)] text-[var(--color-primary-crimson)] font-[var(--font-family-display)] text-[var(--font-size-base)] uppercase tracking-wide font-bold">
-              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <div className="flex items-center gap-[var(--space-2)] text-[var(--color-primary-crimson)] font-[var(--font-family-display)] text-[var(--font-size-sm)] uppercase tracking-wide font-bold">
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
-              <span>REMEMBER: FAILURE IS NOT AN OPTION</span>
-              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <span className="whitespace-nowrap">🔐 MILITARY-GRADE ENCRYPTION</span>
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
             </div>

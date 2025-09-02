@@ -128,6 +128,13 @@
 /* ===== GOOGLE FONTS IMPORT ===== */
 @import url('https://fonts.googleapis.com/css2?family=Stalinist+One&family=Roboto+Condensed:wght@300;400;700&display=swap');
 
+/* Force font loading for critical components */
+@font-face {
+  font-family: 'Stalinist One';
+  src: url('https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap');
+  font-display: swap;
+}
+
 /* ===== UTILITY CLASSES ===== */
 /* Typography Utilities - Soviet Propaganda System */
 .text-display {
@@ -146,12 +153,12 @@
 
 /* Propaganda Typography Classes */
 .text-propaganda-title {
-  font-family: var(--font-family-display);
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-black);
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  line-height: var(--line-height-tight);
+  font-family: 'Stalinist One', 'Arial Black', sans-serif !important;
+  font-size: var(--font-size-4xl) !important;
+  font-weight: var(--font-weight-black) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  line-height: var(--line-height-tight) !important;
 }
 
 .text-banner-title {
@@ -164,12 +171,13 @@
 }
 
 .text-card-title {
-  font-family: var(--font-family-display);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  line-height: var(--line-height-normal);
+  font-family: 'Stalinist One', 'Arial Black', sans-serif !important;
+  font-size: var(--font-size-xl) !important;
+  font-weight: var(--font-weight-black) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  line-height: var(--line-height-normal) !important;
+  color: var(--color-text-primary) !important;
 }
 
 .text-subtitle {
