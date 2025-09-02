@@ -5,21 +5,21 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "../../lib/utils"
 
 const buttonVariants = cva(
-  // Soviet base button styling - sharp edges, strong typography
+  // Kompromator base button styling - sharp edges, strong typography
   "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-[var(--font-family-display)] uppercase tracking-wide ring-offset-background transition-colors duration-[var(--transition-fast)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-[var(--border-width-medium)] border-solid",
   {
     variants: {
       variant: {
-        // Soviet Command button - black with white text
-        command: "bg-[var(--color-accent-black)] text-[var(--color-text-light)] border-[var(--color-container-light)] hover:bg-[var(--color-container-light)] hover:text-[var(--color-accent-black)] hover:border-[var(--color-accent-black)]",
-        // Soviet Action button - white with black text
-        action: "bg-[var(--color-container-light)] text-[var(--color-text-primary)] border-[var(--color-accent-black)] hover:bg-[var(--color-success-muted)] hover:text-[var(--color-text-light)] hover:border-[var(--color-success-muted)]",
-        // Soviet Danger button - red
-        danger: "bg-[var(--color-primary-red)] text-[var(--color-text-light)] border-[var(--color-accent-black)] hover:bg-[var(--color-accent-black)] hover:text-[var(--color-primary-red)] hover:border-[var(--color-primary-red)]",
-        // Soviet Ghost button - transparent
-        ghost: "bg-transparent text-[var(--color-text-primary)] border-[var(--color-accent-black)] hover:bg-[var(--color-accent-black)] hover:text-[var(--color-text-light)]",
-        // Soviet Success button - green
-        success: "bg-[var(--color-success-muted)] text-[var(--color-text-light)] border-[var(--color-accent-black)] hover:bg-[var(--color-accent-black)] hover:text-[var(--color-success-muted)] hover:border-[var(--color-success-muted)]",
+        // Kompromator Command button - black with beige text
+        command: "bg-[var(--color-accent-black)] text-[var(--color-background-beige)] border-[var(--color-background-beige)] hover:bg-[var(--color-background-beige)] hover:text-[var(--color-accent-black)] hover:border-[var(--color-accent-black)]",
+        // Kompromator Action button - beige with black text
+        action: "bg-[var(--color-background-beige)] text-[var(--color-text-primary)] border-[var(--color-accent-black)] hover:bg-[var(--color-success-muted)] hover:text-[var(--color-background-beige)] hover:border-[var(--color-success-muted)]",
+        // Kompromator Danger button - crimson
+        danger: "bg-[var(--color-primary-crimson)] text-[var(--color-background-beige)] border-[var(--color-accent-black)] hover:bg-[var(--color-accent-black)] hover:text-[var(--color-primary-crimson)] hover:border-[var(--color-primary-crimson)]",
+        // Kompromator Ghost button - transparent
+        ghost: "bg-transparent text-[var(--color-text-primary)] border-[var(--color-accent-black)] hover:bg-[var(--color-accent-black)] hover:text-[var(--color-background-beige)]",
+        // Kompromator Success button - green
+        success: "bg-[var(--color-success-muted)] text-[var(--color-background-beige)] border-[var(--color-accent-black)] hover:bg-[var(--color-accent-black)] hover:text-[var(--color-success-muted)] hover:border-[var(--color-success-muted)]",
       },
       size: {
         default: "h-10 px-[var(--space-4)] py-[var(--space-2)]",

@@ -9,8 +9,8 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      // Soviet Constructivist styling - sharp edges, high contrast
-      "border-[var(--border-width-medium)] border-[var(--color-border-primary)] bg-[var(--color-container-light)] text-[var(--color-text-primary)] shadow-none",
+      // Kompromator Constructivist styling - sharp edges, beige background
+      "border-[var(--border-width-medium)] border-[var(--color-border-primary)] bg-[var(--color-background-beige)] text-[var(--color-text-primary)] shadow-none",
       className
     )}
     {...props}
@@ -25,8 +25,8 @@ const CardHeader = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      // Soviet banner header styling
-      "flex flex-col space-y-1 p-[var(--space-4)] bg-[var(--color-primary-red)] text-[var(--color-text-light)] border-b-[var(--border-width-medium)] border-[var(--color-border-primary)]",
+      // Kompromator header styling - beige background, black text
+      "flex flex-col space-y-1 p-[var(--space-4)] bg-[var(--color-background-beige)] text-[var(--color-text-primary)] border-b-[var(--border-width-medium)] border-[var(--color-border-primary)]",
       className
     )}
     {...props}
@@ -41,8 +41,8 @@ const CardTitle = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      // Soviet display typography
-      "text-[var(--font-size-lg)] font-[var(--font-family-display)] uppercase tracking-wider leading-none text-[var(--color-text-light)]",
+      // Kompromator display typography - black text for headers
+      "text-[var(--font-size-lg)] font-[var(--font-family-display)] uppercase tracking-wider leading-none text-[var(--color-text-primary)]",
       className
     )}
     {...props}
@@ -57,8 +57,8 @@ const CardDescription = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      // Soviet body text styling
-      "text-[var(--font-size-xs)] font-[var(--font-family-body)] text-[var(--color-text-light)] opacity-90 normal-case",
+      // Kompromator body text styling - black text for descriptions
+      "text-[var(--font-size-xs)] font-[var(--font-family-body)] text-[var(--color-text-primary)] opacity-70 normal-case",
       className
     )}
     {...props}
@@ -85,8 +85,8 @@ const CardFooter = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      // Soviet footer with dark background
-      "flex items-center p-[var(--space-3)] bg-[var(--color-accent-black)] text-[var(--color-text-light)] border-t-[var(--border-width-medium)] border-[var(--color-primary-red)]",
+      // Kompromator footer with beige background
+      "flex items-center p-[var(--space-3)] bg-[var(--color-background-beige)] text-[var(--color-text-primary)] border-t-[var(--border-width-medium)] border-[var(--color-border-primary)]",
       className
     )}
     {...props}

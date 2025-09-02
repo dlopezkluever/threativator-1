@@ -1,25 +1,26 @@
 /**
- * SOVIET CONSTRUCTIVIST DESIGN TOKENS
- * Design System for the Threativator State Discipline Network
+ * KOMPROMATOR DESIGN TOKENS
+ * Design System for the Kompromator State Discipline Network
  * Following principles of geometric precision and authoritative aesthetics
  */
 
 :root {
   /* ===== COLOR PALETTE ===== */
-  /* Primary Soviet Colors */
-  --color-primary-red: #DA291C;
+  /* Kompromator Colors */
+  --color-primary-crimson: #C11B17;     /* Main crimson red */
   --color-accent-black: #000000;
-  --color-background-parchment: #F5EEDC;
-  --color-container-light: #FFFFFF;
+  --color-background-beige: #F5EEDC;    /* Headers, footers, and card backgrounds */
+  --color-main-crimson: #C11B17;        /* Main content background */
   --color-success-muted: #5A7761;
   
   /* Extended Palette for UI States */
-  --color-text-primary: var(--color-accent-black);
+  --color-text-primary: var(--color-accent-black);     /* Black text */
   --color-text-secondary: #333333;
-  --color-text-light: var(--color-container-light);
+  --color-text-crimson: var(--color-primary-crimson);  /* Crimson text for headers */
+  --color-text-beige: var(--color-background-beige);   /* Beige text */
   --color-text-muted: #666666;
   --color-border-primary: var(--color-accent-black);
-  --color-border-secondary: var(--color-primary-red);
+  --color-border-secondary: var(--color-primary-crimson);
 
   /* ===== TYPOGRAPHY ===== */
   /* Font Families - Import from Google Fonts */
@@ -126,8 +127,8 @@
   font-family: var(--font-family-body);
 }
 
-/* Soviet Container */
-.soviet-container {
+/* Container */
+.kompromator-container {
   max-width: var(--container-max-width);
   margin: 0 auto;
   padding-left: var(--container-padding-mobile);
@@ -135,29 +136,16 @@
 }
 
 @media (min-width: 768px) {
-  .soviet-container {
+  .kompromator-container {
     padding-left: var(--container-padding-tablet);
     padding-right: var(--container-padding-tablet);
   }
 }
 
 @media (min-width: 1024px) {
-  .soviet-container {
+  .kompromator-container {
     padding-left: var(--container-padding-desktop);
     padding-right: var(--container-padding-desktop);
-  }
-}
-
-/* Soviet Grid */
-.soviet-grid {
-  display: grid;
-  grid-template-columns: repeat(var(--grid-columns), 1fr);
-  gap: var(--grid-gap-mobile);
-}
-
-@media (min-width: 768px) {
-  .soviet-grid {
-    gap: var(--grid-gap);
   }
 }
 
