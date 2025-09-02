@@ -1,20 +1,23 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
+import { useGoals } from '../../contexts/GoalContext'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../ui/card'
 import { Button } from '../ui/button'
-import { Separator } from '../ui/separator'
 import { supabase } from '../../lib/supabase'
 import OperationalCalendar from './OperationalCalendar'
 import VisibleStakesDisplay from './VisibleStakesDisplay'
 
 const DashboardLayout: React.FC = () => {
   const { user, signOut } = useAuth()
+  const { goals, loading: goalsLoading } = useGoals()
+  const navigate = useNavigate()
 
   // Action handlers
   const handleRequestNewMission = async () => {
     try {
       const { data: profile } = await supabase
-        .from('profiles')
+        .from('users')
         .select('holding_cell_balance')
         .eq('id', user?.id)
         .single()
@@ -33,9 +36,11 @@ const DashboardLayout: React.FC = () => {
         return
       }
 
-      console.log('Security clearance verified, opening goal creation flow...')
+      // Navigate to goal creation
+      navigate('/create-goal')
     } catch (error) {
       console.log('Unable to verify clearance, allowing mission request anyway')
+      navigate('/create-goal')
     }
   }
 

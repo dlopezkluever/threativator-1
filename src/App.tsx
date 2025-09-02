@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
 import { ToastProvider } from './contexts/ToastContext'
+import { GoalProvider } from './contexts/GoalContext'
 import AuthErrorBoundary from './components/auth/AuthErrorBoundary'
 import ProtectedRoute from './components/auth/ProtectedRoute'
 import PublicRoute from './components/auth/PublicRoute'
@@ -14,15 +15,17 @@ import TwitterCallbackPage from './components/auth/TwitterCallbackPage'
 import OnboardingWizard from './components/onboarding/OnboardingWizard'
 import OnboardingTestPage from './components/onboarding/OnboardingTestPage'
 import DashboardLayout from './components/dashboard/DashboardLayout'
+import GoalCreation from './components/goals/GoalCreation'
 
 function App() {
   return (
     <AuthErrorBoundary>
       <ToastProvider>
         <AuthProvider>
-          <Router>
-            <div className="App min-h-screen">
-              <Routes>
+          <GoalProvider>
+            <Router>
+              <div className="App min-h-screen">
+                <Routes>
                 {/* Public routes - redirect authenticated users */}
                 <Route path="/login" element={
                   <PublicRoute>
@@ -62,6 +65,12 @@ function App() {
                     <OnboardingWizard />
                   </ProtectedRoute>
                 } />
+                
+                <Route path="/create-goal" element={
+                  <ProtectedRoute>
+                    <GoalCreation />
+                  </ProtectedRoute>
+                } />
 
                 {/* Test pages - can be accessed by anyone */}
                 <Route path="/test" element={<AuthTestPage />} />
@@ -72,9 +81,10 @@ function App() {
                 
                 {/* Catch all - redirect to dashboard */}
                 <Route path="*" element={<Navigate to="/dashboard" replace />} />
-              </Routes>
-            </div>
-          </Router>
+                </Routes>
+              </div>
+            </Router>
+          </GoalProvider>
         </AuthProvider>
       </ToastProvider>
     </AuthErrorBoundary>

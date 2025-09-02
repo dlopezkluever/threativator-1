@@ -1,0 +1,33 @@
+Remaining UI changes Sept 2nd:
+
+Change the Title Text to the other USSR font, 
+
+Add the Logo's somewhere:
+
+Fix the UI of the Auth page to match that set up 
+
+Make sure the dahsboard's second row is correctly aligned vertically with the top row (it's slightly off) 
+
+
+Make a Landing Page:
+
+"Do you stuggle to with Self Discipline when it comes to acheiving your own goals
+
+Sometimes, alittle extra push goes a long way"
+
+Sometimes, 
+
+With Kompromator, you will soon be working 
+
+
+
+Allow the ability to have friends and family add money into the pool for a goal you seek to achieve:
+
+Either you win the money if you achieve the goal, or if you fail, the money is either returned home, or donated. 
+
+
+Also we ned the ability to post to twitter too the kompromat**
+
+And don't forget about team usage, (should be a stretch goal)
+
+

@@ -130,7 +130,12 @@ The target users are individuals who require strong external motivators to compl
 
 - **Modals & Pop-ups:** Designed as official communiqués or stamped documents with hard black borders (1px or 2px solid), clear titles, and structured content. Sharp fade-in animations only. No soft shadows—design relies on stark color contrast and strong lines.
 
-- **Dashboard & Calendar:** Rigid, 8-point grid-based layout with "IMMEDIATE DIRECTIVES" (upcoming deadlines) sidebar as primary focus. Calendar uses simple, stark grid of days. Clicking deadlines triggers submission modal instantly without playful transitions. Stakes always visible like official state records.
+- **Dashboard Layout (Reference Implementation):** 
+  - **25%/75% main layout** - IMMEDIATE DIRECTIVES sidebar + dominant OPERATIONAL CALENDAR
+  - **1:2:1 bottom ratio** - State Collateral:Command Actions:Intel (Command gets 2x space)
+  - **Calendar System:** Month view with proper grid structure, week view for detail, no day view
+  - **Command Actions:** 3x2 button grid, 64px button height, 14px readable text, vertical icon+text layout
+  - **Thick propaganda borders** - 6px containers, 4px sections for maximum authority
 
 - **Forms & Inputs:** Simple, rectangular input fields with clear borders and **zero rounded corners**. Labels positioned directly above inputs in uppercase formatting. Background uses `Background-Parchment` (#F5EEDC) for aged document feel.
 
@@ -138,27 +143,30 @@ The target users are individuals who require strong external motivators to compl
 
 #### **3\. Visual Theme & Style Guide (Soviet Constructivist)**
 
-- **Color Palette (Minimalist & High-Contrast):**
-  - `Primary-Red`: `#DA291C` - Dominant color for primary buttons, headings, active states, critical alerts, and failure states
-  - `Accent-Black`: `#000000` - Body text, secondary UI elements, and illustration fills
-  - `Background-Parchment`: `#F5EEDC` - Main background giving aged paper/official document feel
-  - `Container-Light`: `#FFFFFF` - Sparingly used for containers/inputs needing contrast against parchment
-  - `Text-Primary`: `#000000` - All primary text content
-  - `Text-Muted`: `#333333` - Less important text (used minimally to maintain high contrast)
-  - `Success-Muted`: `#5A7761` - Militaristic green for successful submissions (functional, not celebratory)
+- **Color Palette Implementation (Dashboard Proven):**
+  - `Primary-Crimson`: `#C11B17` - KOMPROMATOR title, critical status, state warnings ONLY
+  - `Accent-Black`: `#000000` - ALL body text, borders, structural authority elements  
+  - `Background-Beige`: `#F5EEDC` - Card backgrounds, headers, official document feel
+  - `Main-Crimson`: `#C11B17` - Page background for intimidation factor
+  - `Success-Muted`: `#5A7761` - Military green for completed operations only
+  - **CRITICAL:** Black text default for all content, crimson reserved for state authority elements
 
-- **Typography (Bold & Impactful):**
-  - **Headings:** **Stalinist One** (Google Fonts) - All `<h1>`, `<h2>`, `<h3>` tags, button text, major UI titles. **Always UPPERCASE**
-  - **Body Text:** **Roboto Condensed** (Google Fonts) - Paragraphs, labels, descriptions. Condensed nature allows efficient space usage
+- **Typography Implementation (Font Loading Verified):**
+  - **Headers:** **Stalinist One** with `!important` loading for all card titles, major headers - **Always UPPERCASE**
+  - **Body Text:** **Roboto Condensed** for efficient information display
+  - **Minimum 14px text** for all interactive elements and readability
+  - **Force color inheritance** with inline styles when CSS cascade fails
 
 - **Iconography & Illustrations:** Stark, single-color (black or red) icons reminiscent of woodblock prints or stencils. Custom SVG format for unique aesthetic. KGB spy-style avatars in high-contrast, graphic style for consistent personality expression.
 
 - **Layout & Spacing:** Strict 8-point grid system (all spacing/sizing in multiples of 8px) enforces structured, authoritative feel. Consistent container padding (16px or 24px) maintains order and structure.
 
-- **Borders & Shadows (Critical Design Rule):**
-  - **Zero border radius** - All elements (buttons, inputs, containers) have sharp 90-degree corners (`border-radius: 0px`)
-  - Simple solid black borders (1px or 2px) define containers and separate sections
-  - **No shadows whatsoever** - Design relies entirely on stark color contrast and strong geometric lines, avoiding any depth effects
+- **Border Authority System (Implemented):** 
+  - **6px borders** on headers, footers, and main card containers for maximum authority
+  - **4px borders** on card sections (headers/footers within cards)  
+  - **Zero border radius** enforced globally with `!important` declarations
+  - **Black borders only** - no exceptions for geometric state authority
+  - **No shadows whatsoever** - Design relies on stark contrast and thick geometric lines
 
 ## **Technical Architecture**
 

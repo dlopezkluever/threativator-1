@@ -216,7 +216,7 @@
           2,
           3
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -224,7 +224,7 @@
             "description": "Set up the base GoalCreation component with step management, navigation controls, and state management for all form data",
             "dependencies": [],
             "details": "Create GoalCreation.tsx component with useState hooks for currentStep (1-5), formData object containing all fields across steps, and validation errors. Implement StepIndicator component showing progress through 4 main steps plus review. Add navigation buttons (Back/Next/Submit) with proper enabling/disabling based on step validation. Use React Hook Form or similar for form state management. Create transitions between steps with smooth animations. Store form data in component state to persist across step changes.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test step navigation works correctly with Back/Next buttons. Verify form data persists when navigating between steps. Ensure step indicator updates correctly. Test that Next button is disabled when current step has validation errors. Verify all form data is retained during step transitions."
           },
           {
@@ -235,7 +235,7 @@
               "4.1"
             ],
             "details": "Create GoalDefinitionStep component with controlled inputs for title (max 100 chars), description (rich text editor using Tiptap or similar), and final deadline picker using react-datepicker configured to only allow future dates. Implement grading rubric section with dropdown for template selection (Word Count, Code Commits, Daily Check-ins, Custom). Create template objects with pre-filled prompts that populate the rubric textarea when selected. For custom option, provide editable textarea with placeholder text guiding AI prompt creation. Add character counters and validation messages. Store all data in parent component's formData state.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test that deadline picker only allows future dates. Verify template selection populates rubric textarea correctly. Ensure custom rubric allows free text input. Test character limits on title field. Verify rich text editor saves formatted content properly. Test validation prevents progression with empty required fields."
           },
           {
@@ -247,7 +247,7 @@
               "4.2"
             ],
             "details": "Create CheckpointStep component with dynamic form array for multiple checkpoints. Each checkpoint has title, deadline (react-datepicker), and requirements fields. Implement 'Add Checkpoint' button to append new checkpoint form. Add 'Generate AI Suggestions' button that calls Supabase Edge Function which integrates with Gemini API, passing goal title, description, and final deadline. Display AI suggestions in a modal with checkboxes to select which ones to add. Validate that checkpoint deadlines are before final deadline and in chronological order. Allow reordering checkpoints with drag-and-drop using react-beautiful-dnd. Include delete buttons for each checkpoint.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test adding and removing multiple checkpoints. Verify checkpoint deadlines must be before final deadline. Test AI suggestion generation returns relevant checkpoints. Ensure selected AI suggestions populate form correctly. Test drag-and-drop reordering works. Verify validation prevents invalid deadline ordering."
           },
           {
@@ -258,7 +258,7 @@
               "4.1"
             ],
             "details": "Create StakesStep component with monetary stake input field that validates against user's holding_cell_balance fetched from database. Add charity selection dropdown with 3 pre-configured options (Red Cross, UNICEF, Local Food Bank). Implement Kompromat assignment section with two subsections: Minor Kompromat for checkpoints (multi-select from user's uploaded items filtered by severity='minor'), and Major Kompromat for final deadline (single select from severity='major' items). Create RefereeStep component with radio button group for AI Grader vs Human Witness selection. When Human Witness selected, show dropdown populated with user's contacts filtered by type='witness'. Add help tooltips explaining each option.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test monetary stake validation against actual balance. Verify charity dropdown shows all options. Test Kompromat items are filtered by severity correctly. Ensure referee type toggles contact dropdown visibility. Test that only witness contacts appear in dropdown. Verify all selections are saved to form state."
           },
           {
@@ -272,7 +272,7 @@
               "4.4"
             ],
             "details": "Create ReviewStep component displaying all form data in organized sections with edit buttons that jump back to specific steps. Show goal details, all checkpoints in a timeline view, stake amounts and assignments, and selected referee. Implement submitGoal async function that uses Supabase transaction to: create goal record in goals table, create all checkpoint records in checkpoints table with foreign key to goal, update holding_cell_balance if monetary stake exists, create stake_assignments records linking Kompromat to checkpoints/goal. Add loading state during submission with spinner. On success, show success toast and navigate to dashboard using React Router. On error, display specific error message and allow retry.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test review screen displays all entered data correctly. Verify edit buttons navigate to correct steps. Test database transaction creates all records atomically. Ensure transaction rollback on any error. Test navigation to dashboard after successful submission. Verify error handling shows appropriate messages."
           }
         ]
@@ -422,7 +422,7 @@
     ],
     "metadata": {
       "created": "2025-08-31T08:33:10.007Z",
-      "updated": "2025-09-01T17:54:00.646Z",
+      "updated": "2025-09-02T20:41:06.493Z",
       "description": "Tasks for master context"
     }
   }
