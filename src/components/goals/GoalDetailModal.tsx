@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import { Button } from '../ui/button'
 import { Goal } from '../../contexts/GoalContext'
+import SubmissionModal from './SubmissionModal'
+import SubmissionHistory from './SubmissionHistory'
 
 interface Props {
   goal: Goal | null
@@ -11,6 +13,9 @@ interface Props {
 }
 
 const GoalDetailModal: React.FC<Props> = ({ goal, isOpen, onClose, onSubmitProof }) => {
+  const [submissionModalOpen, setSubmissionModalOpen] = useState(false)
+  const [historyModalOpen, setHistoryModalOpen] = useState(false)
+  const [selectedCheckpoint, setSelectedCheckpoint] = useState<string | null>(null)
   if (!isOpen || !goal) return null
 
   const formatDate = (dateString: string) => {
@@ -223,16 +228,33 @@ const GoalDetailModal: React.FC<Props> = ({ goal, isOpen, onClose, onSubmitProof
                           </div>
                         </div>
                         
-                        {checkpoint.status === 'pending' && onSubmitProof && (
+                        <div className="flex gap-[var(--space-2)]">
+                          {checkpoint.status === 'pending' && (
+                            <Button
+                              onClick={() => {
+                                setSelectedCheckpoint(checkpoint.id)
+                                setSubmissionModalOpen(true)
+                              }}
+                              variant="action"
+                              size="sm"
+                              className="text-[var(--font-size-xs)] font-bold uppercase"
+                            >
+                              SUBMIT PROOF
+                            </Button>
+                          )}
+                          
                           <Button
-                            onClick={() => onSubmitProof(goal.id, checkpoint.id)}
-                            variant="action"
+                            onClick={() => {
+                              setSelectedCheckpoint(checkpoint.id)
+                              setHistoryModalOpen(true)
+                            }}
+                            variant="ghost"
                             size="sm"
                             className="text-[var(--font-size-xs)] font-bold uppercase"
                           >
-                            SUBMIT PROOF
+                            VIEW HISTORY
                           </Button>
-                        )}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -253,9 +275,12 @@ const GoalDetailModal: React.FC<Props> = ({ goal, isOpen, onClose, onSubmitProof
               CLOSE DOSSIER
             </Button>
 
-            {goal.status === 'active' && onSubmitProof && (
+            {goal.status === 'active' && (
               <Button
-                onClick={() => onSubmitProof(goal.id)}
+                onClick={() => {
+                  setSelectedCheckpoint(null) // null indicates final submission
+                  setSubmissionModalOpen(true)
+                }}
                 variant="danger"
                 className="text-[var(--font-size-sm)] font-bold uppercase"
               >
@@ -266,6 +291,35 @@ const GoalDetailModal: React.FC<Props> = ({ goal, isOpen, onClose, onSubmitProof
         </div>
 
       </div>
+
+      {/* Submission Modal */}
+      {submissionModalOpen && goal && (
+        <SubmissionModal
+          isOpen={submissionModalOpen}
+          onClose={() => {
+            setSubmissionModalOpen(false)
+            setSelectedCheckpoint(null)
+          }}
+          goal={goal}
+          checkpoint={selectedCheckpoint ? goal.checkpoints?.find(c => c.id === selectedCheckpoint) : undefined}
+          onSubmissionComplete={() => {
+            // Refresh goal data or trigger parent refresh
+            onSubmitProof?.(goal.id, selectedCheckpoint || undefined)
+          }}
+        />
+      )}
+
+      {/* History Modal */}
+      {historyModalOpen && selectedCheckpoint && (
+        <SubmissionHistory
+          checkpointId={selectedCheckpoint}
+          isOpen={historyModalOpen}
+          onClose={() => {
+            setHistoryModalOpen(false)
+            setSelectedCheckpoint(null)
+          }}
+        />
+      )}
     </div>
   )
 }

@@ -288,7 +288,7 @@
           3,
           4
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -296,7 +296,7 @@
             "description": "Build the base SubmissionModal component with state management and UI layout for the three submission types",
             "dependencies": [],
             "details": "Create SubmissionModal.tsx with React state to track submission type (file/url/text), current step (type selection, input, preview, submitting), and submission data. Implement modal UI with header showing checkpoint title/deadline, type selector buttons with icons, and footer with Cancel/Next/Submit buttons. Use controlled components for form state management. Add loading states and error handling. Integrate with existing dashboard to trigger modal on deadline clicks. Set up props interface to receive checkpoint data and onClose callback.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test modal opens correctly when deadline is clicked from dashboard. Verify type selection updates state and shows correct input UI. Test Cancel button closes modal and resets state. Ensure modal is accessible with proper ARIA attributes. Test responsive design on mobile/tablet viewports."
           },
           {
@@ -307,7 +307,7 @@
               "5.1"
             ],
             "details": "Create FileUploadZone component with react-dropzone for drag-and-drop functionality. Implement file validation: accept images (jpg/png/gif), PDFs, and videos (mp4/mov), enforce 10MB size limit with clear error messages. Set up Supabase Storage bucket 'submissions' with RLS policies allowing users to upload to /users/{userId}/submissions/{submissionId} path. Implement upload progress tracking using XMLHttpRequest or fetch with progress events. Show progress bar during upload with percentage and estimated time. Handle upload errors gracefully with retry option. Generate unique submissionId using UUID. Store file metadata (name, size, type, url) in component state for preview.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test drag-and-drop accepts valid file types and rejects invalid ones. Verify 10MB size limit shows appropriate error for larger files. Test upload progress bar updates smoothly from 0-100%. Ensure files are uploaded to correct Supabase Storage path. Test network error handling and retry functionality. Verify different file types (image, PDF, video) upload successfully."
           },
           {
@@ -318,7 +318,7 @@
               "5.1"
             ],
             "details": "For URL input: Create URLInput component with input field and validation using URL constructor to check validity. Implement 'Test Link' button that makes HEAD request to verify URL is accessible (handle CORS with backend proxy if needed). Show validation states with checkmark for valid URLs and error messages for invalid ones. For text input: Integrate rich text editor (Quill or TipTap) with formatting toolbar (bold, italic, lists, headings). Set character limit of 5000 characters with counter. Support basic markdown if using TipTap. Auto-save draft to localStorage every 30 seconds. Add placeholder text with helpful prompts about what to include in proof description.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test URL validation accepts various valid formats (http, https, with/without www). Verify invalid URLs show appropriate error messages. Test 'Test Link' functionality with accessible and inaccessible URLs. For text editor, verify formatting tools work correctly. Test character limit enforcement. Verify auto-save preserves content on page refresh. Test markdown parsing if implemented."
           },
           {
@@ -330,7 +330,7 @@
               "5.3"
             ],
             "details": "Create SubmissionPreview component that displays: file preview (thumbnails for images, file icon for others), URL as clickable link with favicon, formatted text with preserved styling. Add 'Edit' button to go back and modify submission. Implement submitProof function that creates submission record in submissions table with: checkpoint_id, user_id, submission_type, content (file URL from Storage, external URL, or text), status 'pending', submitted_at timestamp. For file submissions, ensure Storage URL is saved after successful upload. Handle submission errors with user-friendly messages. After successful submission, close modal and show success toast notification. Update UI to immediately show 'Grading in Progress' status badge.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test preview displays correctly for each submission type. Verify Edit button allows modifying submission before final submit. Test submission creates correct database record with all required fields. Ensure file submissions save Storage URL correctly. Test error handling for database failures. Verify success feedback and modal closure after submission."
           },
           {
@@ -341,7 +341,7 @@
               "5.4"
             ],
             "details": "Set up Supabase real-time subscription on submissions table filtering by user_id and checkpoint_id. Listen for UPDATE events on status field changes (pending -> passed/failed). When status changes, update UI immediately with new badge and show notification. Create SubmissionHistory component accessible from goal detail page showing all submissions for a checkpoint with: submission date, type icon, status badge, AI feedback when available, option to view full submission content. Implement pagination or infinite scroll for long submission history. Add filters for status (all/passed/failed) and sort by date. Cache submission history in React Query or SWR for performance. Handle subscription cleanup on component unmount.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test real-time subscription receives updates when submission status changes. Verify UI updates immediately without page refresh. Test submission history displays all past submissions correctly. Verify pagination/infinite scroll loads more items properly. Test filters and sorting work as expected. Ensure subscription cleanup prevents memory leaks."
           }
         ]
@@ -422,7 +422,7 @@
     ],
     "metadata": {
       "created": "2025-08-31T08:33:10.007Z",
-      "updated": "2025-09-02T20:41:06.493Z",
+      "updated": "2025-09-02T21:21:11.511Z",
       "description": "Tasks for master context"
     }
   }
