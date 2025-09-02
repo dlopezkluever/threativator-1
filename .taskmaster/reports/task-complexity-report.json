@@ -1,0 +1,69 @@
+{
+	"meta": {
+		"generatedAt": "2025-09-02T20:18:13.553Z",
+		"tasksAnalyzed": 7,
+		"totalTasks": 10,
+		"analysisCount": 7,
+		"thresholdScore": 5,
+		"projectName": "Taskmaster",
+		"usedResearch": true
+	},
+	"complexityAnalysis": [
+		{
+			"taskId": 4,
+			"taskTitle": "Implement Goal Creation Flow",
+			"complexityScore": 8,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Break down the 'Implement Goal Creation Flow' task into 5 subtasks. The breakdown should follow the multi-step form structure. Create subtasks for: 1. The overall multi-step form shell, including step navigation and global state management. 2. The 'Goal Definition' step UI and validation. 3. The 'Checkpoints' step UI, including dynamic forms, reordering, and the Gemini API integration for suggestions. 4. The 'Stakes' and 'Referee' steps, including data fetching and validation. 5. The final 'Review' screen and the backend submission logic, focusing on the atomic database transaction.",
+			"reasoning": "The task is highly complex due to its multi-step nature, which requires sophisticated frontend state management. It also involves two separate backend integrations: one for an AI API (Gemini) and another for a critical, atomic database transaction. The existing 5 subtasks are a logical and appropriate division of this work."
+		},
+		{
+			"taskId": 5,
+			"taskTitle": "Build Submission and Proof Upload System",
+			"complexityScore": 8,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Expand the 'Build Submission and Proof Upload System' task into 5 subtasks. The subtasks should be: 1. Create the base SubmissionModal component structure and state management. 2. Implement the file upload functionality, including the drag-and-drop UI, validation, progress bar, and integration with Supabase Storage. 3. Build the input components for external URLs and rich text. 4. Develop the submission preview screen and the backend logic to create the submission record in the database. 5. Implement real-time status updates using Supabase subscriptions and a UI to view submission history.",
+			"reasoning": "This task's complexity comes from combining a multi-path UI (file, URL, text), direct integration with cloud storage (including progress tracking and security policies), and a real-time status update feature using websockets. The existing 5 subtasks correctly isolate these distinct areas of work."
+		},
+		{
+			"taskId": 6,
+			"taskTitle": "Integrate AI Grading with Gemini API",
+			"complexityScore": 9,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Break down the 'Integrate AI Grading with Gemini API' task into 5 subtasks. The subtasks should cover: 1. Setting up the 'gradeSubmission' Supabase Edge Function and the database trigger that invokes it. 2. Implementing the pre-processing logic to fetch data and perform simple, cost-saving checks (e.g., word count, URL accessibility). 3. The core Gemini API integration, including secure prompt construction and sanitization to prevent injection. 4. Logic for parsing the unstructured AI response and updating the submission record in the database with the verdict and feedback. 5. Implementing robust error handling, retry mechanisms, and logging for cost and usage monitoring.",
+			"reasoning": "This is a very complex backend task. The high score is due to the reliance on an external AI API, which requires sophisticated prompt engineering, security sanitization, and parsing of potentially unstructured output. The need for pre-processing, cost-optimization, and robust error handling adds significant complexity beyond a simple API call."
+		},
+		{
+			"taskId": 7,
+			"taskTitle": "Implement Consequence Engine with Scheduled Jobs",
+			"complexityScore": 10,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Expand the 'Implement Consequence Engine' task into 6 subtasks. The breakdown should be: 1. Set up the `pg_cron` job and the database function to detect missed deadlines. 2. Create the main 'triggerConsequence' Edge Function to process failures. 3. Implement the monetary consequence logic using the Stripe API for fund transfers. 4. Implement the email-based humiliation consequence using the SendGrid API. 5. Develop the core business logic, including the probabilistic 'Russian Roulette' trigger and the creation of audit trail records. 6. Build the corresponding frontend failure notifications, including the dramatic in-app modal.",
+			"reasoning": "This task is exceptionally complex, warranting the highest score. It's an automated, mission-critical backend system with real-world financial and social consequences. It orchestrates scheduled jobs, database functions, serverless functions, and multiple critical third-party APIs (Stripe, SendGrid), all governed by complex, probabilistic business logic."
+		},
+		{
+			"taskId": 8,
+			"title": "Add Twitter Integration for Social Consequences",
+			"complexityScore": 8,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Break down the 'Add Twitter Integration' task into 5 subtasks. These should be: 1. Build the backend Edge Functions to manage the complete OAuth 2.0 flow with PKCE. 2. Implement secure storage for OAuth tokens using Supabase Vault and create the necessary database schema. 3. Develop the frontend UI for users to connect and disconnect their Twitter account in settings. 4. Integrate the tweet-posting functionality into the 'triggerConsequence' engine, including handling media uploads from Kompromat. 5. Implement the token refresh logic and robust error handling for cases like expired tokens or revoked permissions.",
+			"reasoning": "The complexity is high due to the implementation of a full OAuth 2.0 flow, which has significant security implications. It requires secure token management (encryption, storage, refresh lifecycle), and robust integration with both a third-party API (Twitter) and an existing critical backend system (Consequence Engine)."
+		},
+		{
+			"taskId": 9,
+			"title": "Create Notification System with SendGrid",
+			"complexityScore": 7,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Expand the 'Create Notification System with SendGrid' task into 5 subtasks. The breakdown should be: 1. Initial SendGrid account setup, including API key configuration and domain authentication (SPF/DKIM). 2. Design and create all required dynamic email templates in the SendGrid UI. 3. Build a reusable 'sendNotification' Supabase Edge Function to interface with the SendGrid API. 4. Integrate this notification function at all necessary trigger points throughout the application logic (e.g., cron jobs, other edge functions). 5. Implement user-facing notification preferences and the backend logic for handling unsubscribes and tracking.",
+			"reasoning": "This is more than a simple API call; it's building a platform-wide system. The complexity comes from the initial infrastructure setup (DNS records), the need to integrate with multiple disparate parts of the application, managing dynamic templates, and implementing system-level features like user preferences (unsubscribes) and scalability (queuing/rate-limiting)."
+		},
+		{
+			"taskId": 10,
+			"title": "Polish UI with Soviet Constructivist Design System",
+			"complexityScore": 6,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Break down the 'Polish UI with Soviet Constructivist Design System' task into 4 subtasks. The subtasks should be: 1. Establish the design system foundation in Tailwind CSS, including the specified color palette, fonts, and global styles (e.g., no rounded corners). 2. Refactor or create a library of core UI components (buttons, inputs, modals) styled according to the new design system, incorporating Magic UI animations. 3. Design and implement the custom high-contrast, stencil-style iconography and avatars. 4. Conduct a full-site audit and apply the new design system to all pages and views, ensuring consistency, responsiveness, and accessibility (WCAG, reduced motion).",
+			"reasoning": "The complexity lies in the breadth of the task, requiring a systematic refactoring of the entire frontend. It's not just changing colors; it's implementing a specific, opinionated design language, including custom iconography, typography, and animations, while ensuring consistency and accessibility across the whole application, which is a significant undertaking."
+		}
+	]
+}
