@@ -1,0 +1,174 @@
+/**
+ * SOVIET CONSTRUCTIVIST DESIGN TOKENS
+ * Design System for the Threativator State Discipline Network
+ * Following principles of geometric precision and authoritative aesthetics
+ */
+
+:root {
+  /* ===== COLOR PALETTE ===== */
+  /* Primary Soviet Colors */
+  --color-primary-red: #DA291C;
+  --color-accent-black: #000000;
+  --color-background-parchment: #F5EEDC;
+  --color-container-light: #FFFFFF;
+  --color-success-muted: #5A7761;
+  
+  /* Extended Palette for UI States */
+  --color-text-primary: var(--color-accent-black);
+  --color-text-secondary: #333333;
+  --color-text-light: var(--color-container-light);
+  --color-text-muted: #666666;
+  --color-border-primary: var(--color-accent-black);
+  --color-border-secondary: var(--color-primary-red);
+
+  /* ===== TYPOGRAPHY ===== */
+  /* Font Families - Import from Google Fonts */
+  --font-family-display: 'Stalinist One', 'Arial Black', sans-serif;
+  --font-family-body: 'Roboto Condensed', 'Arial', sans-serif;
+  
+  /* Font Sizes - Geometric Scale */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+
+  /* ===== SPACING SYSTEM ===== */
+  /* 8-Point Grid System */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+
+  /* ===== BORDERS ===== */
+  /* Soviet Design Rule: ZERO border radius */
+  --border-radius: 0px;
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 4px;
+  
+  /* Border Styles */
+  --border-primary: var(--border-width-medium) solid var(--color-border-primary);
+  --border-secondary: var(--border-width-thin) solid var(--color-border-secondary);
+  --border-thick: var(--border-width-thick) solid var(--color-border-primary);
+
+  /* ===== SHADOWS ===== */
+  /* Soviet Rule: No shadows - rely on stark contrast */
+  --shadow-none: none;
+
+  /* ===== LAYOUT ===== */
+  /* Container Sizes */
+  --container-max-width: 1400px;
+  --container-padding-mobile: var(--space-4);
+  --container-padding-tablet: var(--space-6);
+  --container-padding-desktop: var(--space-8);
+  
+  /* Grid System */
+  --grid-columns: 12;
+  --grid-gap: var(--space-8);
+  --grid-gap-mobile: var(--space-4);
+
+  /* ===== COMPONENT TOKENS ===== */
+  /* Buttons */
+  --button-padding-sm: var(--space-2) var(--space-4);
+  --button-padding-md: var(--space-3) var(--space-6);
+  --button-padding-lg: var(--space-4) var(--space-8);
+  
+  /* Cards */
+  --card-padding: var(--space-6);
+  --card-padding-sm: var(--space-4);
+  --card-border: var(--border-primary);
+  
+  /* Headers */
+  --header-height: 80px;
+  --header-padding: var(--space-4);
+  
+  /* ===== Z-INDEX LAYERS ===== */
+  --z-index-modal: 1000;
+  --z-index-dropdown: 100;
+  --z-index-header: 50;
+  --z-index-base: 1;
+
+  /* ===== TRANSITIONS ===== */
+  /* Soviet Design: Sharp, mechanical transitions only */
+  --transition-fast: 0.15s ease-out;
+  --transition-base: 0.2s ease-out;
+  --transition-slow: 0.3s ease-out;
+}
+
+/* ===== GOOGLE FONTS IMPORT ===== */
+@import url('https://fonts.googleapis.com/css2?family=Stalinist+One&family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+/* ===== UTILITY CLASSES ===== */
+/* Typography Utilities */
+.text-display {
+  font-family: var(--font-family-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.text-body {
+  font-family: var(--font-family-body);
+}
+
+/* Soviet Container */
+.soviet-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-left: var(--container-padding-mobile);
+  padding-right: var(--container-padding-mobile);
+}
+
+@media (min-width: 768px) {
+  .soviet-container {
+    padding-left: var(--container-padding-tablet);
+    padding-right: var(--container-padding-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .soviet-container {
+    padding-left: var(--container-padding-desktop);
+    padding-right: var(--container-padding-desktop);
+  }
+}
+
+/* Soviet Grid */
+.soviet-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: var(--grid-gap-mobile);
+}
+
+@media (min-width: 768px) {
+  .soviet-grid {
+    gap: var(--grid-gap);
+  }
+}
+
+/* Remove all border radius globally (Soviet Rule) */
+* {
+  border-radius: var(--border-radius) !important;
+}
+
+/* Disable all box shadows (Soviet Rule) */
+*,
+*::before,
+*::after {
+  box-shadow: var(--shadow-none) !important;
+}

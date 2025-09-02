@@ -21,7 +21,7 @@ function App() {
       <ToastProvider>
         <AuthProvider>
           <Router>
-            <div className="App" style={{ width: '100vw', maxWidth: 'none', margin: 0, padding: 0 }}>
+            <div className="App min-h-screen">
               <Routes>
                 {/* Public routes - redirect authenticated users */}
                 <Route path="/login" element={

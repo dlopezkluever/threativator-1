@@ -1,5 +1,6 @@
 import React from 'react'
 import { useAuth } from '../../contexts/AuthContext'
+import { SovietContainer, SovietGrid, SovietCard, SovietBanner } from '../ui'
 import ImmediateDirectivesSidebar from './ImmediateDirectivesSidebar'
 import OperationalCalendar from './OperationalCalendar'
 import VisibleStakesDisplay from './VisibleStakesDisplay'
@@ -9,96 +10,112 @@ const DashboardLayout: React.FC = () => {
   const { user } = useAuth()
 
   return (
-    <div className="min-h-screen bg-[#F5EEDC] font-['Roboto_Condensed']">
+    <div className="min-h-screen bg-[var(--color-background-parchment)] text-body">
       {/* Header - Official State Banner */}
-      <header className="bg-[#000000] border-b-2 border-[#DA291C] p-4">
-        <div className="max-w-full mx-auto flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <div className="w-8 h-8 bg-[#DA291C] flex items-center justify-center">
-              <span className="text-[#000000] font-bold text-lg">★</span>
+      <header className="bg-[var(--color-accent-black)] border-b-[var(--border-width-medium)] border-[var(--color-primary-red)]">
+        <SovietContainer className="py-[var(--header-padding)]">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-[var(--space-4)]">
+              <div className="w-8 h-8 bg-[var(--color-primary-red)] flex items-center justify-center border-[var(--border-width-thin)] border-[var(--color-accent-black)]">
+                <svg className="w-5 h-5 fill-[var(--color-accent-black)]" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+              <SovietBanner type="header" className="border-none bg-transparent text-[var(--color-text-light)] text-[var(--font-size-xl)]">
+                OPERATIONAL COMMAND CENTER
+              </SovietBanner>
             </div>
-            <h1 className="text-[#F5EEDC] font-['Stalinist_One'] text-xl uppercase tracking-wide">
-              OPERATIONAL COMMAND CENTER
-            </h1>
+            <div className="flex items-center gap-[var(--space-4)] text-[var(--color-text-light)] text-[var(--font-size-sm)] font-[var(--font-family-body)]">
+              <span>OPERATIVE: {user?.email?.split('@')[0].toUpperCase()}</span>
+              <div className="w-[1px] h-4 bg-[var(--color-primary-red)]"></div>
+              <span className="text-[var(--color-primary-red)] font-bold">UNDER SURVEILLANCE</span>
+            </div>
           </div>
-          <div className="flex items-center space-x-4 text-[#F5EEDC] text-sm">
-            <span>OPERATIVE: {user?.email?.split('@')[0].toUpperCase()}</span>
-            <div className="w-px h-4 bg-[#DA291C]"></div>
-            <span className="text-[#DA291C]">UNDER SURVEILLANCE</span>
-          </div>
-        </div>
+        </SovietContainer>
       </header>
 
-      {/* Main Control Grid - 8-point grid system */}
-      <div className="max-w-full mx-auto p-8 grid grid-cols-12 gap-8 min-h-[calc(100vh-80px)]">
-        
-        {/* Left: IMMEDIATE DIRECTIVES Sidebar (3 cols) */}
-        <div className="col-span-12 lg:col-span-3">
-          <ImmediateDirectivesSidebar />
-        </div>
-
-        {/* Center: OPERATIONAL CALENDAR (6 cols) */}
-        <div className="col-span-12 lg:col-span-6">
-          <div className="bg-[#FFFFFF] border-2 border-[#000000] h-full">
-            <div className="bg-[#DA291C] p-4 border-b-2 border-[#000000]">
-              <h2 className="text-[#FFFFFF] font-['Stalinist_One'] text-lg uppercase tracking-wider">
-                OPERATIONAL CALENDAR
-              </h2>
-              <p className="text-[#F5EEDC] text-xs mt-1 font-['Roboto_Condensed']">
-                ALL DIRECTIVES UNDER STATE MONITORING
-              </p>
-            </div>
-            <div className="p-4 h-[calc(100%-80px)]">
-              <OperationalCalendar />
-            </div>
-          </div>
-        </div>
-
-        {/* Right: Control Panel (3 cols) */}
-        <div className="col-span-12 lg:col-span-3 space-y-8">
+      {/* Main Control Grid - Soviet 8-point grid system */}
+      <SovietContainer className="py-[var(--space-8)]">
+        <SovietGrid columns={12} gap="lg" className="min-h-[calc(100vh-120px)]">
           
-          {/* STATE HOLDING CELL & KOMPROMAT */}
-          <VisibleStakesDisplay />
-          
-          {/* QUICK ACTIONS */}
-          <QuickActionsPanel />
-          
-          {/* CLASSIFIED INTEL */}
-          <div className="bg-[#000000] border-2 border-[#DA291C] p-4">
-            <h3 className="text-[#DA291C] font-['Stalinist_One'] text-sm uppercase mb-2">
-              CLASSIFIED INTEL
-            </h3>
-            <div className="text-[#F5EEDC] text-xs font-['Roboto_Condensed'] space-y-1">
-              <div className="flex justify-between">
-                <span>ACTIVE MISSIONS:</span>
-                <span className="text-[#DA291C]">0</span>
-              </div>
-              <div className="flex justify-between">
-                <span>COMPLIANCE RATE:</span>
-                <span className="text-[#5A7761]">N/A</span>
-              </div>
-              <div className="flex justify-between">
-                <span>SECURITY LEVEL:</span>
-                <span className="text-[#DA291C]">MAXIMUM</span>
-              </div>
-            </div>
+          {/* Left: IMMEDIATE DIRECTIVES Sidebar (3 cols) */}
+          <div className="col-span-12 lg:col-span-3">
+            <ImmediateDirectivesSidebar />
           </div>
 
-        </div>
-      </div>
+          {/* Center: OPERATIONAL CALENDAR (6 cols) */}
+          <div className="col-span-12 lg:col-span-6">
+            <SovietCard variant="primary" size="md" className="h-full">
+              <SovietBanner type="alert" className="mb-0 -m-[var(--card-padding)] mb-[var(--card-padding)]">
+                <div>
+                  <h2 className="text-[var(--font-size-lg)] mb-1">
+                    OPERATIONAL CALENDAR
+                  </h2>
+                  <p className="text-[var(--color-text-light)] text-[var(--font-size-xs)] font-[var(--font-family-body)] normal-case opacity-90">
+                    ALL DIRECTIVES UNDER STATE MONITORING
+                  </p>
+                </div>
+              </SovietBanner>
+              <div className="h-[calc(100%-120px)] min-h-[400px]">
+                <OperationalCalendar />
+              </div>
+            </SovietCard>
+          </div>
+
+          {/* Right: Control Panel (3 cols) */}
+          <div className="col-span-12 lg:col-span-3 space-y-[var(--space-8)]">
+            
+            {/* STATE HOLDING CELL & KOMPROMAT */}
+            <VisibleStakesDisplay />
+            
+            {/* QUICK ACTIONS */}
+            <QuickActionsPanel />
+            
+            {/* CLASSIFIED INTEL */}
+            <SovietCard variant="intel" size="md">
+              <SovietBanner type="classified" className="mb-[var(--space-4)] -m-[var(--card-padding)] mb-[var(--card-padding)] bg-[var(--color-primary-red)] text-[var(--color-text-light)] border-[var(--color-accent-black)]">
+                CLASSIFIED INTEL
+              </SovietBanner>
+              <div className="text-[var(--color-text-light)] text-[var(--font-size-xs)] font-[var(--font-family-body)] space-y-[var(--space-2)]">
+                <div className="flex justify-between items-center">
+                  <span>ACTIVE MISSIONS:</span>
+                  <span className="text-[var(--color-primary-red)] font-bold">0</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span>COMPLIANCE RATE:</span>
+                  <span className="text-[var(--color-success-muted)]">N/A</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span>SECURITY LEVEL:</span>
+                  <span className="text-[var(--color-primary-red)] font-bold">MAXIMUM</span>
+                </div>
+              </div>
+            </SovietCard>
+
+          </div>
+        </SovietGrid>
+      </SovietContainer>
 
       {/* Bottom Status Bar */}
-      <footer className="bg-[#000000] border-t-2 border-[#DA291C] p-3">
-        <div className="max-w-full mx-auto flex justify-between items-center text-[#F5EEDC] text-xs font-['Roboto_Condensed']">
-          <div className="flex items-center space-x-6">
-            <span>STATE NETWORK: ACTIVE</span>
-            <span>SURVEILLANCE: ENABLED</span>
-            <span>CONSEQUENCES: ARMED</span>
+      <footer className="bg-[var(--color-accent-black)] border-t-[var(--border-width-medium)] border-[var(--color-primary-red)]">
+        <SovietContainer className="py-[var(--space-3)]">
+          <div className="flex justify-between items-center text-[var(--color-text-light)] text-[var(--font-size-xs)] font-[var(--font-family-body)]">
+            <div className="flex items-center gap-[var(--space-6)]">
+              <span>STATE NETWORK: <strong>ACTIVE</strong></span>
+              <span>SURVEILLANCE: <strong>ENABLED</strong></span>
+              <span>CONSEQUENCES: <strong>ARMED</strong></span>
+            </div>
+            <div className="text-[var(--color-primary-red)] font-bold text-display uppercase">
+              <svg className="inline w-4 h-4 fill-current mr-1" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+              REMEMBER: FAILURE IS NOT AN OPTION
+              <svg className="inline w-4 h-4 fill-current ml-1" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
           </div>
-          <div className="text-[#DA291C]">
-            ★ REMEMBER: FAILURE IS NOT AN OPTION ★
-          </div>
-        </div>
+        </SovietContainer>
       </footer>
     </div>
   )

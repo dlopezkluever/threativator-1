@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 // import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import { supabase } from '../../lib/supabase'
+import { SovietCard, SovietButton, SovietBanner } from '../ui'
 
 interface CheckpointData {
   id: string
@@ -146,176 +147,189 @@ Please establish security clearance before requesting missions, Comrade.`)
 
   return (
     <>
-      <div className="bg-[#DA291C] border-2 border-[#000000]">
-        {/* Header */}
-        <div className="bg-[#000000] p-3 border-b-2 border-[#DA291C]">
-          <h3 className="text-[#DA291C] font-['Stalinist_One'] text-sm uppercase tracking-wider">
-            COMMAND ACTIONS
-          </h3>
-          <p className="text-[#F5EEDC] text-xs font-['Roboto_Condensed'] mt-1">
-            AUTHORIZED OPERATIONS
-          </p>
-        </div>
+      <SovietCard variant="danger" size="md" className="overflow-hidden">
+        <SovietBanner type="intel" className="-m-[var(--card-padding)] mb-[var(--card-padding)]">
+          <div>
+            <h3 className="text-[var(--font-size-sm)] mb-1">
+              COMMAND ACTIONS
+            </h3>
+            <p className="text-[var(--color-text-light)] text-[var(--font-size-xs)] font-[var(--font-family-body)] normal-case opacity-90">
+              AUTHORIZED OPERATIONS
+            </p>
+          </div>
+        </SovietBanner>
 
-        <div className="p-4 space-y-3">
+        <div className="space-y-[var(--space-3)]">
           {/* Primary Actions */}
-          <button
+          <SovietButton
+            variant="command"
+            size="md"
             onClick={handleRequestNewMission}
-            className="w-full bg-[#000000] text-[#F5EEDC] border-2 border-[#FFFFFF] py-3 px-4 font-['Stalinist_One'] text-sm uppercase tracking-wide hover:bg-[#FFFFFF] hover:text-[#000000] transition-all duration-200 group"
+            className="w-full"
+            icon={<span>⚡</span>}
           >
-            <div className="flex items-center justify-center space-x-2">
-              <span>REQUEST NEW MISSION</span>
-              <span className="group-hover:text-[#DA291C]">⚡</span>
-            </div>
-          </button>
+            REQUEST NEW MISSION
+          </SovietButton>
 
-          <button
+          <SovietButton
+            variant="action"
+            size="md"
             onClick={handleSubmitProof}
             disabled={loadingCheckpoints}
-            className="w-full bg-[#FFFFFF] text-[#000000] border-2 border-[#000000] py-3 px-4 font-['Stalinist_One'] text-sm uppercase tracking-wide hover:bg-[#5A7761] hover:text-[#FFFFFF] hover:border-[#5A7761] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed group"
+            isLoading={loadingCheckpoints}
+            className="w-full"
+            icon={<span>📋</span>}
           >
-            <div className="flex items-center justify-center space-x-2">
-              <span>
-                {loadingCheckpoints ? 'SCANNING...' : 'SUBMIT PROOF'}
-              </span>
-              <span className="group-hover:text-[#F5EEDC]">📋</span>
-            </div>
-          </button>
+            {loadingCheckpoints ? 'SCANNING...' : 'SUBMIT PROOF'}
+          </SovietButton>
 
           {/* Security Clearance Actions */}
-          <div className="border-t border-[#000000] pt-3 mt-3">
-            <div className="text-[#000000] font-['Stalinist_One'] text-xs uppercase mb-3 text-center">
+          <div className="border-t-[var(--border-width-thin)] border-[var(--color-text-light)] pt-[var(--space-3)] mt-[var(--space-3)]">
+            <div className="text-[var(--color-text-light)] font-[var(--font-family-display)] text-[var(--font-size-xs)] uppercase mb-[var(--space-3)] text-center tracking-wider">
               SECURITY CLEARANCE
             </div>
             
-            <div className="grid grid-cols-1 gap-2">
-              <button
+            <div className="grid grid-cols-1 gap-[var(--space-2)]">
+              <SovietButton
+                variant="success"
+                size="sm"
                 onClick={handleEstablishFinancialCollateral}
-                className="bg-[#5A7761] text-[#FFFFFF] border border-[#000000] py-2 px-3 font-['Roboto_Condensed'] text-xs uppercase hover:bg-[#000000] hover:text-[#5A7761] transition-colors"
-              >
+                className="w-full text-[var(--font-size-xs)] font-[var(--font-family-body)]">
                 💰 ESTABLISH FINANCIAL COLLATERAL
-              </button>
+              </SovietButton>
               
-              <button
+              <SovietButton
+                variant="ghost"
+                size="sm"
                 onClick={handleUploadKompromat}
-                className="bg-[#333333] text-[#F5EEDC] border border-[#DA291C] py-2 px-3 font-['Roboto_Condensed'] text-xs uppercase hover:bg-[#DA291C] hover:text-[#000000] transition-colors"
-              >
+                className="w-full text-[var(--font-size-xs)] font-[var(--font-family-body)] bg-[var(--color-text-secondary)] text-[var(--color-text-light)] border-[var(--color-primary-red)] hover:bg-[var(--color-primary-red)]">
                 📁 UPLOAD CLASSIFIED MATERIAL
-              </button>
+              </SovietButton>
               
-              <button
+              <SovietButton
+                variant="ghost"
+                size="sm"
                 onClick={handleRecruitContacts}
-                className="bg-[#333333] text-[#F5EEDC] border border-[#DA291C] py-2 px-3 font-['Roboto_Condensed'] text-xs uppercase hover:bg-[#DA291C] hover:text-[#000000] transition-colors"
-              >
+                className="w-full text-[var(--font-size-xs)] font-[var(--font-family-body)] bg-[var(--color-text-secondary)] text-[var(--color-text-light)] border-[var(--color-primary-red)] hover:bg-[var(--color-primary-red)]">
                 👥 RECRUIT CONTACTS
-              </button>
+              </SovietButton>
               
-              <button
+              <SovietButton
+                variant="ghost"
+                size="sm"
                 onClick={handleConnectSocialMedia}
-                className="bg-[#333333] text-[#F5EEDC] border border-[#DA291C] py-2 px-3 font-['Roboto_Condensed'] text-xs uppercase hover:bg-[#DA291C] hover:text-[#000000] transition-colors"
-              >
+                className="w-full text-[var(--font-size-xs)] font-[var(--font-family-body)] bg-[var(--color-text-secondary)] text-[var(--color-text-light)] border-[var(--color-primary-red)] hover:bg-[var(--color-primary-red)]">
                 📱 CONNECT SOCIAL PLATFORMS
-              </button>
+              </SovietButton>
             </div>
           </div>
 
           {/* Secondary Actions */}
-          <div className="grid grid-cols-2 gap-2 mt-4">
-            <button
+          <div className="grid grid-cols-2 gap-[var(--space-2)] mt-[var(--space-4)]">
+            <SovietButton
+              variant="ghost"
+              size="sm"
               onClick={handleViewAnalytics}
-              className="bg-[#333333] text-[#F5EEDC] border border-[#DA291C] py-2 px-3 font-['Roboto_Condensed'] text-xs uppercase hover:bg-[#DA291C] hover:text-[#000000] transition-colors"
-            >
+              className="text-[var(--font-size-xs)] font-[var(--font-family-body)] bg-[var(--color-text-secondary)] text-[var(--color-text-light)] border-[var(--color-primary-red)] hover:bg-[var(--color-primary-red)]">
               INTEL REPORTS
-            </button>
+            </SovietButton>
             
-            <button
+            <SovietButton
+              variant="ghost"
+              size="sm"
               onClick={() => console.log('Settings...')}
-              className="bg-[#333333] text-[#F5EEDC] border border-[#DA291C] py-2 px-3 font-['Roboto_Condensed'] text-xs uppercase hover:bg-[#DA291C] hover:text-[#000000] transition-colors"
-            >
+              className="text-[var(--font-size-xs)] font-[var(--font-family-body)] bg-[var(--color-text-secondary)] text-[var(--color-text-light)] border-[var(--color-primary-red)] hover:bg-[var(--color-primary-red)]">
               SETTINGS
-            </button>
+            </SovietButton>
           </div>
 
           {/* Emergency Exit */}
-          <div className="mt-4 pt-3 border-t border-[#000000]">
-            <button
+          <div className="mt-[var(--space-4)] pt-[var(--space-3)] border-t-[var(--border-width-thin)] border-[var(--color-text-light)]">
+            <SovietButton
+              variant="ghost"
+              size="sm"
               onClick={handleEmergencyExit}
-              className="w-full bg-transparent text-[#000000] border border-[#000000] py-2 px-3 font-['Roboto_Condensed'] text-xs uppercase hover:bg-[#000000] hover:text-[#DA291C] transition-colors"
-            >
+              className="w-full bg-transparent text-[var(--color-text-light)] border-[var(--color-text-light)] hover:bg-[var(--color-text-light)] hover:text-[var(--color-primary-red)] font-[var(--font-family-body)]">
               ⚠️ EMERGENCY EXIT
-            </button>
+            </SovietButton>
           </div>
         </div>
 
         {/* Warning Footer */}
-        <div className="bg-[#000000] border-t-2 border-[#DA291C] p-2 text-center">
-          <p className="text-[#DA291C] font-['Roboto_Condensed'] text-xs uppercase">
+        <SovietBanner type="classified" className="-m-[var(--card-padding)] mt-[var(--card-padding)] bg-[var(--color-accent-black)] text-[var(--color-primary-red)] border-t-[var(--color-primary-red)] border-x-0 border-b-0 text-center">
+          <span className="text-[var(--font-size-xs)]">
             ★ ALL ACTIONS MONITORED BY STATE ★
-          </p>
-        </div>
-      </div>
+          </span>
+        </SovietBanner>
+      </SovietCard>
 
       {/* Submission Selector Modal */}
       {showSubmissionSelector && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-[#F5EEDC] border-2 border-[#000000] max-w-lg w-full mx-4 max-h-96">
-            <div className="bg-[#DA291C] p-4 border-b-2 border-[#000000]">
-              <h3 className="text-[#FFFFFF] font-['Stalinist_One'] text-lg uppercase">
-                SELECT DIRECTIVE FOR SUBMISSION
-              </h3>
-              <p className="text-[#F5EEDC] text-xs font-['Roboto_Condensed'] mt-1">
-                CHOOSE MISSION TO SUBMIT PROOF OF COMPLIANCE
-              </p>
-            </div>
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[var(--z-index-modal)]">
+          <SovietCard variant="secondary" size="md" className="max-w-lg w-full mx-4 max-h-96 overflow-hidden">
+            <SovietBanner type="alert" className="-m-[var(--card-padding)] mb-[var(--card-padding)]">
+              <div>
+                <h3 className="text-[var(--font-size-lg)] mb-1">
+                  SELECT DIRECTIVE FOR SUBMISSION
+                </h3>
+                <p className="text-[var(--color-text-light)] text-[var(--font-size-xs)] font-[var(--font-family-body)] normal-case opacity-90">
+                  CHOOSE MISSION TO SUBMIT PROOF OF COMPLIANCE
+                </p>
+              </div>
+            </SovietBanner>
 
-            <div className="p-4 max-h-64 overflow-y-auto">
+            <div className="max-h-64 overflow-y-auto">
               {availableCheckpoints.length === 0 ? (
-                <div className="text-center py-8">
-                  <div className="text-[#888888] text-2xl mb-2">📋</div>
-                  <p className="text-[#000000] font-['Roboto_Condensed'] text-sm uppercase mb-1">
+                <div className="text-center py-[var(--space-8)]">
+                  <div className="text-[var(--color-text-muted)] text-2xl mb-[var(--space-2)]">📋</div>
+                  <p className="text-[var(--color-text-primary)] font-[var(--font-family-body)] text-[var(--font-size-sm)] uppercase mb-[var(--space-1)]">
                     NO PENDING DIRECTIVES
                   </p>
-                  <p className="text-[#666666] font-['Roboto_Condensed'] text-xs">
+                  <p className="text-[var(--color-text-muted)] font-[var(--font-family-body)] text-[var(--font-size-xs)]">
                     Request new mission from Command Center
                   </p>
                 </div>
               ) : (
-                <div className="space-y-3">
+                <div className="space-y-[var(--space-3)]">
                   {availableCheckpoints.map((checkpoint) => (
-                    <button
+                    <SovietButton
                       key={checkpoint.id}
+                      variant="ghost"
+                      size="md"
                       onClick={() => handleCheckpointSelect(checkpoint)}
-                      className="w-full text-left bg-[#FFFFFF] border border-[#000000] p-3 hover:bg-[#DA291C] hover:text-[#FFFFFF] transition-colors group"
-                    >
-                      <div className="font-['Roboto_Condensed'] text-xs uppercase text-[#666666] group-hover:text-[#F5EEDC] mb-1">
-                        MISSION: {checkpoint.goals.title}
+                      className="w-full text-left justify-start bg-[var(--color-container-light)] text-[var(--color-text-primary)] border-[var(--color-border-primary)] hover:bg-[var(--color-primary-red)] hover:text-[var(--color-text-light)] font-[var(--font-family-body)]">
+                      <div className="flex flex-col items-start gap-1">
+                        <div className="text-[var(--font-size-xs)] uppercase opacity-70">
+                          MISSION: {checkpoint.goals.title}
+                        </div>
+                        <div className="font-[var(--font-family-display)] text-[var(--font-size-sm)] uppercase">
+                          {checkpoint.title}
+                        </div>
+                        <div className="text-[var(--font-size-xs)] opacity-80">
+                          DUE: {new Date(checkpoint.deadline).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                          }).toUpperCase()}
+                        </div>
                       </div>
-                      <div className="font-['Stalinist_One'] text-sm uppercase text-[#000000] group-hover:text-[#FFFFFF] mb-2">
-                        {checkpoint.title}
-                      </div>
-                      <div className="font-['Roboto_Condensed'] text-xs text-[#DA291C] group-hover:text-[#F5EEDC]">
-                        DUE: {new Date(checkpoint.deadline).toLocaleDateString('en-US', {
-                          month: 'short',
-                          day: 'numeric',
-                          hour: '2-digit',
-                          minute: '2-digit'
-                        }).toUpperCase()}
-                      </div>
-                    </button>
+                    </SovietButton>
                   ))}
                 </div>
               )}
             </div>
 
-            <div className="border-t border-[#000000] p-4">
-              <button
+            <div className="border-t-[var(--border-width-thin)] border-[var(--color-border-primary)] pt-[var(--space-4)] -mx-[var(--card-padding)] -mb-[var(--card-padding)] px-[var(--card-padding)] pb-[var(--card-padding)]">
+              <SovietButton
+                variant="command"
+                size="sm"
                 onClick={() => setShowSubmissionSelector(false)}
-                className="w-full bg-[#000000] text-[#F5EEDC] border border-[#DA291C] py-2 px-4 font-['Stalinist_One'] text-xs uppercase hover:bg-[#DA291C] hover:text-[#000000] transition-colors"
-              >
+                className="w-full">
                 ABORT SELECTION
-              </button>
+              </SovietButton>
             </div>
-          </div>
+          </SovietCard>
         </div>
       )}
     </>
