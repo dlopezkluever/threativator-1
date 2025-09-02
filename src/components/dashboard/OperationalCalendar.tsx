@@ -197,7 +197,18 @@ const OperationalCalendar: React.FC = () => {
           .rbc-month-view {
             border: 2px solid #000000 !important;
             background: white !important;
-            height: 400px !important;
+            height: auto !important;
+            display: table !important;
+            width: 100% !important;
+          }
+
+          .rbc-month-row {
+            display: table-row !important;
+            height: 60px !important;
+          }
+
+          .rbc-row-content {
+            height: auto !important;
           }
           
           .rbc-header {
@@ -218,6 +229,18 @@ const OperationalCalendar: React.FC = () => {
             min-height: 60px !important;
             padding: 4px !important;
             background: white !important;
+            display: table-cell !important;
+            vertical-align: top !important;
+            width: 14.28% !important;
+          }
+
+          .rbc-date-cell button {
+            display: block !important;
+            width: 100% !important;
+            text-align: left !important;
+            padding: 2px !important;
+            background: transparent !important;
+            border: none !important;
           }
 
           .rbc-date-cell a {
@@ -289,13 +312,31 @@ const OperationalCalendar: React.FC = () => {
           .rbc-event {
             border-radius: 0px !important;
             border: 1px solid #000000 !important;
-            font-size: 10px !important;
+            font-size: 9px !important;
             font-weight: bold !important;
             text-transform: uppercase !important;
+            margin: 1px 0 !important;
+            padding: 1px 3px !important;
+            font-family: 'Roboto Condensed', sans-serif !important;
+            display: block !important;
+            width: calc(100% - 2px) !important;
           }
 
           .rbc-month-row + .rbc-month-row {
             border-top: 1px solid #000000 !important;
+          }
+
+          .rbc-row-bg .rbc-day-bg {
+            border-right: 1px solid #000000 !important;
+            border-bottom: 1px solid #000000 !important;
+          }
+
+          .rbc-row-content {
+            min-height: 60px !important;
+          }
+
+          .rbc-addons-dnd .rbc-addons-dnd-row-body {
+            height: auto !important;
           }
         `}
       </style>
@@ -305,15 +346,16 @@ const OperationalCalendar: React.FC = () => {
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: '400px', fontFamily: 'Roboto Condensed, sans-serif' }}
+        style={{ height: '450px', fontFamily: 'Roboto Condensed, sans-serif' }}
         eventPropGetter={eventStyleGetter}
         onSelectEvent={handleEventClick}
-        views={['month']}
+        views={['month', 'week']}
         defaultView="month"
         showMultiDayTimes={false}
         step={60}
         timeslots={1}
-        popup={false}
+        popup={true}
+        drilldownView={null}
         messages={{
           today: 'TODAY',
           previous: 'PREV',
@@ -327,7 +369,8 @@ const OperationalCalendar: React.FC = () => {
           monthHeaderFormat: (date: Date) => moment(date).format('MMMM YYYY').toUpperCase(),
           dayHeaderFormat: (date: Date) => moment(date).format('dddd MMM DD').toUpperCase(),
           dayRangeHeaderFormat: ({ start, end }: { start: Date; end: Date }) => 
-            `${moment(start).format('MMM DD')} - ${moment(end).format('MMM DD YYYY')}`.toUpperCase()
+            `${moment(start).format('MMM DD')} - ${moment(end).format('MMM DD YYYY')}`.toUpperCase(),
+          dayFormat: (date: Date) => moment(date).format('DD')
         }}
       />
       
