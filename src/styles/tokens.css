@@ -27,20 +27,27 @@
   --font-family-display: 'Stalinist One', 'Arial Black', sans-serif;
   --font-family-body: 'Roboto Condensed', 'Arial', sans-serif;
   
-  /* Font Sizes - Geometric Scale */
-  --font-size-xs: 0.75rem;    /* 12px */
-  --font-size-sm: 0.875rem;   /* 14px */
-  --font-size-base: 1rem;     /* 16px */
-  --font-size-lg: 1.125rem;   /* 18px */
-  --font-size-xl: 1.25rem;    /* 20px */
-  --font-size-2xl: 1.5rem;    /* 24px */
-  --font-size-3xl: 1.875rem;  /* 30px */
-  --font-size-4xl: 2.25rem;   /* 36px */
+  /* Font Sizes - Soviet Propaganda Scale */
+  --font-size-xs: 0.75rem;    /* 12px - small details */
+  --font-size-sm: 0.875rem;   /* 14px - body text */
+  --font-size-base: 1rem;     /* 16px - standard text */
+  --font-size-lg: 1.25rem;    /* 20px - card titles */
+  --font-size-xl: 1.5rem;     /* 24px - section headers */
+  --font-size-2xl: 2rem;      /* 32px - major headers */
+  --font-size-3xl: 2.5rem;    /* 40px - main title */
+  --font-size-4xl: 3rem;      /* 48px - propaganda headlines */
+  --font-size-5xl: 3.5rem;    /* 56px - dominant title */
   
-  /* Line Heights */
-  --line-height-tight: 1.25;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.625;
+  /* Line Heights - Soviet Typography */
+  --line-height-tight: 1.1;     /* For large propaganda titles */
+  --line-height-normal: 1.3;    /* For standard headers */
+  --line-height-relaxed: 1.5;   /* For body text */
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
 
   /* ===== SPACING SYSTEM ===== */
   /* 8-Point Grid System */
@@ -57,16 +64,22 @@
   --space-20: 5rem;     /* 80px */
 
   /* ===== BORDERS ===== */
-  /* Soviet Design Rule: ZERO border radius */
+  /* Soviet Design Rule: ZERO border radius, THICK borders for authority */
   --border-radius: 0px;
   --border-width-thin: 1px;
   --border-width-medium: 2px;
   --border-width-thick: 4px;
+  --border-width-propaganda: 6px;  /* For major elements */
   
   /* Border Styles */
   --border-primary: var(--border-width-medium) solid var(--color-border-primary);
   --border-secondary: var(--border-width-thin) solid var(--color-border-secondary);
   --border-thick: var(--border-width-thick) solid var(--color-border-primary);
+  --border-propaganda: var(--border-width-propaganda) solid var(--color-border-primary);
+  
+  /* Special Border Effects */
+  --border-inset: inset var(--border-width-medium) var(--border-width-medium) 0 0 var(--color-border-primary);
+  --border-outset: var(--border-width-medium) var(--border-width-medium) 0 0 var(--color-accent-black);
 
   /* ===== SHADOWS ===== */
   /* Soviet Rule: No shadows - rely on stark contrast */
@@ -116,15 +129,55 @@
 @import url('https://fonts.googleapis.com/css2?family=Stalinist+One&family=Roboto+Condensed:wght@300;400;700&display=swap');
 
 /* ===== UTILITY CLASSES ===== */
-/* Typography Utilities */
+/* Typography Utilities - Soviet Propaganda System */
 .text-display {
   font-family: var(--font-family-display);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-black);
 }
 
 .text-body {
   font-family: var(--font-family-body);
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-normal);
+}
+
+/* Propaganda Typography Classes */
+.text-propaganda-title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-black);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  line-height: var(--line-height-tight);
+}
+
+.text-banner-title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: var(--line-height-tight);
+}
+
+.text-card-title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: var(--line-height-normal);
+}
+
+.text-subtitle {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* Container */

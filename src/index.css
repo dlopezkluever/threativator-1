@@ -102,3 +102,119 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* ===== SOVIET CALENDAR STYLING ===== */
+/* Override react-big-calendar with Soviet Constructivist aesthetics */
+
+.rbc-calendar {
+  font-family: var(--font-family-body) !important;
+  background: white !important;
+  border: none !important;
+}
+
+/* Calendar Header */
+.rbc-header {
+  background: var(--color-accent-black) !important;
+  color: var(--color-background-beige) !important;
+  font-family: var(--font-family-display) !important;
+  font-size: var(--font-size-sm) !important;
+  font-weight: var(--font-weight-bold) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  padding: var(--space-2) !important;
+  border: var(--border-width-thin) solid var(--color-primary-crimson) !important;
+  border-radius: 0 !important;
+}
+
+/* Calendar Navigation */
+.rbc-btn-group button {
+  background: var(--color-accent-black) !important;
+  color: var(--color-background-beige) !important;
+  border: var(--border-width-medium) solid var(--color-primary-crimson) !important;
+  border-radius: 0 !important;
+  font-family: var(--font-family-display) !important;
+  font-size: var(--font-size-xs) !important;
+  text-transform: uppercase !important;
+  font-weight: bold !important;
+  padding: var(--space-2) var(--space-4) !important;
+}
+
+.rbc-btn-group button:hover {
+  background: var(--color-primary-crimson) !important;
+  color: var(--color-background-beige) !important;
+}
+
+.rbc-btn-group button.rbc-active {
+  background: var(--color-primary-crimson) !important;
+  color: var(--color-background-beige) !important;
+}
+
+/* Calendar Cells */
+.rbc-month-view {
+  border: var(--border-width-medium) solid var(--color-accent-black) !important;
+}
+
+.rbc-date-cell {
+  border-right: var(--border-width-thin) solid var(--color-accent-black) !important;
+  border-bottom: var(--border-width-thin) solid var(--color-accent-black) !important;
+  min-height: 80px !important;
+  padding: var(--space-1) !important;
+}
+
+.rbc-date-cell > a {
+  color: var(--color-text-primary) !important;
+  font-family: var(--font-family-display) !important;
+  font-size: var(--font-size-sm) !important;
+  font-weight: bold !important;
+  text-decoration: none !important;
+}
+
+.rbc-off-range {
+  background: #f8f8f8 !important;
+  color: var(--color-text-muted) !important;
+}
+
+.rbc-today {
+  background: var(--color-primary-crimson) !important;
+  color: var(--color-background-beige) !important;
+}
+
+.rbc-today > a {
+  color: var(--color-background-beige) !important;
+}
+
+/* Calendar Events */
+.rbc-event {
+  background: var(--color-primary-crimson) !important;
+  color: var(--color-background-beige) !important;
+  border: var(--border-width-thin) solid var(--color-accent-black) !important;
+  border-radius: 0 !important;
+  font-family: var(--font-family-body) !important;
+  font-size: var(--font-size-xs) !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  padding: 2px 4px !important;
+}
+
+.rbc-event:focus,
+.rbc-event:hover {
+  background: var(--color-accent-black) !important;
+  color: var(--color-primary-crimson) !important;
+}
+
+/* Calendar Toolbar */
+.rbc-toolbar {
+  background: var(--color-background-beige) !important;
+  padding: var(--space-2) 0 !important;
+  margin-bottom: 0 !important;
+  border-bottom: var(--border-width-medium) solid var(--color-accent-black) !important;
+}
+
+.rbc-toolbar-label {
+  font-family: var(--font-family-display) !important;
+  font-size: var(--font-size-xl) !important;
+  font-weight: var(--font-weight-black) !important;
+  text-transform: uppercase !important;
+  color: var(--color-text-primary) !important;
+  letter-spacing: 0.1em !important;
+}

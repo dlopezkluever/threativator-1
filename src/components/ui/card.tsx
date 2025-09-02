@@ -9,8 +9,8 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      // Kompromator Constructivist styling - sharp edges, beige background
-      "border-[var(--border-width-medium)] border-[var(--color-border-primary)] bg-[var(--color-background-beige)] text-[var(--color-text-primary)] shadow-none",
+      // Kompromator Propaganda styling - thick borders, beige background
+      "border-[var(--border-width-thick)] border-[var(--color-border-primary)] bg-[var(--color-background-beige)] text-[var(--color-text-primary)] shadow-none",
       className
     )}
     {...props}
@@ -25,8 +25,8 @@ const CardHeader = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      // Kompromator header styling - beige background, black text
-      "flex flex-col space-y-1 p-[var(--space-4)] bg-[var(--color-background-beige)] text-[var(--color-text-primary)] border-b-[var(--border-width-medium)] border-[var(--color-border-primary)]",
+      // Kompromator propaganda header - thick borders, strong typography
+      "flex flex-col space-y-2 p-[var(--space-6)] bg-[var(--color-background-beige)] text-[var(--color-text-primary)] border-b-[var(--border-width-thick)] border-[var(--color-border-primary)]",
       className
     )}
     {...props}
@@ -41,8 +41,8 @@ const CardTitle = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      // Kompromator display typography - black text for headers
-      "text-[var(--font-size-lg)] font-[var(--font-family-display)] uppercase tracking-wider leading-none text-[var(--color-text-primary)]",
+      // Kompromator propaganda card titles - large, bold, authoritative
+      "text-card-title text-[var(--color-text-primary)]",
       className
     )}
     {...props}
@@ -57,8 +57,8 @@ const CardDescription = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      // Kompromator body text styling - black text for descriptions
-      "text-[var(--font-size-xs)] font-[var(--font-family-body)] text-[var(--color-text-primary)] opacity-70 normal-case",
+      // Kompromator subtitle styling - readable, authoritative
+      "text-subtitle text-[var(--color-text-primary)] opacity-80",
       className
     )}
     {...props}
@@ -72,7 +72,7 @@ const CardContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div 
     ref={ref} 
-    className={cn("p-[var(--space-4)] pt-[var(--space-4)]", className)} 
+    className={cn("p-[var(--space-6)] text-[var(--color-text-primary)]", className)} 
     {...props} 
   />
 ))
@@ -85,8 +85,8 @@ const CardFooter = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      // Kompromator footer with beige background
-      "flex items-center p-[var(--space-3)] bg-[var(--color-background-beige)] text-[var(--color-text-primary)] border-t-[var(--border-width-medium)] border-[var(--color-border-primary)]",
+      // Kompromator footer with thick borders
+      "flex items-center p-[var(--space-4)] bg-[var(--color-background-beige)] text-[var(--color-text-primary)] border-t-[var(--border-width-thick)] border-[var(--color-border-primary)]",
       className
     )}
     {...props}

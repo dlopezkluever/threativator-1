@@ -64,30 +64,47 @@ const DashboardLayout: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[var(--color-main-crimson)] text-body">
-      {/* Header - Kompromator Banner */}
-      <header className="bg-[var(--color-background-beige)] border-b-[var(--border-width-medium)] border-[var(--color-accent-black)]">
-        <div className="container mx-auto px-[var(--space-4)] py-[var(--header-padding)] max-w-[var(--container-max-width)]">
+      {/* Header - Dominant Kompromator Banner */}
+      <header className="bg-[var(--color-background-beige)] border-b-[var(--border-width-propaganda)] border-[var(--color-accent-black)]">
+        <div className="container mx-auto px-[var(--space-6)] py-[var(--space-6)] max-w-[var(--container-max-width)]">
           <div className="flex justify-between items-center">
-            <div className="flex items-center gap-[var(--space-4)]">
-              <div className="w-8 h-8 bg-[var(--color-primary-crimson)] flex items-center justify-center border-[var(--border-width-thin)] border-[var(--color-accent-black)]">
-                <svg className="w-5 h-5 fill-[var(--color-accent-black)]" viewBox="0 0 24 24">
+            
+            {/* Left: Dominant KOMPROMATOR Title */}
+            <div className="flex items-center gap-[var(--space-6)]">
+              {/* Soviet Star Icon - Larger */}
+              <div className="w-16 h-16 bg-[var(--color-primary-crimson)] flex items-center justify-center border-[var(--border-width-thick)] border-[var(--color-accent-black)]">
+                <svg className="w-10 h-10 fill-[var(--color-accent-black)]" viewBox="0 0 24 24">
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                 </svg>
               </div>
-              <h1 className="text-[var(--color-text-crimson)] font-[var(--font-family-display)] text-[var(--font-size-3xl)] uppercase tracking-wider">
-                KOMPROMATOR
-              </h1>
+              
+              {/* Main Title */}
+              <div className="flex flex-col">
+                <h1 className="text-propaganda-title text-[var(--color-primary-crimson)]">
+                  KOMPROMATOR
+                </h1>
+                <div className="text-[var(--color-text-primary)] text-[var(--font-size-base)] font-[var(--font-family-body)] uppercase tracking-wide opacity-80 mt-1">
+                  STATE DISCIPLINE NETWORK
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col items-end gap-1">
-              <div className="text-[var(--color-text-primary)] text-[var(--font-size-xs)] font-[var(--font-family-body)] uppercase">
+            
+            {/* Right: User Status */}
+            <div className="flex flex-col items-end gap-2 text-right">
+              <div className="text-[var(--color-text-primary)] text-[var(--font-size-sm)] font-[var(--font-family-body)] uppercase font-bold">
                 OPERATIONAL COMMAND CENTER
               </div>
-              <div className="flex items-center gap-[var(--space-2)] text-[var(--color-text-primary)] text-[var(--font-size-sm)] font-[var(--font-family-body)]">
-                <span>OPERATIVE: {user?.email?.split('@')[0].toUpperCase()}</span>
-                <div className="w-[1px] h-3 bg-[var(--color-primary-crimson)]"></div>
-                <span className="text-[var(--color-primary-crimson)] font-bold">UNDER SURVEILLANCE</span>
+              <div className="flex items-center gap-[var(--space-3)]">
+                <div className="text-[var(--color-text-primary)] text-[var(--font-size-sm)] font-[var(--font-family-body)]">
+                  <span className="uppercase font-bold">OPERATIVE:</span> <span className="text-[var(--color-primary-crimson)] font-bold">{user?.email?.split('@')[0].toUpperCase()}</span>
+                </div>
+                <div className="w-[2px] h-6 bg-[var(--color-primary-crimson)]"></div>
+                <div className="text-[var(--color-primary-crimson)] font-[var(--font-family-display)] text-[var(--font-size-sm)] uppercase tracking-wide">
+                  UNDER SURVEILLANCE
+                </div>
               </div>
             </div>
+            
           </div>
         </div>
       </header>
@@ -99,19 +116,24 @@ const DashboardLayout: React.FC = () => {
         <div className="flex gap-[var(--space-4)] min-h-[calc(100vh-200px)] mb-[var(--space-4)]">
           
           {/* Left: IMMEDIATE DIRECTIVES Sidebar (25% width) */}
-          <div className="w-1/4 min-w-[250px]">
-            <Card className="h-full bg-[var(--color-background-beige)]">
-              <CardHeader className="bg-[var(--color-background-beige)] text-[var(--color-text-primary)] border-b-[var(--color-accent-black)]">
-                <CardTitle className="text-[var(--color-text-primary)]">IMMEDIATE DIRECTIVES</CardTitle>
-                <CardDescription className="text-[var(--color-text-primary)] opacity-70">NEXT 7 DAYS - COMPLIANCE REQUIRED</CardDescription>
+          <div className="w-1/4 min-w-[280px]">
+            <Card className="h-full">
+              <CardHeader>
+                <CardTitle>IMMEDIATE DIRECTIVES</CardTitle>
+                <CardDescription>NEXT 7 DAYS - COMPLIANCE REQUIRED</CardDescription>
               </CardHeader>
-              <CardContent className="text-[var(--color-text-primary)] text-center flex-1 flex flex-col justify-center">
-                <div className="mb-[var(--space-2)] text-2xl opacity-50">📋</div>
-                <p className="text-[var(--font-size-xs)] uppercase mb-[var(--space-1)] font-[var(--font-family-body)]">NO IMMEDIATE DIRECTIVES</p>
-                <p className="text-[10px] opacity-60 font-[var(--font-family-body)]">Request new mission from Command</p>
+              <CardContent className="text-center flex-1 flex flex-col justify-center">
+                {/* Soviet-style document icon */}
+                <div className="mb-[var(--space-4)]">
+                  <svg className="w-12 h-12 mx-auto fill-[var(--color-text-primary)] opacity-30" viewBox="0 0 24 24">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                  </svg>
+                </div>
+                <p className="text-[var(--font-size-base)] uppercase mb-[var(--space-2)] font-[var(--font-family-display)] tracking-wide font-bold">NO IMMEDIATE DIRECTIVES</p>
+                <p className="text-[var(--font-size-sm)] font-[var(--font-family-body)] opacity-70">Request new mission from Command</p>
               </CardContent>
-              <CardFooter className="justify-center text-center bg-[var(--color-background-beige)] border-t-[var(--color-accent-black)]">
-                <p className="text-[var(--color-primary-crimson)] text-[9px] uppercase font-[var(--font-family-body)]">
+              <CardFooter className="justify-center text-center">
+                <p className="text-[var(--color-primary-crimson)] text-[var(--font-size-xs)] uppercase font-[var(--font-family-display)] tracking-wide">
                   ★ CLICK DIRECTIVE TO SUBMIT PROOF ★
                 </p>
               </CardFooter>
@@ -120,13 +142,15 @@ const DashboardLayout: React.FC = () => {
 
           {/* Right: OPERATIONAL CALENDAR (75% width) */}
           <div className="flex-1">
-            <Card className="h-full bg-[var(--color-background-beige)]">
-              <CardHeader className="bg-[var(--color-background-beige)] text-[var(--color-text-primary)] border-b-[var(--color-accent-black)]">
-                <CardTitle className="text-[var(--color-text-primary)]">OPERATIONAL CALENDAR</CardTitle>
-                <CardDescription className="text-[var(--color-text-primary)] opacity-70">ALL DIRECTIVES UNDER STATE MONITORING</CardDescription>
+            <Card className="h-full">
+              <CardHeader>
+                <CardTitle>OPERATIONAL CALENDAR</CardTitle>
+                <CardDescription>ALL DIRECTIVES UNDER STATE MONITORING</CardDescription>
               </CardHeader>
               <CardContent className="flex-1 p-[var(--space-2)]">
-                <OperationalCalendar />
+                <div className="h-full min-h-[450px] bg-white border-[var(--border-width-medium)] border-[var(--color-border-primary)]">
+                  <OperationalCalendar />
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -138,12 +162,12 @@ const DashboardLayout: React.FC = () => {
           
           {/* State Collateral (33% width) */}
           <div className="flex-1">
-            <Card className="h-full bg-[var(--color-background-beige)]">
-              <CardHeader className="bg-[var(--color-background-beige)] text-[var(--color-text-primary)] border-b-[var(--color-accent-black)] py-[var(--space-2)]">
-                <CardTitle className="text-[var(--color-text-primary)] text-[var(--font-size-base)]">STATE COLLATERAL</CardTitle>
-                <CardDescription className="text-[var(--color-text-primary)] opacity-70">ASSETS UNDER STATE CONTROL</CardDescription>
+            <Card className="h-full">
+              <CardHeader className="py-[var(--space-3)]">
+                <CardTitle>STATE COLLATERAL</CardTitle>
+                <CardDescription>ASSETS UNDER STATE CONTROL</CardDescription>
               </CardHeader>
-              <CardContent className="text-[var(--color-text-primary)] py-[var(--space-2)]">
+              <CardContent className="py-[var(--space-3)]">
                 <VisibleStakesDisplay />
               </CardContent>
             </Card>
@@ -151,30 +175,48 @@ const DashboardLayout: React.FC = () => {
 
           {/* Command Actions (33% width) */}
           <div className="flex-1">
-            <Card className="h-full bg-[var(--color-background-beige)]">
-              <CardHeader className="bg-[var(--color-background-beige)] text-[var(--color-text-primary)] border-b-[var(--color-accent-black)] py-[var(--space-2)]">
-                <CardTitle className="text-[var(--color-text-primary)] text-[var(--font-size-base)]">COMMAND ACTIONS</CardTitle>
-                <CardDescription className="text-[var(--color-text-primary)] opacity-70">AUTHORIZED OPERATIONS</CardDescription>
+            <Card className="h-full">
+              <CardHeader className="py-[var(--space-3)]">
+                <CardTitle>COMMAND ACTIONS</CardTitle>
+                <CardDescription>AUTHORIZED OPERATIONS</CardDescription>
               </CardHeader>
-              <CardContent className="py-[var(--space-2)]">
-                <div className="grid grid-cols-2 gap-[var(--space-2)]">
-                  <Button variant="command" size="sm" onClick={handleRequestNewMission}>
-                    ⚡ NEW MISSION
+              <CardContent className="py-[var(--space-3)]">
+                <div className="grid grid-cols-2 gap-[var(--space-3)]">
+                  <Button variant="command" size="default" onClick={handleRequestNewMission} className="h-12">
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-lg">⚡</span>
+                      <span className="text-[var(--font-size-xs)]">NEW MISSION</span>
+                    </div>
                   </Button>
-                  <Button variant="action" size="sm" onClick={handleSubmitProof}>
-                    📋 SUBMIT PROOF
+                  <Button variant="action" size="default" onClick={handleSubmitProof} className="h-12">
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-lg">📋</span>
+                      <span className="text-[var(--font-size-xs)]">SUBMIT PROOF</span>
+                    </div>
                   </Button>
-                  <Button variant="success" size="sm" onClick={handleEstablishCollateral}>
-                    💰 COLLATERAL
+                  <Button variant="success" size="default" onClick={handleEstablishCollateral} className="h-12">
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-lg">💰</span>
+                      <span className="text-[var(--font-size-xs)]">COLLATERAL</span>
+                    </div>
                   </Button>
-                  <Button variant="ghost" size="sm" onClick={handleUploadKompromat}>
-                    📁 KOMPROMAT
+                  <Button variant="ghost" size="default" onClick={handleUploadKompromat} className="h-12">
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-lg">📁</span>
+                      <span className="text-[var(--font-size-xs)]">KOMPROMAT</span>
+                    </div>
                   </Button>
-                  <Button variant="ghost" size="sm" onClick={handleRecruitContacts}>
-                    👥 CONTACTS
+                  <Button variant="ghost" size="default" onClick={handleRecruitContacts} className="h-12">
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-lg">👥</span>
+                      <span className="text-[var(--font-size-xs)]">CONTACTS</span>
+                    </div>
                   </Button>
-                  <Button variant="ghost" size="sm" onClick={handleEmergencyExit}>
-                    ⚠️ EXIT
+                  <Button variant="danger" size="default" onClick={handleEmergencyExit} className="h-12">
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-lg">⚠️</span>
+                      <span className="text-[var(--font-size-xs)]">EXIT</span>
+                    </div>
                   </Button>
                 </div>
               </CardContent>
@@ -183,22 +225,23 @@ const DashboardLayout: React.FC = () => {
 
           {/* Classified Intel (33% width) */}
           <div className="flex-1">
-            <Card className="h-full bg-[var(--color-background-beige)]">
-              <CardHeader className="bg-[var(--color-background-beige)] text-[var(--color-text-primary)] border-b-[var(--color-accent-black)] py-[var(--space-2)]">
-                <CardTitle className="text-[var(--color-text-primary)] text-[var(--font-size-base)]">CLASSIFIED INTEL</CardTitle>
+            <Card className="h-full">
+              <CardHeader className="py-[var(--space-3)]">
+                <CardTitle>CLASSIFIED INTEL</CardTitle>
+                <CardDescription>OPERATIONAL STATUS</CardDescription>
               </CardHeader>
-              <CardContent className="text-[var(--color-text-primary)] space-y-[var(--space-2)] py-[var(--space-2)]">
-                <div className="flex justify-between items-center text-[var(--font-size-xs)] font-[var(--font-family-body)]">
-                  <span>ACTIVE MISSIONS:</span>
-                  <span className="text-[var(--color-primary-crimson)] font-bold">0</span>
+              <CardContent className="space-y-[var(--space-4)] py-[var(--space-3)]">
+                <div className="flex justify-between items-center">
+                  <span className="text-[var(--font-size-base)] font-[var(--font-family-body)] uppercase font-bold">ACTIVE MISSIONS:</span>
+                  <span className="text-[var(--color-primary-crimson)] font-[var(--font-family-display)] text-[var(--font-size-xl)] font-bold">0</span>
                 </div>
-                <div className="flex justify-between items-center text-[var(--font-size-xs)] font-[var(--font-family-body)]">
-                  <span>COMPLIANCE RATE:</span>
-                  <span className="text-[var(--color-success-muted)]">N/A</span>
+                <div className="flex justify-between items-center">
+                  <span className="text-[var(--font-size-base)] font-[var(--font-family-body)] uppercase font-bold">COMPLIANCE RATE:</span>
+                  <span className="text-[var(--color-success-muted)] font-[var(--font-family-display)] text-[var(--font-size-lg)] font-bold">N/A</span>
                 </div>
-                <div className="flex justify-between items-center text-[var(--font-size-xs)] font-[var(--font-family-body)]">
-                  <span>SECURITY LEVEL:</span>
-                  <span className="text-[var(--color-primary-crimson)] font-bold">MAXIMUM</span>
+                <div className="flex justify-between items-center">
+                  <span className="text-[var(--font-size-base)] font-[var(--font-family-body)] uppercase font-bold">SECURITY LEVEL:</span>
+                  <span className="text-[var(--color-primary-crimson)] font-[var(--font-family-display)] text-[var(--font-size-xl)] font-bold">MAXIMUM</span>
                 </div>
               </CardContent>
             </Card>
@@ -208,21 +251,24 @@ const DashboardLayout: React.FC = () => {
         
       </div>
 
-      {/* Bottom Status Bar */}
-      <footer className="bg-[var(--color-background-beige)] border-t-[var(--border-width-medium)] border-[var(--color-accent-black)]">
-        <div className="container mx-auto px-[var(--space-4)] py-[var(--space-3)] max-w-[var(--container-max-width)]">
-          <div className="flex justify-between items-center text-[var(--color-text-primary)] text-[var(--font-size-xs)] font-[var(--font-family-body)]">
-            <div className="flex items-center gap-[var(--space-6)]">
-              <span>STATE NETWORK: <strong>ACTIVE</strong></span>
-              <span>SURVEILLANCE: <strong>ENABLED</strong></span>
-              <span>CONSEQUENCES: <strong>ARMED</strong></span>
+      {/* Bottom Status Bar - Compressed */}
+      <footer className="bg-[var(--color-background-beige)] border-t-[var(--border-width-thick)] border-[var(--color-accent-black)]">
+        <div className="container mx-auto px-[var(--space-4)] py-[var(--space-2)] max-w-[var(--container-max-width)]">
+          <div className="flex justify-between items-center">
+            {/* Left: System Status */}
+            <div className="flex items-center gap-[var(--space-4)] text-[var(--color-text-primary)] text-[var(--font-size-sm)] font-[var(--font-family-body)]">
+              <span className="uppercase font-bold">STATE NETWORK: <span className="text-[var(--color-success-muted)]">ACTIVE</span></span>
+              <span className="uppercase font-bold">SURVEILLANCE: <span className="text-[var(--color-success-muted)]">ENABLED</span></span>
+              <span className="uppercase font-bold">CONSEQUENCES: <span className="text-[var(--color-primary-crimson)]">ARMED</span></span>
             </div>
-            <div className="text-[var(--color-primary-crimson)] font-bold font-[var(--font-family-display)] uppercase">
-              <svg className="inline w-4 h-4 fill-current mr-1" viewBox="0 0 24 24">
+            
+            {/* Right: Warning Message */}
+            <div className="flex items-center gap-[var(--space-2)] text-[var(--color-primary-crimson)] font-[var(--font-family-display)] text-[var(--font-size-base)] uppercase tracking-wide font-bold">
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
-              REMEMBER: FAILURE IS NOT AN OPTION
-              <svg className="inline w-4 h-4 fill-current ml-1" viewBox="0 0 24 24">
+              <span>REMEMBER: FAILURE IS NOT AN OPTION</span>
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
             </div>
