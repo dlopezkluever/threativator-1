@@ -54,10 +54,20 @@ const KompromatModal: React.FC<KompromatModalProps> = ({ isOpen, onClose }) => {
 
   const fetchExistingFiles = async () => {
     try {
-      // TODO: Replace with actual Supabase query when tables are set up
-      const demoFiles = JSON.parse(localStorage.getItem('demo_kompromat') || '[]')
-      console.log('🧪 [KompromatModal] DEMO MODE: Loading files from localStorage:', demoFiles.length, 'files')
-      setExistingFiles(demoFiles)
+      console.log('📂 [KompromatModal] Fetching files for user:', user?.id)
+      const { data, error } = await supabase
+        .from('kompromat')
+        .select('*')
+        .eq('user_id', user?.id)
+        .order('created_at', { ascending: false })
+
+      if (error) {
+        console.error('🚨 [KompromatModal] Fetch error:', error)
+        throw error
+      }
+
+      console.log('✅ [KompromatModal] Fetched files:', data?.length || 0, 'files')
+      setExistingFiles(data || [])
     } catch (error) {
       console.error('Failed to fetch existing files:', error)
       setExistingFiles([])
@@ -168,35 +178,43 @@ const KompromatModal: React.FC<KompromatModalProps> = ({ isOpen, onClose }) => {
     setIsUploading(true)
 
     try {
-      // TODO: Replace with actual Supabase backend when tables/storage are set up
-      console.log('🧪 [KompromatModal] DEMO MODE: Files would be uploaded:', files.map(f => ({
-        name: f.file.name,
-        size: f.file.size,
-        type: f.file.type,
-        severity: f.severity,
-        description: f.description
-      })))
+      for (const fileData of files) {
+        // Upload file to Supabase Storage
+        const fileName = `users/${user.id}/kompromat/${Date.now()}_${fileData.file.name}`
+        const { error: uploadError } = await supabase.storage
+          .from('kompromat')
+          .upload(fileName, fileData.file)
 
-      // Simulate upload delay
-      await new Promise(resolve => setTimeout(resolve, 1500))
+        if (uploadError) {
+          console.error('🚨 [KompromatModal] Storage upload error:', uploadError)
+          throw new Error(`Failed to upload ${fileData.file.name}: ${uploadError.message}`)
+        }
 
-      // Store files in localStorage for demo purposes
-      const existingDemo = JSON.parse(localStorage.getItem('demo_kompromat') || '[]')
-      const newDemoFiles = files.map(fileData => ({
-        id: crypto.randomUUID(),
-        original_filename: fileData.file.name,
-        file_path: `demo/${fileData.file.name}`,
-        file_type: fileData.file.type,
-        file_size_bytes: fileData.file.size,
-        severity: fileData.severity,
-        description: fileData.description,
-        created_at: new Date().toISOString(),
-        preview: fileData.preview
-      }))
-      
-      localStorage.setItem('demo_kompromat', JSON.stringify([...existingDemo, ...newDemoFiles]))
+        console.log('✅ [KompromatModal] File uploaded to storage:', fileName)
 
-      showSuccess(`✅ DEMO: Successfully "uploaded" ${files.length} file(s) to local storage!`)
+        // Save file metadata to database
+        const { data: insertedData, error: dbError } = await supabase
+          .from('kompromat')
+          .insert({
+            user_id: user.id,
+            original_filename: fileData.file.name,
+            file_path: fileName,
+            file_type: fileData.file.type,
+            file_size_bytes: fileData.file.size,
+            severity: fileData.severity,
+            description: fileData.description
+          })
+          .select()
+
+        if (dbError) {
+          console.error('🚨 [KompromatModal] Database insert error:', dbError)
+          throw new Error(`Failed to save ${fileData.file.name} metadata: ${dbError.message}`)
+        }
+
+        console.log('✅ [KompromatModal] Metadata saved to database:', insertedData)
+      }
+
+      showSuccess(`Successfully uploaded ${files.length} file(s)`)
       setFiles([])
       fetchExistingFiles()
       setViewMode('manage')
@@ -214,14 +232,26 @@ const KompromatModal: React.FC<KompromatModalProps> = ({ isOpen, onClose }) => {
     }
 
     try {
-      // TODO: Replace with actual Supabase deletion when backend is set up
-      console.log('🧪 [KompromatModal] DEMO MODE: Deleting file:', file.original_filename)
-      
-      const existingDemo = JSON.parse(localStorage.getItem('demo_kompromat') || '[]')
-      const filteredFiles = existingDemo.filter((f: any) => f.id !== file.id)
-      localStorage.setItem('demo_kompromat', JSON.stringify(filteredFiles))
+      // Delete from storage
+      const { error: storageError } = await supabase.storage
+        .from('kompromat')
+        .remove([file.file_path])
 
-      showSuccess('✅ DEMO: File deleted from local storage')
+      if (storageError) {
+        console.warn('Storage deletion error:', storageError)
+      }
+
+      // Delete from database
+      const { error: dbError } = await supabase
+        .from('kompromat')
+        .delete()
+        .eq('id', file.id)
+
+      if (dbError) {
+        throw new Error('Failed to delete file record')
+      }
+
+      showSuccess('File deleted successfully')
       fetchExistingFiles()
     } catch (error) {
       showError('Failed to delete file')
@@ -242,24 +272,6 @@ const KompromatModal: React.FC<KompromatModalProps> = ({ isOpen, onClose }) => {
   return (
     <BaseModal isOpen={isOpen} onClose={onClose} title="📁 KOMPROMAT ARCHIVE" size="large">
       <div className="space-y-6">
-        {/* Demo Mode Banner */}
-        <div style={{
-          backgroundColor: '#C11B17',
-          border: '4px solid #000000',
-          padding: '16px',
-          textAlign: 'center'
-        }}>
-          <p style={{
-            color: '#FFFFFF',
-            fontFamily: 'Stalinist One, Arial Black, sans-serif',
-            fontSize: '16px',
-            fontWeight: 'bold',
-            textTransform: 'uppercase',
-            margin: 0
-          }}>
-            🧪 DEMO MODE: FILES STORED LOCALLY (BACKEND SETUP REQUIRED)
-          </p>
-        </div>
         {/* Mode Toggle */}
         <div className="flex gap-2">
           <Button

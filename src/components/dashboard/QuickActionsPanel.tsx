@@ -31,7 +31,7 @@ const QuickActionsPanel: React.FC = () => {
     try {
       // Quick check for user profile and collateral
       const { data: profile } = await supabase
-        .from('profiles')
+        .from('users')
         .select('holding_cell_balance')
         .eq('id', user?.id)
         .single()

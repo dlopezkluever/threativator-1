@@ -8,7 +8,7 @@ interface UserProfile {
 
 interface KompromatFile {
   id: string
-  file_name: string
+  original_filename: string
   severity: 'minor' | 'major'
   created_at: string
 }
@@ -27,7 +27,7 @@ const VisibleStakesDisplay: React.FC = () => {
 
       // Load user profile for holding cell balance
       const { data: profileData, error: profileError } = await supabase
-        .from('profiles')
+        .from('users')
         .select('holding_cell_balance')
         .eq('id', user.id)
         .single()
@@ -42,7 +42,7 @@ const VisibleStakesDisplay: React.FC = () => {
       // Load kompromat files
       const { data: kompromatData, error: kompromatError } = await supabase
         .from('kompromat')
-        .select('id, file_name, severity, created_at')
+        .select('id, original_filename, severity, created_at')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false })
 

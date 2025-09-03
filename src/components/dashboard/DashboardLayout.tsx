@@ -12,6 +12,7 @@ import PaymentModal from '../modals/PaymentModal'
 import KompromatModal from '../modals/KompromatModal'
 import ContactModal from '../modals/ContactModal'
 import SocialMediaModal from '../modals/SocialMediaModal'
+import { initializeUserProfile } from '../../utils/initializeUserProfile'
 
 const DashboardLayout: React.FC = () => {
   const { user, signOut } = useAuth()
@@ -25,6 +26,13 @@ const DashboardLayout: React.FC = () => {
     MODAL_NAMES.CONTACT,
     MODAL_NAMES.SOCIAL_MEDIA
   ])
+
+  // Initialize user profile if needed
+  React.useEffect(() => {
+    if (user?.id && user?.email) {
+      initializeUserProfile(user.id, user.email)
+    }
+  }, [user])
 
   // Action handlers
   const handleRequestNewMission = async () => {
