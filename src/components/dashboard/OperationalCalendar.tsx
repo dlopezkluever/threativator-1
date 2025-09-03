@@ -157,7 +157,7 @@ const OperationalCalendar: React.FC = () => {
         fontSize: '10px',
         fontFamily: 'Roboto Condensed, sans-serif',
         fontWeight: 'bold',
-        textTransform: 'uppercase',
+        textTransform: 'uppercase' as const,
         padding: '2px 4px'
       }
     }

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
 import { useToast } from '../../contexts/ToastContext'
-import { resetUserOnboarding, getOnboardingStatus } from '../../utils/resetOnboarding'
+import { resetUserOnboarding } from '../../utils/resetOnboarding'
 
 const AuthTestPage: React.FC = () => {
-  const { user, userProfile, loading, signOut } = useAuth()
+  const { user, loading, signOut } = useAuth()
   const { showSuccess, showError, showInfo, showWarning } = useToast()
   const [isResetting, setIsResetting] = useState(false)
 
@@ -92,8 +92,8 @@ const AuthTestPage: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm font-medium text-gray-500">Onboarding Complete:</p>
-                  <p className={`text-lg ${userProfile?.onboarding_completed ? 'text-green-600' : 'text-yellow-600'}`}>
-                    {userProfile?.onboarding_completed ? '✅ Yes' : '⏳ No'}
+                  <p className="text-lg text-yellow-600">
+                    ⏳ Check /onboarding
                   </p>
                 </div>
               </div>
@@ -101,12 +101,12 @@ const AuthTestPage: React.FC = () => {
           </div>
 
           {/* User Profile */}
-          {userProfile && (
+          {user && (
             <div className="mb-8">
-              <h2 className="text-lg font-medium text-gray-900 mb-4">User Profile</h2>
+              <h2 className="text-lg font-medium text-gray-900 mb-4">User Info</h2>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <pre className="text-sm text-gray-700 overflow-x-auto">
-                  {JSON.stringify(userProfile, null, 2)}
+                  {JSON.stringify(user, null, 2)}
                 </pre>
               </div>
             </div>

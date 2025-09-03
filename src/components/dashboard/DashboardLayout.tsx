@@ -7,11 +7,24 @@ import { Button } from '../ui/button'
 import { supabase } from '../../lib/supabase'
 import OperationalCalendar from './OperationalCalendar'
 import VisibleStakesDisplay from './VisibleStakesDisplay'
+import { useModalState, MODAL_NAMES } from '../../hooks/useModalState'
+import PaymentModal from '../modals/PaymentModal'
+import KompromatModal from '../modals/KompromatModal'
+import ContactModal from '../modals/ContactModal'
+import SocialMediaModal from '../modals/SocialMediaModal'
 
 const DashboardLayout: React.FC = () => {
   const { user, signOut } = useAuth()
-  const { goals, loading: goalsLoading } = useGoals()
+  const { } = useGoals()
   const navigate = useNavigate()
+  
+  // Modal state management
+  const [, modalControl] = useModalState([
+    MODAL_NAMES.PAYMENT,
+    MODAL_NAMES.KOMPROMAT,
+    MODAL_NAMES.CONTACT,
+    MODAL_NAMES.SOCIAL_MEDIA
+  ])
 
   // Action handlers
   const handleRequestNewMission = async () => {
@@ -49,15 +62,19 @@ const DashboardLayout: React.FC = () => {
   }
 
   const handleEstablishCollateral = () => {
-    console.log('Opening financial collateral setup...')
+    modalControl.openModal(MODAL_NAMES.PAYMENT)
   }
 
   const handleUploadKompromat = () => {
-    console.log('Opening kompromat upload...')
+    modalControl.openModal(MODAL_NAMES.KOMPROMAT)
   }
 
   const handleRecruitContacts = () => {
-    console.log('Opening contact recruitment...')
+    modalControl.openModal(MODAL_NAMES.CONTACT)
+  }
+
+  const handleSocialMedia = () => {
+    modalControl.openModal(MODAL_NAMES.SOCIAL_MEDIA)
   }
 
   const handleEmergencyExit = async () => {
@@ -217,6 +234,12 @@ const DashboardLayout: React.FC = () => {
                       <span className="text-[var(--font-size-sm)] font-bold leading-tight">CONTACTS</span>
                     </div>
                   </Button>
+                  <Button variant="ghost" size="default" onClick={handleSocialMedia} className="h-16 text-center">
+                    <div className="flex flex-col items-center justify-center gap-1">
+                      <span className="text-xl">🔗</span>
+                      <span className="text-[var(--font-size-sm)] font-bold leading-tight">SOCIAL</span>
+                    </div>
+                  </Button>
                   <Button variant="danger" size="default" onClick={handleEmergencyExit} className="h-16 text-center">
                     <div className="flex flex-col items-center justify-center gap-1">
                       <span className="text-xl">⚠️</span>
@@ -280,6 +303,24 @@ const DashboardLayout: React.FC = () => {
           </div>
         </div>
       </footer>
+
+      {/* Modals */}
+      <PaymentModal 
+        isOpen={modalControl.isModalOpen(MODAL_NAMES.PAYMENT)} 
+        onClose={() => modalControl.closeModal(MODAL_NAMES.PAYMENT)} 
+      />
+      <KompromatModal 
+        isOpen={modalControl.isModalOpen(MODAL_NAMES.KOMPROMAT)} 
+        onClose={() => modalControl.closeModal(MODAL_NAMES.KOMPROMAT)} 
+      />
+      <ContactModal 
+        isOpen={modalControl.isModalOpen(MODAL_NAMES.CONTACT)} 
+        onClose={() => modalControl.closeModal(MODAL_NAMES.CONTACT)} 
+      />
+      <SocialMediaModal 
+        isOpen={modalControl.isModalOpen(MODAL_NAMES.SOCIAL_MEDIA)} 
+        onClose={() => modalControl.closeModal(MODAL_NAMES.SOCIAL_MEDIA)} 
+      />
     </div>
   )
 }

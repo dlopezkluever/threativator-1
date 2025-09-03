@@ -47,7 +47,7 @@ const STEPS = [
 ]
 
 const OnboardingWizard: React.FC = () => {
-  const { user, userProfile } = useAuth()
+  const { user } = useAuth()
   const { showError, showSuccess } = useToast()
   const navigate = useNavigate()
   
@@ -65,23 +65,21 @@ const OnboardingWizard: React.FC = () => {
 
   // Check if user has already completed onboarding
   useEffect(() => {
-    if (userProfile?.onboarding_completed) {
-      navigate('/dashboard')
-    }
-  }, [userProfile, navigate])
+    // TODO: Check onboarding status from database if needed
+    // For now, allow users to access onboarding
+  }, [navigate])
 
   // Prevent navigation away from onboarding
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (!userProfile?.onboarding_completed) {
-        e.preventDefault()
-        e.returnValue = 'Are you sure you want to leave? Your onboarding progress will be lost.'
-      }
+      // Always warn about leaving onboarding
+      e.preventDefault()
+      e.returnValue = 'Are you sure you want to leave? Your onboarding progress will be lost.'
     }
 
     window.addEventListener('beforeunload', handleBeforeUnload)
     return () => window.removeEventListener('beforeunload', handleBeforeUnload)
-  }, [userProfile])
+  }, [])
 
   const handleStepComplete = (stepId: number, data: any) => {
     setState(prev => ({

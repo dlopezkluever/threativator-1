@@ -38,7 +38,7 @@ const StripePaymentForm: React.FC<StripePaymentFormProps> = ({ onSuccess, onErro
 
     try {
       // For testing, we'll simulate the payment method creation
-      const { error: paymentMethodError, paymentMethod } = await stripe.createPaymentMethod({
+      const { error: paymentMethodError } = await stripe.createPaymentMethod({
         type: 'card',
         card: cardElement,
       })

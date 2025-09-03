@@ -52,7 +52,7 @@ const ImmediateDirectivesSidebar: React.FC = () => {
       }
 
       // Calculate urgency based on time remaining
-      const processedDirectives: Checkpoint[] = data.map((checkpoint: { id: string; title: string; deadline: string; status: string; goals: { title: string; user_id: string } }) => {
+      const processedDirectives: Checkpoint[] = data.map((checkpoint: any) => {
         const deadline = new Date(checkpoint.deadline)
         const hoursUntilDeadline = (deadline.getTime() - Date.now()) / (1000 * 60 * 60)
         
@@ -67,7 +67,7 @@ const ImmediateDirectivesSidebar: React.FC = () => {
           id: checkpoint.id,
           title: checkpoint.title,
           deadline: checkpoint.deadline,
-          goal_title: checkpoint.goals.title,
+          goal_title: Array.isArray(checkpoint.goals) ? checkpoint.goals[0]?.title : checkpoint.goals?.title,
           urgency,
           status: checkpoint.status
         }

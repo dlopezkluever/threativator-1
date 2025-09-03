@@ -13,7 +13,11 @@ interface CheckpointData {
     id: string
     title: string
     user_id: string
-  }
+  } | {
+    id: string
+    title: string
+    user_id: string
+  }[]
 }
 
 const QuickActionsPanel: React.FC = () => {
@@ -148,7 +152,7 @@ Please establish security clearance before requesting missions, Comrade.`)
   return (
     <>
       <SovietCard variant="danger" size="md" className="overflow-hidden">
-        <SovietBanner type="intel" className="-m-[var(--card-padding)] mb-[var(--card-padding)]">
+        <SovietBanner type="classified" className="-m-[var(--card-padding)] mb-[var(--card-padding)]">
           <div>
             <h3 className="text-[var(--font-size-sm)] mb-1">
               COMMAND ACTIONS
@@ -300,7 +304,7 @@ Please establish security clearance before requesting missions, Comrade.`)
                       className="w-full text-left justify-start bg-[var(--color-container-light)] text-[var(--color-text-primary)] border-[var(--color-border-primary)] hover:bg-[var(--color-primary-red)] hover:text-[var(--color-text-light)] font-[var(--font-family-body)]">
                       <div className="flex flex-col items-start gap-1">
                         <div className="text-[var(--font-size-xs)] uppercase opacity-70">
-                          MISSION: {checkpoint.goals.title}
+                          MISSION: {Array.isArray(checkpoint.goals) ? checkpoint.goals[0]?.title : checkpoint.goals?.title}
                         </div>
                         <div className="font-[var(--font-family-display)] text-[var(--font-size-sm)] uppercase">
                           {checkpoint.title}

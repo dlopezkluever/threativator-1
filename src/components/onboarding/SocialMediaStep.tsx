@@ -8,7 +8,7 @@ interface SocialMediaStepProps {
 }
 
 const SocialMediaStep: React.FC<SocialMediaStepProps> = ({ onComplete, onError }) => {
-  const { user, userProfile } = useAuth()
+  const { user } = useAuth()
   const [isConnecting, setIsConnecting] = useState(false)
   const [connectionStatus, setConnectionStatus] = useState<{
     connected: boolean
@@ -16,13 +16,10 @@ const SocialMediaStep: React.FC<SocialMediaStepProps> = ({ onComplete, onError }
   }>({ connected: false })
 
   useEffect(() => {
-    if (userProfile?.twitter_username) {
-      setConnectionStatus({
-        connected: true,
-        username: userProfile.twitter_username
-      })
-    }
-  }, [userProfile])
+    // TODO: Fetch user social media connections from database if needed
+    // For now, default to not connected
+    setConnectionStatus({ connected: false })
+  }, [user])
 
   const initiateTwitterOAuth = async () => {
     if (!user) {

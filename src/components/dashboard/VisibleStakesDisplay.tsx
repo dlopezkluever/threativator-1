@@ -18,7 +18,6 @@ const VisibleStakesDisplay: React.FC = () => {
   const [profile, setProfile] = useState<UserProfile | null>(null)
   const [kompromatFiles, setKompromatFiles] = useState<KompromatFile[]>([])
   const [loading, setLoading] = useState(true)
-  const [showKompromatDetails, setShowKompromatDetails] = useState(false)
 
   const loadStakesData = useCallback(async () => {
     if (!user) return
@@ -72,26 +71,6 @@ const VisibleStakesDisplay: React.FC = () => {
     }).format(amount)
   }
 
-  const getFileIcon = (fileName: string) => {
-    const ext = fileName.split('.').pop()?.toLowerCase()
-    switch (ext) {
-      case 'jpg':
-      case 'jpeg':
-      case 'png':
-      case 'gif':
-        return '📸'
-      case 'mp4':
-      case 'mov':
-      case 'avi':
-        return '🎬'
-      case 'txt':
-      case 'doc':
-      case 'docx':
-        return '📄'
-      default:
-        return '📁'
-    }
-  }
 
   if (loading) {
     return (
