@@ -23,57 +23,134 @@ const ImmediateDirectivesSidebar: React.FC = () => {
       setLoading(true)
       
       // Get checkpoints for next 7 days
+      const now = new Date()
       const sevenDaysFromNow = new Date()
       sevenDaysFromNow.setDate(sevenDaysFromNow.getDate() + 7)
       
-      const { data, error } = await supabase
-        .from('checkpoints')
-        .select(`
-          id,
-          title,
-          deadline,
-          status,
-          goals!inner(
-            title,
-            user_id
-          )
-        `)
-        .eq('goals.user_id', user.id)
-        .neq('status', 'completed')
-        .lte('deadline', sevenDaysFromNow.toISOString())
-        .gte('deadline', new Date().toISOString())
-        .order('deadline', { ascending: true })
-        .limit(10)
+      console.log('🔍 [ImmediateDirectives] Loading directives for user:', user.id)
+      console.log('🔍 [ImmediateDirectives] Date range:', now.toISOString(), 'to', sevenDaysFromNow.toISOString())
 
-      if (error) {
-        console.warn('📋 [ImmediateDirectives] Checkpoints table not found, using empty array:', error)
-        setDirectives([])
-        return
+      // Load both checkpoints AND goal deadlines
+      const [checkpointsResult, goalsResult] = await Promise.all([
+        // Get checkpoints within 7 days
+        supabase
+          .from('checkpoints')
+          .select(`
+            id,
+            title,
+            deadline,
+            status,
+            goals!inner(
+              title,
+              user_id
+            )
+          `)
+          .eq('goals.user_id', user.id)
+          .lte('deadline', sevenDaysFromNow.toISOString())
+          .gte('deadline', now.toISOString()),
+
+        // Get goal deadlines within 7 days
+        supabase
+          .from('goals')
+          .select(`
+            id,
+            title,
+            final_deadline,
+            status,
+            user_id
+          `)
+          .eq('user_id', user.id)
+          .lte('final_deadline', sevenDaysFromNow.toISOString())
+          .gte('final_deadline', now.toISOString())
+      ])
+
+      console.log('📊 [ImmediateDirectives] Checkpoints result:', checkpointsResult.data?.length || 0, 'items')
+      console.log('📊 [ImmediateDirectives] Goals result:', goalsResult.data?.length || 0, 'items')
+      
+      if (checkpointsResult.error) {
+        console.error('📋 [ImmediateDirectives] Checkpoints error:', checkpointsResult.error)
+        console.error('📋 [ImmediateDirectives] Checkpoints error details:', {
+          message: checkpointsResult.error.message,
+          details: checkpointsResult.error.details,
+          hint: checkpointsResult.error.hint,
+          code: checkpointsResult.error.code
+        })
+      }
+      
+      if (goalsResult.error) {
+        console.error('📋 [ImmediateDirectives] Goals error:', goalsResult.error)
+        console.error('📋 [ImmediateDirectives] Goals error details:', {
+          message: goalsResult.error.message,
+          details: goalsResult.error.details,
+          hint: goalsResult.error.hint,
+          code: goalsResult.error.code
+        })
+      }
+      
+      // Log the raw data for debugging
+      if (checkpointsResult.data) {
+        console.log('📋 [ImmediateDirectives] Checkpoints raw data:', checkpointsResult.data)
+      }
+      if (goalsResult.data) {
+        console.log('📋 [ImmediateDirectives] Goals raw data:', goalsResult.data)
       }
 
-      // Calculate urgency based on time remaining
-      const processedDirectives: Checkpoint[] = data.map((checkpoint: any) => {
-        const deadline = new Date(checkpoint.deadline)
-        const hoursUntilDeadline = (deadline.getTime() - Date.now()) / (1000 * 60 * 60)
-        
-        let urgency: 'critical' | 'warning' | 'standard' = 'standard'
-        if (hoursUntilDeadline <= 24) {
-          urgency = 'critical'
-        } else if (hoursUntilDeadline <= 72) {
-          urgency = 'warning'
-        }
+      const allDirectives: Checkpoint[] = []
 
-        return {
-          id: checkpoint.id,
-          title: checkpoint.title,
-          deadline: checkpoint.deadline,
-          goal_title: Array.isArray(checkpoint.goals) ? checkpoint.goals[0]?.title : checkpoint.goals?.title,
-          urgency,
-          status: checkpoint.status
-        }
-      })
+      // Process checkpoints
+      if (checkpointsResult.data) {
+        checkpointsResult.data.forEach((checkpoint: any) => {
+          const deadline = new Date(checkpoint.deadline)
+          const hoursUntilDeadline = (deadline.getTime() - Date.now()) / (1000 * 60 * 60)
+          
+          let urgency: 'critical' | 'warning' | 'standard' = 'standard'
+          if (hoursUntilDeadline <= 24) {
+            urgency = 'critical'
+          } else if (hoursUntilDeadline <= 72) {
+            urgency = 'warning'
+          }
 
-      setDirectives(processedDirectives)
+          allDirectives.push({
+            id: `checkpoint-${checkpoint.id}`,
+            title: checkpoint.title,
+            deadline: checkpoint.deadline,
+            goal_title: Array.isArray(checkpoint.goals) ? checkpoint.goals[0]?.title : checkpoint.goals?.title,
+            urgency,
+            status: checkpoint.status
+          })
+        })
+      }
+
+      // Process goal deadlines
+      if (goalsResult.data) {
+        goalsResult.data.forEach((goal: any) => {
+          const deadline = new Date(goal.final_deadline)
+          const hoursUntilDeadline = (deadline.getTime() - Date.now()) / (1000 * 60 * 60)
+          
+          let urgency: 'critical' | 'warning' | 'standard' = 'standard'
+          if (hoursUntilDeadline <= 24) {
+            urgency = 'critical'
+          } else if (hoursUntilDeadline <= 72) {
+            urgency = 'warning'
+          }
+
+          allDirectives.push({
+            id: `goal-${goal.id}`,
+            title: `FINAL DIRECTIVE: ${goal.title}`,
+            deadline: goal.final_deadline,
+            goal_title: goal.title,
+            urgency,
+            status: goal.status
+          })
+        })
+      }
+
+      // Sort by deadline
+      allDirectives.sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime())
+      
+      console.log('📋 [ImmediateDirectives] Final directives count:', allDirectives.length)
+      setDirectives(allDirectives.slice(0, 10)) // Limit to 10 items
+
     } catch (error) {
       console.error('Error loading directives:', error)
     } finally {
@@ -113,92 +190,72 @@ const ImmediateDirectivesSidebar: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="bg-[#000000] border-2 border-[#DA291C] h-full">
-        <div className="bg-[#DA291C] p-4 border-b-2 border-[#000000]">
-          <h2 className="text-[#FFFFFF] font-['Stalinist_One'] text-lg uppercase tracking-wider">
-            IMMEDIATE DIRECTIVES
-          </h2>
-        </div>
-        <div className="p-4 space-y-4">
-          {[...Array(3)].map((_, i) => (
-            <div key={i} className="bg-[#333333] h-16 animate-pulse border border-[#DA291C]"></div>
-          ))}
-        </div>
+      <div className="space-y-4">
+        {[...Array(3)].map((_, i) => (
+          <div key={i} className="bg-[var(--color-container-light)] border border-[var(--color-border-primary)] h-16 animate-pulse p-3">
+            <div className="bg-[var(--color-text-primary)] opacity-30 h-3 w-16 mb-2"></div>
+            <div className="bg-[var(--color-text-primary)] opacity-30 h-2 w-full mb-1"></div>
+            <div className="bg-[var(--color-text-primary)] opacity-30 h-4 w-3/4"></div>
+          </div>
+        ))}
       </div>
     )
   }
 
+  if (directives.length === 0) {
+    return (
+      <>
+        {/* Soviet-style document icon */}
+        <div className="mb-[var(--space-4)]">
+          <svg className="w-12 h-12 mx-auto fill-[var(--color-text-primary)] opacity-30" viewBox="0 0 24 24">
+            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+          </svg>
+        </div>
+        <p className="text-[var(--font-size-base)] uppercase mb-[var(--space-2)] font-[var(--font-family-display)] tracking-wide font-bold">NO IMMEDIATE DIRECTIVES</p>
+        <p className="text-[var(--font-size-sm)] font-[var(--font-family-body)] opacity-70">Request new mission from Command</p>
+      </>
+    )
+  }
+
   return (
-    <div className="bg-[#000000] border-2 border-[#DA291C] h-full">
-      {/* Header */}
-      <div className="bg-[#DA291C] p-4 border-b-2 border-[#000000]">
-        <h2 className="text-[#FFFFFF] font-['Stalinist_One'] text-lg uppercase tracking-wider">
-          IMMEDIATE DIRECTIVES
-        </h2>
-        <p className="text-[#F5EEDC] text-xs mt-1 font-['Roboto_Condensed']">
-          NEXT 7 DAYS - COMPLIANCE REQUIRED
-        </p>
-      </div>
-
-      {/* Directives List */}
-      <div className="p-4 space-y-3 max-h-[600px] overflow-y-auto">
-        {directives.length === 0 ? (
-          <div className="text-center p-8">
-            <div className="text-[#5A7761] text-lg mb-2">★</div>
-            <p className="text-[#F5EEDC] text-sm font-['Roboto_Condensed']">
-              NO IMMEDIATE DIRECTIVES
-            </p>
-            <p className="text-[#888888] text-xs mt-1">
-              Request new mission from Command
-            </p>
+    <div className="space-y-3 max-h-[400px] overflow-y-auto w-full">
+      {directives.map((directive) => (
+        <div
+          key={directive.id}
+          onClick={() => handleDirectiveClick(directive)}
+          className="bg-[var(--color-container-light)] border border-[var(--color-border-primary)] p-3 cursor-pointer transition-all duration-200 hover:bg-[var(--color-primary-crimson)] hover:text-[var(--color-background-beige)] group"
+        >
+          {/* Urgency Badge */}
+          <div className={`inline-block px-2 py-1 text-xs font-[var(--font-family-display)] uppercase mb-2 border border-[var(--color-accent-black)] ${getUrgencyColor(directive.urgency)}`}>
+            {directive.urgency === 'critical' ? 'CRITICAL' : directive.urgency === 'warning' ? 'WARNING' : 'ACTIVE'}
           </div>
-        ) : (
-          directives.map((directive) => (
-            <div
-              key={directive.id}
-              onClick={() => handleDirectiveClick(directive)}
-              className="bg-[#1a1a1a] border border-[#DA291C] p-3 cursor-pointer transition-all duration-200 hover:bg-[#DA291C] hover:text-[#000000] group"
-            >
-              {/* Urgency Badge */}
-              <div className={`inline-block px-2 py-1 text-xs font-['Stalinist_One'] uppercase mb-2 ${getUrgencyColor(directive.urgency)}`}>
-                {directive.urgency === 'critical' ? 'CRITICAL' : directive.urgency === 'warning' ? 'WARNING' : 'ACTIVE'}
-              </div>
 
-              {/* Goal Title */}
-              <div className="text-[#F5EEDC] group-hover:text-[#000000] font-['Roboto_Condensed'] text-xs uppercase mb-1 truncate">
-                MISSION: {directive.goal_title}
-              </div>
+          {/* Goal Title */}
+          <div className="text-[var(--color-text-primary)] group-hover:text-[var(--color-background-beige)] font-[var(--font-family-body)] text-xs uppercase mb-1 truncate opacity-80">
+            MISSION: {directive.goal_title}
+          </div>
 
-              {/* Checkpoint Title */}
-              <div className="text-[#FFFFFF] group-hover:text-[#000000] font-['Stalinist_One'] text-sm uppercase mb-2 leading-tight">
-                {directive.title}
-              </div>
+          {/* Checkpoint Title */}
+          <div className="text-[var(--color-text-primary)] group-hover:text-[var(--color-background-beige)] font-[var(--font-family-display)] text-sm uppercase mb-2 leading-tight font-bold">
+            {directive.title}
+          </div>
 
-              {/* Time Remaining */}
-              <div className="text-[#DA291C] group-hover:text-[#000000] text-xs font-['Roboto_Condensed'] font-bold">
-                {getTimeRemaining(directive.deadline)}
-              </div>
+          {/* Time Remaining */}
+          <div className="text-[var(--color-primary-crimson)] group-hover:text-[var(--color-background-beige)] text-xs font-[var(--font-family-body)] font-bold">
+            {getTimeRemaining(directive.deadline)}
+          </div>
 
-              {/* Deadline */}
-              <div className="text-[#888888] group-hover:text-[#333333] text-xs font-['Roboto_Condensed'] mt-1">
-                DUE: {new Date(directive.deadline).toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit'
-                }).toUpperCase()}
-              </div>
-            </div>
-          ))
-        )}
-      </div>
-
-      {/* Footer */}
-      <div className="border-t border-[#DA291C] p-3 bg-[#1a1a1a]">
-        <p className="text-[#DA291C] text-xs font-['Roboto_Condensed'] text-center">
-          ★ CLICK DIRECTIVE TO SUBMIT PROOF ★
-        </p>
-      </div>
+          {/* Deadline */}
+          <div className="text-[var(--color-text-primary)] opacity-60 group-hover:text-[var(--color-background-beige)] group-hover:opacity-80 text-xs font-[var(--font-family-body)] mt-1">
+            DUE: {new Date(directive.deadline).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            }).toUpperCase()}
+          </div>
+        </div>
+      ))}
     </div>
   )
 }

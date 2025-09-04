@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import { supabase } from '../../lib/supabase'
 import { useAuth } from '../../contexts/AuthContext'
 import { useToast } from '../../contexts/ToastContext'
-import { Trash2, Upload, FileText, Image, Video } from 'lucide-react'
+import { Trash2, Upload, FileText, Image, Video, Eye, Download } from 'lucide-react'
 
 interface KompromatFile {
   id: string
@@ -41,6 +41,7 @@ const KompromatModal: React.FC<KompromatModalProps> = ({ isOpen, onClose }) => {
   const [isUploading, setIsUploading] = useState(false)
   const [dragOver, setDragOver] = useState(false)
   const [viewMode, setViewMode] = useState<'upload' | 'manage'>('upload')
+  const [viewingFile, setViewingFile] = useState<ExistingKompromat | null>(null)
 
   const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB (reduced from 50MB)
   const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'video/mp4', 'video/mov', 'application/pdf']
@@ -267,6 +268,44 @@ const KompromatModal: React.FC<KompromatModalProps> = ({ isOpen, onClose }) => {
   const formatFileSize = (bytes: number) => {
     if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
     return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
+  }
+
+  const getFilePreviewUrl = async (file: ExistingKompromat): Promise<string | null> => {
+    try {
+      const { data, error } = await supabase.storage
+        .from('kompromat')
+        .createSignedUrl(file.file_path, 3600) // 1 hour expiry
+
+      if (error) {
+        console.error('Error creating signed URL:', error)
+        return null
+      }
+
+      return data.signedUrl
+    } catch (error) {
+      console.error('Error getting file preview:', error)
+      return null
+    }
+  }
+
+  const handleViewFile = async (file: ExistingKompromat) => {
+    setViewingFile(file)
+  }
+
+  const handleDownloadFile = async (file: ExistingKompromat) => {
+    try {
+      const url = await getFilePreviewUrl(file)
+      if (url) {
+        const link = document.createElement('a')
+        link.href = url
+        link.download = file.original_filename
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+      }
+    } catch (error) {
+      showError('Failed to download file')
+    }
   }
 
   return (
@@ -516,13 +555,29 @@ const KompromatModal: React.FC<KompromatModalProps> = ({ isOpen, onClose }) => {
                           </p>
                         </div>
                       </div>
-                      <Button
-                        variant="danger"
-                        size="sm"
-                        onClick={() => deleteExistingFile(file)}
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
+                      <div className="flex gap-2">
+                        <Button
+                          variant="action"
+                          size="sm"
+                          onClick={() => handleViewFile(file)}
+                        >
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleDownloadFile(file)}
+                        >
+                          <Download className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          variant="danger"
+                          size="sm"
+                          onClick={() => deleteExistingFile(file)}
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -547,7 +602,166 @@ const KompromatModal: React.FC<KompromatModalProps> = ({ isOpen, onClose }) => {
           </p>
         </div>
       </div>
+
+      {/* File Viewing Modal */}
+      {viewingFile && (
+        <div 
+          className="fixed inset-0 z-[10000]"
+          style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.85)',
+            backdropFilter: 'blur(4px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '16px'
+          }}
+          onClick={() => setViewingFile(null)}
+        >
+          <div 
+            className="bg-[#F5EEDC] border-6 border-[#000000] max-w-4xl w-full max-h-[90vh] overflow-hidden"
+            style={{
+              borderWidth: '6px',
+              borderStyle: 'solid'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="bg-[#DA291C] p-4 border-b-4 border-[#000000] flex justify-between items-center">
+              <div>
+                <h3 className="text-[#FFFFFF] font-['Stalinist_One'] text-lg uppercase tracking-wider">
+                  CLASSIFIED MATERIAL VIEWER
+                </h3>
+                <p className="text-[#F5EEDC] text-sm font-['Roboto_Condensed'] mt-1">
+                  {viewingFile.original_filename} • {viewingFile.severity.toUpperCase()}
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => handleDownloadFile(viewingFile)}
+                  className="bg-[#000000] text-[#F5EEDC] border-[#F5EEDC] hover:bg-[#F5EEDC] hover:text-[#000000]"
+                >
+                  <Download className="h-4 w-4 mr-1" />
+                  DOWNLOAD
+                </Button>
+                <button
+                  onClick={() => setViewingFile(null)}
+                  className="bg-[#000000] text-[#F5EEDC] border-2 border-[#F5EEDC] px-3 py-1 text-sm uppercase font-bold hover:bg-[#F5EEDC] hover:text-[#000000] transition-colors"
+                >
+                  CLOSE
+                </button>
+              </div>
+            </div>
+            
+            <div className="p-6 max-h-[calc(90vh-120px)] overflow-y-auto">
+              <div className="mb-4">
+                <p className="text-[var(--color-text-primary)] text-sm font-bold uppercase mb-2">
+                  DESCRIPTION:
+                </p>
+                <p className="text-[var(--color-text-primary)]">
+                  {viewingFile.description}
+                </p>
+              </div>
+
+              <div className="mb-4">
+                <p className="text-[var(--color-text-primary)] text-sm font-bold uppercase mb-2">
+                  FILE DETAILS:
+                </p>
+                <p className="text-[var(--color-text-primary)] text-sm">
+                  Size: {formatFileSize(viewingFile.file_size_bytes)} • 
+                  Type: {viewingFile.file_type} • 
+                  Uploaded: {new Date(viewingFile.created_at).toLocaleString()}
+                </p>
+              </div>
+
+              <div className="border-2 border-[var(--color-accent-black)] bg-[var(--color-container-light)] p-4">
+                {viewingFile.file_type.startsWith('image/') ? (
+                  <FilePreview file={viewingFile} />
+                ) : (
+                  <div className="text-center py-8">
+                    <div className="mb-4">
+                      {getFileIcon(viewingFile.file_type)}
+                    </div>
+                    <p className="text-[var(--color-text-primary)] font-bold mb-2">
+                      {viewingFile.file_type.startsWith('video/') ? 'VIDEO FILE' : 'DOCUMENT FILE'}
+                    </p>
+                    <p className="text-[var(--color-text-primary)] text-sm mb-4">
+                      Click download to view this file
+                    </p>
+                    <Button
+                      variant="command"
+                      onClick={() => handleDownloadFile(viewingFile)}
+                    >
+                      <Download className="h-4 w-4 mr-2" />
+                      DOWNLOAD FILE
+                    </Button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </BaseModal>
+  )
+}
+
+// Helper component for file preview
+const FilePreview: React.FC<{ file: ExistingKompromat }> = ({ file }) => {
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    const loadPreview = async () => {
+      try {
+        const { data, error } = await supabase.storage
+          .from('kompromat')
+          .createSignedUrl(file.file_path, 3600)
+
+        if (error) {
+          setError(true)
+          return
+        }
+
+        setPreviewUrl(data.signedUrl)
+      } catch (err) {
+        setError(true)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadPreview()
+  }, [file])
+
+  if (loading) {
+    return (
+      <div className="text-center py-8">
+        <div className="animate-spin w-8 h-8 border-2 border-[var(--color-primary-crimson)] border-t-transparent rounded-full mx-auto mb-4"></div>
+        <p className="text-[var(--color-text-primary)]">Loading preview...</p>
+      </div>
+    )
+  }
+
+  if (error || !previewUrl) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-[var(--color-primary-crimson)] font-bold mb-2">PREVIEW UNAVAILABLE</p>
+        <p className="text-[var(--color-text-primary)] text-sm">Download file to view content</p>
+      </div>
+    )
+  }
+
+  return (
+    <div className="text-center">
+      <img 
+        src={previewUrl} 
+        alt={file.original_filename}
+        className="max-w-full max-h-[400px] mx-auto border-2 border-[var(--color-accent-black)]"
+        style={{ objectFit: 'contain' }}
+      />
+    </div>
   )
 }
 

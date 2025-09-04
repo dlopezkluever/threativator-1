@@ -74,7 +74,7 @@ const GoalDefinitionStep: React.FC<Props> = ({ formData, updateFormData, onValid
   }
 
   return (
-    <div className="space-y-[var(--space-6)]">
+    <div className="space-y-[var(--space-4)]">
       
       {/* Title Input */}
       <div>
@@ -87,7 +87,7 @@ const GoalDefinitionStep: React.FC<Props> = ({ formData, updateFormData, onValid
           onChange={(e) => updateFormData({ title: e.target.value })}
           placeholder="Enter mission title..."
           maxLength={100}
-          className="w-full border-[var(--border-width-thick)] border-[var(--color-accent-black)] bg-[var(--color-background-beige)] p-[var(--space-3)] text-[var(--color-text-primary)] font-[var(--font-family-body)] text-[var(--font-size-base)]"
+          className="w-full border-[var(--border-width-thick)] border-[var(--color-accent-black)] bg-[var(--color-background-beige)] p-[var(--space-2)] text-[var(--color-text-primary)] font-[var(--font-family-body)] text-[var(--font-size-sm)]"
           style={{ borderRadius: '0px' }}
         />
         {errors.title && (
@@ -109,8 +109,8 @@ const GoalDefinitionStep: React.FC<Props> = ({ formData, updateFormData, onValid
           value={formData.description}
           onChange={(e) => updateFormData({ description: e.target.value })}
           placeholder="Describe the mission objective in detail..."
-          rows={4}
-          className="w-full border-[var(--border-width-thick)] border-[var(--color-accent-black)] bg-[var(--color-background-beige)] p-[var(--space-3)] text-[var(--color-text-primary)] font-[var(--font-family-body)] text-[var(--font-size-base)] resize-none"
+          rows={3}
+          className="w-full border-[var(--border-width-thick)] border-[var(--color-accent-black)] bg-[var(--color-background-beige)] p-[var(--space-2)] text-[var(--color-text-primary)] font-[var(--font-family-body)] text-[var(--font-size-sm)] resize-none"
           style={{ borderRadius: '0px' }}
         />
         {errors.description && (
@@ -130,7 +130,7 @@ const GoalDefinitionStep: React.FC<Props> = ({ formData, updateFormData, onValid
           value={formData.finalDeadline instanceof Date ? formData.finalDeadline.toISOString().slice(0, 16) : ''}
           onChange={(e) => updateFormData({ finalDeadline: new Date(e.target.value) })}
           min={getTomorrowDate() + 'T00:00'}
-          className="w-full border-[var(--border-width-thick)] border-[var(--color-accent-black)] bg-[var(--color-background-beige)] p-[var(--space-3)] text-[var(--color-text-primary)] font-[var(--font-family-body)] text-[var(--font-size-base)]"
+          className="w-full border-[var(--border-width-thick)] border-[var(--color-accent-black)] bg-[var(--color-background-beige)] p-[var(--space-2)] text-[var(--color-text-primary)] font-[var(--font-family-body)] text-[var(--font-size-sm)]"
           style={{ borderRadius: '0px' }}
         />
         {errors.finalDeadline && (
@@ -148,7 +148,7 @@ const GoalDefinitionStep: React.FC<Props> = ({ formData, updateFormData, onValid
         <select
           value={formData.rubricTemplate}
           onChange={(e) => handleTemplateChange(e.target.value)}
-          className="w-full border-[var(--border-width-thick)] border-[var(--color-accent-black)] bg-[var(--color-background-beige)] p-[var(--space-3)] text-[var(--color-text-primary)] font-[var(--font-family-body)] text-[var(--font-size-base)]"
+          className="w-full border-[var(--border-width-thick)] border-[var(--color-accent-black)] bg-[var(--color-background-beige)] p-[var(--space-2)] text-[var(--color-text-primary)] font-[var(--font-family-body)] text-[var(--font-size-sm)]"
           style={{ borderRadius: '0px' }}
         >
           {Object.entries(rubricTemplates).map(([value, label]) => (
@@ -169,8 +169,8 @@ const GoalDefinitionStep: React.FC<Props> = ({ formData, updateFormData, onValid
             ? "Define specific criteria for mission success. Be clear and measurable..."
             : "Customize the template above or select 'Custom' for full control..."
           }
-          rows={6}
-          className="w-full border-[var(--border-width-thick)] border-[var(--color-accent-black)] bg-[var(--color-background-beige)] p-[var(--space-3)] text-[var(--color-text-primary)] font-[var(--font-family-body)] text-[var(--font-size-base)] resize-none"
+          rows={4}
+          className="w-full border-[var(--border-width-thick)] border-[var(--color-accent-black)] bg-[var(--color-background-beige)] p-[var(--space-2)] text-[var(--color-text-primary)] font-[var(--font-family-body)] text-[var(--font-size-sm)] resize-none"
           style={{ borderRadius: '0px' }}
         />
         {errors.gradingRubric && (

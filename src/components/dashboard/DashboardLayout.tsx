@@ -7,6 +7,7 @@ import { Button } from '../ui/button'
 import { supabase } from '../../lib/supabase'
 import OperationalCalendar from './OperationalCalendar'
 import VisibleStakesDisplay from './VisibleStakesDisplay'
+import ImmediateDirectivesSidebar from './ImmediateDirectivesSidebar'
 import { useModalState, MODAL_NAMES } from '../../hooks/useModalState'
 import PaymentModal from '../modals/PaymentModal'
 import KompromatModal from '../modals/KompromatModal'
@@ -55,9 +56,6 @@ const DashboardLayout: React.FC = () => {
     }
   }
 
-  const handleSubmitProof = () => {
-    console.log('Opening proof submission...')
-  }
 
   const handleEstablishCollateral = () => {
     modalControl.openModal(MODAL_NAMES.PAYMENT)
@@ -143,14 +141,7 @@ const DashboardLayout: React.FC = () => {
                 <CardDescription>NEXT 7 DAYS - COMPLIANCE REQUIRED</CardDescription>
               </CardHeader>
               <CardContent className="text-center flex-1 flex flex-col justify-center">
-                {/* Soviet-style document icon */}
-                <div className="mb-[var(--space-4)]">
-                  <svg className="w-12 h-12 mx-auto fill-[var(--color-text-primary)] opacity-30" viewBox="0 0 24 24">
-                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
-                  </svg>
-                </div>
-                <p className="text-[var(--font-size-base)] uppercase mb-[var(--space-2)] font-[var(--font-family-display)] tracking-wide font-bold">NO IMMEDIATE DIRECTIVES</p>
-                <p className="text-[var(--font-size-sm)] font-[var(--font-family-body)] opacity-70">Request new mission from Command</p>
+                <ImmediateDirectivesSidebar />
               </CardContent>
               <CardFooter className="justify-center text-center">
                 <p className="text-[var(--color-primary-crimson)] text-[var(--font-size-xs)] uppercase font-[var(--font-family-display)] tracking-wide">
@@ -168,7 +159,7 @@ const DashboardLayout: React.FC = () => {
                 <CardDescription>ALL DIRECTIVES UNDER STATE MONITORING</CardDescription>
               </CardHeader>
               <CardContent className="flex-1 p-[var(--space-2)]">
-                <div className="h-full min-h-[450px] bg-white border-[var(--border-width-medium)] border-[var(--color-border-primary)]">
+                <div className="h-full min-h-[500px] bg-white border-[var(--border-width-medium)] border-[var(--color-border-primary)]">
                   <OperationalCalendar />
                 </div>
               </CardContent>
@@ -206,12 +197,6 @@ const DashboardLayout: React.FC = () => {
                     <div className="flex flex-col items-center justify-center gap-1">
                       <span className="text-xl">⚡</span>
                       <span className="text-[var(--font-size-sm)] font-bold leading-tight">NEW MISSION</span>
-                    </div>
-                  </Button>
-                  <Button variant="action" size="default" onClick={handleSubmitProof} className="h-16 text-center">
-                    <div className="flex flex-col items-center justify-center gap-1">
-                      <span className="text-xl">📋</span>
-                      <span className="text-[var(--font-size-sm)] font-bold leading-tight">SUBMIT PROOF</span>
                     </div>
                   </Button>
                   <Button variant="success" size="default" onClick={handleEstablishCollateral} className="h-16 text-center">

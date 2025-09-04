@@ -204,11 +204,12 @@ const OperationalCalendar: React.FC = () => {
 
           .rbc-month-row {
             display: table-row !important;
-            height: 60px !important;
+            height: 80px !important;
           }
 
           .rbc-row-content {
-            height: auto !important;
+            height: 80px !important;
+            position: relative !important;
           }
           
           .rbc-header {
@@ -226,12 +227,13 @@ const OperationalCalendar: React.FC = () => {
           .rbc-date-cell {
             border-right: 1px solid #000000 !important;
             border-bottom: 1px solid #000000 !important;
-            min-height: 60px !important;
+            min-height: 80px !important;
             padding: 4px !important;
             background: white !important;
             display: table-cell !important;
             vertical-align: top !important;
             width: 14.28% !important;
+            position: relative !important;
           }
 
           .rbc-date-cell button {
@@ -312,14 +314,19 @@ const OperationalCalendar: React.FC = () => {
           .rbc-event {
             border-radius: 0px !important;
             border: 1px solid #000000 !important;
-            font-size: 9px !important;
+            font-size: 8px !important;
             font-weight: bold !important;
             text-transform: uppercase !important;
             margin: 1px 0 !important;
-            padding: 1px 3px !important;
+            padding: 2px 3px !important;
             font-family: 'Roboto Condensed', sans-serif !important;
             display: block !important;
-            width: calc(100% - 2px) !important;
+            width: calc(100% - 6px) !important;
+            position: relative !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            cursor: pointer !important;
           }
 
           .rbc-month-row + .rbc-month-row {
@@ -332,7 +339,7 @@ const OperationalCalendar: React.FC = () => {
           }
 
           .rbc-row-content {
-            min-height: 60px !important;
+            min-height: 80px !important;
           }
 
           .rbc-addons-dnd .rbc-addons-dnd-row-body {
@@ -346,7 +353,7 @@ const OperationalCalendar: React.FC = () => {
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: '450px', fontFamily: 'Roboto Condensed, sans-serif' }}
+        style={{ height: '500px', fontFamily: 'Roboto Condensed, sans-serif' }}
         eventPropGetter={eventStyleGetter}
         onSelectEvent={handleEventClick}
         views={['month', 'week']}
@@ -375,49 +382,74 @@ const OperationalCalendar: React.FC = () => {
       />
       
       {selectedEvent && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-[#F5EEDC] border-2 border-[#000000] max-w-md w-full mx-4 p-6">
-            <div className="bg-[#DA291C] -m-6 mb-4 p-4 border-b-2 border-[#000000]">
-              <h3 className="text-[#FFFFFF] font-['Stalinist_One'] text-lg uppercase">
+        <div 
+          className="fixed inset-0 z-50"
+          style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.75)',
+            backdropFilter: 'blur(4px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '16px'
+          }}
+          onClick={() => setSelectedEvent(null)}
+        >
+          <div 
+            className="bg-[#F5EEDC] border-6 border-[#000000] max-w-lg w-full"
+            style={{
+              maxHeight: '80vh',
+              overflowY: 'auto',
+              borderWidth: '6px',
+              borderStyle: 'solid'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="bg-[#DA291C] p-6 border-b-4 border-[#000000]">
+              <h3 className="text-[#FFFFFF] font-['Stalinist_One'] text-xl uppercase tracking-wider">
                 MISSION DETAILS
               </h3>
             </div>
             
-            <div className="space-y-3 font-['Roboto_Condensed']">
+            <div className="p-6 space-y-4 font-['Roboto_Condensed']">
               <div>
-                <span className="text-[#000000] text-xs uppercase font-bold">TYPE:</span>
-                <span className="text-[#DA291C] ml-2 uppercase">{selectedEvent.type}</span>
+                <span className="text-[#000000] text-sm uppercase font-bold">TYPE:</span>
+                <span className="text-[#DA291C] ml-2 uppercase font-bold">{selectedEvent.type}</span>
               </div>
               <div>
-                <span className="text-[#000000] text-xs uppercase font-bold">MISSION:</span>
-                <div className="text-[#000000] mt-1">{selectedEvent.title}</div>
+                <span className="text-[#000000] text-sm uppercase font-bold">MISSION:</span>
+                <div className="text-[#000000] mt-2 text-base">{selectedEvent.title}</div>
               </div>
               <div>
-                <span className="text-[#000000] text-xs uppercase font-bold">STATUS:</span>
-                <span className="text-[#DA291C] ml-2 uppercase">{selectedEvent.status}</span>
+                <span className="text-[#000000] text-sm uppercase font-bold">STATUS:</span>
+                <span className={`ml-2 uppercase font-bold ${
+                  selectedEvent.status === 'completed' ? 'text-[#5A7761]' :
+                  selectedEvent.status === 'failed' || selectedEvent.status === 'overdue' ? 'text-[#DA291C]' :
+                  'text-[#DA291C]'
+                }`}>{selectedEvent.status}</span>
               </div>
               <div>
-                <span className="text-[#000000] text-xs uppercase font-bold">DEADLINE:</span>
-                <div className="text-[#000000] mt-1">
+                <span className="text-[#000000] text-sm uppercase font-bold">DEADLINE:</span>
+                <div className="text-[#000000] mt-2 text-base">
                   {moment(selectedEvent.start).format('dddd, MMMM DD, YYYY [at] h:mm A')}
                 </div>
               </div>
             </div>
             
-            <div className="flex gap-4 mt-6">
+            <div className="flex gap-4 p-6 pt-0">
               <button
                 onClick={() => setSelectedEvent(null)}
-                className="flex-1 bg-[#000000] text-[#F5EEDC] border border-[#DA291C] py-2 px-4 font-['Stalinist_One'] text-xs uppercase hover:bg-[#DA291C] hover:text-[#000000] transition-colors"
+                className="flex-1 bg-[#000000] text-[#F5EEDC] border-2 border-[#DA291C] py-3 px-6 font-['Stalinist_One'] text-sm uppercase hover:bg-[#DA291C] hover:text-[#000000] transition-colors"
               >
                 CLOSE
               </button>
               {selectedEvent.status === 'pending' && (
                 <button
                   onClick={() => {
-                    // TODO: Open submission modal
+                    console.log('Opening submission modal for:', selectedEvent.id)
+                    // TODO: Open submission modal with proper implementation
                     setSelectedEvent(null)
                   }}
-                  className="flex-1 bg-[#DA291C] text-[#FFFFFF] border border-[#000000] py-2 px-4 font-['Stalinist_One'] text-xs uppercase hover:bg-[#5A7761] transition-colors"
+                  className="flex-1 bg-[#DA291C] text-[#FFFFFF] border-2 border-[#000000] py-3 px-6 font-['Stalinist_One'] text-sm uppercase hover:bg-[#5A7761] transition-colors"
                 >
                   SUBMIT PROOF
                 </button>
