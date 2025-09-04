@@ -12,7 +12,6 @@ import PaymentModal from '../modals/PaymentModal'
 import KompromatModal from '../modals/KompromatModal'
 import ContactModal from '../modals/ContactModal'
 import SocialMediaModal from '../modals/SocialMediaModal'
-import { initializeUserProfile } from '../../utils/initializeUserProfile'
 
 const DashboardLayout: React.FC = () => {
   const { user, signOut } = useAuth()
@@ -27,21 +26,12 @@ const DashboardLayout: React.FC = () => {
     MODAL_NAMES.SOCIAL_MEDIA
   ])
 
-  // Initialize user profile if needed
-  React.useEffect(() => {
-    if (user?.id && user?.email) {
-      initializeUserProfile(user.id, user.email)
-    }
-  }, [user])
 
   // Action handlers
   const handleRequestNewMission = async () => {
     try {
-      const { data: profile } = await supabase
-        .from('users')
-        .select('holding_cell_balance')
-        .eq('id', user?.id)
-        .single()
+      // Get balance from auth.users.raw_user_meta_data
+      const balance = user?.user_metadata?.holding_cell_balance || 0
 
       const { data: kompromat } = await supabase
         .from('kompromat')
@@ -49,7 +39,7 @@ const DashboardLayout: React.FC = () => {
         .eq('user_id', user?.id)
         .limit(1)
 
-      const hasFinancialCollateral = profile?.holding_cell_balance && profile.holding_cell_balance > 0
+      const hasFinancialCollateral = balance > 0
       const hasKompromat = kompromat && kompromat.length > 0
 
       if (!hasFinancialCollateral && !hasKompromat) {

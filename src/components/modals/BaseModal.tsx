@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { X } from 'lucide-react'
-import { Button } from '../ui/button'
 
 interface BaseModalProps {
   isOpen: boolean

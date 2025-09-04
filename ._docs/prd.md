@@ -32,11 +32,12 @@ This application is explicitly designed for finishing major, demonstrable projec
 - **Why it's important:** It closes the loop on accountability. An objective grading process ensures that the user is held to the standards they set for themselves, making the consequences meaningful.
 - **How it works at a high level:** Users submit proof via file uploads or links. At goal setup, they choose a grader: either the primary "AI Grader" or a "Human Witness". If AI is chosen, the system analyzes the submission against the rubric. If a human is chosen, an email is sent to a trusted contact who votes "Pass" or "Fail" via a unique link. If a user is failed by the AI, they have the option to contest the decision by having a friend sign up and "Vouch" for them, overriding the AI's failure.
 
-### **5\. Team-Based Goals**
+### **5\. Team-Based Goals** 🚧 *POST-MVP STRETCH GOAL*
 
 - **What it does:** This feature allows multiple users to collaborate on a single goal while maintaining individual accountability.
 - **Why it's important:** It expands the application's use case to small teams, study groups, or partners who want to hold each other accountable for shared projects.
 - **How it works at a high level:** A user creates a goal and invites others to join. Each team member sets their own individual stakes (money and Kompromat). For checkpoints, success can be determined by a team vote; if more than 50% of the team votes that a member failed to do their part, that individual's personal consequences are triggered.
+- **⚠️ MVP STATUS:** This feature is **deferred to post-MVP** to simplify database architecture and focus on individual accountability mechanisms first.
 
 ### **6\. Notifications & User Engagement**
 

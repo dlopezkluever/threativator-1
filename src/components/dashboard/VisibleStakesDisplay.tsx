@@ -25,19 +25,9 @@ const VisibleStakesDisplay: React.FC = () => {
     try {
       setLoading(true)
 
-      // Load user profile for holding cell balance
-      const { data: profileData, error: profileError } = await supabase
-        .from('users')
-        .select('holding_cell_balance')
-        .eq('id', user.id)
-        .single()
-
-      if (profileError) {
-        console.warn('📊 [VisibleStakes] Profile not found, using default values:', profileError)
-        setProfile({ holding_cell_balance: 0 })
-      } else {
-        setProfile(profileData)
-      }
+      // Load user balance from auth.users.raw_user_meta_data
+      const balance = user.user_metadata?.holding_cell_balance || 0
+      setProfile({ holding_cell_balance: balance })
 
       // Load kompromat files
       const { data: kompromatData, error: kompromatError } = await supabase

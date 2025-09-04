@@ -37,7 +37,7 @@
 
 **\#\#\# 3.3. The "Threat" Mechanism**
 
-- **\[ \] Collateral Commitment:** To activate a goal, a user must commit both a monetary stake from their holding cell and upload "Kompromat."
+- **\[ \] Collateral Commitment:** To activate a goal, users can commit kompromat (required) and optionally add monetary stakes for enhanced accountability. *(Monetary stakes are optional for MVP - kompromat provides primary accountability mechanism.)*
 - **\[ \] "Kompromat" Holding System:**
   - **\[ \] Uploads:** A secure area where users can upload materials. Supported formats include images, videos, and text files (.txt, .doc).
   - **\[ \] Content Examples:** The intent is for "funny and embarrassing" content, not genuinely life-ruining material (e.g., awkward photos, cringeworthy poetry, a pre-written angry letter to an ex).
@@ -63,11 +63,12 @@
   - **\[ \] The process requires the user to get a trusted friend to sign up for a Threativator account.**
   - **\[ \] Once registered, the friend can navigate to the user's goal page and click a "Vouch" button to override the AI's failure.** The social friction of this process is the intended deterrent.
 
-**\#\#\# 3.5. Team-Based Goals**
+**\#\#\# 3.5. Team-Based Goals** 🚧 *POST-MVP STRETCH GOAL*
 
 - **\[ \] Team Creation:** Users can create a goal and invite other users to join as a team.
 - **\[ \] Individual Accountability:** Each team member sets their own individual stakes (money and Kompromat).
 - **\[ \] Team-Based Grading:** For team checkpoints, success can be determined by a team vote. If more than 50% of the team members vote that an individual did not complete their portion of the task, that individual's personal consequences are triggered.
+- **⚠️ MVP STATUS:** This feature is **deferred to post-MVP release** to simplify initial database architecture and focus on perfecting individual accountability mechanisms first.
 
 **\#\#\# 3.6. Notifications & User Engagement**
 

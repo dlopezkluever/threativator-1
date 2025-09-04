@@ -27,14 +27,9 @@ const QuickActionsPanel: React.FC = () => {
   const [loadingCheckpoints, setLoadingCheckpoints] = useState(false)
 
   const handleRequestNewMission = async () => {
-    // Check if user has sufficient collateral for mission creation
+    // Check if user has either financial collateral OR kompromat (per redux plan)
     try {
-      // Quick check for user profile and collateral
-      const { data: profile } = await supabase
-        .from('users')
-        .select('holding_cell_balance')
-        .eq('id', user?.id)
-        .single()
+      const balance = user?.user_metadata?.holding_cell_balance || 0
 
       const { data: kompromat } = await supabase
         .from('kompromat')
@@ -42,28 +37,28 @@ const QuickActionsPanel: React.FC = () => {
         .eq('user_id', user?.id)
         .limit(1)
 
-      const hasFinancialCollateral = profile?.holding_cell_balance && profile.holding_cell_balance > 0
+      const hasFinancialCollateral = balance > 0
       const hasKompromat = kompromat && kompromat.length > 0
 
       if (!hasFinancialCollateral && !hasKompromat) {
-        // Show clearance requirement modal
-        alert(`⚠️ INSUFFICIENT SECURITY CLEARANCE ⚠️
+        // Show clearance requirement modal (updated message)
+        alert(`⚠️ ACCOUNTABILITY SETUP REQUIRED ⚠️
 
-To establish new directives, operatives must demonstrate commitment through collateral. 
+To create goals, establish at least one accountability mechanism:
 
-MINIMUM REQUIREMENTS (choose one or both):
-• ESTABLISH FINANCIAL COLLATERAL - Deposit funds for penalties
-• UPLOAD CLASSIFIED MATERIAL - Provide compromising content
+ACCOUNTABILITY OPTIONS (choose one or both):
+• UPLOAD KOMPROMAT - Primary accountability mechanism
+• FINANCIAL COLLATERAL - Optional monetary stakes
 
-Please establish security clearance before requesting missions, Comrade.`)
+Please setup accountability before creating goals, Comrade.`)
         return
       }
 
       // Proceed to goal creation
-      console.log('Security clearance verified, opening goal creation flow...')
+      console.log('Accountability verified, opening goal creation flow...')
       // navigate('/goals/create')
     } catch (error) {
-      console.log('Unable to verify clearance, allowing mission request anyway')
+      console.log('Unable to verify accountability, allowing goal creation anyway')
       // navigate('/goals/create')
     }
   }

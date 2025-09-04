@@ -215,13 +215,9 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose }) => {
 
   const fetchUserData = async () => {
     try {
-      const { data: profile } = await supabase
-        .from('users')
-        .select('holding_cell_balance')
-        .eq('id', user?.id)
-        .single()
-
-      setCurrentBalance(profile?.holding_cell_balance || 0)
+      // Get balance from auth.users.raw_user_meta_data
+      const balance = user?.user_metadata?.holding_cell_balance || 0
+      setCurrentBalance(balance)
     } catch (error) {
       console.error('Failed to fetch user data:', error)
     }

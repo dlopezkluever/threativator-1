@@ -34,16 +34,9 @@ const StakesStep: React.FC<Props> = ({ formData, updateFormData, onValidationCha
     if (!user) return
 
     try {
-      // Get holding cell balance
-      const { data: profile } = await supabase
-        .from('users')
-        .select('holding_cell_balance')
-        .eq('id', user.id)
-        .single()
-
-      if (profile) {
-        setHoldingCellBalance(profile.holding_cell_balance || 0)
-      }
+      // Get holding cell balance from auth.users.raw_user_meta_data
+      const balance = user.user_metadata?.holding_cell_balance || 0
+      setHoldingCellBalance(balance)
 
       // Get kompromat items
       const { data: kompromat } = await supabase
@@ -66,14 +59,15 @@ const StakesStep: React.FC<Props> = ({ formData, updateFormData, onValidationCha
   const validateStep = () => {
     const newErrors: Record<string, string> = {}
     
-    if (formData.monetaryStake <= 0) {
-      newErrors.monetaryStake = 'Monetary stake must be greater than 0'
-    } else if (formData.monetaryStake > holdingCellBalance) {
-      newErrors.monetaryStake = 'Stake exceeds available balance'
-    }
-
-    if (!formData.charityDestination) {
-      newErrors.charityDestination = 'Charity destination is required'
+    // Monetary stakes are now optional - only validate if amount is provided
+    if (formData.monetaryStake && formData.monetaryStake > 0) {
+      if (formData.monetaryStake > holdingCellBalance) {
+        newErrors.monetaryStake = 'Stake exceeds available balance'
+      }
+      // Require charity destination only if monetary stake is provided
+      if (!formData.charityDestination) {
+        newErrors.charityDestination = 'Charity destination required when using monetary stakes'
+      }
     }
 
     setErrors(newErrors)
@@ -94,7 +88,7 @@ const StakesStep: React.FC<Props> = ({ formData, updateFormData, onValidationCha
           COMMITMENT STAKES
         </h3>
         <p className="text-[var(--color-text-primary)] text-[var(--font-size-base)] opacity-80">
-          Define financial and humiliation consequences for failure
+          Define financial and humiliation consequences for failure (monetary stakes optional)
         </p>
       </div>
 
@@ -120,7 +114,7 @@ const StakesStep: React.FC<Props> = ({ formData, updateFormData, onValidationCha
           {/* Stake Input */}
           <div>
             <label className="block text-[var(--font-size-base)] font-[var(--font-family-display)] font-bold uppercase tracking-wide mb-[var(--space-2)]">
-              MONETARY STAKE *
+              MONETARY STAKE (OPTIONAL)
             </label>
             <div className="flex items-center gap-[var(--space-2)]">
               <span className="text-[var(--font-size-xl)] font-bold">$</span>
@@ -146,7 +140,7 @@ const StakesStep: React.FC<Props> = ({ formData, updateFormData, onValidationCha
           {/* Charity Selection */}
           <div>
             <label className="block text-[var(--font-size-base)] font-[var(--font-family-display)] font-bold uppercase tracking-wide mb-[var(--space-2)]">
-              FORFEITURE DESTINATION *
+              FORFEITURE DESTINATION {formData.monetaryStake > 0 ? '*' : '(OPTIONAL)'}
             </label>
             <select
               value={formData.charityDestination}
