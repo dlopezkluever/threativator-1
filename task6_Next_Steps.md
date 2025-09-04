@@ -184,6 +184,7 @@
   # 4. Link your project (get project-ref from Supabase Dashboard URL or Settings)
   npx supabase link --project-ref YOUR_PROJECT_REF
 
+(database password: )
   # 5. Deploy the grading function
   npx supabase functions deploy gradeSubmission
 
@@ -194,6 +195,44 @@
 
   The key difference is using npx supabase instead of just supabase since it's installed locally rather than globally.
 
-1Odielone!
 
   Try the installation first and let me know if you run into any other issues!
+
+
+-----
+
+I see the issue! The set_config() with false as the third parameter only lasts for the current session/transaction. Once you run a new query, the settings are lost.
+
+  Fix: Use true for Persistent Settings
+
+  Let's set them to persist across sessions:
+
+  Run these two commands together:
+
+  SELECT set_config('app.edge_function_url', 'https://ksbbgnrphqhwixwnjdri.supabase.co', true);
+  SELECT set_config('app.service_role_key', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzYmJnbnJwaHFod2l4d25qZHJpIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NjYyNDM2MywiZXhwIjoyMDcyMjAwMzYzfQ.Hd    
+  xyEVftxiBr7eRarQyJTwhk78Kh7MBKKsxbfe_J5ao', true);
+
+  The difference:
+  - false = Session-level (gets lost when query ends)
+  - true = Transaction-level (persists longer)
+
+  Then verify:
+  SELECT current_setting('app.edge_function_url') as url, current_setting('app.service_role_key') as key;
+
+  If this still doesn't work, let's use the permanent table approach I mentioned earlier, which is more reliable:
+
+  -- Create permanent config table
+  CREATE TABLE IF NOT EXISTS app_config (
+    key TEXT PRIMARY KEY,
+    value TEXT NOT NULL
+  );
+
+  -- Store the values permanently
+  INSERT INTO app_config (key, value) VALUES
+    ('edge_function_url', 'https://ksbbgnrphqhwixwnjdri.supabase.co'),
+    ('service_role_key', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzYmJnbnJwaHFod2l4d25qZHJpIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NjYyNDM2MywiZXhwIjoyMDcyMjAwMzYzfQ.HdxyEVftxiBr7eRarQyJT    
+  whk78Kh7MBKKsxbfe_J5ao')
+  ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value;
+
+  Try the true version first, and if that fails, let me know and we'll use the table approach.
