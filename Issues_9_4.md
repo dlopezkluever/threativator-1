@@ -1,4 +1,9 @@
-One, two, three. Okay, so I'm going to run through the app and detail all the issues.
+## what remains of below:
+
+no, it's still not appearing in the month view of the calander; additionally, in the week view, it seems to make its own new row   ││   instead of using the hour view.. Now i acutally don't think we need the hour by nour view of the week view, it's commpletly        ││   unnecesary. Instead lets just make each day have a longer vertically speaking column space, and make the little cards for each     ││   checkpoint or deadline like a larger squares than hey are currently in the cramped state. but the colums should be as large as     ││   how like the month view is long vertically
+
+
+### left side checlist (done but erroneosly)
 
 Help me understand how we can go about fixing the following UI problems with our web app, regarding the dashboard and some pop up modals, as detailed here: First things first, when you have made a goal that has a deadline and checkpoint, it shows up on the calendar, but they seem to be creating their own row of blank entries under that week of dates. As you can see from the image attached, they are appearing on screen, but in a manner that's not what we're going for. We want them to be in the calendar box for their date, taking up a decent portion of that space. It would be nice in general if the monthly caldner view in gernal took more space (as you can see there is alot of open unused space in that area). 
 

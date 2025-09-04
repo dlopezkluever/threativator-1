@@ -204,3 +204,25 @@ r.stripe.com/b:1
 Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
 ﻿
 
+
+
+Alright, so are there any uh, anonymus frog twitter account owners here.. Okay well um, though it should be expected they wouldn't just out themselves in her, oh there in here alright; like statistically theres has to be a couple, of you, 
+How much fucking fun are you guys having huh? like this is like a golden age
+Yall used to be confined to the 4chans now we are like just unchained
+
+Now,Well I hate to be a buzzkill, but there uh, these's gotta be a catch to this, you know that righ? Like clearly something going on, like they're aware OH they are more then aware
+
+
+Like i hate to be a party pooper, but something is clearly not right
+
+there's no way they're just letting you getting away with this; there's a catch
+
+(So either 1. elon is secretly                                                                                                                                                                 a groyper himself, and is letting you all spread the word on them and there doing and is just pretending to be a reddit pilled anime-gooner OR uh, this is like the biggest fucking hineypot to have all the antisemites snitch on yourselves so they can just fucking purge you once they wrap up with iran; like that is really the only two scenarios. )
+
+I honestly have like a great sense of dread for all this great notcing that your all doing
+
+Like you know parthesis parethesis parathesis They who should not be named, are clearly letting you a;; do this right
+
+I wonder if the lebeanse were also this obliviosu, like wow guys check it out I just found this random box full of pagers with a FREE sign on it, sweet, omg yes we can totally communicate freely with these great
+
+like yeah let's talk about all our plans

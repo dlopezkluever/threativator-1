@@ -3,6 +3,9 @@ import { Calendar, momentLocalizer, Event } from 'react-big-calendar'
 import moment from 'moment'
 import { supabase } from '../../lib/supabase'
 import { useAuth } from '../../contexts/AuthContext'
+import BaseModal from '../modals/BaseModal'
+import SubmissionModal from '../goals/SubmissionModal'
+import { Button } from '../ui/button'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 const localizer = momentLocalizer(moment)
@@ -21,6 +24,8 @@ const OperationalCalendar: React.FC = () => {
   const [events, setEvents] = useState<CalendarEvent[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null)
+  const [showSubmissionModal, setShowSubmissionModal] = useState(false)
+  const [selectedGoalData, setSelectedGoalData] = useState<{goal: any, checkpoint?: any} | null>(null)
 
   const loadCalendarData = useCallback(async () => {
     if (!user) return
@@ -81,7 +86,7 @@ const OperationalCalendar: React.FC = () => {
             title: `FINAL DIRECTIVE: ${goal.title.toUpperCase()}`,
             start: deadline,
             end: deadline,
-            allDay: false,
+            allDay: true,
             type: 'goal',
             status,
             goal_id: goal.id,
@@ -106,7 +111,7 @@ const OperationalCalendar: React.FC = () => {
             title: `CHECKPOINT: ${checkpoint.title.toUpperCase()}`,
             start: deadline,
             end: deadline,
-            allDay: false,
+            allDay: true,
             type: 'checkpoint',
             status,
             goal_id: checkpoint.goal_id,
@@ -165,8 +170,36 @@ const OperationalCalendar: React.FC = () => {
 
   const handleEventClick = (event: CalendarEvent) => {
     setSelectedEvent(event)
-    // TODO: Open appropriate modal (submission or details)
     console.log('Event clicked:', event)
+  }
+
+  const handleSubmitProof = async (event: CalendarEvent) => {
+    try {
+      // Load the full goal and checkpoint data for the submission modal
+      const { data: goalData } = await supabase
+        .from('goals')
+        .select('*')
+        .eq('id', event.goal_id)
+        .single()
+
+      if (event.type === 'checkpoint') {
+        const checkpointId = event.id.replace('checkpoint-', '')
+        const { data: checkpointData } = await supabase
+          .from('checkpoints')
+          .select('*')
+          .eq('id', checkpointId)
+          .single()
+        
+        setSelectedGoalData({ goal: goalData, checkpoint: checkpointData })
+      } else {
+        setSelectedGoalData({ goal: goalData })
+      }
+
+      setSelectedEvent(null)
+      setShowSubmissionModal(true)
+    } catch (error) {
+      console.error('Error loading goal data for submission:', error)
+    }
   }
 
 
@@ -381,82 +414,75 @@ const OperationalCalendar: React.FC = () => {
         }}
       />
       
-      {selectedEvent && (
-        <div 
-          className="fixed inset-0 z-50"
-          style={{
-            backgroundColor: 'rgba(0, 0, 0, 0.75)',
-            backdropFilter: 'blur(4px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '16px'
-          }}
-          onClick={() => setSelectedEvent(null)}
-        >
-          <div 
-            className="bg-[#F5EEDC] border-6 border-[#000000] max-w-lg w-full"
-            style={{
-              maxHeight: '80vh',
-              overflowY: 'auto',
-              borderWidth: '6px',
-              borderStyle: 'solid'
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="bg-[#DA291C] p-6 border-b-4 border-[#000000]">
-              <h3 className="text-[#FFFFFF] font-['Stalinist_One'] text-xl uppercase tracking-wider">
-                MISSION DETAILS
-              </h3>
+      <BaseModal 
+        isOpen={!!selectedEvent} 
+        onClose={() => setSelectedEvent(null)} 
+        title="🎯 MISSION DETAILS"
+        size="default"
+      >
+        {selectedEvent && (
+          <div className="space-y-4 font-['Roboto_Condensed']">
+            <div>
+              <span className="text-[var(--color-text-primary)] text-sm uppercase font-bold">TYPE:</span>
+              <span className="text-[var(--color-primary-crimson)] ml-2 uppercase font-bold">{selectedEvent.type}</span>
             </div>
-            
-            <div className="p-6 space-y-4 font-['Roboto_Condensed']">
-              <div>
-                <span className="text-[#000000] text-sm uppercase font-bold">TYPE:</span>
-                <span className="text-[#DA291C] ml-2 uppercase font-bold">{selectedEvent.type}</span>
-              </div>
-              <div>
-                <span className="text-[#000000] text-sm uppercase font-bold">MISSION:</span>
-                <div className="text-[#000000] mt-2 text-base">{selectedEvent.title}</div>
-              </div>
-              <div>
-                <span className="text-[#000000] text-sm uppercase font-bold">STATUS:</span>
-                <span className={`ml-2 uppercase font-bold ${
-                  selectedEvent.status === 'completed' ? 'text-[#5A7761]' :
-                  selectedEvent.status === 'failed' || selectedEvent.status === 'overdue' ? 'text-[#DA291C]' :
-                  'text-[#DA291C]'
-                }`}>{selectedEvent.status}</span>
-              </div>
-              <div>
-                <span className="text-[#000000] text-sm uppercase font-bold">DEADLINE:</span>
-                <div className="text-[#000000] mt-2 text-base">
-                  {moment(selectedEvent.start).format('dddd, MMMM DD, YYYY [at] h:mm A')}
-                </div>
+            <div>
+              <span className="text-[var(--color-text-primary)] text-sm uppercase font-bold">MISSION:</span>
+              <div className="text-[var(--color-text-primary)] mt-2 text-base">{selectedEvent.title}</div>
+            </div>
+            <div>
+              <span className="text-[var(--color-text-primary)] text-sm uppercase font-bold">STATUS:</span>
+              <span className={`ml-2 uppercase font-bold ${
+                selectedEvent.status === 'completed' ? 'text-[#5A7761]' :
+                selectedEvent.status === 'failed' || selectedEvent.status === 'overdue' ? 'text-[var(--color-primary-crimson)]' :
+                'text-[var(--color-primary-crimson)]'
+              }`}>{selectedEvent.status}</span>
+            </div>
+            <div>
+              <span className="text-[var(--color-text-primary)] text-sm uppercase font-bold">DEADLINE:</span>
+              <div className="text-[var(--color-text-primary)] mt-2 text-base">
+                {moment(selectedEvent.start).format('dddd, MMMM DD, YYYY [at] h:mm A')}
               </div>
             </div>
             
-            <div className="flex gap-4 p-6 pt-0">
-              <button
+            <div className="flex gap-4 pt-4">
+              <Button
+                variant="ghost"
                 onClick={() => setSelectedEvent(null)}
-                className="flex-1 bg-[#000000] text-[#F5EEDC] border-2 border-[#DA291C] py-3 px-6 font-['Stalinist_One'] text-sm uppercase hover:bg-[#DA291C] hover:text-[#000000] transition-colors"
+                className="flex-1"
               >
                 CLOSE
-              </button>
+              </Button>
               {selectedEvent.status === 'pending' && (
-                <button
-                  onClick={() => {
-                    console.log('Opening submission modal for:', selectedEvent.id)
-                    // TODO: Open submission modal with proper implementation
-                    setSelectedEvent(null)
-                  }}
-                  className="flex-1 bg-[#DA291C] text-[#FFFFFF] border-2 border-[#000000] py-3 px-6 font-['Stalinist_One'] text-sm uppercase hover:bg-[#5A7761] transition-colors"
+                <Button
+                  variant="command"
+                  onClick={() => handleSubmitProof(selectedEvent)}
+                  className="flex-1"
                 >
                   SUBMIT PROOF
-                </button>
+                </Button>
               )}
             </div>
           </div>
-        </div>
+        )}
+      </BaseModal>
+
+      {/* Submission Modal */}
+      {showSubmissionModal && selectedGoalData && (
+        <SubmissionModal
+          isOpen={showSubmissionModal}
+          onClose={() => {
+            setShowSubmissionModal(false)
+            setSelectedGoalData(null)
+          }}
+          goal={selectedGoalData.goal}
+          checkpoint={selectedGoalData.checkpoint}
+          onSubmissionComplete={() => {
+            setShowSubmissionModal(false)
+            setSelectedGoalData(null)
+            loadCalendarData() // Refresh data
+          }}
+        />
       )}
     </>
   )

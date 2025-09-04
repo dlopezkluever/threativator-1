@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { supabase } from '../../lib/supabase'
 import { useAuth } from '../../contexts/AuthContext'
+import SubmissionModal from '../goals/SubmissionModal'
 
 interface Checkpoint {
   id: string
@@ -9,12 +10,15 @@ interface Checkpoint {
   goal_title: string
   urgency: 'critical' | 'warning' | 'standard'
   status: string
+  goal_id?: string
 }
 
 const ImmediateDirectivesSidebar: React.FC = () => {
   const { user } = useAuth()
   const [directives, setDirectives] = useState<Checkpoint[]>([])
   const [loading, setLoading] = useState(true)
+  const [showSubmissionModal, setShowSubmissionModal] = useState(false)
+  const [selectedGoalData, setSelectedGoalData] = useState<{goal: any, checkpoint?: any} | null>(null)
 
   const loadUpcomingDirectives = useCallback(async () => {
     if (!user) return
@@ -40,6 +44,7 @@ const ImmediateDirectivesSidebar: React.FC = () => {
             title,
             deadline,
             status,
+            goal_id,
             goals!inner(
               title,
               user_id
@@ -116,7 +121,8 @@ const ImmediateDirectivesSidebar: React.FC = () => {
             deadline: checkpoint.deadline,
             goal_title: Array.isArray(checkpoint.goals) ? checkpoint.goals[0]?.title : checkpoint.goals?.title,
             urgency,
-            status: checkpoint.status
+            status: checkpoint.status,
+            goal_id: checkpoint.goal_id
           })
         })
       }
@@ -183,9 +189,36 @@ const ImmediateDirectivesSidebar: React.FC = () => {
     }
   }
 
-  const handleDirectiveClick = (checkpoint: Checkpoint) => {
-    // TODO: Open submission modal
-    console.log('Opening submission for checkpoint:', checkpoint.id)
+  const handleDirectiveClick = async (checkpoint: Checkpoint) => {
+    try {
+      // Load the full goal and checkpoint data for the submission modal
+      if (checkpoint.id.startsWith('checkpoint-')) {
+        const checkpointId = checkpoint.id.replace('checkpoint-', '')
+        const [goalData, checkpointData] = await Promise.all([
+          supabase.from('goals').select('*').eq('id', checkpoint.goal_id || '').single(),
+          supabase.from('checkpoints').select('*').eq('id', checkpointId).single()
+        ])
+        
+        if (goalData.data && checkpointData.data) {
+          setSelectedGoalData({ goal: goalData.data, checkpoint: checkpointData.data })
+          setShowSubmissionModal(true)
+        }
+      } else if (checkpoint.id.startsWith('goal-')) {
+        const goalId = checkpoint.id.replace('goal-', '')
+        const { data: goalData } = await supabase
+          .from('goals')
+          .select('*')
+          .eq('id', goalId)
+          .single()
+        
+        if (goalData) {
+          setSelectedGoalData({ goal: goalData })
+          setShowSubmissionModal(true)
+        }
+      }
+    } catch (error) {
+      console.error('Error loading goal data for submission:', error)
+    }
   }
 
   if (loading) {
@@ -256,6 +289,24 @@ const ImmediateDirectivesSidebar: React.FC = () => {
           </div>
         </div>
       ))}
+
+      {/* Submission Modal */}
+      {showSubmissionModal && selectedGoalData && (
+        <SubmissionModal
+          isOpen={showSubmissionModal}
+          onClose={() => {
+            setShowSubmissionModal(false)
+            setSelectedGoalData(null)
+          }}
+          goal={selectedGoalData.goal}
+          checkpoint={selectedGoalData.checkpoint}
+          onSubmissionComplete={() => {
+            setShowSubmissionModal(false)
+            setSelectedGoalData(null)
+            loadUpcomingDirectives() // Refresh data
+          }}
+        />
+      )}
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import BaseModal from '../modals/BaseModal'
 import { Button } from '../ui/button'
 import { Goal, Checkpoint } from '../../contexts/GoalContext'
 import { useAuth } from '../../contexts/AuthContext'
@@ -357,31 +358,15 @@ const SubmissionModal: React.FC<Props> = ({
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-[var(--space-4)]">
-      <div className="bg-[var(--color-background-beige)] border-[var(--border-width-thick)] border-[var(--color-accent-black)] max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        
-        {/* Header */}
-        <div className="bg-[var(--color-primary-crimson)] p-[var(--space-6)] border-b-[var(--border-width-thick)] border-[var(--color-accent-black)]">
-          <div className="flex items-start justify-between">
-            <div className="flex-1">
-              <h2 className="text-[var(--color-background-beige)] font-[var(--font-family-display)] text-[var(--font-size-2xl)] font-bold uppercase mb-2">
-                PROOF SUBMISSION
-              </h2>
-              <p className="text-[var(--color-background-beige)] font-[var(--font-family-body)] text-[var(--font-size-sm)] opacity-90">
-                {deadlineInfo.title}
-              </p>
-            </div>
-            <button
-              onClick={handleClose}
-              className="text-[var(--color-background-beige)] hover:text-[var(--color-accent-black)] text-[var(--font-size-2xl)] font-bold leading-none"
-            >
-              ×
-            </button>
-          </div>
-        </div>
-
+    <BaseModal 
+      isOpen={isOpen} 
+      onClose={handleClose} 
+      title="🎯 PROOF SUBMISSION"
+      size="large"
+    >
+      <div className="space-y-6">
         {/* Deadline Info */}
-        <div className="bg-white border-b-[var(--border-width-section)] border-[var(--color-accent-black)] p-[var(--space-4)]">
+        <div className="bg-white border-[var(--border-width-thick)] border-[var(--color-accent-black)] p-4">
           <div className="flex items-center justify-between">
             <div>
               <span className="block text-[var(--font-size-sm)] font-[var(--font-family-display)] font-bold uppercase mb-1">
@@ -391,73 +376,71 @@ const SubmissionModal: React.FC<Props> = ({
                 {formatDate(deadlineInfo.deadline)}
               </span>
             </div>
-            <div className="bg-[var(--color-primary-crimson)] text-[var(--color-background-beige)] px-[var(--space-3)] py-2 font-bold uppercase text-[var(--font-size-sm)]">
+            <div className="bg-[var(--color-primary-crimson)] text-[var(--color-background-beige)] px-3 py-2 font-bold uppercase text-[var(--font-size-sm)]">
               {getTimeRemaining(deadlineInfo.deadline)}
             </div>
           </div>
         </div>
 
-        {/* Content */}
-        <div className="p-[var(--space-6)]">
-          {error && (
-            <div className="mb-[var(--space-4)] p-[var(--space-3)] bg-[var(--color-primary-crimson)] text-[var(--color-background-beige)] border border-[var(--color-accent-black)]">
-              <p className="font-bold uppercase text-[var(--font-size-sm)]">ERROR:</p>
-              <p className="text-[var(--font-size-sm)]">{error}</p>
-            </div>
-          )}
+        {/* Error Display */}
+        {error && (
+          <div className="p-4 bg-[var(--color-primary-crimson)] text-[var(--color-background-beige)] border border-[var(--color-accent-black)]">
+            <p className="font-bold uppercase text-[var(--font-size-sm)]">ERROR:</p>
+            <p className="text-[var(--font-size-sm)]">{error}</p>
+          </div>
+        )}
 
+        {/* Content */}
+        <div>
           {renderContent()}
         </div>
 
         {/* Footer Actions */}
-        <div className="bg-[var(--color-background-beige)] border-t-[var(--border-width-thick)] border-[var(--color-accent-black)] p-[var(--space-6)]">
-          <div className="flex gap-[var(--space-4)] justify-end">
+        <div className="flex gap-4 justify-end pt-4 border-t-[var(--border-width-thick)] border-[var(--color-accent-black)]">
+          <Button
+            onClick={handleClose}
+            variant="ghost"
+            className="text-[var(--font-size-sm)] font-bold uppercase"
+            disabled={isSubmitting}
+          >
+            CANCEL
+          </Button>
+
+          {(currentStep === 'input' || currentStep === 'preview') && (
             <Button
-              onClick={handleClose}
+              onClick={handleBack}
               variant="ghost"
               className="text-[var(--font-size-sm)] font-bold uppercase"
               disabled={isSubmitting}
             >
-              CANCEL
+              BACK
             </Button>
+          )}
 
-            {(currentStep === 'input' || currentStep === 'preview') && (
-              <Button
-                onClick={handleBack}
-                variant="ghost"
-                className="text-[var(--font-size-sm)] font-bold uppercase"
-                disabled={isSubmitting}
-              >
-                BACK
-              </Button>
-            )}
+          {currentStep === 'type_selection' && (
+            <Button
+              onClick={handleNext}
+              variant="action"
+              className="text-[var(--font-size-sm)] font-bold uppercase"
+              disabled={!canProceedToInput() || isSubmitting}
+            >
+              NEXT
+            </Button>
+          )}
 
-            {currentStep === 'type_selection' && (
-              <Button
-                onClick={handleNext}
-                variant="action"
-                className="text-[var(--font-size-sm)] font-bold uppercase"
-                disabled={!canProceedToInput() || isSubmitting}
-              >
-                NEXT
-              </Button>
-            )}
-
-            {currentStep === 'input' && submissionData.type !== 'file_upload' && (
-              <Button
-                onClick={handleNext}
-                variant="action"
-                className="text-[var(--font-size-sm)] font-bold uppercase"
-                disabled={!canProceedToPreview() || isSubmitting}
-              >
-                PREVIEW
-              </Button>
-            )}
-          </div>
+          {currentStep === 'input' && submissionData.type !== 'file_upload' && (
+            <Button
+              onClick={handleNext}
+              variant="action"
+              className="text-[var(--font-size-sm)] font-bold uppercase"
+              disabled={!canProceedToPreview() || isSubmitting}
+            >
+              PREVIEW
+            </Button>
+          )}
         </div>
-
       </div>
-    </div>
+    </BaseModal>
   )
 }
 
