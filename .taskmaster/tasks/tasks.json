@@ -357,7 +357,61 @@
           5
         ],
         "status": "in-progress",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up gradeSubmission Edge Function and Database Trigger",
+            "description": "Create the Supabase Edge Function scaffold and configure the database trigger to invoke it when submissions need AI grading",
+            "dependencies": [],
+            "details": "Create a new TypeScript Edge Function named 'gradeSubmission' in the Supabase project. Set up the database trigger on the submissions table that fires when status is 'pending' AND referee_type is 'ai'. Configure proper authentication and permissions for the Edge Function to read submissions and goals data, and write back grading results. Set up the basic function signature with proper TypeScript types for the submission data structure. Include initial logging setup for monitoring function invocations.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Pre-Processing and Cost-Saving Checks",
+            "description": "Build the pre-processing logic to fetch submission data and perform simple validation checks before making expensive API calls",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "Fetch the complete submission record, associated goal, and rubric from the database. Implement simple pre-checks that can pass/fail submissions without API calls: word count validation using regex for text submissions, URL accessibility checks using HEAD requests, basic file format validation for uploaded documents. For images, determine if OCR is needed based on rubric requirements. Create a pre-check results object that determines if API call is necessary. Log all pre-check results for cost analysis. Return early with verdict if simple checks are conclusive.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Integrate Gemini API with Secure Prompt Construction",
+            "description": "Implement the core Gemini API integration with proper prompt engineering and security sanitization",
+            "dependencies": [
+              "6.2"
+            ],
+            "details": "Set up Gemini API client with proper authentication using environment variables. Implement prompt sanitization function to prevent injection attacks by escaping special characters and limiting rubric length. Construct the AI prompt using a template that includes: the user's rubric, submission content (text, URL, or OCR results), and clear instructions for quantitative analysis. For MVP, focus prompts on measurable criteria like word counts, commit verification, and numerical targets. Include system prompts that enforce structured output format. Implement the API call with proper timeout and error handling.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Parse AI Response and Update Database",
+            "description": "Implement logic to parse the Gemini API response and update the submission record with grading results",
+            "dependencies": [
+              "6.3"
+            ],
+            "details": "Create a robust parser for the Gemini response that extracts: pass/fail verdict (boolean), confidence score (0-100), and detailed feedback text. Handle various response formats since AI output can be unstructured. Implement fallback parsing strategies if initial parsing fails. Update the submission record with: ai_analysis_result (full response), status ('approved' or 'rejected'), graded_at timestamp, and feedback field with parsed explanation. Ensure database update is atomic and handles concurrent modifications. Log the parsing success rate for monitoring.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement Error Handling and Usage Monitoring",
+            "description": "Add comprehensive error handling, retry mechanisms, and usage tracking for cost optimization",
+            "dependencies": [
+              "6.4"
+            ],
+            "details": "Implement exponential backoff retry logic for Gemini API failures (rate limits, network errors, timeouts). Set maximum retry attempts to 3 with increasing delays. Create detailed error logging that captures: error type, submission ID, retry count, and API response codes. Implement a dead letter queue pattern for submissions that fail after all retries. Track API usage metrics including: tokens consumed, processing time, cost per submission, and success/failure rates. Store metrics in a dedicated analytics table for dashboard reporting. Add circuit breaker pattern to prevent cascade failures during API outages.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
       },
       {
         "id": 7,
