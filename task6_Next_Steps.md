@@ -83,8 +83,8 @@
 
   Where: Supabase Dashboard → SQL Editor
   SQL to run (replace with your actual values):
-  SELECT set_config('app.edge_function_url', 'https://your-project-id.supabase.co', false);
-  SELECT set_config('app.service_role_key', 'your_service_role_key_here', false);
+  SELECT set_config('app.edge_function_url', 'https://ksbbgnrphqhwixwnjdri.supabase.co', false);
+  SELECT set_config('app.service_role_key', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzYmJnbnJwaHFod2l4d25qZHJpIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NjYyNDM2MywiZXhwIjoyMDcyMjAwMzYzfQ.HdxyEVftxiBr7eRarQyJTwhk78Kh7MBKKsxbfe_J5ao', false);
 
   What this does: Tells the database trigger where to find your Edge Function
 

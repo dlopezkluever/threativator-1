@@ -62,7 +62,7 @@ INSERT INTO submissions (
   description,
   status
 ) VALUES (
-  'test-word-count-pass'::uuid,
+  '00000000-0000-0000-0003-000000000001'::uuid,
   '00000000-0000-0000-0002-000000000001'::uuid,
   '00000000-0000-0000-0000-000000000001'::uuid,
   'text_description',
@@ -79,7 +79,7 @@ INSERT INTO submissions (
   description,
   status
 ) VALUES (
-  'test-word-count-fail'::uuid,
+  '00000000-0000-0000-0003-000000000002'::uuid,
   '00000000-0000-0000-0002-000000000001'::uuid,
   '00000000-0000-0000-0000-000000000001'::uuid,
   'text_description',
@@ -96,7 +96,7 @@ INSERT INTO submissions (
   external_url,
   status
 ) VALUES (
-  'test-valid-url'::uuid,
+  '00000000-0000-0000-0003-000000000003'::uuid,
   '00000000-0000-0000-0002-000000000001'::uuid,
   '00000000-0000-0000-0000-000000000001'::uuid,
   'external_url',
@@ -113,7 +113,7 @@ INSERT INTO submissions (
   external_url,
   status
 ) VALUES (
-  'test-invalid-url'::uuid,
+  '00000000-0000-0000-0003-000000000004'::uuid,
   '00000000-0000-0000-0002-000000000001'::uuid,
   '00000000-0000-0000-0000-000000000001'::uuid,
   'external_url',
@@ -130,7 +130,7 @@ INSERT INTO submissions (
   external_url,
   status
 ) VALUES (
-  'test-github-url'::uuid,
+  '00000000-0000-0000-0003-000000000005'::uuid,
   '00000000-0000-0000-0002-000000000001'::uuid,
   '00000000-0000-0000-0000-000000000001'::uuid,
   'external_url',
@@ -147,7 +147,7 @@ INSERT INTO submissions (
   description,
   status
 ) VALUES (
-  'test-injection'::uuid,
+  '00000000-0000-0000-0003-000000000006'::uuid,
   '00000000-0000-0000-0002-000000000001'::uuid,
   '00000000-0000-0000-0000-000000000001'::uuid,
   'text_description',
@@ -164,7 +164,7 @@ INSERT INTO submissions (
   description,
   status
 ) VALUES (
-  'test-empty-text'::uuid,
+  '00000000-0000-0000-0003-000000000007'::uuid,
   '00000000-0000-0000-0002-000000000001'::uuid,
   '00000000-0000-0000-0000-000000000001'::uuid,
   'text_description',
