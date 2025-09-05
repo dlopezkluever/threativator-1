@@ -33,7 +33,8 @@ const DashboardLayout: React.FC = () => {
   const {
     pendingConsequence,
     isModalOpen: isConsequenceModalOpen,
-    dismissConsequence
+    dismissConsequence,
+    triggerTestConsequence
   } = useConsequenceNotifications()
 
 
@@ -232,10 +233,10 @@ const DashboardLayout: React.FC = () => {
                       <span className="text-[var(--font-size-sm)] font-bold leading-tight">SOCIAL</span>
                     </div>
                   </Button>
-                  <Button variant="danger" size="default" onClick={handleEmergencyExit} className="h-16 text-center">
+                  <Button variant="danger" size="default" onClick={triggerTestConsequence} className="h-16 text-center">
                     <div className="flex flex-col items-center justify-center gap-1">
-                      <span className="text-xl">⚠️</span>
-                      <span className="text-[var(--font-size-sm)] font-bold leading-tight">EXIT</span>
+                      <span className="text-xl">🎭</span>
+                      <span className="text-[var(--font-size-sm)] font-bold leading-tight">TEST DISHONOR</span>
                     </div>
                   </Button>
                 </div>

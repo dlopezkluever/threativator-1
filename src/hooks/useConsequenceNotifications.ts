@@ -189,8 +189,15 @@ export function useConsequenceNotifications() {
   }
 
   // Manual trigger for testing
-  const triggerTestConsequence = async () => {
-    if (!user) return
+  const triggerTestConsequence = () => {
+    console.log('🎭 TEST DISHONOR BUTTON CLICKED!')
+    
+    if (!user) {
+      console.error('No user found for test consequence')
+      return
+    }
+
+    console.log('Creating test consequence...')
 
     const testConsequence: ConsequenceNotification = {
       id: 'test-' + Date.now(),
@@ -209,8 +216,10 @@ export function useConsequenceNotifications() {
       failure_type: 'checkpoint'
     }
 
+    console.log('Setting test consequence:', testConsequence)
     setPendingConsequence(testConsequence)
     setIsModalOpen(true)
+    console.log('Modal should be opening now!')
   }
 
   return {
