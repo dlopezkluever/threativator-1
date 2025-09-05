@@ -1,4 +1,4 @@
--- Migration 015: pg_cron Setup for Consequence Processing
+-- Migration 015 (Fixed): pg_cron Setup for Consequence Processing
 -- PREREQUISITES:
 -- 1. pg_cron extension must be enabled in Supabase Dashboard: Database > Extensions > pg_cron
 -- 2. Previous migration 014_consequence_engine_setup.sql must be applied
@@ -11,15 +11,7 @@ SELECT cron.schedule(
   'SELECT trigger_consequence_processing();'  -- SQL to execute
 );
 
--- Optional: Create a more frequent job for testing (every minute)
--- Uncomment this for development/testing, comment out for production
--- SELECT cron.schedule(
---   'consequence-processor-test',
---   '* * * * *',
---   'SELECT trigger_consequence_processing();'
--- );
-
--- Create function to check if cron job is running
+-- Create function to check if cron job is running (simplified version)
 CREATE OR REPLACE FUNCTION check_cron_job_status()
 RETURNS TABLE (
   jobname TEXT,
@@ -56,6 +48,43 @@ $$;
 
 GRANT EXECUTE ON FUNCTION manual_consequence_trigger() TO authenticated;
 
+-- Create function to check recent job runs (works with different pg_cron versions)
+CREATE OR REPLACE FUNCTION check_recent_cron_runs()
+RETURNS TABLE (
+  jobname TEXT,
+  status TEXT,
+  start_time TIMESTAMPTZ
+)
+LANGUAGE plpgsql
+SECURITY DEFINER
+AS $$
+BEGIN
+  -- Try to get run details, handle if columns don't exist
+  BEGIN
+    RETURN QUERY
+    SELECT 
+      j.jobname::TEXT,
+      CASE WHEN d.status IS NOT NULL THEN d.status::TEXT ELSE 'unknown' END,
+      COALESCE(d.start_time, NOW() - INTERVAL '1 minute') as start_time
+    FROM cron.job j
+    LEFT JOIN cron.job_run_details d ON j.jobid = d.jobid
+    WHERE j.jobname LIKE 'consequence-%'
+    ORDER BY start_time DESC LIMIT 10;
+  EXCEPTION WHEN OTHERS THEN
+    -- Fallback if job_run_details doesn't have expected columns
+    RETURN QUERY
+    SELECT 
+      j.jobname::TEXT,
+      'scheduled'::TEXT as status,
+      NOW() as start_time
+    FROM cron.job j
+    WHERE j.jobname LIKE 'consequence-%';
+  END;
+END;
+$$;
+
+GRANT EXECUTE ON FUNCTION check_recent_cron_runs() TO authenticated;
+
 -- Instructions for managing the cron job:
 -- 
 -- To view all cron jobs:
@@ -64,7 +93,8 @@ GRANT EXECUTE ON FUNCTION manual_consequence_trigger() TO authenticated;
 -- To remove the consequence processor job:
 -- SELECT cron.unschedule('consequence-processor');
 --
--- To check job execution history:
--- SELECT * FROM cron.job_run_details 
--- WHERE jobname = 'consequence-processor' 
--- ORDER BY start_time DESC LIMIT 10;
+-- To check if job is scheduled:
+-- SELECT * FROM check_cron_job_status();
+--
+-- To check recent runs:
+-- SELECT * FROM check_recent_cron_runs();

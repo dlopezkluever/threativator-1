@@ -1,3 +1,6 @@
+/* ===== GOOGLE FONTS IMPORT ===== */
+@import url('https://fonts.googleapis.com/css2?family=Stalinist+One&family=Roboto+Condensed:wght@300;400;700&display=swap');
+
 /**
  * KOMPROMATOR DESIGN TOKENS
  * Design System for the Kompromator State Discipline Network
@@ -125,15 +128,6 @@
   --transition-slow: 0.3s ease-out;
 }
 
-/* ===== GOOGLE FONTS IMPORT ===== */
-@import url('https://fonts.googleapis.com/css2?family=Stalinist+One&family=Roboto+Condensed:wght@300;400;700&display=swap');
-
-/* Force font loading for critical components */
-@font-face {
-  font-family: 'Stalinist One';
-  src: url('https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap');
-  font-display: swap;
-}
 
 /* ===== UTILITY CLASSES ===== */
 /* Typography Utilities - Soviet Propaganda System */
