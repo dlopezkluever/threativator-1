@@ -51,7 +51,7 @@ interface ApiUsageMetrics {
   response_time_ms: number
 }
 
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent'
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent'
 
 serve(async (req) => {
   try {

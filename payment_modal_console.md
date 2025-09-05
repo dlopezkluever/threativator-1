@@ -226,3 +226,5 @@ Like you know parthesis parethesis parathesis They who should not be named, are 
 I wonder if the lebeanse were also this obliviosu, like wow guys check it out I just found this random box full of pagers with a FREE sign on it, sweet, omg yes we can totally communicate freely with these great
 
 like yeah let's talk about all our plans
+
+curl -X POST "https://ksbbgnrphqhwixwnjdri.supabase.co/functions/v1/gradeSubmission" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzYmJnbnJwaHFod2l4d25qZHJpIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NjYyNDM2MywiZXhwIjoyMDcyMjAwMzYzfQ.HdxyEVftxiBr7eRarQyJTwhk78Kh7MBKKsxbfe_J5ao" -H "Content-Type: application/json" -d "{\"submission_id\": \"00000000-0000-0000-0003-000000000001\"}"

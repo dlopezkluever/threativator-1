@@ -105,7 +105,7 @@ DECLARE
 BEGIN
     SELECT raw_user_meta_data INTO current_metadata
     FROM auth.users
-    WHERE id = user_id;
+    WHEknoRE id = user_id;
     
     social_data := '{}'::JSONB;
     IF twitter_access_token IS NOT NULL THEN
