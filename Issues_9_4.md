@@ -1,9 +1,26 @@
 ## Prompt for task 6 start
  please implement task 6 of taskmaster, including each of it's subtasks. This involves: Create Supabase Edge Function 'gradeSubmission' in TypeScript. Function triggered when submission status is 'pending' and              ││   referee_type is 'ai'. Implement pre-checks before API call: word count for documents using simple regex, parse URLs to check if accessible, OCR for    ││ images if needed. Construct Gemini API prompt with rubric from      ││   goal and submission content. Sanitize user rubric to prevent prompt injection. For MVP, focus on quantitative checks: document word count, GitHub commit verification, number recognition in images. Parse Gemini ││          ││   response to extract pass/fail verdict and confidence score. Update submission record with ai_analysis_result, status, and feedback. Implement retry logic for API failures. Add cost optimization by checking simple          ││   criteria first. Store API usage metrics for monitoring.... For testing: Test with various submission types and rubrics. Verify prompt injection prevention works. Test API error handling and retries. Ensure simple checks   ││   work without API call. Verify grading results are stored correctly. Test with edge cases like empty submissions or malformed ││ rubrics... Keep in mind our current Schema setup, detailed here: 'c:/Users/Daniel             ││   Lopez/Desktop/Neet-a-thon/Threativator/threativator-1/._docs/Schema_Summary_Current.md' and our overal project overview  as detailed here: 'c:/Users/Daniel                                                                   ││   Lopez/Desktop/Neet-a-thon/Threativator/threativator-1/._docs/project-overview.md'. Be thurough, run tests often, and let me know whenever you need me to do anythig with supabase related migrations, or other web related    ││   stuff. Our api key for gemini is in our .env folder as "GOOGLE_API_KEY" (without quotes).       
 
+
+ please implement task 7 of taskmaster, including each of it's subtasks. This involves: Set up pg_cron extension in Supabase to run job every 5 minutes. Create database function that identifies overdue checkpoints where status is 'pending' and deadline has passed. Create Edge Function 'triggerConsequence' that processes identified failures. For checkpoint failures, implement Russian Roulette with 33% probability using crypto.randomInt(). For monetary consequences, integrate Stripe API to transfer funds from holding cell to charity. For humiliation consequences, randomly select contact from consequence_targets and send email via SendGrid with selected Kompromat. For final deadline failures, guarantee 100% consequence execution. Create consequence records for audit trail. Implement failure notifications with mysterious 'Great dishonor' message. Add in-app failure modal with dramatic animation. Handle edge cases like insufficient funds or missing Kompromat. ....  Keep in mind our current Schema setup, detailed here: 'c:/Users/Daniel Lopez/Desktop/Neet-a-thon/Threativator/threativator-1/._docs/Schema_Summary_Current.md' and our overal project overview  as detailed here: 'c:/Users/Daniel Lopez/Desktop/Neet-a-thon/Threativator/threativator-1/._docs/project-overview.md'. Be thurough, run tests often, and let me know whenever you need me to do anythig with supabase related migrations, or other web related 
+
 ## what remains of below:
 
 no, it's still not appearing in the month view of the calander; additionally, in the week view, it seems to make its own new row   ││   instead of using the hour view.. Now i acutally don't think we need the hour by nour view of the week view, it's commpletly        ││   unnecesary. Instead lets just make each day have a longer vertically speaking column space, and make the little cards for each     ││   checkpoint or deadline like a larger squares than hey are currently in the cramped state. but the colums should be as large as     ││   how like the month view is long vertically
+
+
+### **PHASE 2: CALENDAR SYSTEM RECONSTRUCTION (Critical - 3 hours)**
+
+- [ ] **Remove hourly granularity** - Eliminate time slots, focus on date-based deadlines
+- [ ] **Implement improved checkpoint or deadline display in view** - Should be able to see 1-4 deadline event cards per day (so more compact for the month view; and larger for week view ( each card should take up 1/4th of the column view))
+
+#### **2.3 Deadline-Specific Event Styling**
+- [ ] **Custom event components** - Create deadline-specific event cards
+- [ ] **Soviet event styling** - Crimson chips with black borders, no time display
+- [ ] **Event text optimization** - Goal name + deadline only, no time slots
+- [ ] **Click behavior** - Events should trigger submission modal
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 ### left side checlist (done but erroneosly)

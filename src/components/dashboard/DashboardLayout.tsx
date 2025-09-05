@@ -9,10 +9,12 @@ import OperationalCalendar from './OperationalCalendar'
 import VisibleStakesDisplay from './VisibleStakesDisplay'
 import ImmediateDirectivesSidebar from './ImmediateDirectivesSidebar'
 import { useModalState, MODAL_NAMES } from '../../hooks/useModalState'
+import { useConsequenceNotifications } from '../../hooks/useConsequenceNotifications'
 import PaymentModal from '../modals/PaymentModal'
 import KompromatModal from '../modals/KompromatModal'
 import ContactModal from '../modals/ContactModal'
 import SocialMediaModal from '../modals/SocialMediaModal'
+import ConsequenceModal from './ConsequenceModal'
 
 const DashboardLayout: React.FC = () => {
   const { user, signOut } = useAuth()
@@ -26,6 +28,13 @@ const DashboardLayout: React.FC = () => {
     MODAL_NAMES.CONTACT,
     MODAL_NAMES.SOCIAL_MEDIA
   ])
+
+  // Consequence notifications
+  const {
+    pendingConsequence,
+    isModalOpen: isConsequenceModalOpen,
+    dismissConsequence
+  } = useConsequenceNotifications()
 
 
   // Action handlers
@@ -303,6 +312,14 @@ const DashboardLayout: React.FC = () => {
       <SocialMediaModal 
         isOpen={modalControl.isModalOpen(MODAL_NAMES.SOCIAL_MEDIA)} 
         onClose={() => modalControl.closeModal(MODAL_NAMES.SOCIAL_MEDIA)} 
+      />
+      
+      {/* Consequence Modal */}
+      <ConsequenceModal
+        isOpen={isConsequenceModalOpen}
+        onClose={dismissConsequence}
+        consequence={pendingConsequence}
+        failureType={pendingConsequence?.failure_type || 'checkpoint'}
       />
     </div>
   )
