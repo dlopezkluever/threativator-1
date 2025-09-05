@@ -426,7 +426,73 @@
           6
         ],
         "status": "pending",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up pg_cron and deadline detection database function",
+            "description": "Configure pg_cron extension in Supabase and create database function to identify overdue checkpoints",
+            "dependencies": [],
+            "details": "Enable pg_cron extension in Supabase dashboard. Create a scheduled job that runs every 5 minutes. Develop a PL/pgSQL function 'check_overdue_checkpoints' that queries the checkpoints table for records where status = 'pending' and deadline < NOW(). Function should return array of overdue checkpoint IDs with associated goal IDs, user IDs, and consequence types. Include logic to identify both checkpoint failures and final deadline failures. Set up proper database permissions for the cron job execution.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Create triggerConsequence Edge Function foundation",
+            "description": "Build the main Edge Function to orchestrate consequence processing for identified failures",
+            "dependencies": [
+              "7.1"
+            ],
+            "details": "Set up new Supabase Edge Function 'triggerConsequence' using Deno runtime. Create main handler that receives overdue checkpoint data from database function. Implement connection to Supabase client with service role key for elevated permissions. Add structured logging for consequence processing workflow. Create error handling wrapper with retry logic for transient failures. Set up environment variables for API keys (Stripe, SendGrid). Implement request validation and authentication checks.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement Stripe monetary consequence transfers",
+            "description": "Build integration with Stripe API to transfer funds from holding cell to charity",
+            "dependencies": [
+              "7.2"
+            ],
+            "details": "Initialize Stripe SDK in Edge Function with API key from environment. Create 'processMonetaryConsequence' function that retrieves user's holding_cell_balance from database. Implement Stripe Connect transfer to pre-configured charity accounts. Handle partial transfers if balance is insufficient. Create database transaction to update holding_cell_balance after successful transfer. Add transfer records to consequences table with amount, recipient charity, and Stripe transaction ID. Implement proper error handling for failed transfers and rollback mechanisms.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Build SendGrid humiliation consequence system",
+            "description": "Implement email-based Kompromat distribution using SendGrid API",
+            "dependencies": [
+              "7.2"
+            ],
+            "details": "Set up SendGrid client in Edge Function with API key. Create 'processHumiliationConsequence' function that randomly selects Kompromat from user's kompromat table. Randomly select target contact from consequence_targets table. Build email template with dramatic styling and 'Great dishonor' subject line. Include selected Kompromat content (handle both text and image attachments from Supabase Storage). Implement SendGrid API call with proper error handling and retry logic. Log sent emails in consequences table with recipient, content reference, and SendGrid message ID.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Develop Russian Roulette logic and audit trail",
+            "description": "Implement probabilistic consequence triggering and comprehensive audit logging",
+            "dependencies": [
+              "7.3",
+              "7.4"
+            ],
+            "details": "Create 'russianRoulette' function using crypto.randomInt() for 33% probability on checkpoint failures. Implement 100% guarantee for final deadline failures. Build consequence selection logic based on goal's consequence_type field. Create comprehensive audit trail in consequences table with timestamp, checkpoint_id, consequence_type, triggered (boolean), and execution_details JSON. Implement idempotency checks to prevent duplicate consequences for same failure. Add database triggers to update goal and checkpoint statuses after consequence execution. Handle edge cases like missing Kompromat or insufficient funds with fallback consequences.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Create frontend failure notifications and modal",
+            "description": "Build dramatic in-app notifications for consequence execution",
+            "dependencies": [
+              "7.5"
+            ],
+            "details": "Create FailureModal component with dramatic entrance animation using Framer Motion or CSS animations. Display ominous 'Great dishonor' message with consequence details. Implement real-time subscription to consequences table for immediate user notification. Add sound effects and visual effects (screen shake, red flash) for maximum impact. Create toast notifications for missed deadlines with countdown to consequence execution. Build consequence history view in user dashboard showing all triggered consequences. Add 'acknowledge shame' button that user must click to dismiss modal. Implement mobile-responsive design for failure notifications.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
       },
       {
         "id": 8,
