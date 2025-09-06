@@ -1,0 +1,50 @@
+[
+  {
+    "id": "6a0fb559-d9e4-4b84-8f25-0865b82e7479",
+    "consequence_type": "monetary",
+    "execution_status": "completed",
+    "was_triggered": "false",
+    "monetary_amount": null,
+    "checkpoint_title": "TEST: Overdue Checkpoint"
+  },
+  {
+    "id": "34cb5681-05dd-4611-85f2-96b21fb353bc",
+    "consequence_type": "monetary",
+    "execution_status": "completed",
+    "was_triggered": "false",
+    "monetary_amount": null,
+    "checkpoint_title": "Practice Advanced Types"
+  },
+  {
+    "id": "6f2efb20-ac38-4212-97cf-4c098f6b46a6",
+    "consequence_type": "monetary",
+    "execution_status": "completed",
+    "was_triggered": "false",
+    "monetary_amount": null,
+    "checkpoint_title": "Complete Basic Types Chapter"
+  },
+  {
+    "id": "05697235-76e8-4d2f-9fbc-dff6536abdac",
+    "consequence_type": "monetary",
+    "execution_status": "failed",
+    "was_triggered": null,
+    "monetary_amount": "25.00",
+    "checkpoint_title": "TEST: Overdue Checkpoint"
+  },
+  {
+    "id": "a6531469-51ab-4977-966c-ff579458a224",
+    "consequence_type": "monetary",
+    "execution_status": "failed",
+    "was_triggered": null,
+    "monetary_amount": "25.00",
+    "checkpoint_title": "TEST: Overdue Checkpoint"
+  },
+  {
+    "id": "d7742833-2694-4f32-8793-4a3d84770924",
+    "consequence_type": "monetary",
+    "execution_status": "completed",
+    "was_triggered": "false",
+    "monetary_amount": null,
+    "checkpoint_title": "TEST: Overdue Checkpoint"
+  }
+]
