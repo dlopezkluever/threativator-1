@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import { useGoals } from '../../contexts/GoalContext'
@@ -9,7 +9,7 @@ import OperationalCalendar from './OperationalCalendar'
 import VisibleStakesDisplay from './VisibleStakesDisplay'
 import ImmediateDirectivesSidebar from './ImmediateDirectivesSidebar'
 import { useModalState, MODAL_NAMES } from '../../hooks/useModalState'
-import { useConsequenceNotifications } from '../../hooks/useConsequenceNotifications'
+import { useConsequenceNotificationsReal as useConsequenceNotifications } from '../../hooks/useConsequenceNotificationsReal'
 import PaymentModal from '../modals/PaymentModal'
 import KompromatModal from '../modals/KompromatModal'
 import ContactModal from '../modals/ContactModal'
@@ -32,13 +32,21 @@ const DashboardLayout: React.FC = () => {
     MODAL_NAMES.SOCIAL_MEDIA
   ])
 
-  // Consequence notifications
+  // Consequence notifications (real system)
   const {
     pendingConsequence,
     isModalOpen: isConsequenceModalOpen,
     dismissConsequence,
-    triggerTestConsequence
+    queueLength,
+    debugInfo
   } = useConsequenceNotifications()
+  
+  // Log queue status for debugging
+  useEffect(() => {
+    if (queueLength > 0) {
+      console.log(`📊 Consequence queue: ${queueLength} pending`)
+    }
+  }, [queueLength])
 
 
   // Action handlers
@@ -236,10 +244,10 @@ const DashboardLayout: React.FC = () => {
                       <span className="text-[var(--font-size-sm)] font-bold leading-tight">SOCIAL</span>
                     </div>
                   </Button>
-                  <Button variant="danger" size="default" onClick={triggerTestConsequence} className="h-16 text-center">
+                  <Button variant="danger" size="default" onClick={handleEmergencyExit} className="h-16 text-center">
                     <div className="flex flex-col items-center justify-center gap-1">
-                      <span className="text-xl">🎭</span>
-                      <span className="text-[var(--font-size-sm)] font-bold leading-tight">TEST DISHONOR</span>
+                      <span className="text-xl">⚠️</span>
+                      <span className="text-[var(--font-size-sm)] font-bold leading-tight">EXIT</span>
                     </div>
                   </Button>
                 </div>

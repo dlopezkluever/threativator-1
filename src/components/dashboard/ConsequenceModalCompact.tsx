@@ -194,7 +194,7 @@ export default function ConsequenceModalCompact({
             
             <div 
               style={{
-                backgroundColor: '#F3F4F6',
+                backgroundColor: '#FFFFFF',  // Pure white background
                 border: '3px solid black',
                 borderRadius: '0px',
                 padding: '16px',
@@ -271,6 +271,27 @@ export default function ConsequenceModalCompact({
                       </p>
                     </div>
                   )}
+                  
+                  {consequence?.consequence_type === 'grading_failure' && (
+                    <div 
+                      style={{
+                        backgroundColor: '#FEF2F2',
+                        border: '2px solid #EF4444',
+                        borderRadius: '0px',
+                        padding: '12px'
+                      }}
+                    >
+                      <p style={{ fontWeight: 'bold', fontSize: '12px', margin: '0 0 4px 0', color: '#000000' }}>SUBMISSION REJECTED</p>
+                      <p style={{ fontSize: '12px', margin: 0, color: '#000000' }}>
+                        Your proof failed state evaluation. Resubmit better evidence or seek witness override.
+                      </p>
+                      {consequence?.execution_details?.feedback && (
+                        <p style={{ fontSize: '10px', color: '#000000', margin: '4px 0 0 0', fontStyle: 'italic' }}>
+                          "{consequence.execution_details.feedback}"
+                        </p>
+                      )}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -282,7 +303,7 @@ export default function ConsequenceModalCompact({
               border: '3px solid black',
               borderRadius: '0px',
               padding: '12px',
-              backgroundColor: '#F9FAFB',
+              backgroundColor: '#FFFFFF',  // Pure white background
               marginBottom: '20px'
             }}
           >
