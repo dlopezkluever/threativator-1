@@ -1,0 +1,68 @@
+[
+  {
+    "checkpoint_id": "37ce920f-2b8e-4a47-a21a-a71e0d263e9f",
+    "goal_id": "8ee85002-1c89-411b-9823-5e674cbb8874",
+    "user_id": "2fe3fc11-ea6c-4511-b260-156092ac5ff9",
+    "failure_type": "checkpoint",
+    "consequence_types": "{monetary}",
+    "monetary_stake": "25.00",
+    "minor_kompromat_id": null,
+    "major_kompromat_id": null,
+    "charity_destination": "doctors_without_borders"
+  },
+  {
+    "checkpoint_id": "4534bd5b-3d26-4b59-9cee-b539d97814ed",
+    "goal_id": "07368275-dfd8-4402-8780-2e1f12524e8b",
+    "user_id": "2fe3fc11-ea6c-4511-b260-156092ac5ff9",
+    "failure_type": "checkpoint",
+    "consequence_types": "{monetary}",
+    "monetary_stake": "25.00",
+    "minor_kompromat_id": null,
+    "major_kompromat_id": null,
+    "charity_destination": "doctors_without_borders"
+  },
+  {
+    "checkpoint_id": "4bbac25e-d348-4d15-8a13-278c4891cdf4",
+    "goal_id": "6a16d5c0-9f84-4be4-8a59-6443f7fffdd8",
+    "user_id": "2fe3fc11-ea6c-4511-b260-156092ac5ff9",
+    "failure_type": "checkpoint",
+    "consequence_types": "{monetary}",
+    "monetary_stake": "25.00",
+    "minor_kompromat_id": null,
+    "major_kompromat_id": null,
+    "charity_destination": "doctors_without_borders"
+  },
+  {
+    "checkpoint_id": "620289e1-5fb3-4ebd-9aa8-ebb6664c84f5",
+    "goal_id": "09caa00d-09c1-49b8-90bd-68277932ccc9",
+    "user_id": "2fe3fc11-ea6c-4511-b260-156092ac5ff9",
+    "failure_type": "checkpoint",
+    "consequence_types": "{monetary}",
+    "monetary_stake": "50.00",
+    "minor_kompromat_id": null,
+    "major_kompromat_id": null,
+    "charity_destination": "doctors_without_borders"
+  },
+  {
+    "checkpoint_id": "ad6455ba-05bd-47be-b6a4-e4ede4a703b6",
+    "goal_id": "09caa00d-09c1-49b8-90bd-68277932ccc9",
+    "user_id": "2fe3fc11-ea6c-4511-b260-156092ac5ff9",
+    "failure_type": "checkpoint",
+    "consequence_types": "{monetary}",
+    "monetary_stake": "50.00",
+    "minor_kompromat_id": null,
+    "major_kompromat_id": null,
+    "charity_destination": "doctors_without_borders"
+  },
+  {
+    "checkpoint_id": "ce11542a-ab02-4a05-858b-831785d1bec5",
+    "goal_id": "0d7b17e6-a55f-427a-a422-a9e6ae653f6e",
+    "user_id": "2fe3fc11-ea6c-4511-b260-156092ac5ff9",
+    "failure_type": "checkpoint",
+    "consequence_types": "{monetary}",
+    "monetary_stake": "25.00",
+    "minor_kompromat_id": null,
+    "major_kompromat_id": null,
+    "charity_destination": "doctors_without_borders"
+  }
+]

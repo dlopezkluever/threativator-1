@@ -1,0 +1,123 @@
+Unchecked runtime.lastError: The message port closed before a response was received.
+
+chunk-6W5FFVKH.js?v=99411537:21551 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+ProtectedRoute.tsx:17 🛡️ [ProtectedRoute] Simple auth check for: /dashboard
+ProtectedRoute.tsx:18 🛡️ [ProtectedRoute] State - loading: true user: false
+ProtectedRoute.tsx:22 ⏳ [ProtectedRoute] Loading auth state, showing Soviet spinner
+AuthContext.tsx:43 🚀 [AuthContext] Simple auth initialization started
+AuthContext.tsx:48 🔄 [AuthContext] Getting initial session...
+AuthContext.tsx:72 👂 [AuthContext] Setting up simple auth state change listener
+AuthContext.tsx:75 🔄 [AuthContext] Auth state change: SIGNED_IN Session exists
+AuthContext.tsx:79 ✅ [AuthContext] Simple auth state change complete, setting loading=false
+ProtectedRoute.tsx:17 🛡️ [ProtectedRoute] Simple auth check for: /dashboard
+ProtectedRoute.tsx:18 🛡️ [ProtectedRoute] State - loading: false user: true
+ProtectedRoute.tsx:53 ✅ [ProtectedRoute] User authenticated, rendering dashboard
+ImmediateDirectivesSidebar.tsx:34 🔍 [ImmediateDirectives] Loading directives for user: 2fe3fc11-ea6c-4511-b260-156092ac5ff9
+ImmediateDirectivesSidebar.tsx:35 🔍 [ImmediateDirectives] Date range: 2025-09-06T07:37:57.376Z to 2025-09-13T07:37:57.376Z
+useConsequenceNotificationsReal.ts:33 🔍 Checking for unacknowledged consequences...
+useConsequenceNotificationsReal.ts:85 🔴 Setting up real-time consequence subscription...
+useConsequenceNotificationsReal.ts:147 📝 Setting up submission grading failure subscription...
+AuthContext.tsx:51 📋 [AuthContext] Initial session retrieved: Found session
+AuthContext.tsx:56 ✅ [AuthContext] Simple session setup complete, setting loading=false
+ProtectedRoute.tsx:17 🛡️ [ProtectedRoute] Simple auth check for: /dashboard
+ProtectedRoute.tsx:18 🛡️ [ProtectedRoute] State - loading: false user: true
+ProtectedRoute.tsx:53 ✅ [ProtectedRoute] User authenticated, rendering dashboard
+useConsequenceNotificationsReal.ts:138 🔴 Cleaning up consequence subscription
+useConsequenceNotificationsReal.ts:192 📝 Cleaning up submission subscription
+ImmediateDirectivesSidebar.tsx:34 🔍 [ImmediateDirectives] Loading directives for user: 2fe3fc11-ea6c-4511-b260-156092ac5ff9
+ImmediateDirectivesSidebar.tsx:35 🔍 [ImmediateDirectives] Date range: 2025-09-06T07:37:57.397Z to 2025-09-13T07:37:57.397Z
+useConsequenceNotificationsReal.ts:33 🔍 Checking for unacknowledged consequences...
+useConsequenceNotificationsReal.ts:85 🔴 Setting up real-time consequence subscription...
+useConsequenceNotificationsReal.ts:147 📝 Setting up submission grading failure subscription...
+AuthContext.tsx:75 🔄 [AuthContext] Auth state change: INITIAL_SESSION Session exists
+AuthContext.tsx:79 ✅ [AuthContext] Simple auth state change complete, setting loading=false
+ProtectedRoute.tsx:17 🛡️ [ProtectedRoute] Simple auth check for: /dashboard
+ProtectedRoute.tsx:18 🛡️ [ProtectedRoute] State - loading: false user: true
+ProtectedRoute.tsx:53 ✅ [ProtectedRoute] User authenticated, rendering dashboard
+useConsequenceNotificationsReal.ts:138 🔴 Cleaning up consequence subscription
+useConsequenceNotificationsReal.ts:192 📝 Cleaning up submission subscription
+ImmediateDirectivesSidebar.tsx:34 🔍 [ImmediateDirectives] Loading directives for user: 2fe3fc11-ea6c-4511-b260-156092ac5ff9
+ImmediateDirectivesSidebar.tsx:35 🔍 [ImmediateDirectives] Date range: 2025-09-06T07:37:57.402Z to 2025-09-13T07:37:57.402Z
+useConsequenceNotificationsReal.ts:33 🔍 Checking for unacknowledged consequences...
+useConsequenceNotificationsReal.ts:85 🔴 Setting up real-time consequence subscription...
+useConsequenceNotificationsReal.ts:147 📝 Setting up submission grading failure subscription...
+stripe.js:1 You may test your Stripe.js integration over HTTP. However, live Stripe.js integrations must use HTTPS.
+stripe.js:1 You may test your Stripe.js integration over HTTP. However, live Stripe.js integrations must use HTTPS.
+stripe.js:1 You may test your Stripe.js integration over HTTP. However, live Stripe.js integrations must use HTTPS.
+3
+useConsequenceNotificationsReal.ts:54 ✅ No unacknowledged consequences found
+ImmediateDirectivesSidebar.tsx:72 📊 [ImmediateDirectives] Checkpoints result: 2 items
+ImmediateDirectivesSidebar.tsx:73 📊 [ImmediateDirectives] Goals result: 4 items
+ImmediateDirectivesSidebar.tsx:97 📋 [ImmediateDirectives] Checkpoints raw data: 
+(2) [{…}, {…}]
+ImmediateDirectivesSidebar.tsx:100 📋 [ImmediateDirectives] Goals raw data: 
+(4) [{…}, {…}, {…}, {…}]
+ImmediateDirectivesSidebar.tsx:157 📋 [ImmediateDirectives] Final directives count: 6
+ImmediateDirectivesSidebar.tsx:72 📊 [ImmediateDirectives] Checkpoints result: 2 items
+ImmediateDirectivesSidebar.tsx:73 📊 [ImmediateDirectives] Goals result: 4 items
+ImmediateDirectivesSidebar.tsx:97 📋 [ImmediateDirectives] Checkpoints raw data: 
+(2) [{…}, {…}]
+ImmediateDirectivesSidebar.tsx:100 📋 [ImmediateDirectives] Goals raw data: 
+(4) [{…}, {…}, {…}, {…}]
+ImmediateDirectivesSidebar.tsx:157 📋 [ImmediateDirectives] Final directives count: 6
+ImmediateDirectivesSidebar.tsx:72 📊 [ImmediateDirectives] Checkpoints result: 2 items
+ImmediateDirectivesSidebar.tsx:73 📊 [ImmediateDirectives] Goals result: 4 items
+ImmediateDirectivesSidebar.tsx:97 📋 [ImmediateDirectives] Checkpoints raw data: 
+(2) [{…}, {…}]
+ImmediateDirectivesSidebar.tsx:100 📋 [ImmediateDirectives] Goals raw data: 
+(4) [{…}, {…}, {…}, {…}]
+ImmediateDirectivesSidebar.tsx:157 📋 [ImmediateDirectives] Final directives count: 6
+OperationalCalendar.tsx:77 📅 [OperationalCalendar] Processing goal: Write a romantic novel deadline: Sun Sep 21 2025 13:24:00 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:97 📅 [OperationalCalendar] Adding goal event: 
+{id: 'goal-47d34d82-0888-44b8-a43b-b84697aaa3a0', title: 'FINAL DIRECTIVE: WRITE A ROMANTIC NOVEL', start: Sun Sep 21 2025 13:24:00 GMT-0500 (Central Daylight Time), end: Sun Sep 21 2025 13:24:00 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:77 📅 [OperationalCalendar] Processing goal: TEST: Russian Roulette Goal deadline: Fri Sep 12 2025 17:24:47 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:97 📅 [OperationalCalendar] Adding goal event: 
+{id: 'goal-0d7b17e6-a55f-427a-a422-a9e6ae653f6e', title: 'FINAL DIRECTIVE: TEST: RUSSIAN ROULETTE GOAL', start: Fri Sep 12 2025 17:24:47 GMT-0500 (Central Daylight Time), end: Fri Sep 12 2025 17:24:47 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:77 📅 [OperationalCalendar] Processing goal: TEST: Russian Roulette Goal deadline: Fri Sep 12 2025 17:24:57 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:97 📅 [OperationalCalendar] Adding goal event: 
+{id: 'goal-8ee85002-1c89-411b-9823-5e674cbb8874', title: 'FINAL DIRECTIVE: TEST: RUSSIAN ROULETTE GOAL', start: Fri Sep 12 2025 17:24:57 GMT-0500 (Central Daylight Time), end: Fri Sep 12 2025 17:24:57 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:77 📅 [OperationalCalendar] Processing goal: TEST: Russian Roulette Goal deadline: Fri Sep 12 2025 17:25:09 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:97 📅 [OperationalCalendar] Adding goal event: 
+{id: 'goal-07368275-dfd8-4402-8780-2e1f12524e8b', title: 'FINAL DIRECTIVE: TEST: RUSSIAN ROULETTE GOAL', start: Fri Sep 12 2025 17:25:09 GMT-0500 (Central Daylight Time), end: Fri Sep 12 2025 17:25:09 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:77 📅 [OperationalCalendar] Processing goal: TEST: Russian Roulette Goal deadline: Fri Sep 12 2025 17:25:29 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:97 📅 [OperationalCalendar] Adding goal event: 
+{id: 'goal-6a16d5c0-9f84-4be4-8a59-6443f7fffdd8', title: 'FINAL DIRECTIVE: TEST: RUSSIAN ROULETTE GOAL', start: Fri Sep 12 2025 17:25:29 GMT-0500 (Central Daylight Time), end: Fri Sep 12 2025 17:25:29 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:77 📅 [OperationalCalendar] Processing goal: REAL TEST: Learn TypeScript deadline: Mon Sep 15 2025 21:40:04 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:97 📅 [OperationalCalendar] Adding goal event: 
+{id: 'goal-09caa00d-09c1-49b8-90bd-68277932ccc9', title: 'FINAL DIRECTIVE: REAL TEST: LEARN TYPESCRIPT', start: Mon Sep 15 2025 21:40:04 GMT-0500 (Central Daylight Time), end: Mon Sep 15 2025 21:40:04 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: Finish rough draft deadline: Mon Sep 08 2025 04:02:00 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: 
+{id: 'checkpoint-1c33f4b2-cd7c-4425-b0d5-84b381892366', title: 'CHECKPOINT: FINISH ROUGH DRAFT', start: Mon Sep 08 2025 04:02:00 GMT-0500 (Central Daylight Time), end: Mon Sep 08 2025 04:02:00 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: Build Small Project deadline: Sun Sep 07 2025 21:41:31 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: 
+{id: 'checkpoint-66f206a1-e680-4b2b-8ab8-bf440f7ea7a7', title: 'CHECKPOINT: BUILD SMALL PROJECT', start: Sun Sep 07 2025 21:41:31 GMT-0500 (Central Daylight Time), end: Sun Sep 07 2025 21:41:31 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: TEST: Overdue Checkpoint deadline: Fri Sep 05 2025 15:25:09 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: 
+{id: 'checkpoint-4534bd5b-3d26-4b59-9cee-b539d97814ed', title: 'CHECKPOINT: TEST: OVERDUE CHECKPOINT', start: Fri Sep 05 2025 15:25:09 GMT-0500 (Central Daylight Time), end: Fri Sep 05 2025 15:25:09 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: Complete Basic Types Chapter deadline: Fri Sep 05 2025 19:41:31 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: 
+{id: 'checkpoint-620289e1-5fb3-4ebd-9aa8-ebb6664c84f5', title: 'CHECKPOINT: COMPLETE BASIC TYPES CHAPTER', start: Fri Sep 05 2025 19:41:31 GMT-0500 (Central Daylight Time), end: Fri Sep 05 2025 19:41:31 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: TEST: Overdue Checkpoint deadline: Fri Sep 05 2025 15:24:47 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: 
+{id: 'checkpoint-ce11542a-ab02-4a05-858b-831785d1bec5', title: 'CHECKPOINT: TEST: OVERDUE CHECKPOINT', start: Fri Sep 05 2025 15:24:47 GMT-0500 (Central Daylight Time), end: Fri Sep 05 2025 15:24:47 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: Practice Advanced Types deadline: Thu Sep 04 2025 21:41:31 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: 
+{id: 'checkpoint-ad6455ba-05bd-47be-b6a4-e4ede4a703b6', title: 'CHECKPOINT: PRACTICE ADVANCED TYPES', start: Thu Sep 04 2025 21:41:31 GMT-0500 (Central Daylight Time), end: Thu Sep 04 2025 21:41:31 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: TEST: Overdue Checkpoint deadline: Fri Sep 05 2025 15:24:57 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: 
+{id: 'checkpoint-37ce920f-2b8e-4a47-a21a-a71e0d263e9f', title: 'CHECKPOINT: TEST: OVERDUE CHECKPOINT', start: Fri Sep 05 2025 15:24:57 GMT-0500 (Central Daylight Time), end: Fri Sep 05 2025 15:24:57 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: TEST: Overdue Checkpoint deadline: Fri Sep 05 2025 15:25:29 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: 
+{id: 'checkpoint-4bbac25e-d348-4d15-8a13-278c4891cdf4', title: 'CHECKPOINT: TEST: OVERDUE CHECKPOINT', start: Fri Sep 05 2025 15:25:29 GMT-0500 (Central Daylight Time), end: Fri Sep 05 2025 15:25:29 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:131 📅 [OperationalCalendar] Final calendar events: 14 events
+OperationalCalendar.tsx:132 📅 [OperationalCalendar] Events data: 
+(14) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+OperationalCalendar.tsx:77 📅 [OperationalCalendar] Processing goal: Write a romantic novel deadline: Sun Sep 21 2025 13:24:00 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:97 📅 [OperationalCalendar] Adding goal event: 
+{id: 'goal-47d34d82-0888-44b8-a43b-b84697aaa3a0', title: 'FINAL DIRECTIVE: WRITE A ROMANTIC NOVEL', start: Sun Sep 21 2025 13:24:00 GMT-0500 (Central Daylight Time), end: Sun Sep 21 2025 13:24:00 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:77 📅 [OperationalCalendar] Processing goal: TEST: Russian Roulette Goal deadline: Fri Sep 12 2025 17:24:47 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:97 📅 [OperationalCalendar] Adding goal event: 
+{id: 'goal-0d7b17e6-a55f-427a-a422-a9e6ae653f6e', title: 'FINAL DIRECTIVE: TEST: RUSSIAN ROULETTE GOAL', start: Fri Sep 12 2025 17:24:47 GMT-0500 (Central Daylight Time), end: Fri Sep 12 2025 17:24:47 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:77 📅 [OperationalCalendar] Processing goal: TEST: Russian Roulette Goal deadline: Fri Sep 12 2025 17:24:57 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:97 📅 [OperationalCalendar] Adding goal event: 
+{id: 'goal-8ee85002-1c89-411b-9823-5e674cbb8874', title: 'FINAL DIRECTIVE: TEST: RUSSIAN ROULETTE GOAL', start: Fri Sep 12 2025 17:24:57 GMT-0500 (Central Daylight Time), end: Fri Sep 12 2025 17:24:57 GMT-0500 (Central Daylight Time), allDay: true, …}
