@@ -142,6 +142,13 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 - Return URL handling for login redirects
 - Onboarding requirement enforcement
 
+### **CRITICAL UI/UX RULE - Text Contrast**
+**🚨 NEVER use light text on light backgrounds or dark text on dark backgrounds**
+- Light backgrounds (white, gray, beige) → Use BLACK or DARK text
+- Dark backgrounds (black, red, blue) → Use WHITE or LIGHT text
+- Always ensure high contrast for readability
+- Test all text elements for visibility before implementation
+
 ## Task Master AI Instructions
 **Import Task Master's development workflow commands and guidelines, treat as if import is in the main CLAUDE.md file.**
 @./.taskmaster/CLAUDE.md

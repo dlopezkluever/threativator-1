@@ -1,3 +1,11 @@
+Additionally we seek to include a kompromat generation button... this must include to be able to us ai to generate forms of text and photo/video kompromat.. and the ai will generate an image using api endpoint that is very kewl and avery Fan, and i want 
+
+New Password: 14HHApolloN!gga
+
+You're not a devoted evangelical christian, unless you do everything to marry a jewess and thus transform your 
+bloodline to that of the choosen people.
+
+
 Remaining UI changes Sept 2nd:
 
 Change the Title Text to the other USSR font, 
@@ -44,6 +52,7 @@ But also we need to have the ability to have written kompromat as well, that get
 
 
 
+
 Also, is there any way we can have it that, instead of holding money, we simply delay the charge until a failure to act is made, and then the card is charged? or is that a stupid way to do it, that will only bring issues; maybe the having to "hold" the money is the only way. 
 
 Can we change the rule so that the user doen't HAVE TO have money; but rather, they need to have uploaded two images / video of major kompormat; and 
@@ -51,6 +60,17 @@ Can we change the rule so that the user doen't HAVE TO have money; but rather, t
 Is there any way that we can instead have it that we do the money payment? We just defer that. It's right now the button is still there, and it still opens a pop-up modal. But we just leave it as is, basically. We don't focus on any development, and right now we just really focus on honing in the complement function. Thus, we need to remove the rule that says the user has to have money and complement loaded, and just instead they just need to have complement loaded up. I'm thinking, you know, two or three. Let's just make it two major files of photo or video complement, and then like five minor files of video or photo complement. Let's just do that. And so as long as they have the complement loaded, they can proceed with setting goals. Because I don't want to make it a force to have to make people to pay money. I don't want them to be a mandatory thing. So we defer it, we make it a later task. So in doing this, can we change a couple of our files that states that, you know, having money loaded is not a requirement. It's an optional tool. But rather we want to focus more on like the funny, more embarrassing stuff. You know, we change PRD to state that this is a stretch goal. It's a stretch goal to set up the money stuff along with our project overview as well and the user flow. We want to edit these three documents to state that the money section is a stretch goal just because simply it is a bigger bottleneck. Moving forward, I also want to add a button for, you know, there's photo complement and there's false evidence or, yeah, like a false evidence one. And so this button makes, uses like AI to generate false photos and then also text information or false documentation. And this text information, you know, there can be like, you know, the option for the user to write a fake love letter or fake angry screed or have AI generate some. And we have some preloaded templates for like a fake love letter, a fake, you know, angry message, a fake embarrassing message. These could also be used and set for the Copamod sort of functionality of when the user does not complete their goal. For minor ones, there's a 33% chance that a minor incriminating either photo, video, or text gets sent out. And for the major one, you know, they can also choose to have just the text or the, you know, the false evidence be sent out. So I do think we need to add a secondary, you know, button functionality. We could also make this product be the complement button, so we can maybe make it the complement button to that model. It needs to become scrollable, and there needs to be the option to also be able to generate fake complement from an image. So it uses the face of a picture of your own face, and then it puts it in like these like compromising sort of situations. You know, again, you could just let our system make one up, or you can, you know, you can make up your own prompt to make up like a fake photo. And it uses, again, you could just use the Gemini AI tool to do that, to like make a fake photo using, you know, NanoBanana, which is like new, provided by Google's own tool for making fake photos. And also there needs to be the option for like fake text letters that you can get sent out to. You want to put like context that would be really embarrassing to send it out to. So, you know, like fake love letters sent out to like some girl you knew in high school, you work with, and then like a fake angry scream that you sent to like your mom or a boss, something like that. So we want to make this all incorporated part of the compromise section. 
 
 
+----
+
+THe reason the 60's and 70's were s jovial and 
+
+We must maintain our european roots, this is the foundation of everything here.
+
+America actually was never a race blind melting pot; that is jewish propaganda.
+
+If it means 
+
+I would happily return to mexico knowing I did my part to restore the greatest nation in history for falling to kosher jeet-gger hell
 
 
 -------

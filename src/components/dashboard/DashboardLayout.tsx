@@ -15,6 +15,9 @@ import KompromatModal from '../modals/KompromatModal'
 import ContactModal from '../modals/ContactModal'
 import SocialMediaModal from '../modals/SocialMediaModal'
 import ConsequenceModal from './ConsequenceModal'
+import SimpleTestModal from './SimpleTestModal'
+import ConsequenceModalFixed from './ConsequenceModalFixed'
+import ConsequenceModalCompact from './ConsequenceModalCompact'
 
 const DashboardLayout: React.FC = () => {
   const { user, signOut } = useAuth()
@@ -315,8 +318,8 @@ const DashboardLayout: React.FC = () => {
         onClose={() => modalControl.closeModal(MODAL_NAMES.SOCIAL_MEDIA)} 
       />
       
-      {/* Consequence Modal */}
-      <ConsequenceModal
+      {/* Compact Consequence Modal with Fixed Contrast */}
+      <ConsequenceModalCompact
         isOpen={isConsequenceModalOpen}
         onClose={dismissConsequence}
         consequence={pendingConsequence}
