@@ -50,7 +50,6 @@
 
   Try the debug function and tell me what it returns! 🔍    
 
-
 https://supabase.com/docs/guides/database/extensions/http?queryGroups=database-method&database-method=sql
 
 http: RESTful Client
