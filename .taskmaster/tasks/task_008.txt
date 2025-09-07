@@ -1,0 +1,43 @@
+# Task ID: 8
+# Title: Add Twitter Integration for Social Consequences
+# Status: pending
+# Dependencies: 2, 7
+# Priority: medium
+# Description: Implement Twitter OAuth 2.0 authentication and posting functionality for Major Kompromat consequences
+# Details:
+Implement Twitter OAuth 2.0 Authorization Code Flow with PKCE in Edge Function. Create callback endpoint to handle OAuth redirect and exchange code for tokens. Encrypt and store access_token and refresh_token in database using Supabase vault. Add Twitter connection UI in settings and onboarding Step 4. Implement token refresh logic when access token expires. In triggerConsequence function, add logic for social media posts when consequence_type is 'humiliation_social'. Use Twitter API v2 to create tweets with text and media (images from Kompromat). Handle API rate limits with exponential backoff. Gracefully handle revoked permissions by falling back to email consequences. Add option to disconnect Twitter in user settings. Log all social media posts in consequences table with tweet ID
+
+# Test Strategy:
+Test OAuth flow completes successfully. Verify tokens are encrypted in database. Test token refresh when expired. Verify tweets are posted with correct content. Test rate limiting handling. Ensure revoked permissions don't break consequence flow. Test disconnect functionality removes tokens
+
+# Subtasks:
+## 1. Extend Twitter OAuth for Posting Permissions [pending]
+### Dependencies: None
+### Description: Update existing Twitter OAuth implementation to request write permissions and store refresh tokens for posting tweets
+### Details:
+Modify existing TwitterCallbackPage and exchange-twitter-token Edge Function to request 'tweet.write' and 'users.read' scopes. Update database schema to store refresh_token alongside access_token. Implement token refresh logic when access token expires. Update onboarding SocialMediaStep to explain posting permissions.
+
+## 2. Create Twitter API Service for Media Upload [pending]
+### Dependencies: None
+### Description: Implement Twitter API v2 media upload functionality to post Kompromat images as tweet attachments
+### Details:
+Create new Edge Function or utility for uploading images to Twitter API v2 media endpoints. Handle chunked uploads for larger files. Implement proper error handling for upload failures. Support common image formats (JPEG, PNG, WebP). Return media_id for tweet attachment.
+
+## 3. Implement Tweet Posting Service [pending]
+### Dependencies: None
+### Description: Create service to compose and post tweets with Kompromat images using Twitter API v2
+### Details:
+Create Edge Function or utility to post tweets using Twitter API v2. Compose appropriate shame/consequence text in Soviet theme. Attach uploaded media using media_id. Handle API rate limits with exponential backoff. Return tweet_id for logging. Support both text-only and media tweets.
+
+## 4. Integrate Twitter Posting with Consequence Engine [pending]
+### Dependencies: None
+### Description: Add 'humiliation_social' consequence type to triggerConsequence function for automatic Twitter posting
+### Details:
+Modify triggerConsequence Edge Function to handle 'humiliation_social' consequence type. Fetch user's Twitter tokens and Kompromat files. Call Twitter services to upload media and post tweet. Log tweet_id in consequences table. Handle failures gracefully by falling back to email consequences. Update consequence detection logic to assign social media consequences for Major Kompromat.
+
+## 5. Add Twitter Account Management UI [pending]
+### Dependencies: None
+### Description: Create UI components for users to connect, view status, and disconnect Twitter accounts
+### Details:
+Add Twitter connection status to dashboard and settings. Create disconnect functionality to revoke tokens and remove from database. Show connected Twitter username and account info. Add re-authorization flow for expired tokens. Update existing settings modals to include Twitter management options.
+

@@ -1,0 +1,43 @@
+# Task ID: 9
+# Title: Create Notification System with SendGrid
+# Status: pending
+# Dependencies: 5, 6, 7
+# Priority: medium
+# Description: Build comprehensive email notification system for deadlines, submission results, and consequences using SendGrid
+# Details:
+Set up SendGrid account and verify sending domain with SPF/DKIM records. Create dynamic email templates in SendGrid for: upcoming deadline reminder, submission passed, submission failed, consequence triggered, welcome email. Build Edge Function 'sendNotification' that interfaces with SendGrid API. Implement notification triggers: deadline reminders (1 day before based on user preferences), submission grading complete, consequence execution. Add unsubscribe links in all emails updating notification_preferences. Create notification queue to handle bulk sends without hitting rate limits. Add email open/click tracking for analytics. Implement themed email design matching app personality with avatars and witty copy. Store email send history in audit_log table
+
+# Test Strategy:
+Verify domain authentication improves deliverability. Test all email templates render correctly. Ensure notifications trigger at correct times. Test unsubscribe functionality updates preferences. Verify rate limiting prevents SendGrid errors. Test emails contain correct personalized content
+
+# Subtasks:
+## 1. Create Email Template System [pending]
+### Dependencies: None
+### Description: Design and implement Soviet-themed email templates for all notification types
+### Details:
+Create HTML email templates with Soviet Constructivist styling. Templates needed: deadline reminders (24h, 1h), submission results (passed/failed), consequence notifications, goal completion. Include proper CSS inlining for email compatibility. Add template variables for personalization. Create template testing utility.
+
+## 2. Implement Deadline Reminder System [pending]
+### Dependencies: None
+### Description: Create automated system to send reminder emails at 24h and 1h before deadlines
+### Details:
+Create Edge Function triggered by pg_cron to check for upcoming deadlines. Query goals and checkpoints approaching deadlines. Send reminder emails via SendGrid with appropriate templates. Track sent reminders to avoid duplicates. Handle timezone calculations correctly. Support user notification preferences.
+
+## 3. Create Submission Result Notifications [pending]
+### Dependencies: None
+### Description: Implement email notifications for AI grading results and submission feedback
+### Details:
+Extend existing grading system to trigger email notifications after AI analysis. Send pass/fail notifications with detailed feedback. Include resubmission instructions for failed submissions. Handle both AI and human witness grading results. Integrate with existing submission status tracking.
+
+## 4. Build User Notification Preferences [pending]
+### Dependencies: None
+### Description: Create UI and database schema for users to manage email notification preferences
+### Details:
+Add notification preferences table to database. Create settings UI for users to enable/disable notification types (reminders, results, consequences). Implement unsubscribe functionality with secure tokens. Add email frequency controls (immediate, daily digest). Update all notification services to respect user preferences.
+
+## 5. Implement Consequence Notification Enhancement [pending]
+### Dependencies: None
+### Description: Extend existing consequence system with detailed email notifications beyond current humiliation emails
+### Details:
+Enhance current SendGrid consequence emails with detailed templates. Send immediate notifications when consequences are triggered. Include consequence details, appeal instructions, and motivational messaging. Add follow-up emails for monetary consequences with charity receipts. Integrate with existing consequence modal system.
+

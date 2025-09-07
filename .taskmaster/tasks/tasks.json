@@ -506,7 +506,53 @@
           7
         ],
         "status": "pending",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Extend Twitter OAuth for Posting Permissions",
+            "description": "Update existing Twitter OAuth implementation to request write permissions and store refresh tokens for posting tweets",
+            "details": "Modify existing TwitterCallbackPage and exchange-twitter-token Edge Function to request 'tweet.write' and 'users.read' scopes. Update database schema to store refresh_token alongside access_token. Implement token refresh logic when access token expires. Update onboarding SocialMediaStep to explain posting permissions.",
+            "status": "pending",
+            "dependencies": [],
+            "parentTaskId": 8
+          },
+          {
+            "id": 2,
+            "title": "Create Twitter API Service for Media Upload",
+            "description": "Implement Twitter API v2 media upload functionality to post Kompromat images as tweet attachments",
+            "details": "Create new Edge Function or utility for uploading images to Twitter API v2 media endpoints. Handle chunked uploads for larger files. Implement proper error handling for upload failures. Support common image formats (JPEG, PNG, WebP). Return media_id for tweet attachment.",
+            "status": "pending",
+            "dependencies": [],
+            "parentTaskId": 8
+          },
+          {
+            "id": 3,
+            "title": "Implement Tweet Posting Service",
+            "description": "Create service to compose and post tweets with Kompromat images using Twitter API v2",
+            "details": "Create Edge Function or utility to post tweets using Twitter API v2. Compose appropriate shame/consequence text in Soviet theme. Attach uploaded media using media_id. Handle API rate limits with exponential backoff. Return tweet_id for logging. Support both text-only and media tweets.",
+            "status": "pending",
+            "dependencies": [],
+            "parentTaskId": 8
+          },
+          {
+            "id": 4,
+            "title": "Integrate Twitter Posting with Consequence Engine",
+            "description": "Add 'humiliation_social' consequence type to triggerConsequence function for automatic Twitter posting",
+            "details": "Modify triggerConsequence Edge Function to handle 'humiliation_social' consequence type. Fetch user's Twitter tokens and Kompromat files. Call Twitter services to upload media and post tweet. Log tweet_id in consequences table. Handle failures gracefully by falling back to email consequences. Update consequence detection logic to assign social media consequences for Major Kompromat.",
+            "status": "pending",
+            "dependencies": [],
+            "parentTaskId": 8
+          },
+          {
+            "id": 5,
+            "title": "Add Twitter Account Management UI",
+            "description": "Create UI components for users to connect, view status, and disconnect Twitter accounts",
+            "details": "Add Twitter connection status to dashboard and settings. Create disconnect functionality to revoke tokens and remove from database. Show connected Twitter username and account info. Add re-authorization flow for expired tokens. Update existing settings modals to include Twitter management options.",
+            "status": "pending",
+            "dependencies": [],
+            "parentTaskId": 8
+          }
+        ]
       },
       {
         "id": 9,
@@ -521,7 +567,53 @@
           7
         ],
         "status": "pending",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Email Template System",
+            "description": "Design and implement Soviet-themed email templates for all notification types",
+            "details": "Create HTML email templates with Soviet Constructivist styling. Templates needed: deadline reminders (24h, 1h), submission results (passed/failed), consequence notifications, goal completion. Include proper CSS inlining for email compatibility. Add template variables for personalization. Create template testing utility.",
+            "status": "pending",
+            "dependencies": [],
+            "parentTaskId": 9
+          },
+          {
+            "id": 2,
+            "title": "Implement Deadline Reminder System",
+            "description": "Create automated system to send reminder emails at 24h and 1h before deadlines",
+            "details": "Create Edge Function triggered by pg_cron to check for upcoming deadlines. Query goals and checkpoints approaching deadlines. Send reminder emails via SendGrid with appropriate templates. Track sent reminders to avoid duplicates. Handle timezone calculations correctly. Support user notification preferences.",
+            "status": "pending",
+            "dependencies": [],
+            "parentTaskId": 9
+          },
+          {
+            "id": 3,
+            "title": "Create Submission Result Notifications",
+            "description": "Implement email notifications for AI grading results and submission feedback",
+            "details": "Extend existing grading system to trigger email notifications after AI analysis. Send pass/fail notifications with detailed feedback. Include resubmission instructions for failed submissions. Handle both AI and human witness grading results. Integrate with existing submission status tracking.",
+            "status": "pending",
+            "dependencies": [],
+            "parentTaskId": 9
+          },
+          {
+            "id": 4,
+            "title": "Build User Notification Preferences",
+            "description": "Create UI and database schema for users to manage email notification preferences",
+            "details": "Add notification preferences table to database. Create settings UI for users to enable/disable notification types (reminders, results, consequences). Implement unsubscribe functionality with secure tokens. Add email frequency controls (immediate, daily digest). Update all notification services to respect user preferences.",
+            "status": "pending",
+            "dependencies": [],
+            "parentTaskId": 9
+          },
+          {
+            "id": 5,
+            "title": "Implement Consequence Notification Enhancement",
+            "description": "Extend existing consequence system with detailed email notifications beyond current humiliation emails",
+            "details": "Enhance current SendGrid consequence emails with detailed templates. Send immediate notifications when consequences are triggered. Include consequence details, appeal instructions, and motivational messaging. Add follow-up emails for monetary consequences with charity receipts. Integrate with existing consequence modal system.",
+            "status": "pending",
+            "dependencies": [],
+            "parentTaskId": 9
+          }
+        ]
       },
       {
         "id": 10,

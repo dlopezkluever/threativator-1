@@ -202,6 +202,21 @@ const FileUploadZone: React.FC<Props> = ({ onFileSelected, onUploadComplete, dis
           </div>
         </div>
       )}
+      
+      {/* Show upload success state */}
+      {!isUploading && uploadProgress === 100 && (
+        <div className="p-4 bg-[var(--color-success-muted)] text-white border border-[var(--color-accent-black)]">
+          <div className="flex items-center gap-2">
+            <span className="text-xl">✅</span>
+            <span className="font-bold uppercase text-[var(--font-size-sm)]">
+              FILE UPLOADED SUCCESSFULLY
+            </span>
+          </div>
+          <p className="text-[var(--font-size-sm)] mt-1 opacity-90">
+            Click "PREVIEW" to review your submission
+          </p>
+        </div>
+      )}
     </div>
   )
 }

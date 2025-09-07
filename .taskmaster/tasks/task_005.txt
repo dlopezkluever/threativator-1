@@ -1,0 +1,43 @@
+# Task ID: 5
+# Title: Build Submission and Proof Upload System
+# Status: done
+# Dependencies: 3, 4
+# Priority: high
+# Description: Create submission interface for users to upload proof of work with file uploads, external links, or text descriptions
+# Details:
+Build SubmissionModal component triggered from dashboard deadline clicks. Implement three submission types: File Upload (drag-and-drop zone, accept images/PDFs/videos up to 10MB, upload to Supabase Storage), External URL (input with URL validation, test link is accessible), Text Description (rich text editor for written proof). Add submission preview before final submit. Create submission record with status 'pending'. For file uploads, use Supabase Storage with path pattern /users/{userId}/submissions/{submissionId}. Show upload progress bar for large files. After submission, update UI to show 'Grading in Progress' status. Implement real-time status updates using Supabase subscriptions. Add ability to view previous submissions with their feedback
+
+# Test Strategy:
+Test file upload with various formats and sizes. Verify files over 10MB are rejected. Test URL validation accepts only valid URLs. Ensure submissions are saved with correct checkpoint association. Test real-time status updates work. Verify storage permissions prevent cross-user access
+
+# Subtasks:
+## 1. Create SubmissionModal Component Structure [done]
+### Dependencies: None
+### Description: Build the base SubmissionModal component with state management and UI layout for the three submission types
+### Details:
+Create SubmissionModal.tsx with React state to track submission type (file/url/text), current step (type selection, input, preview, submitting), and submission data. Implement modal UI with header showing checkpoint title/deadline, type selector buttons with icons, and footer with Cancel/Next/Submit buttons. Use controlled components for form state management. Add loading states and error handling. Integrate with existing dashboard to trigger modal on deadline clicks. Set up props interface to receive checkpoint data and onClose callback.
+
+## 2. Implement File Upload Functionality with Supabase Storage [done]
+### Dependencies: 5.1
+### Description: Build drag-and-drop file upload zone with validation, progress tracking, and Supabase Storage integration
+### Details:
+Create FileUploadZone component with react-dropzone for drag-and-drop functionality. Implement file validation: accept images (jpg/png/gif), PDFs, and videos (mp4/mov), enforce 10MB size limit with clear error messages. Set up Supabase Storage bucket 'submissions' with RLS policies allowing users to upload to /users/{userId}/submissions/{submissionId} path. Implement upload progress tracking using XMLHttpRequest or fetch with progress events. Show progress bar during upload with percentage and estimated time. Handle upload errors gracefully with retry option. Generate unique submissionId using UUID. Store file metadata (name, size, type, url) in component state for preview.
+
+## 3. Build URL and Text Input Components [done]
+### Dependencies: 5.1
+### Description: Create external URL input with validation and rich text editor for written proof descriptions
+### Details:
+For URL input: Create URLInput component with input field and validation using URL constructor to check validity. Implement 'Test Link' button that makes HEAD request to verify URL is accessible (handle CORS with backend proxy if needed). Show validation states with checkmark for valid URLs and error messages for invalid ones. For text input: Integrate rich text editor (Quill or TipTap) with formatting toolbar (bold, italic, lists, headings). Set character limit of 5000 characters with counter. Support basic markdown if using TipTap. Auto-save draft to localStorage every 30 seconds. Add placeholder text with helpful prompts about what to include in proof description.
+
+## 4. Create Submission Preview and Database Integration [done]
+### Dependencies: 5.2, 5.3
+### Description: Build preview screen for all submission types and implement database submission creation with proper associations
+### Details:
+Create SubmissionPreview component that displays: file preview (thumbnails for images, file icon for others), URL as clickable link with favicon, formatted text with preserved styling. Add 'Edit' button to go back and modify submission. Implement submitProof function that creates submission record in submissions table with: checkpoint_id, user_id, submission_type, content (file URL from Storage, external URL, or text), status 'pending', submitted_at timestamp. For file submissions, ensure Storage URL is saved after successful upload. Handle submission errors with user-friendly messages. After successful submission, close modal and show success toast notification. Update UI to immediately show 'Grading in Progress' status badge.
+
+## 5. Implement Real-time Status Updates and Submission History [done]
+### Dependencies: 5.4
+### Description: Set up Supabase real-time subscriptions for status updates and create UI to view previous submissions with feedback
+### Details:
+Set up Supabase real-time subscription on submissions table filtering by user_id and checkpoint_id. Listen for UPDATE events on status field changes (pending -> passed/failed). When status changes, update UI immediately with new badge and show notification. Create SubmissionHistory component accessible from goal detail page showing all submissions for a checkpoint with: submission date, type icon, status badge, AI feedback when available, option to view full submission content. Implement pagination or infinite scroll for long submission history. Add filters for status (all/passed/failed) and sort by date. Cache submission history in React Query or SWR for performance. Handle subscription cleanup on component unmount.
+

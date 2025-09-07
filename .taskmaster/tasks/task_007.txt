@@ -1,0 +1,49 @@
+# Task ID: 7
+# Title: Implement Consequence Engine with Scheduled Jobs
+# Status: done
+# Dependencies: 4, 5, 6
+# Priority: high
+# Description: Build automated system to check for missed deadlines and trigger appropriate consequences using pg_cron and Edge Functions
+# Details:
+Set up pg_cron extension in Supabase to run job every 5 minutes. Create database function that identifies overdue checkpoints where status is 'pending' and deadline has passed. Create Edge Function 'triggerConsequence' that processes identified failures. For checkpoint failures, implement Russian Roulette with 33% probability using crypto.randomInt(). For monetary consequences, integrate Stripe API to transfer funds from holding cell to charity. For humiliation consequences, randomly select contact from consequence_targets and send email via SendGrid with selected Kompromat. For final deadline failures, guarantee 100% consequence execution. Create consequence records for audit trail. Implement failure notifications with mysterious 'Great dishonor' message. Add in-app failure modal with dramatic animation. Handle edge cases like insufficient funds or missing Kompromat
+
+# Test Strategy:
+Test cron job runs on schedule. Verify overdue deadlines are detected correctly. Test Russian Roulette probability distribution. Ensure Stripe transfers work with test mode. Verify SendGrid emails are sent with correct content. Test consequence records are created. Verify edge cases are handled gracefully
+
+# Subtasks:
+## 1. Set up pg_cron and deadline detection database function [done]
+### Dependencies: None
+### Description: Configure pg_cron extension in Supabase and create database function to identify overdue checkpoints
+### Details:
+Enable pg_cron extension in Supabase dashboard. Create a scheduled job that runs every 5 minutes. Develop a PL/pgSQL function 'check_overdue_checkpoints' that queries the checkpoints table for records where status = 'pending' and deadline < NOW(). Function should return array of overdue checkpoint IDs with associated goal IDs, user IDs, and consequence types. Include logic to identify both checkpoint failures and final deadline failures. Set up proper database permissions for the cron job execution.
+
+## 2. Create triggerConsequence Edge Function foundation [done]
+### Dependencies: 7.1
+### Description: Build the main Edge Function to orchestrate consequence processing for identified failures
+### Details:
+Set up new Supabase Edge Function 'triggerConsequence' using Deno runtime. Create main handler that receives overdue checkpoint data from database function. Implement connection to Supabase client with service role key for elevated permissions. Add structured logging for consequence processing workflow. Create error handling wrapper with retry logic for transient failures. Set up environment variables for API keys (Stripe, SendGrid). Implement request validation and authentication checks.
+
+## 3. Implement Stripe monetary consequence transfers [done]
+### Dependencies: 7.2
+### Description: Build integration with Stripe API to transfer funds from holding cell to charity
+### Details:
+Initialize Stripe SDK in Edge Function with API key from environment. Create 'processMonetaryConsequence' function that retrieves user's holding_cell_balance from database. Implement Stripe Connect transfer to pre-configured charity accounts. Handle partial transfers if balance is insufficient. Create database transaction to update holding_cell_balance after successful transfer. Add transfer records to consequences table with amount, recipient charity, and Stripe transaction ID. Implement proper error handling for failed transfers and rollback mechanisms.
+
+## 4. Build SendGrid humiliation consequence system [done]
+### Dependencies: 7.2
+### Description: Implement email-based Kompromat distribution using SendGrid API
+### Details:
+Set up SendGrid client in Edge Function with API key. Create 'processHumiliationConsequence' function that randomly selects Kompromat from user's kompromat table. Randomly select target contact from consequence_targets table. Build email template with dramatic styling and 'Great dishonor' subject line. Include selected Kompromat content (handle both text and image attachments from Supabase Storage). Implement SendGrid API call with proper error handling and retry logic. Log sent emails in consequences table with recipient, content reference, and SendGrid message ID.
+
+## 5. Develop Russian Roulette logic and audit trail [done]
+### Dependencies: 7.3, 7.4
+### Description: Implement probabilistic consequence triggering and comprehensive audit logging
+### Details:
+Create 'russianRoulette' function using crypto.randomInt() for 33% probability on checkpoint failures. Implement 100% guarantee for final deadline failures. Build consequence selection logic based on goal's consequence_type field. Create comprehensive audit trail in consequences table with timestamp, checkpoint_id, consequence_type, triggered (boolean), and execution_details JSON. Implement idempotency checks to prevent duplicate consequences for same failure. Add database triggers to update goal and checkpoint statuses after consequence execution. Handle edge cases like missing Kompromat or insufficient funds with fallback consequences.
+
+## 6. Create frontend failure notifications and modal [done]
+### Dependencies: 7.5
+### Description: Build dramatic in-app notifications for consequence execution
+### Details:
+Create FailureModal component with dramatic entrance animation using Framer Motion or CSS animations. Display ominous 'Great dishonor' message with consequence details. Implement real-time subscription to consequences table for immediate user notification. Add sound effects and visual effects (screen shake, red flash) for maximum impact. Create toast notifications for missed deadlines with countdown to consequence execution. Build consequence history view in user dashboard showing all triggered consequences. Add 'acknowledge shame' button that user must click to dismiss modal. Implement mobile-responsive design for failure notifications.
+

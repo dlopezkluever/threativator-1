@@ -1,0 +1,11 @@
+# Task ID: 10
+# Title: Polish UI with Soviet Constructivist Design System
+# Status: pending
+# Dependencies: 3, 4, 5, 7
+# Priority: low
+# Description: Enhance user interface with Soviet Constructivist visual theme, functional transitions, and authoritative tone using Magic UI components.
+# Details:
+Install and configure Magic UI components for minimalist, functional animations (sharp fades/slides only). Create high-contrast, stencil-like avatars and iconography. Implement the Soviet Constructivist color palette: Primary Red (#DA291C), Accent Black (#000000), Background Parchment (#F5EEDC). Apply Stalinist One font for headings (UPPERCASE) and Roboto Condensed for body text. Design with sharp rectangular elements, no rounded corners, and an 8-point grid system. Ensure authoritative microcopy and visual hierarchy, aiming for an official document aesthetic with stark color contrast. Create toast notifications with high-contrast, stencil-like avatars for all user actions. Design and implement failure modal with stark, functional entrance transition and 'Great dishonor' messaging. Add progress indicators for completed goals. Add loading skeletons for all data-fetching states. Ensure all animations respect prefers-reduced-motion.
+
+# Test Strategy:
+Test animations perform well without frame drops. Verify accessibility with screen readers. Ensure reduced motion preference disables animations. Test color contrast meets WCAG standards. Verify fonts load correctly with fallbacks. Test responsive design on all screen sizes

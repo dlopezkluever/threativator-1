@@ -1,0 +1,43 @@
+# Task ID: 4
+# Title: Implement Goal Creation Flow
+# Status: done
+# Dependencies: 2, 3
+# Priority: high
+# Description: Build comprehensive multi-step goal creation process including goal definition, checkpoint setting, stake assignment, and referee selection
+# Details:
+Create GoalCreation multi-step form component. Step 1: Goal definition - title, description, final deadline picker (must be future date), grading rubric textarea with template options (Word Count, Code Commits, etc) or custom prompt. Step 2: Checkpoints - allow adding multiple checkpoints with title, deadline, requirements, implement AI suggestion feature using Gemini API to auto-generate checkpoints based on goal. Step 3: Stakes - monetary stake input with validation against holding_cell_balance, charity selection dropdown (3 pre-set options), Kompromat assignment with Minor for checkpoints and Major for final deadline. Step 4: Referee selection - radio buttons for AI Grader vs Human Witness, if human selected show contact dropdown filtered to witnesses. Final review screen showing all selections with edit buttons. On submit, create goal record and all associated checkpoints in transaction. Navigate to dashboard on success
+
+# Test Strategy:
+Test form validation at each step. Verify deadlines must be in future and checkpoints before final deadline. Test monetary stake cannot exceed balance. Ensure all required fields are validated. Test goal and checkpoints are created atomically. Verify AI checkpoint generation returns relevant suggestions
+
+# Subtasks:
+## 1. Create Multi-Step Form Component Structure [done]
+### Dependencies: None
+### Description: Set up the base GoalCreation component with step management, navigation controls, and state management for all form data
+### Details:
+Create GoalCreation.tsx component with useState hooks for currentStep (1-5), formData object containing all fields across steps, and validation errors. Implement StepIndicator component showing progress through 4 main steps plus review. Add navigation buttons (Back/Next/Submit) with proper enabling/disabling based on step validation. Use React Hook Form or similar for form state management. Create transitions between steps with smooth animations. Store form data in component state to persist across step changes.
+
+## 2. Implement Goal Definition Step with Template Rubrics [done]
+### Dependencies: 4.1
+### Description: Build Step 1 of the form for entering goal title, description, deadline, and grading rubric with pre-defined templates
+### Details:
+Create GoalDefinitionStep component with controlled inputs for title (max 100 chars), description (rich text editor using Tiptap or similar), and final deadline picker using react-datepicker configured to only allow future dates. Implement grading rubric section with dropdown for template selection (Word Count, Code Commits, Daily Check-ins, Custom). Create template objects with pre-filled prompts that populate the rubric textarea when selected. For custom option, provide editable textarea with placeholder text guiding AI prompt creation. Add character counters and validation messages. Store all data in parent component's formData state.
+
+## 3. Build Checkpoint Management with AI Suggestions [done]
+### Dependencies: 4.1, 4.2
+### Description: Create Step 2 for adding multiple checkpoints with Gemini API integration for auto-generating checkpoint suggestions
+### Details:
+Create CheckpointStep component with dynamic form array for multiple checkpoints. Each checkpoint has title, deadline (react-datepicker), and requirements fields. Implement 'Add Checkpoint' button to append new checkpoint form. Add 'Generate AI Suggestions' button that calls Supabase Edge Function which integrates with Gemini API, passing goal title, description, and final deadline. Display AI suggestions in a modal with checkboxes to select which ones to add. Validate that checkpoint deadlines are before final deadline and in chronological order. Allow reordering checkpoints with drag-and-drop using react-beautiful-dnd. Include delete buttons for each checkpoint.
+
+## 4. Develop Stakes and Referee Selection Steps [done]
+### Dependencies: 4.1
+### Description: Implement Steps 3 and 4 for monetary stakes, charity selection, Kompromat assignment, and referee type selection
+### Details:
+Create StakesStep component with monetary stake input field that validates against user's holding_cell_balance fetched from database. Add charity selection dropdown with 3 pre-configured options (Red Cross, UNICEF, Local Food Bank). Implement Kompromat assignment section with two subsections: Minor Kompromat for checkpoints (multi-select from user's uploaded items filtered by severity='minor'), and Major Kompromat for final deadline (single select from severity='major' items). Create RefereeStep component with radio button group for AI Grader vs Human Witness selection. When Human Witness selected, show dropdown populated with user's contacts filtered by type='witness'. Add help tooltips explaining each option.
+
+## 5. Create Review Screen and Database Transaction Logic [done]
+### Dependencies: 4.1, 4.2, 4.3, 4.4
+### Description: Build final review step with editable summary and implement atomic database transaction to create goal and checkpoints
+### Details:
+Create ReviewStep component displaying all form data in organized sections with edit buttons that jump back to specific steps. Show goal details, all checkpoints in a timeline view, stake amounts and assignments, and selected referee. Implement submitGoal async function that uses Supabase transaction to: create goal record in goals table, create all checkpoint records in checkpoints table with foreign key to goal, update holding_cell_balance if monetary stake exists, create stake_assignments records linking Kompromat to checkpoints/goal. Add loading state during submission with spinner. On success, show success toast and navigate to dashboard using React Router. On error, display specific error message and allow retry.
+
