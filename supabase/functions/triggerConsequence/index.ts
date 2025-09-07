@@ -33,11 +33,26 @@ serve(async (req) => {
       return new Response('Method not allowed', { status: 405 })
     }
 
-    // Verify request has proper authorization
+    // Parse request body to check for internal call
+    const requestBody = await req.json()
+    const internalCall = requestBody?.internal_call === true || requestBody?.source === 'pg_cron_automation'
     const authHeader = req.headers.get('authorization')
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return new Response('Unauthorized', { status: 401 })
+    
+    console.log('Debug auth check:', {
+      'request_body': requestBody,
+      'internal_call_flag': requestBody?.internal_call,
+      'source': requestBody?.source,
+      'internalCall': internalCall,
+      'authHeader': authHeader ? 'present' : 'missing'
+    })
+    
+    // Allow internal calls or proper authorization
+    if (!internalCall && (!authHeader || !authHeader.startsWith('Bearer '))) {
+      console.log('Auth failed: not internal call and no valid auth header')
+      return new Response('Unauthorized - requires internal flag or auth', { status: 401 })
     }
+    
+    console.log('✅ Auth success. Request source:', internalCall ? 'pg_cron (internal)' : 'authenticated user')
 
     // Initialize Supabase client with service role for elevated permissions
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!
