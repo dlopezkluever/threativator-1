@@ -1,0 +1,67 @@
+Storage policies
+Safeguard your files with policies that define the operations allowed for your users at the bucket level.
+
+Buckets
+Write policies for each bucket to control access to the bucket and its contents
+
+submissions:
+Public
+
+New policy
+Name	Command	Applied to	Actions
+
+Service role can manage all submission objects
+ALL	
+service_role
+
+
+Users can delete own submissions
+DELETE	
+public
+
+
+Users can upload to own submission folder
+INSERT	
+public
+
+
+Users can view own submissions
+SELECT	
+public
+
+kompromat:
+
+New policy
+Name	Command	Applied to	Actions
+
+Users can delete their own kompromat
+DELETE	
+authenticated
+
+
+Users can upload their own kompromat
+INSERT	
+authenticated
+
+
+Users can view their own kompromat
+SELECT	
+authenticated
+
+Schema
+Write policies for the tables under the storage schema directly for greater control
+
+Other policies under storage.objects
+Name	Command	Applied to	Actions
+
+Users can upload their own submission files
+INSERT	
+public
+
+
+Users can read their own submission files
+SELECT	
+public
+
+Policies under storage.buckets
+No policies created yet

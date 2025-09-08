@@ -3,6 +3,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { crypto } from "https://deno.land/std@0.168.0/crypto/mod.ts"
 import { processStripeTransfer, isValidCharity } from './stripe-utils.ts'
 import { sendHumiliationEmail } from './sendgrid-utils.ts'
+import { postHumiliationTweet, disconnectTwitterAccount } from './twitter-utils.ts'
 import { NotificationService, shouldSendNotification, getUnsubscribeUrl } from '../shared/notification-service.ts'
 
 console.log("triggerConsequence Edge Function loaded")
@@ -34,9 +35,10 @@ serve(async (req) => {
       return new Response('Method not allowed', { status: 405 })
     }
 
-    // Parse request body to check for internal call
+    // Parse request body to check for internal call or other actions
     const requestBody = await req.json()
     const internalCall = requestBody?.internal_call === true || requestBody?.source === 'pg_cron_automation'
+    const isDisconnectAction = requestBody?.action === 'disconnect_twitter'
     const authHeader = req.headers.get('authorization')
     
     console.log('Debug auth check:', {
@@ -47,13 +49,13 @@ serve(async (req) => {
       'authHeader': authHeader ? 'present' : 'missing'
     })
     
-    // Allow internal calls or proper authorization
-    if (!internalCall && (!authHeader || !authHeader.startsWith('Bearer '))) {
-      console.log('Auth failed: not internal call and no valid auth header')
-      return new Response('Unauthorized - requires internal flag or auth', { status: 401 })
+    // Allow internal calls, disconnect actions, or proper authorization
+    if (!internalCall && !isDisconnectAction && (!authHeader || !authHeader.startsWith('Bearer '))) {
+      console.log('Auth failed: not internal call, not disconnect action, and no valid auth header')
+      return new Response('Unauthorized - requires internal flag, disconnect action, or auth', { status: 401 })
     }
     
-    console.log('✅ Auth success. Request source:', internalCall ? 'pg_cron (internal)' : 'authenticated user')
+    console.log('✅ Auth success. Request source:', internalCall ? 'pg_cron (internal)' : (isDisconnectAction ? 'disconnect action' : 'authenticated user'))
 
     // Initialize Supabase client with service role for elevated permissions
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!
@@ -65,6 +67,23 @@ serve(async (req) => {
         persistSession: false
       }
     })
+
+    // Handle Twitter disconnect action
+    if (isDisconnectAction) {
+      const userId = requestBody.user_id
+      if (!userId) {
+        return new Response(JSON.stringify({ success: false, error: 'Missing user_id for disconnect' }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' }
+        })
+      }
+
+      const disconnectResult = await disconnectTwitterAccount(supabase, userId)
+      return new Response(JSON.stringify(disconnectResult), {
+        status: disconnectResult.success ? 200 : 500,
+        headers: { 'Content-Type': 'application/json' }
+      })
+    }
 
     console.log('Starting consequence processing...')
 
@@ -205,6 +224,9 @@ async function processConsequence(supabase: any, item: OverdueItem): Promise<Con
         case 'humiliation_email':
           result = await processHumiliationConsequence(supabase, item)
           break
+        case 'humiliation_social':
+          result = await processTwitterConsequence(supabase, item)
+          break
         default:
           console.log(`Unknown consequence type: ${consequenceType}`)
           continue
@@ -226,7 +248,7 @@ async function processConsequence(supabase: any, item: OverdueItem): Promise<Con
           consequence_type: consequenceType,
           monetary_amount: consequenceType === 'monetary' ? item.monetary_stake : null,
           charity_destination: consequenceType === 'monetary' ? item.charity_destination : null,
-          kompromat_id: consequenceType === 'humiliation_email' ? 
+          kompromat_id: (consequenceType === 'humiliation_email' || consequenceType === 'humiliation_social') ? 
             (item.failure_type === 'final_deadline' ? item.major_kompromat_id : item.minor_kompromat_id) : 
             null,
           triggered_at: new Date().toISOString(),
@@ -401,6 +423,67 @@ async function processHumiliationConsequence(supabase: any, item: OverdueItem): 
   }
 }
 
+async function processTwitterConsequence(supabase: any, item: OverdueItem): Promise<any> {
+  console.log('Processing Twitter social media consequence')
+
+  const kompromátId = item.failure_type === 'final_deadline' ? 
+    item.major_kompromat_id : item.minor_kompromat_id
+
+  if (!kompromátId) {
+    return { success: false, error: 'No kompromat available for Twitter consequence' }
+  }
+
+  // Get user's Twitter tokens from metadata
+  const { data: userRecord } = await supabase.auth.admin.getUserById(item.user_id)
+  const userMetadata = userRecord?.user?.user_metadata || {}
+  
+  const twitterTokens = {
+    access_token: userMetadata.twitter_access_token,
+    refresh_token: userMetadata.twitter_refresh_token,
+    username: userMetadata.twitter_username
+  }
+
+  if (!twitterTokens.access_token) {
+    return { 
+      success: false, 
+      error: 'No Twitter account connected - user must connect Twitter for social consequences' 
+    }
+  }
+
+  // Get kompromat details
+  const { data: kompromat, error: kompromátError } = await supabase
+    .from('kompromat')
+    .select('*')
+    .eq('id', kompromátId)
+    .single()
+
+  if (kompromátError || !kompromat) {
+    return { success: false, error: 'Failed to fetch kompromat for Twitter post' }
+  }
+
+  // Post humiliation tweet
+  const twitterResult = await postHumiliationTweet(
+    kompromat,
+    item.failure_type,
+    twitterTokens,
+    supabase,
+    item.user_id
+  )
+
+  if (!twitterResult.success) {
+    return twitterResult
+  }
+
+  return {
+    success: true,
+    tweet_id: twitterResult.tweet_id,
+    tweet_url: twitterResult.tweet_url,
+    kompromat_filename: kompromat.original_filename,
+    kompromat_severity: kompromat.severity,
+    twitter_username: twitterTokens.username
+  }
+}
+
 // Enhanced consequence notification function
 async function sendConsequenceNotifications(
   supabase: any,
@@ -502,6 +585,10 @@ async function sendConsequenceNotifications(
           notificationData.amount = result.details.amount_transferred
           notificationData.charity = result.details.charity
         } else if (result.type === 'humiliation_email' && result.details) {
+          notificationData.kompromatFilename = result.details.kompromat_filename || 'classified material'
+        } else if (result.type === 'humiliation_social' && result.details) {
+          notificationData.tweetUrl = result.details.tweet_url
+          notificationData.twitterUsername = result.details.twitter_username
           notificationData.kompromatFilename = result.details.kompromat_filename || 'classified material'
         }
 

@@ -272,6 +272,27 @@ export default function ConsequenceModalCompact({
                     </div>
                   )}
                   
+                  {consequence?.consequence_type === 'humiliation_social' && (
+                    <div 
+                      style={{
+                        backgroundColor: '#FEF2F2',
+                        border: '2px solid #EF4444',
+                        borderRadius: '0px',
+                        padding: '12px'
+                      }}
+                    >
+                      <p style={{ fontWeight: 'bold', fontSize: '12px', margin: '0 0 4px 0', color: '#000000' }}>SOCIAL MEDIA EXPOSURE</p>
+                      <p style={{ fontSize: '12px', margin: '0 0 6px 0', color: '#000000' }}>
+                        Shame material broadcast to Twitter/X timeline. Public accountability executed.
+                      </p>
+                      {consequence.execution_details?.tweet_url && (
+                        <p style={{ fontSize: '10px', color: '#000000', margin: 0 }}>
+                          View: {consequence.execution_details.tweet_url}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                  
                   {consequence?.consequence_type === 'grading_failure' && (
                     <div 
                       style={{

@@ -11,6 +11,7 @@ import ForgotPasswordPage from './components/auth/ForgotPasswordPage'
 import ResetPasswordPage from './components/auth/ResetPasswordPage'
 import AuthTestPage from './components/auth/AuthTestPage'
 import TwitterCallbackPage from './components/auth/TwitterCallbackPage'
+import TwitterTestPage from './components/auth/TwitterTestPage'
 import OnboardingWizard from './components/onboarding/OnboardingWizard'
 import OnboardingTestPage from './components/onboarding/OnboardingTestPage'
 import DashboardLayout from './components/dashboard/DashboardLayout'
@@ -74,6 +75,7 @@ function App() {
                 {/* Test pages - can be accessed by anyone */}
                 <Route path="/test" element={<AuthTestPage />} />
                 <Route path="/test-onboarding" element={<OnboardingTestPage />} />
+                <Route path="/test-twitter" element={<TwitterTestPage />} />
 
                 {/* Default redirect */}
                 <Route path="/" element={<Navigate to="/dashboard" replace />} />

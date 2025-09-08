@@ -16,9 +16,15 @@ const SocialMediaStep: React.FC<SocialMediaStepProps> = ({ onComplete, onError }
   }>({ connected: false })
 
   useEffect(() => {
-    // TODO: Fetch user social media connections from database if needed
-    // For now, default to not connected
-    setConnectionStatus({ connected: false })
+    // Check if user has Twitter connection from metadata
+    if (user?.user_metadata) {
+      setConnectionStatus({
+        connected: !!user.user_metadata.twitter_access_token,
+        username: user.user_metadata.twitter_username
+      })
+    } else {
+      setConnectionStatus({ connected: false })
+    }
   }, [user])
 
   const initiateTwitterOAuth = async () => {
@@ -78,21 +84,31 @@ const SocialMediaStep: React.FC<SocialMediaStepProps> = ({ onComplete, onError }
     setIsConnecting(true)
 
     try {
-      const { error } = await supabase
-        .from('users')
-        .update({
-          twitter_access_token: null,
-          twitter_refresh_token: null,
-          twitter_username: null,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', user.id)
+      // Call the disconnect function via triggerConsequence Edge Function
+      const { data, error } = await supabase.functions.invoke(
+        'triggerConsequence',
+        {
+          body: {
+            action: 'disconnect_twitter',
+            user_id: user.id
+          }
+        }
+      )
 
       if (error) {
-        throw new Error('Failed to disconnect Twitter account')
+        throw new Error(`Failed to disconnect Twitter: ${error.message}`)
       }
 
+      if (!data.success) {
+        throw new Error(data.error || 'Disconnect operation failed')
+      }
+
+      // Update local state
       setConnectionStatus({ connected: false })
+      
+      // Refresh user data to get updated metadata
+      await supabase.auth.refreshSession()
+      
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to disconnect Twitter'
       onError(errorMessage)
