@@ -3,6 +3,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { crypto } from "https://deno.land/std@0.168.0/crypto/mod.ts"
 import { processStripeTransfer, isValidCharity } from './stripe-utils.ts'
 import { sendHumiliationEmail } from './sendgrid-utils.ts'
+import { NotificationService, shouldSendNotification, getUnsubscribeUrl } from '../shared/notification-service.ts'
 
 console.log("triggerConsequence Edge Function loaded")
 
@@ -179,6 +180,9 @@ async function processConsequence(supabase: any, item: OverdueItem): Promise<Con
       .select()
       .single()
 
+    // Send mercy notification to user
+    await sendConsequenceNotifications(supabase, item, [], true) // wasSpared = true
+
     return {
       success: true,
       consequence_id: consequence?.id,
@@ -240,6 +244,9 @@ async function processConsequence(supabase: any, item: OverdueItem): Promise<Con
       })
     }
   }
+
+  // Send enhanced consequence notifications to user
+  await sendConsequenceNotifications(supabase, item, results, false) // wasSpared = false
 
   return {
     success: results.some(r => r.success),
@@ -391,5 +398,142 @@ async function processHumiliationConsequence(supabase: any, item: OverdueItem): 
     kompromat_filename: kompromat.original_filename,
     kompromat_severity: kompromat.severity,
     sendgrid_message_id: emailResult.message_id
+  }
+}
+
+// Enhanced consequence notification function
+async function sendConsequenceNotifications(
+  supabase: any,
+  item: OverdueItem,
+  consequenceResults: any[],
+  wasSpared: boolean
+): Promise<void> {
+  try {
+    // Get user data
+    const { data: userRecord } = await supabase.auth.admin.getUserById(item.user_id)
+    const userData = userRecord?.user
+    
+    if (!userData || !userData.email) {
+      console.log('No user email found for consequence notification')
+      return
+    }
+
+    // Check if user wants consequence notifications
+    const shouldSend = await shouldSendNotification(
+      supabase,
+      item.user_id,
+      'consequence_notifications'
+    )
+
+    if (!shouldSend) {
+      console.log(`User ${userData.email} has disabled consequence notifications`)
+      return
+    }
+
+    // Get goal information for context
+    const { data: goalData } = await supabase
+      .from('goals')
+      .select('title')
+      .eq('id', item.goal_id)
+      .single()
+
+    const goalTitle = goalData?.title || 'Unknown Goal'
+
+    // Initialize notification service
+    const notificationService = new NotificationService()
+    
+    if (!notificationService.isConfigured()) {
+      console.log('Notification service not configured, skipping consequence email')
+      return
+    }
+
+    // Get unsubscribe URL
+    const unsubscribeUrl = await getUnsubscribeUrl(supabase, item.user_id)
+
+    if (wasSpared) {
+      // Send mercy notification
+      const emailResult = await notificationService.sendConsequenceNotification({
+        recipientName: userData.raw_user_meta_data?.display_name || 'Comrade',
+        recipientEmail: userData.email,
+        consequenceType: 'monetary', // Default for mercy
+        goalTitle,
+        isRussianRoulette: true,
+        wasSpared: true,
+        unsubscribeUrl
+      }, item.user_id)
+
+      if (emailResult.success) {
+        console.log(`✅ Sent mercy notification to ${userData.email}`)
+      } else {
+        console.error(`❌ Failed to send mercy notification:`, emailResult.error)
+      }
+
+      // Log the notification
+      await supabase.rpc('log_notification', {
+        p_user_id: item.user_id,
+        p_goal_id: item.goal_id,
+        p_checkpoint_id: item.checkpoint_id,
+        p_notification_type: 'consequence',
+        p_reminder_type: 'immediate',
+        p_recipient_email: userData.email,
+        p_subject: `🍀 MERCY: The roulette favors you for ${goalTitle}`,
+        p_sendgrid_message_id: emailResult.messageId || null,
+        p_deadline_date: null,
+        p_hours_until_deadline: null
+      })
+
+    } else {
+      // Send consequence execution notifications
+      for (const result of consequenceResults) {
+        if (!result.success) continue
+
+        let notificationData: any = {
+          recipientName: userData.raw_user_meta_data?.display_name || 'Comrade',
+          recipientEmail: userData.email,
+          consequenceType: result.type,
+          goalTitle,
+          isRussianRoulette: item.failure_type === 'checkpoint',
+          wasSpared: false,
+          unsubscribeUrl
+        }
+
+        // Add type-specific data
+        if (result.type === 'monetary' && result.details) {
+          notificationData.amount = result.details.amount_transferred
+          notificationData.charity = result.details.charity
+        } else if (result.type === 'humiliation_email' && result.details) {
+          notificationData.kompromatFilename = result.details.kompromat_filename || 'classified material'
+        }
+
+        const emailResult = await notificationService.sendConsequenceNotification(
+          notificationData,
+          item.user_id
+        )
+
+        if (emailResult.success) {
+          console.log(`✅ Sent ${result.type} consequence notification to ${userData.email}`)
+        } else {
+          console.error(`❌ Failed to send ${result.type} consequence notification:`, emailResult.error)
+        }
+
+        // Log the notification
+        await supabase.rpc('log_notification', {
+          p_user_id: item.user_id,
+          p_goal_id: item.goal_id,
+          p_checkpoint_id: item.checkpoint_id,
+          p_notification_type: 'consequence',
+          p_reminder_type: 'immediate',
+          p_recipient_email: userData.email,
+          p_subject: `⚠️ CONSEQUENCE: Accountability protocol executed for ${goalTitle}`,
+          p_sendgrid_message_id: emailResult.messageId || null,
+          p_deadline_date: null,
+          p_hours_until_deadline: null
+        })
+      }
+    }
+
+  } catch (error) {
+    console.error('Error sending consequence notifications:', error)
+    // Don't throw - notification failure shouldn't break consequence processing
   }
 }

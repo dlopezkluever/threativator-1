@@ -573,7 +573,7 @@
             "title": "Create Email Template System",
             "description": "Design and implement Soviet-themed email templates for all notification types",
             "details": "Create HTML email templates with Soviet Constructivist styling. Templates needed: deadline reminders (24h, 1h), submission results (passed/failed), consequence notifications, goal completion. Include proper CSS inlining for email compatibility. Add template variables for personalization. Create template testing utility.",
-            "status": "pending",
+            "status": "done",
             "dependencies": [],
             "parentTaskId": 9
           },
@@ -582,7 +582,7 @@
             "title": "Implement Deadline Reminder System",
             "description": "Create automated system to send reminder emails at 24h and 1h before deadlines",
             "details": "Create Edge Function triggered by pg_cron to check for upcoming deadlines. Query goals and checkpoints approaching deadlines. Send reminder emails via SendGrid with appropriate templates. Track sent reminders to avoid duplicates. Handle timezone calculations correctly. Support user notification preferences.",
-            "status": "pending",
+            "status": "done",
             "dependencies": [],
             "parentTaskId": 9
           },
@@ -591,7 +591,7 @@
             "title": "Create Submission Result Notifications",
             "description": "Implement email notifications for AI grading results and submission feedback",
             "details": "Extend existing grading system to trigger email notifications after AI analysis. Send pass/fail notifications with detailed feedback. Include resubmission instructions for failed submissions. Handle both AI and human witness grading results. Integrate with existing submission status tracking.",
-            "status": "pending",
+            "status": "done",
             "dependencies": [],
             "parentTaskId": 9
           },
@@ -600,7 +600,7 @@
             "title": "Build User Notification Preferences",
             "description": "Create UI and database schema for users to manage email notification preferences",
             "details": "Add notification preferences table to database. Create settings UI for users to enable/disable notification types (reminders, results, consequences). Implement unsubscribe functionality with secure tokens. Add email frequency controls (immediate, daily digest). Update all notification services to respect user preferences.",
-            "status": "pending",
+            "status": "done",
             "dependencies": [],
             "parentTaskId": 9
           },
@@ -609,7 +609,7 @@
             "title": "Implement Consequence Notification Enhancement",
             "description": "Extend existing consequence system with detailed email notifications beyond current humiliation emails",
             "details": "Enhance current SendGrid consequence emails with detailed templates. Send immediate notifications when consequences are triggered. Include consequence details, appeal instructions, and motivational messaging. Add follow-up emails for monetary consequences with charity receipts. Integrate with existing consequence modal system.",
-            "status": "pending",
+            "status": "done",
             "dependencies": [],
             "parentTaskId": 9
           }
@@ -634,7 +634,7 @@
     ],
     "metadata": {
       "created": "2025-08-31T08:33:10.007Z",
-      "updated": "2025-09-07T22:42:41.015Z",
+      "updated": "2025-09-08T00:08:45.282Z",
       "description": "Tasks for master context"
     }
   }

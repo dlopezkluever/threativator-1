@@ -1,5 +1,6 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { NotificationService, shouldSendNotification } from '../shared/notification-service.ts'
 
 interface SubmissionData {
   id: string
@@ -14,6 +15,7 @@ interface SubmissionData {
 
 interface GoalData {
   id: string
+  title: string
   grading_rubric: string
   referee_type: 'ai' | 'human_witness'
 }
@@ -22,6 +24,15 @@ interface CheckpointData {
   id: string
   goal_id: string
   requirements?: string
+  title: string
+}
+
+interface UserData {
+  id: string
+  email?: string
+  raw_user_meta_data?: {
+    display_name?: string
+  }
 }
 
 interface GeminiResponse {
@@ -97,7 +108,7 @@ serve(async (req) => {
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
-    // Get submission with related goal and checkpoint data
+    // Get submission with related goal, checkpoint, and user data
     const { data: submissionData, error: submissionError } = await supabase
       .from('submissions')
       .select(`
@@ -105,9 +116,11 @@ serve(async (req) => {
         checkpoints!inner (
           id,
           goal_id,
+          title,
           requirements,
           goals!inner (
             id,
+            title,
             grading_rubric,
             referee_type
           )
@@ -116,6 +129,13 @@ serve(async (req) => {
       .eq('id', submission_id)
       .eq('status', 'pending')
       .single()
+
+    // Get user data separately
+    let userData: UserData | null = null
+    if (submissionData) {
+      const { data: userRecord } = await supabase.auth.admin.getUserById(submissionData.user_id)
+      userData = userRecord?.user as UserData || null
+    }
 
     if (submissionError || !submissionData) {
       return new Response(
@@ -193,6 +213,16 @@ serve(async (req) => {
     if (updateError) {
       throw new Error(`Failed to update submission: ${updateError.message}`)
     }
+
+    // Send submission result notification email
+    await sendSubmissionResultNotification(
+      supabase,
+      submission,
+      goal,
+      checkpoint,
+      gradingResult,
+      userData
+    )
 
     // Store API usage metrics
     const responseTime = Date.now() - startTime
@@ -658,5 +688,102 @@ async function storeApiMetrics(metrics: ApiUsageMetrics): Promise<void> {
   } catch (error) {
     console.error('Error storing metrics:', error)
     // Don't throw - metrics storage failure shouldn't break grading
+  }
+}
+
+async function sendSubmissionResultNotification(
+  supabase: ReturnType<typeof createClient>,
+  submission: SubmissionData & {
+    checkpoints: CheckpointData & {
+      goals: GoalData
+    }
+  },
+  goal: GoalData,
+  checkpoint: CheckpointData,
+  gradingResult: GradingResult,
+  userData: UserData | null
+): Promise<void> {
+  try {
+    // Skip if no user data or email
+    if (!userData || !userData.email) {
+      console.log('No user email found, skipping submission result notification')
+      return
+    }
+
+    // Check if user wants submission result notifications
+    const shouldSend = await shouldSendNotification(
+      supabase,
+      userData.id,
+      'submission_results'
+    )
+
+    if (!shouldSend) {
+      console.log(`User ${userData.email} has disabled submission result notifications`)
+      return
+    }
+
+    // Initialize notification service
+    const notificationService = new NotificationService()
+    
+    if (!notificationService.isConfigured()) {
+      console.log('Notification service not configured, skipping email')
+      return
+    }
+
+    // Calculate if user can resubmit (deadline hasn't passed)
+    const now = new Date()
+    let canResubmit = false
+    
+    // Get checkpoint deadline to determine if resubmission is possible
+    const { data: checkpointData } = await supabase
+      .from('checkpoints')
+      .select('deadline, status')
+      .eq('id', checkpoint.id)
+      .single()
+    
+    if (checkpointData && checkpointData.status === 'pending') {
+      const deadline = new Date(checkpointData.deadline)
+      canResubmit = deadline > now
+    }
+
+    // Send the notification
+    const emailResult = await notificationService.sendSubmissionResult({
+      recipientName: userData.raw_user_meta_data?.display_name || 'Comrade',
+      recipientEmail: userData.email,
+      goalTitle: goal.title,
+      checkpointTitle: checkpoint.title,
+      submissionType: submission.submission_type,
+      result: gradingResult.verdict,
+      feedback: gradingResult.reasoning,
+      confidenceScore: gradingResult.confidence_score,
+      submissionUrl: `https://threativator.com/dashboard?view=checkpoint-${checkpoint.id}`,
+      canResubmit
+    })
+
+    // Log the notification result
+    const logResult = await supabase.rpc('log_notification', {
+      p_user_id: userData.id,
+      p_goal_id: goal.id,
+      p_checkpoint_id: checkpoint.id,
+      p_notification_type: 'submission_result',
+      p_reminder_type: 'immediate',
+      p_recipient_email: userData.email,
+      p_subject: gradingResult.verdict === 'passed' 
+        ? `✅ Submission APPROVED: ${checkpoint.title}`
+        : `❌ Submission REJECTED: ${checkpoint.title}`,
+      p_sendgrid_message_id: emailResult.messageId || null,
+      p_deadline_date: checkpointData?.deadline || null,
+      p_hours_until_deadline: null
+    })
+
+    if (emailResult.success) {
+      console.log(`✅ Sent submission result notification for ${checkpoint.title} to ${userData.email}`)
+    } else {
+      console.error(`❌ Failed to send submission result notification:`, emailResult.error)
+    }
+
+  } catch (error) {
+    console.error('Error sending submission result notification:', error)
+    // Don't throw - notification failure shouldn't break grading
   }
 }
