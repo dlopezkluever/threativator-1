@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useAuth } from '../../contexts/AuthContext'
 import { uploadSubmissionFile, UploadResult } from '../../utils/submissionStorage'
+import { debugFileUpload, logUploadDiagnostics } from '../../utils/uploadDebugger'
 
 export interface FileData {
   file: File
@@ -17,10 +18,17 @@ interface Props {
   disabled?: boolean
 }
 
+interface ErrorState {
+  hasError: boolean
+  errorMessage: string
+  errorType?: string
+}
+
 const FileUploadZone: React.FC<Props> = ({ onFileSelected, onUploadComplete, disabled = false }) => {
   const { user } = useAuth()
   const [uploadProgress, setUploadProgress] = useState(0)
   const [isUploading, setIsUploading] = useState(false)
+  const [errorState, setErrorState] = useState<ErrorState>({ hasError: false, errorMessage: '' })
 
   const validateFile = (file: File): string | null => {
     // Check file size (10MB limit)
@@ -66,6 +74,23 @@ const FileUploadZone: React.FC<Props> = ({ onFileSelected, onUploadComplete, dis
     setUploadProgress(0)
 
     try {
+      // DEBUGGING: Run diagnostic first
+      console.log('🔧 Running upload diagnostics...')
+      const debugResult = await debugFileUpload(file)
+      logUploadDiagnostics(debugResult)
+      
+      if (!debugResult.success) {
+        const errorData: FileData = {
+          file,
+          previewUrl: createPreviewUrl(file),
+          uploadProgress: 0,
+          uploadError: `DEBUG: ${debugResult.error}`
+        }
+        onFileSelected(errorData)
+        return
+      }
+
+      // If debug passes, proceed with normal upload
       const result = await uploadSubmissionFile(
         file,
         user.id,
