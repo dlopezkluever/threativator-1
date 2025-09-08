@@ -176,8 +176,10 @@ const SubmissionModal: React.FC<Props> = ({
 
   const handleFileSelected = (fileData: FileData) => {
     setSubmissionData(prev => ({ ...prev, fileData }))
-    // Don't auto-advance to preview - let user click "PREVIEW" button
-    // This ensures consistent flow across all submission types
+    // Auto-advance to preview when file upload succeeds for streamlined UX
+    if (fileData.uploadResult?.success) {
+      setCurrentStep('preview')
+    }
   }
 
   const handleURLChange = (urlData: URLData) => {
@@ -427,7 +429,7 @@ const SubmissionModal: React.FC<Props> = ({
             </Button>
           )}
 
-          {currentStep === 'input' && (
+          {currentStep === 'input' && submissionData.type !== 'file_upload' && (
             <Button
               onClick={handleNext}
               variant="action"

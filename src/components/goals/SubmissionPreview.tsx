@@ -39,37 +39,83 @@ const SubmissionPreview: React.FC<Props> = ({
         </h3>
         
         <div className="border border-[var(--color-accent-black)] p-[var(--space-4)] bg-white">
-          <div className="flex items-start gap-[var(--space-4)]">
-            
-            {/* File Preview */}
-            <div className="flex-shrink-0">
-              {isImage && previewUrl ? (
+          
+          {/* Large Preview Section */}
+          <div className="mb-[var(--space-4)]">
+            {isImage && previewUrl ? (
+              <div className="text-center">
                 <img 
                   src={previewUrl} 
                   alt="File preview"
-                  className="w-16 h-16 object-cover border border-[var(--color-accent-black)]"
+                  style={{
+                    maxWidth: '100%',
+                    maxHeight: '300px',
+                    objectFit: 'contain',
+                    border: '2px solid var(--color-accent-black)',
+                    backgroundColor: 'white'
+                  }}
+                  className="mx-auto"
                 />
-              ) : (
-                <div className="w-16 h-16 border border-[var(--color-accent-black)] flex items-center justify-center bg-gray-100">
-                  <span className="text-[var(--font-size-2xl)]">
+              </div>
+            ) : file.type.startsWith('video/') && previewUrl ? (
+              <div className="text-center">
+                <video 
+                  controls
+                  style={{
+                    maxWidth: '100%',
+                    maxHeight: '300px',
+                    border: '2px solid var(--color-accent-black)',
+                    backgroundColor: 'black'
+                  }}
+                  className="mx-auto"
+                >
+                  <source src={previewUrl} type={file.type} />
+                  Your browser does not support video playback.
+                </video>
+              </div>
+            ) : (
+              <div className="text-center py-8">
+                <div 
+                  style={{
+                    width: '120px',
+                    height: '120px',
+                    margin: '0 auto',
+                    border: '2px solid var(--color-accent-black)',
+                    backgroundColor: '#F5EEDC',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  <span className="text-[var(--font-size-4xl)]">
                     {file.type.includes('pdf') ? '📄' : 
                      file.type.includes('video') ? '🎥' : '📎'}
                   </span>
                 </div>
-              )}
-            </div>
+                <p className="text-[var(--font-size-sm)] mt-3 text-[var(--color-text-primary)] font-bold">
+                  {file.type.includes('pdf') ? 'PDF DOCUMENT' : 
+                   file.type.includes('video') ? 'VIDEO FILE' : 'FILE ATTACHMENT'}
+                </p>
+              </div>
+            )}
+          </div>
 
-            {/* File Details */}
-            <div className="flex-1">
-              <p className="font-bold text-[var(--font-size-base)] mb-1">
-                {file.name}
-              </p>
-              <p className="text-[var(--font-size-sm)] opacity-70 mb-1">
-                {file.type} • {(file.size / 1024 / 1024).toFixed(1)} MB
-              </p>
-              <p className="text-[var(--color-success-muted)] text-[var(--font-size-sm)] font-bold">
-                ✓ UPLOADED SUCCESSFULLY
-              </p>
+          {/* File Details Section */}
+          <div className="border-t border-[var(--color-accent-black)] pt-[var(--space-3)]">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-bold text-[var(--font-size-base)] mb-1">
+                  {file.name}
+                </p>
+                <p className="text-[var(--font-size-sm)] opacity-70 mb-1">
+                  {file.type} • {(file.size / 1024 / 1024).toFixed(1)} MB
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-[var(--color-success-muted)] text-[var(--font-size-sm)] font-bold">
+                  ✓ UPLOADED SUCCESSFULLY
+                </p>
+              </div>
             </div>
           </div>
         </div>
