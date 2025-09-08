@@ -4,7 +4,7 @@ Safeguard your files with policies that define the operations allowed for your u
 Buckets
 Write policies for each bucket to control access to the bucket and its contents
 
-submissions:
+submissions: 
 Public
 
 New policy
@@ -13,21 +13,25 @@ Name	Command	Applied to	Actions
 Service role can manage all submission objects
 ALL	
 service_role
-
+using expression: (bucket_id = 'submissions'::text)
 
 Users can delete own submissions
 DELETE	
 public
+With check expression: ((bucket_id = 'submissions'::text) AND ((auth.uid())::text = (storage.foldername(name))[1]))
 
 
 Users can upload to own submission folder
 INSERT	
 public
 
+With check expression: ((bucket_id = 'submissions'::text) AND ((auth.uid())::text = (storage.foldername(name))[1]) AND ((storage.foldername(name))[2] = 'submissions'::text))
+
 
 Users can view own submissions
 SELECT	
 public
+With check expression: ((bucket_id = 'submissions'::text) AND ((auth.uid())::text = (storage.foldername(name))[1]))
 
 kompromat:
 
@@ -37,16 +41,17 @@ Name	Command	Applied to	Actions
 Users can delete their own kompromat
 DELETE	
 authenticated
-
+With check expression: ((bucket_id = 'kompromat'::text) AND ((auth.uid())::text = (storage.foldername(name))[2]))
 
 Users can upload their own kompromat
 INSERT	
 authenticated
-
+With check expression: ((bucket_id = 'kompromat'::text) AND ((auth.uid())::text = (storage.foldername(name))[2]))
 
 Users can view their own kompromat
 SELECT	
 authenticated
+With check expression: ((bucket_id = 'kompromat'::text) AND ((auth.uid())::text = (storage.foldername(name))[2]))
 
 Schema
 Write policies for the tables under the storage schema directly for greater control
@@ -57,11 +62,12 @@ Name	Command	Applied to	Actions
 Users can upload their own submission files
 INSERT	
 public
-
+With check expression: ((auth.uid())::text = (storage.foldername(name))[0])
 
 Users can read their own submission files
 SELECT	
 public
+With check expression: ((auth.uid())::text = (storage.foldername(name))[0])
 
 Policies under storage.buckets
 No policies created yet
