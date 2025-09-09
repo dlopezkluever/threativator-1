@@ -1,0 +1,1834 @@
+Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+ProtectedRoute.tsx:17 🛡️ [ProtectedRoute] Simple auth check for: /create-goal
+ProtectedRoute.tsx:18 🛡️ [ProtectedRoute] State - loading: true user: false
+ProtectedRoute.tsx:22 ⏳ [ProtectedRoute] Loading auth state, showing Soviet spinner
+AuthContext.tsx:43 🚀 [AuthContext] Simple auth initialization started
+AuthContext.tsx:48 🔄 [AuthContext] Getting initial session...
+AuthContext.tsx:72 👂 [AuthContext] Setting up simple auth state change listener
+AuthContext.tsx:75 🔄 [AuthContext] Auth state change: SIGNED_IN Session exists
+AuthContext.tsx:79 ✅ [AuthContext] Simple auth state change complete, setting loading=false
+ProtectedRoute.tsx:17 🛡️ [ProtectedRoute] Simple auth check for: /create-goal
+ProtectedRoute.tsx:18 🛡️ [ProtectedRoute] State - loading: false user: true
+ProtectedRoute.tsx:53 ✅ [ProtectedRoute] User authenticated, rendering dashboard
+AuthContext.tsx:51 📋 [AuthContext] Initial session retrieved: Found session
+AuthContext.tsx:56 ✅ [AuthContext] Simple session setup complete, setting loading=false
+ProtectedRoute.tsx:17 🛡️ [ProtectedRoute] Simple auth check for: /create-goal
+ProtectedRoute.tsx:18 🛡️ [ProtectedRoute] State - loading: false user: true
+ProtectedRoute.tsx:53 ✅ [ProtectedRoute] User authenticated, rendering dashboard
+stripe.js:1 You may test your Stripe.js integration over HTTP. However, live Stripe.js integrations must use HTTPS.
+value @ stripe.js:1
+e @ stripe.js:1
+fy @ stripe.js:1
+initStripe2 @ @stripe_stripe-js.js?v=99411537:121
+(anonymous) @ @stripe_stripe-js.js?v=99411537:151
+Promise.then
+loadStripe2 @ @stripe_stripe-js.js?v=99411537:150
+(anonymous) @ StripePaymentStep.tsx:9Understand this warning
+stripe.js:1 You may test your Stripe.js integration over HTTP. However, live Stripe.js integrations must use HTTPS.
+value @ stripe.js:1
+e @ stripe.js:1
+fy @ stripe.js:1
+initStripe2 @ @stripe_stripe-js.js?v=99411537:121
+(anonymous) @ @stripe_stripe-js.js?v=99411537:151
+Promise.then
+loadStripe2 @ @stripe_stripe-js.js?v=99411537:150
+(anonymous) @ StripePaymentTestStep.tsx:7Understand this warning
+stripe.js:1 You may test your Stripe.js integration over HTTP. However, live Stripe.js integrations must use HTTPS.
+value @ stripe.js:1
+e @ stripe.js:1
+fy @ stripe.js:1
+initStripe2 @ @stripe_stripe-js.js?v=99411537:121
+(anonymous) @ @stripe_stripe-js.js?v=99411537:151
+Promise.then
+loadStripe2 @ @stripe_stripe-js.js?v=99411537:150
+(anonymous) @ PaymentModal.tsx:13Understand this warning
+AuthContext.tsx:75 🔄 [AuthContext] Auth state change: INITIAL_SESSION Session exists
+AuthContext.tsx:79 ✅ [AuthContext] Simple auth state change complete, setting loading=false
+ProtectedRoute.tsx:17 🛡️ [ProtectedRoute] Simple auth check for: /create-goal
+ProtectedRoute.tsx:18 🛡️ [ProtectedRoute] State - loading: false user: true
+ProtectedRoute.tsx:53 ✅ [ProtectedRoute] User authenticated, rendering dashboard
+8Unchecked runtime.lastError: The message port closed before a response was received.Understand this error
+shared-bc07c828a5b5f4798f341fa4686653dd.js:1  POST https://r.stripe.com/b net::ERR_BLOCKED_BY_CLIENT
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+e @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+c @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1Understand this error
+shared-bc07c828a5b5f4798f341fa4686653dd.js:1  POST https://r.stripe.com/b net::ERR_BLOCKED_BY_CLIENT
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+e @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+c @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1Understand this error
+shared-bc07c828a5b5f4798f341fa4686653dd.js:1  POST https://r.stripe.com/b net::ERR_BLOCKED_BY_CLIENT
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+e @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+c @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1Understand this error
+shared-bc07c828a5b5f4798f341fa4686653dd.js:1  POST https://r.stripe.com/b net::ERR_BLOCKED_BY_CLIENT
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+e @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+c @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1Understand this error
+shared-bc07c828a5b5f4798f341fa4686653dd.js:1  POST https://r.stripe.com/b net::ERR_BLOCKED_BY_CLIENT
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+e @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+c @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1Understand this error
+shared-bc07c828a5b5f4798f341fa4686653dd.js:1 Uncaught (in promise) FetchError: Error fetching https://r.stripe.com/b: Failed to fetch
+    at shared-bc07c828a5b5f4798f341fa4686653dd.js:1:221443
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+Promise.catch
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+e @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+c @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1Understand this error
+shared-bc07c828a5b5f4798f341fa4686653dd.js:1  POST https://r.stripe.com/b net::ERR_BLOCKED_BY_CLIENT
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+e @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+c @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1Understand this error
+shared-bc07c828a5b5f4798f341fa4686653dd.js:1 Uncaught (in promise) FetchError: Error fetching https://r.stripe.com/b: Failed to fetch
+    at shared-bc07c828a5b5f4798f341fa4686653dd.js:1:221443
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+Promise.catch
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+e @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+c @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1Understand this error
+2shared-bc07c828a5b5f4798f341fa4686653dd.js:1 Uncaught (in promise) FetchError: Error fetching https://r.stripe.com/b: Failed to fetch
+    at shared-bc07c828a5b5f4798f341fa4686653dd.js:1:221443
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+Promise.catch
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+e @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+c @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1Understand this error
+2shared-bc07c828a5b5f4798f341fa4686653dd.js:1 Uncaught (in promise) FetchError: Error fetching https://r.stripe.com/b: Failed to fetch
+    at shared-bc07c828a5b5f4798f341fa4686653dd.js:1:221443
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+Promise.catch
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+e @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+c @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+value @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1
+(anonymous) @ shared-bc07c828a5b5f4798f341fa4686653dd.js:1Understand this error
+1786GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+commitRootImpl @ chunk-6W5FFVKH.js?v=99411537:19416
+commitRoot @ chunk-6W5FFVKH.js?v=99411537:19277
+performSyncWorkOnRoot @ chunk-6W5FFVKH.js?v=99411537:18895
+flushSyncCallbacks @ chunk-6W5FFVKH.js?v=99411537:9119
+flushSync @ chunk-6W5FFVKH.js?v=99411537:18959
+finishEventHandler @ chunk-6W5FFVKH.js?v=99411537:3569
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3582
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+761GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:66 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+updateFormData @ GoalCreation.tsx:66
+updateCheckpoint @ CheckpointStep.tsx:39
+onChange @ CheckpointStep.tsx:225
+callCallback2 @ chunk-6W5FFVKH.js?v=99411537:3674
+invokeGuardedCallbackDev @ chunk-6W5FFVKH.js?v=99411537:3699
+invokeGuardedCallback @ chunk-6W5FFVKH.js?v=99411537:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-6W5FFVKH.js?v=99411537:3736
+executeDispatch @ chunk-6W5FFVKH.js?v=99411537:7014
+processDispatchQueueItemsInOrder @ chunk-6W5FFVKH.js?v=99411537:7034
+processDispatchQueue @ chunk-6W5FFVKH.js?v=99411537:7043
+dispatchEventsForPlugins @ chunk-6W5FFVKH.js?v=99411537:7051
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:7174
+batchedUpdates$1 @ chunk-6W5FFVKH.js?v=99411537:18913
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3579
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+256GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+commitRootImpl @ chunk-6W5FFVKH.js?v=99411537:19416
+commitRoot @ chunk-6W5FFVKH.js?v=99411537:19277
+performSyncWorkOnRoot @ chunk-6W5FFVKH.js?v=99411537:18895
+flushSyncCallbacks @ chunk-6W5FFVKH.js?v=99411537:9119
+flushSync @ chunk-6W5FFVKH.js?v=99411537:18959
+finishEventHandler @ chunk-6W5FFVKH.js?v=99411537:3569
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3582
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+1319GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+commitRootImpl @ chunk-6W5FFVKH.js?v=99411537:19416
+commitRoot @ chunk-6W5FFVKH.js?v=99411537:19277
+performSyncWorkOnRoot @ chunk-6W5FFVKH.js?v=99411537:18895
+flushSyncCallbacks @ chunk-6W5FFVKH.js?v=99411537:9119
+flushSync @ chunk-6W5FFVKH.js?v=99411537:18959
+finishEventHandler @ chunk-6W5FFVKH.js?v=99411537:3569
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3582
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+1976GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:66 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+updateFormData @ GoalCreation.tsx:66
+updateCheckpoint @ CheckpointStep.tsx:39
+onChange @ CheckpointStep.tsx:253
+callCallback2 @ chunk-6W5FFVKH.js?v=99411537:3674
+invokeGuardedCallbackDev @ chunk-6W5FFVKH.js?v=99411537:3699
+invokeGuardedCallback @ chunk-6W5FFVKH.js?v=99411537:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-6W5FFVKH.js?v=99411537:3736
+executeDispatch @ chunk-6W5FFVKH.js?v=99411537:7014
+processDispatchQueueItemsInOrder @ chunk-6W5FFVKH.js?v=99411537:7034
+processDispatchQueue @ chunk-6W5FFVKH.js?v=99411537:7043
+dispatchEventsForPlugins @ chunk-6W5FFVKH.js?v=99411537:7051
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:7174
+batchedUpdates$1 @ chunk-6W5FFVKH.js?v=99411537:18913
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3579
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+797GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:66 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+updateFormData @ GoalCreation.tsx:66
+updateCheckpoint @ CheckpointStep.tsx:39
+onChange @ CheckpointStep.tsx:253
+callCallback2 @ chunk-6W5FFVKH.js?v=99411537:3674
+invokeGuardedCallbackDev @ chunk-6W5FFVKH.js?v=99411537:3699
+invokeGuardedCallback @ chunk-6W5FFVKH.js?v=99411537:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-6W5FFVKH.js?v=99411537:3736
+executeDispatch @ chunk-6W5FFVKH.js?v=99411537:7014
+processDispatchQueueItemsInOrder @ chunk-6W5FFVKH.js?v=99411537:7034
+processDispatchQueue @ chunk-6W5FFVKH.js?v=99411537:7043
+dispatchEventsForPlugins @ chunk-6W5FFVKH.js?v=99411537:7051
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:7174
+batchedUpdates$1 @ chunk-6W5FFVKH.js?v=99411537:18913
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3579
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+103GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:66 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+updateFormData @ GoalCreation.tsx:66
+updateCheckpoint @ CheckpointStep.tsx:39
+onChange @ CheckpointStep.tsx:253
+callCallback2 @ chunk-6W5FFVKH.js?v=99411537:3674
+invokeGuardedCallbackDev @ chunk-6W5FFVKH.js?v=99411537:3699
+invokeGuardedCallback @ chunk-6W5FFVKH.js?v=99411537:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-6W5FFVKH.js?v=99411537:3736
+executeDispatch @ chunk-6W5FFVKH.js?v=99411537:7014
+processDispatchQueueItemsInOrder @ chunk-6W5FFVKH.js?v=99411537:7034
+processDispatchQueue @ chunk-6W5FFVKH.js?v=99411537:7043
+dispatchEventsForPlugins @ chunk-6W5FFVKH.js?v=99411537:7051
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:7174
+batchedUpdates$1 @ chunk-6W5FFVKH.js?v=99411537:18913
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3579
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+308GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:66 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+updateFormData @ GoalCreation.tsx:66
+updateCheckpoint @ CheckpointStep.tsx:39
+onChange @ CheckpointStep.tsx:253
+callCallback2 @ chunk-6W5FFVKH.js?v=99411537:3674
+invokeGuardedCallbackDev @ chunk-6W5FFVKH.js?v=99411537:3699
+invokeGuardedCallback @ chunk-6W5FFVKH.js?v=99411537:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-6W5FFVKH.js?v=99411537:3736
+executeDispatch @ chunk-6W5FFVKH.js?v=99411537:7014
+processDispatchQueueItemsInOrder @ chunk-6W5FFVKH.js?v=99411537:7034
+processDispatchQueue @ chunk-6W5FFVKH.js?v=99411537:7043
+dispatchEventsForPlugins @ chunk-6W5FFVKH.js?v=99411537:7051
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:7174
+batchedUpdates$1 @ chunk-6W5FFVKH.js?v=99411537:18913
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3579
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+937GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+commitRootImpl @ chunk-6W5FFVKH.js?v=99411537:19416
+commitRoot @ chunk-6W5FFVKH.js?v=99411537:19277
+performSyncWorkOnRoot @ chunk-6W5FFVKH.js?v=99411537:18895
+flushSyncCallbacks @ chunk-6W5FFVKH.js?v=99411537:9119
+flushSync @ chunk-6W5FFVKH.js?v=99411537:18959
+finishEventHandler @ chunk-6W5FFVKH.js?v=99411537:3569
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3582
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+946GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+commitRootImpl @ chunk-6W5FFVKH.js?v=99411537:19416
+commitRoot @ chunk-6W5FFVKH.js?v=99411537:19277
+performSyncWorkOnRoot @ chunk-6W5FFVKH.js?v=99411537:18895
+flushSyncCallbacks @ chunk-6W5FFVKH.js?v=99411537:9119
+flushSync @ chunk-6W5FFVKH.js?v=99411537:18959
+finishEventHandler @ chunk-6W5FFVKH.js?v=99411537:3569
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3582
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+236GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:66 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+updateFormData @ GoalCreation.tsx:66
+updateCheckpoint @ CheckpointStep.tsx:39
+onChange @ CheckpointStep.tsx:225
+callCallback2 @ chunk-6W5FFVKH.js?v=99411537:3674
+invokeGuardedCallbackDev @ chunk-6W5FFVKH.js?v=99411537:3699
+invokeGuardedCallback @ chunk-6W5FFVKH.js?v=99411537:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-6W5FFVKH.js?v=99411537:3736
+executeDispatch @ chunk-6W5FFVKH.js?v=99411537:7014
+processDispatchQueueItemsInOrder @ chunk-6W5FFVKH.js?v=99411537:7034
+processDispatchQueue @ chunk-6W5FFVKH.js?v=99411537:7043
+dispatchEventsForPlugins @ chunk-6W5FFVKH.js?v=99411537:7051
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:7174
+batchedUpdates$1 @ chunk-6W5FFVKH.js?v=99411537:18913
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3579
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+49GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:66 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+updateFormData @ GoalCreation.tsx:66
+updateCheckpoint @ CheckpointStep.tsx:39
+onChange @ CheckpointStep.tsx:225
+callCallback2 @ chunk-6W5FFVKH.js?v=99411537:3674
+invokeGuardedCallbackDev @ chunk-6W5FFVKH.js?v=99411537:3699
+invokeGuardedCallback @ chunk-6W5FFVKH.js?v=99411537:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-6W5FFVKH.js?v=99411537:3736
+executeDispatch @ chunk-6W5FFVKH.js?v=99411537:7014
+processDispatchQueueItemsInOrder @ chunk-6W5FFVKH.js?v=99411537:7034
+processDispatchQueue @ chunk-6W5FFVKH.js?v=99411537:7043
+dispatchEventsForPlugins @ chunk-6W5FFVKH.js?v=99411537:7051
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:7174
+batchedUpdates$1 @ chunk-6W5FFVKH.js?v=99411537:18913
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3579
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+1428GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+commitRootImpl @ chunk-6W5FFVKH.js?v=99411537:19416
+commitRoot @ chunk-6W5FFVKH.js?v=99411537:19277
+performSyncWorkOnRoot @ chunk-6W5FFVKH.js?v=99411537:18895
+flushSyncCallbacks @ chunk-6W5FFVKH.js?v=99411537:9119
+flushSync @ chunk-6W5FFVKH.js?v=99411537:18959
+finishEventHandler @ chunk-6W5FFVKH.js?v=99411537:3569
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3582
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+213GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+commitRootImpl @ chunk-6W5FFVKH.js?v=99411537:19416
+commitRoot @ chunk-6W5FFVKH.js?v=99411537:19277
+performSyncWorkOnRoot @ chunk-6W5FFVKH.js?v=99411537:18895
+flushSyncCallbacks @ chunk-6W5FFVKH.js?v=99411537:9119
+flushSync @ chunk-6W5FFVKH.js?v=99411537:18959
+finishEventHandler @ chunk-6W5FFVKH.js?v=99411537:3569
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3582
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+1144GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:66 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+updateFormData @ GoalCreation.tsx:66
+updateCheckpoint @ CheckpointStep.tsx:39
+onChange @ CheckpointStep.tsx:253
+callCallback2 @ chunk-6W5FFVKH.js?v=99411537:3674
+invokeGuardedCallbackDev @ chunk-6W5FFVKH.js?v=99411537:3699
+invokeGuardedCallback @ chunk-6W5FFVKH.js?v=99411537:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-6W5FFVKH.js?v=99411537:3736
+executeDispatch @ chunk-6W5FFVKH.js?v=99411537:7014
+processDispatchQueueItemsInOrder @ chunk-6W5FFVKH.js?v=99411537:7034
+processDispatchQueue @ chunk-6W5FFVKH.js?v=99411537:7043
+dispatchEventsForPlugins @ chunk-6W5FFVKH.js?v=99411537:7051
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:7174
+batchedUpdates$1 @ chunk-6W5FFVKH.js?v=99411537:18913
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3579
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+247GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+commitRootImpl @ chunk-6W5FFVKH.js?v=99411537:19416
+commitRoot @ chunk-6W5FFVKH.js?v=99411537:19277
+performSyncWorkOnRoot @ chunk-6W5FFVKH.js?v=99411537:18895
+flushSyncCallbacks @ chunk-6W5FFVKH.js?v=99411537:9119
+flushSync @ chunk-6W5FFVKH.js?v=99411537:18959
+finishEventHandler @ chunk-6W5FFVKH.js?v=99411537:3569
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3582
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+160GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+commitRootImpl @ chunk-6W5FFVKH.js?v=99411537:19416
+commitRoot @ chunk-6W5FFVKH.js?v=99411537:19277
+performSyncWorkOnRoot @ chunk-6W5FFVKH.js?v=99411537:18895
+flushSyncCallbacks @ chunk-6W5FFVKH.js?v=99411537:9119
+flushSync @ chunk-6W5FFVKH.js?v=99411537:18959
+finishEventHandler @ chunk-6W5FFVKH.js?v=99411537:3569
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3582
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+1126GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+commitRootImpl @ chunk-6W5FFVKH.js?v=99411537:19416
+commitRoot @ chunk-6W5FFVKH.js?v=99411537:19277
+performSyncWorkOnRoot @ chunk-6W5FFVKH.js?v=99411537:18895
+flushSyncCallbacks @ chunk-6W5FFVKH.js?v=99411537:9119
+flushSync @ chunk-6W5FFVKH.js?v=99411537:18959
+finishEventHandler @ chunk-6W5FFVKH.js?v=99411537:3569
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3582
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+357GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+commitRootImpl @ chunk-6W5FFVKH.js?v=99411537:19416
+commitRoot @ chunk-6W5FFVKH.js?v=99411537:19277
+performSyncWorkOnRoot @ chunk-6W5FFVKH.js?v=99411537:18895
+flushSyncCallbacks @ chunk-6W5FFVKH.js?v=99411537:9119
+flushSync @ chunk-6W5FFVKH.js?v=99411537:18959
+finishEventHandler @ chunk-6W5FFVKH.js?v=99411537:3569
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3582
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+46GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:66 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+updateFormData @ GoalCreation.tsx:66
+updateCheckpoint @ CheckpointStep.tsx:39
+onChange @ CheckpointStep.tsx:253
+callCallback2 @ chunk-6W5FFVKH.js?v=99411537:3674
+invokeGuardedCallbackDev @ chunk-6W5FFVKH.js?v=99411537:3699
+invokeGuardedCallback @ chunk-6W5FFVKH.js?v=99411537:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-6W5FFVKH.js?v=99411537:3736
+executeDispatch @ chunk-6W5FFVKH.js?v=99411537:7014
+processDispatchQueueItemsInOrder @ chunk-6W5FFVKH.js?v=99411537:7034
+processDispatchQueue @ chunk-6W5FFVKH.js?v=99411537:7043
+dispatchEventsForPlugins @ chunk-6W5FFVKH.js?v=99411537:7051
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:7174
+batchedUpdates$1 @ chunk-6W5FFVKH.js?v=99411537:18913
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3579
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+12GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+commitRootImpl @ chunk-6W5FFVKH.js?v=99411537:19416
+commitRoot @ chunk-6W5FFVKH.js?v=99411537:19277
+performSyncWorkOnRoot @ chunk-6W5FFVKH.js?v=99411537:18895
+flushSyncCallbacks @ chunk-6W5FFVKH.js?v=99411537:9119
+flushSync @ chunk-6W5FFVKH.js?v=99411537:18959
+finishEventHandler @ chunk-6W5FFVKH.js?v=99411537:3569
+batchedUpdates @ chunk-6W5FFVKH.js?v=99411537:3582
+dispatchEventForPluginEventSystem @ chunk-6W5FFVKH.js?v=99411537:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-6W5FFVKH.js?v=99411537:5478
+dispatchEvent @ chunk-6W5FFVKH.js?v=99411537:5472
+dispatchDiscreteEvent @ chunk-6W5FFVKH.js?v=99411537:5449Understand this error
+892GoalCreation.tsx:206 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
+    at CheckpointStep (http://localhost:5173/src/components/goals/steps/CheckpointStep.tsx:22:27)
+    at div
+    at _c9 (http://localhost:5173/src/components/ui/card.tsx:116:12)
+    at div
+    at _c (http://localhost:5173/src/components/ui/card.tsx:20:11)
+    at div
+    at div
+    at GoalCreation (http://localhost:5173/src/components/goals/GoalCreation.tsx?t=1757389901704:46:20)
+    at ProtectedRoute (http://localhost:5173/src/components/auth/ProtectedRoute.tsx:21:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:5594:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6357:3)
+    at div
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:6300:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=99411537:9401:3)
+    at GoalProvider (http://localhost:5173/src/contexts/GoalContext.tsx:31:32)
+    at AuthProvider (http://localhost:5173/src/contexts/AuthContext.tsx:30:32)
+    at ToastProvider (http://localhost:5173/src/contexts/ToastContext.tsx:29:33)
+    at AuthErrorBoundary (http://localhost:5173/src/components/auth/AuthErrorBoundary.tsx:8:5)
+    at App
+printWarning @ chunk-6W5FFVKH.js?v=99411537:521
+error @ chunk-6W5FFVKH.js?v=99411537:505
+checkForNestedUpdates @ chunk-6W5FFVKH.js?v=99411537:19665
+scheduleUpdateOnFiber @ chunk-6W5FFVKH.js?v=99411537:18533
+dispatchSetState @ chunk-6W5FFVKH.js?v=99411537:12403
+onValidationChange @ GoalCreation.tsx:206
+(anonymous) @ CheckpointStep.tsx:21
+commitHookEffectListMount @ chunk-6W5FFVKH.js?v=99411537:16915
+commitPassiveMountOnFiber @ chunk-6W5FFVKH.js?v=99411537:18156
+commitPassiveMountEffects_complete @ chunk-6W5FFVKH.js?v=99411537:18129
+commitPassiveMountEffects_begin @ chunk-6W5FFVKH.js?v=99411537:18119
+commitPassiveMountEffects @ chunk-6W5FFVKH.js?v=99411537:18109
+flushPassiveEffectsImpl @ chunk-6W5FFVKH.js?v=99411537:19490
+flushPassiveEffects @ chunk-6W5FFVKH.js?v=99411537:19447
+(anonymous) @ chunk-6W5FFVKH.js?v=99411537:19328
+workLoop @ chunk-6W5FFVKH.js?v=99411537:197
+flushWork @ chunk-6W5FFVKH.js?v=99411537:176
+performWorkUntilDeadline @ chunk-6W5FFVKH.js?v=99411537:384Understand this error
+@supabase_supabase-js.js?v=99411537:4216  GET https://ksbbgnrphqhwixwnjdri.supabase.co/rest/v1/users?select=holding_cell_balance&id=eq.2fe3fc11-ea6c-4511-b260-156092ac5ff9 404 (Not Found)
+(anonymous) @ @supabase_supabase-js.js?v=99411537:4216
+(anonymous) @ @supabase_supabase-js.js?v=99411537:4237
+fulfilled @ @supabase_supabase-js.js?v=99411537:4189
+Promise.then
+step @ @supabase_supabase-js.js?v=99411537:4202
+(anonymous) @ @supabase_supabase-js.js?v=99411537:4204
+__awaiter6 @ @supabase_supabase-js.js?v=99411537:4186
+(anonymous) @ @supabase_supabase-js.js?v=99411537:4227
+then @ @supabase_supabase-js.js?v=99411537:90Understand this error
+ProtectedRoute.tsx:17 🛡️ [ProtectedRoute] Simple auth check for: /dashboard
+ProtectedRoute.tsx:18 🛡️ [ProtectedRoute] State - loading: false user: true
+ProtectedRoute.tsx:53 ✅ [ProtectedRoute] User authenticated, rendering dashboard
+ImmediateDirectivesSidebar.tsx:34 🔍 [ImmediateDirectives] Loading directives for user: 2fe3fc11-ea6c-4511-b260-156092ac5ff9
+ImmediateDirectivesSidebar.tsx:35 🔍 [ImmediateDirectives] Date range: 2025-09-09T04:19:08.753Z to 2025-09-16T04:19:08.753Z
+useConsequenceNotificationsSafe.ts:121 🔴 Setting up consequence subscription...
+useConsequenceNotificationsSafe.ts:196 📝 Setting up submission grading subscription...
+ImmediateDirectivesSidebar.tsx:72 📊 [ImmediateDirectives] Checkpoints result: 1 items
+ImmediateDirectivesSidebar.tsx:73 📊 [ImmediateDirectives] Goals result: 5 items
+ImmediateDirectivesSidebar.tsx:97 📋 [ImmediateDirectives] Checkpoints raw data: [{…}]
+ImmediateDirectivesSidebar.tsx:100 📋 [ImmediateDirectives] Goals raw data: (5) [{…}, {…}, {…}, {…}, {…}]
+ImmediateDirectivesSidebar.tsx:157 📋 [ImmediateDirectives] Final directives count: 6
+OperationalCalendar.tsx:77 📅 [OperationalCalendar] Processing goal: Write a romantic novel deadline: Sun Sep 21 2025 13:24:00 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:97 📅 [OperationalCalendar] Adding goal event: {id: 'goal-47d34d82-0888-44b8-a43b-b84697aaa3a0', title: 'FINAL DIRECTIVE: WRITE A ROMANTIC NOVEL', start: Sun Sep 21 2025 13:24:00 GMT-0500 (Central Daylight Time), end: Sun Sep 21 2025 13:24:00 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:77 📅 [OperationalCalendar] Processing goal: TEST: Russian Roulette Goal deadline: Fri Sep 12 2025 17:24:47 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:97 📅 [OperationalCalendar] Adding goal event: {id: 'goal-0d7b17e6-a55f-427a-a422-a9e6ae653f6e', title: 'FINAL DIRECTIVE: TEST: RUSSIAN ROULETTE GOAL', start: Fri Sep 12 2025 17:24:47 GMT-0500 (Central Daylight Time), end: Fri Sep 12 2025 17:24:47 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:77 📅 [OperationalCalendar] Processing goal: TEST: Russian Roulette Goal deadline: Fri Sep 12 2025 17:24:57 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:97 📅 [OperationalCalendar] Adding goal event: {id: 'goal-8ee85002-1c89-411b-9823-5e674cbb8874', title: 'FINAL DIRECTIVE: TEST: RUSSIAN ROULETTE GOAL', start: Fri Sep 12 2025 17:24:57 GMT-0500 (Central Daylight Time), end: Fri Sep 12 2025 17:24:57 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:77 📅 [OperationalCalendar] Processing goal: TEST: Russian Roulette Goal deadline: Fri Sep 12 2025 17:25:09 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:97 📅 [OperationalCalendar] Adding goal event: {id: 'goal-07368275-dfd8-4402-8780-2e1f12524e8b', title: 'FINAL DIRECTIVE: TEST: RUSSIAN ROULETTE GOAL', start: Fri Sep 12 2025 17:25:09 GMT-0500 (Central Daylight Time), end: Fri Sep 12 2025 17:25:09 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:77 📅 [OperationalCalendar] Processing goal: TEST: Russian Roulette Goal deadline: Fri Sep 12 2025 17:25:29 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:97 📅 [OperationalCalendar] Adding goal event: {id: 'goal-6a16d5c0-9f84-4be4-8a59-6443f7fffdd8', title: 'FINAL DIRECTIVE: TEST: RUSSIAN ROULETTE GOAL', start: Fri Sep 12 2025 17:25:29 GMT-0500 (Central Daylight Time), end: Fri Sep 12 2025 17:25:29 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:77 📅 [OperationalCalendar] Processing goal: REAL TEST: Learn TypeScript deadline: Mon Sep 15 2025 21:40:04 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:97 📅 [OperationalCalendar] Adding goal event: {id: 'goal-09caa00d-09c1-49b8-90bd-68277932ccc9', title: 'FINAL DIRECTIVE: REAL TEST: LEARN TYPESCRIPT', start: Mon Sep 15 2025 21:40:04 GMT-0500 (Central Daylight Time), end: Mon Sep 15 2025 21:40:04 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:77 📅 [OperationalCalendar] Processing goal: Write Your Comic Book  deadline: Tue Sep 23 2025 10:00:00 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:97 📅 [OperationalCalendar] Adding goal event: {id: 'goal-16baf456-70bd-498b-9163-666f8fd12311', title: 'FINAL DIRECTIVE: WRITE YOUR COMIC BOOK ', start: Tue Sep 23 2025 10:00:00 GMT-0500 (Central Daylight Time), end: Tue Sep 23 2025 10:00:00 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: TEST: Overdue Checkpoint deadline: Fri Sep 05 2025 15:24:57 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: {id: 'checkpoint-37ce920f-2b8e-4a47-a21a-a71e0d263e9f', title: 'CHECKPOINT: TEST: OVERDUE CHECKPOINT', start: Fri Sep 05 2025 15:24:57 GMT-0500 (Central Daylight Time), end: Fri Sep 05 2025 15:24:57 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: TEST: Overdue Checkpoint deadline: Fri Sep 05 2025 15:25:09 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: {id: 'checkpoint-4534bd5b-3d26-4b59-9cee-b539d97814ed', title: 'CHECKPOINT: TEST: OVERDUE CHECKPOINT', start: Fri Sep 05 2025 15:25:09 GMT-0500 (Central Daylight Time), end: Fri Sep 05 2025 15:25:09 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: Complete Basic Types Chapter deadline: Fri Sep 05 2025 19:41:31 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: {id: 'checkpoint-620289e1-5fb3-4ebd-9aa8-ebb6664c84f5', title: 'CHECKPOINT: COMPLETE BASIC TYPES CHAPTER', start: Fri Sep 05 2025 19:41:31 GMT-0500 (Central Daylight Time), end: Fri Sep 05 2025 19:41:31 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: Practice Advanced Types deadline: Thu Sep 04 2025 21:41:31 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: {id: 'checkpoint-ad6455ba-05bd-47be-b6a4-e4ede4a703b6', title: 'CHECKPOINT: PRACTICE ADVANCED TYPES', start: Thu Sep 04 2025 21:41:31 GMT-0500 (Central Daylight Time), end: Thu Sep 04 2025 21:41:31 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: TEST: Overdue Checkpoint deadline: Fri Sep 05 2025 15:24:47 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: {id: 'checkpoint-ce11542a-ab02-4a05-858b-831785d1bec5', title: 'CHECKPOINT: TEST: OVERDUE CHECKPOINT', start: Fri Sep 05 2025 15:24:47 GMT-0500 (Central Daylight Time), end: Fri Sep 05 2025 15:24:47 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: AUTOMATION TEST: Immediate Overdue deadline: Sat Sep 06 2025 17:57:16 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: {id: 'checkpoint-2ff03e9d-2b43-49fb-8138-c08e752f345a', title: 'CHECKPOINT: AUTOMATION TEST: IMMEDIATE OVERDUE', start: Sat Sep 06 2025 17:57:16 GMT-0500 (Central Daylight Time), end: Sat Sep 06 2025 17:57:16 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: FINAL AUTOMATION TEST deadline: Sat Sep 06 2025 23:09:01 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: {id: 'checkpoint-d7f181d8-4f6b-4758-afe3-1fdaa179b08a', title: 'CHECKPOINT: FINAL AUTOMATION TEST', start: Sat Sep 06 2025 23:09:01 GMT-0500 (Central Daylight Time), end: Sat Sep 06 2025 23:09:01 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: Build Small Project deadline: Sun Sep 07 2025 21:41:31 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: {id: 'checkpoint-66f206a1-e680-4b2b-8ab8-bf440f7ea7a7', title: 'CHECKPOINT: BUILD SMALL PROJECT', start: Sun Sep 07 2025 21:41:31 GMT-0500 (Central Daylight Time), end: Sun Sep 07 2025 21:41:31 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: Finish rough draft deadline: Mon Sep 08 2025 04:02:00 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: {id: 'checkpoint-1c33f4b2-cd7c-4425-b0d5-84b381892366', title: 'CHECKPOINT: FINISH ROUGH DRAFT', start: Mon Sep 08 2025 04:02:00 GMT-0500 (Central Daylight Time), end: Mon Sep 08 2025 04:02:00 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: TEST: Overdue Checkpoint deadline: Fri Sep 05 2025 15:25:29 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: {id: 'checkpoint-4bbac25e-d348-4d15-8a13-278c4891cdf4', title: 'CHECKPOINT: TEST: OVERDUE CHECKPOINT', start: Fri Sep 05 2025 15:25:29 GMT-0500 (Central Daylight Time), end: Fri Sep 05 2025 15:25:29 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: AUTOMATION TEST: Dev Server Running deadline: Sat Sep 06 2025 18:07:29 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: {id: 'checkpoint-d06d8cf6-ba25-40e4-8cae-c8b5cd27b90e', title: 'CHECKPOINT: AUTOMATION TEST: DEV SERVER RUNNING', start: Sat Sep 06 2025 18:07:29 GMT-0500 (Central Daylight Time), end: Sat Sep 06 2025 18:07:29 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: Finish rough draft of story deadline: Thu Sep 11 2025 09:10:00 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: {id: 'checkpoint-9a03f3e5-4dbe-4561-9cff-9531e2e933d0', title: 'CHECKPOINT: FINISH ROUGH DRAFT OF STORY', start: Thu Sep 11 2025 09:10:00 GMT-0500 (Central Daylight Time), end: Thu Sep 11 2025 09:10:00 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: Finish all storyboards deadline: Thu Sep 18 2025 00:12:00 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: {id: 'checkpoint-1d3a9131-9e70-4cf9-b40f-cf9ea1789fb6', title: 'CHECKPOINT: FINISH ALL STORYBOARDS', start: Thu Sep 18 2025 00:12:00 GMT-0500 (Central Daylight Time), end: Thu Sep 18 2025 00:12:00 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:106 📅 [OperationalCalendar] Processing checkpoint: FINAL SUBMISSION: Write Your Comic Book  deadline: Tue Sep 23 2025 10:00:00 GMT-0500 (Central Daylight Time)
+OperationalCalendar.tsx:126 📅 [OperationalCalendar] Adding checkpoint event: {id: 'checkpoint-10f2044b-562c-4378-ab98-359d81ff6d4b', title: 'CHECKPOINT: FINAL SUBMISSION: WRITE YOUR COMIC BOOK ', start: Tue Sep 23 2025 10:00:00 GMT-0500 (Central Daylight Time), end: Tue Sep 23 2025 10:00:00 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:131 📅 [OperationalCalendar] Final calendar events: 21 events
+OperationalCalendar.tsx:132 📅 [OperationalCalendar] Events data: (21) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+useConsequenceNotificationsSafe.ts:35 🔍 Checking for unacknowledged consequences...
+useConsequenceNotificationsSafe.ts:62 📢 Found 1 unacknowledged consequence(s)
+useConsequenceNotificationsSafe.ts:93 🎭 Starting consequence queue processing...
+useConsequenceNotificationsSafe.ts:101 Showing consequence: checkpoint for REAL TEST: Learn TypeScript
+DashboardLayout.tsx:49 📊 Consequence queue: 1 pending
+useConsequenceNotificationsSafe.ts:257 ✅ Dismissing current consequence...
+useConsequenceNotificationsSafe.ts:273 ✅ Consequence acknowledged in database
+useConsequenceNotificationsSafe.ts:287 Queue remaining: 0 consequences
+OperationalCalendar.tsx:183 Event clicked: {id: 'checkpoint-9a03f3e5-4dbe-4561-9cff-9531e2e933d0', title: 'CHECKPOINT: FINISH ROUGH DRAFT OF STORY', start: Thu Sep 11 2025 09:10:00 GMT-0500 (Central Daylight Time), end: Thu Sep 11 2025 09:10:00 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:183 Event clicked: {id: 'checkpoint-9a03f3e5-4dbe-4561-9cff-9531e2e933d0', title: 'CHECKPOINT: FINISH ROUGH DRAFT OF STORY', start: Thu Sep 11 2025 09:10:00 GMT-0500 (Central Daylight Time), end: Thu Sep 11 2025 09:10:00 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:183 Event clicked: {id: 'checkpoint-1d3a9131-9e70-4cf9-b40f-cf9ea1789fb6', title: 'CHECKPOINT: FINISH ALL STORYBOARDS', start: Thu Sep 18 2025 00:12:00 GMT-0500 (Central Daylight Time), end: Thu Sep 18 2025 00:12:00 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:183 Event clicked: {id: 'goal-47d34d82-0888-44b8-a43b-b84697aaa3a0', title: 'FINAL DIRECTIVE: WRITE A ROMANTIC NOVEL', start: Sun Sep 21 2025 13:24:00 GMT-0500 (Central Daylight Time), end: Sun Sep 21 2025 13:24:00 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:183 Event clicked: {id: 'goal-16baf456-70bd-498b-9163-666f8fd12311', title: 'FINAL DIRECTIVE: WRITE YOUR COMIC BOOK ', start: Tue Sep 23 2025 10:00:00 GMT-0500 (Central Daylight Time), end: Tue Sep 23 2025 10:00:00 GMT-0500 (Central Daylight Time), allDay: true, …}
+OperationalCalendar.tsx:183 Event clicked: {id: 'checkpoint-10f2044b-562c-4378-ab98-359d81ff6d4b', title: 'CHECKPOINT: FINAL SUBMISSION: WRITE YOUR COMIC BOOK ', start: Tue Sep 23 2025 10:00:00 GMT-0500 (Central Daylight Time), end: Tue Sep 23 2025 10:00:00 GMT-0500 (Central Daylight Time), allDay: true, …}

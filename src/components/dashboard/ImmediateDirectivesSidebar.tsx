@@ -205,15 +205,23 @@ const ImmediateDirectivesSidebar: React.FC = () => {
         }
       } else if (checkpoint.id.startsWith('goal-')) {
         const goalId = checkpoint.id.replace('goal-', '')
-        const { data: goalData } = await supabase
-          .from('goals')
-          .select('*')
-          .eq('id', goalId)
-          .single()
+        const [goalData, finalCheckpointData] = await Promise.all([
+          supabase.from('goals').select('*').eq('id', goalId).single(),
+          // Find the final checkpoint for this goal (highest order_position)
+          supabase
+            .from('checkpoints')
+            .select('*')
+            .eq('goal_id', goalId)
+            .order('order_position', { ascending: false })
+            .limit(1)
+            .single()
+        ])
         
-        if (goalData) {
-          setSelectedGoalData({ goal: goalData })
+        if (goalData.data && finalCheckpointData.data) {
+          setSelectedGoalData({ goal: goalData.data, checkpoint: finalCheckpointData.data })
           setShowSubmissionModal(true)
+        } else {
+          console.error('Could not load goal or final checkpoint data')
         }
       }
     } catch (error) {

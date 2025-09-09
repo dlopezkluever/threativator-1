@@ -202,7 +202,22 @@ const OperationalCalendar: React.FC = () => {
         
         setSelectedGoalData({ goal: goalData, checkpoint: checkpointData })
       } else {
-        setSelectedGoalData({ goal: goalData })
+        // For goal clicks, find the final checkpoint (highest order_position)
+        const { data: finalCheckpoint } = await supabase
+          .from('checkpoints')
+          .select('*')
+          .eq('goal_id', event.goal_id)
+          .order('order_position', { ascending: false })
+          .limit(1)
+          .single()
+          
+        if (finalCheckpoint) {
+          setSelectedGoalData({ goal: goalData, checkpoint: finalCheckpoint })
+        } else {
+          // Fallback: if somehow no checkpoints exist, show error
+          console.error('No checkpoints found for goal - this should not happen with auto-created final checkpoints')
+          setSelectedGoalData({ goal: goalData })
+        }
       }
 
       setSelectedEvent(null)
