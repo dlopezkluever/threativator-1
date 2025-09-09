@@ -123,9 +123,12 @@ const GoalCreation: React.FC = () => {
 
       if (goalError) throw goalError
 
-      // Create checkpoints if any exist
+      // Prepare checkpoints array - always include final checkpoint
+      const checkpointsToInsert = []
+
+      // Add user-defined checkpoints first
       if (formData.checkpoints.length > 0) {
-        const checkpointsToInsert = formData.checkpoints.map((checkpoint, index) => ({
+        const userCheckpoints = formData.checkpoints.map((checkpoint, index) => ({
           goal_id: goal.id,
           title: checkpoint.title,
           description: checkpoint.requirements,
@@ -133,7 +136,22 @@ const GoalCreation: React.FC = () => {
           order_position: index + 1,
           requirements: checkpoint.requirements
         }))
+        checkpointsToInsert.push(...userCheckpoints)
+      }
 
+      // Always add final checkpoint (represents the goal's final submission)
+      const finalCheckpoint = {
+        goal_id: goal.id,
+        title: `FINAL SUBMISSION: ${formData.title}`,
+        description: `Submit final proof of goal completion. ${formData.description ? formData.description : ''}`,
+        deadline: formData.finalDeadline.toISOString(), // Same as goal deadline
+        order_position: formData.checkpoints.length + 1, // Always last
+        requirements: formData.gradingRubric // Use goal's rubric for final submission
+      }
+      checkpointsToInsert.push(finalCheckpoint)
+
+      // Insert all checkpoints (user-defined + final checkpoint)
+      if (checkpointsToInsert.length > 0) {
         const { error: checkpointsError } = await supabase
           .from('checkpoints')
           .insert(checkpointsToInsert)
