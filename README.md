@@ -21,7 +21,7 @@ Threativator transforms procrastination through **fear-driven accountability**:
 - Building a software MVP or learning new skills
 - Completing certification programs or fitness goals
 - Any significant project requiring external accountability
-
+  
 ### **Not For**
 - Daily to-do lists or routine habits
 - Minor recurring tasks
