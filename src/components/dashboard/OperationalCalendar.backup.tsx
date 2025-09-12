@@ -130,20 +130,6 @@ const OperationalCalendar: React.FC = () => {
 
       console.log('📅 [OperationalCalendar] Final calendar events:', calendarEvents.length, 'events')
       console.log('📅 [OperationalCalendar] Events data:', calendarEvents)
-      
-      // DEEP DEBUG - Let's see what's actually happening
-      calendarEvents.forEach((event, index) => {
-        console.log(`📅 EVENT ${index + 1}:`, {
-          id: event.id,
-          title: event.title,
-          start: event.start,
-          end: event.end,
-          allDay: event.allDay,
-          type: event.type,
-          status: event.status
-        })
-      })
-      
       setEvents(calendarEvents)
     } catch (error) {
       console.error('Error loading calendar data:', error)
@@ -157,8 +143,6 @@ const OperationalCalendar: React.FC = () => {
   }, [loadCalendarData])
 
   const eventStyleGetter = (event: CalendarEvent) => {
-    console.log('🎨 [EventStyleGetter] Styling event:', event.id, event.title, event.status)
-    
     let backgroundColor = '#5A7761' // default success-muted
     let color = '#FFFFFF'
     const border = '1px solid #000000'
@@ -179,24 +163,19 @@ const OperationalCalendar: React.FC = () => {
         break
     }
 
-    const style = {
-      backgroundColor,
-      color,
-      border,
-      borderRadius: '0px', // Soviet style - no rounded corners
-      fontSize: '12px', // Make larger to debug visibility
-      fontFamily: 'Roboto Condensed, sans-serif',
-      fontWeight: 'bold',
-      textTransform: 'uppercase' as const,
-      padding: '4px 6px', // Make larger to debug visibility
-      minHeight: '20px',
-      display: 'block',
-      zIndex: 1000
+    return {
+      style: {
+        backgroundColor,
+        color,
+        border,
+        borderRadius: '0px', // Soviet style - no rounded corners
+        fontSize: '10px',
+        fontFamily: 'Roboto Condensed, sans-serif',
+        fontWeight: 'bold',
+        textTransform: 'uppercase' as const,
+        padding: '2px 4px'
+      }
     }
-    
-    console.log('🎨 [EventStyleGetter] Applied style:', style)
-    
-    return { style }
   }
 
   const handleEventClick = (event: CalendarEvent) => {

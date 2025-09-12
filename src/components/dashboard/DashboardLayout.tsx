@@ -5,7 +5,7 @@ import { useGoals } from '../../contexts/GoalContext'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../ui/card'
 import { Button } from '../ui/button'
 import { supabase } from '../../lib/supabase'
-import OperationalCalendar from './OperationalCalendar'
+import CustomCalendar from './CustomCalendar'
 import VisibleStakesDisplay from './VisibleStakesDisplay'
 import ImmediateDirectivesSidebar from './ImmediateDirectivesSidebar'
 import { useModalState, MODAL_NAMES } from '../../hooks/useModalState'
@@ -183,7 +183,7 @@ const DashboardLayout: React.FC = () => {
               </CardHeader>
               <CardContent className="flex-1 p-[var(--space-2)]">
                 <div className="h-full min-h-[500px] bg-white border-[var(--border-width-medium)] border-[var(--color-border-primary)]">
-                  <OperationalCalendar />
+                  <CustomCalendar />
                 </div>
               </CardContent>
             </Card>
