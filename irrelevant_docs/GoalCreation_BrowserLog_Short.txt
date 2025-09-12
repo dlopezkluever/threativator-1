@@ -1,5 +1,8 @@
 here is the console log from when I originally made that goal previouslyabove, before I tried to submit; does that give you any       ││   added context?  'c:/Users/Daniel Lopez/Desktop/Neet-a-thon/Threativator/threativator-1/GoalCreation_BrowserLog_Short.txt' 
 
+This is going to be @AustinAllred in 3 weeks, when they've cycled through all possible hiring partners and I'm still unable to secure
+a job and thus threaten to destroy GuantletAI's 100% gaurnteed job placement record 
+
 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
 ProtectedRoute.tsx:17 🛡️ [ProtectedRoute] Simple auth check for: /create-goal
 ProtectedRoute.tsx:18 🛡️ [ProtectedRoute] State - loading: true user: false

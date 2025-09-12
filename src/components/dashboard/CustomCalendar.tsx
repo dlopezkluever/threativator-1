@@ -33,9 +33,9 @@ const WeekEventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
   }
 
   const formatTitle = (title: string) => {
-    const prefix = title.startsWith('FINAL:') ? 'FINAL:' : 
-                   title.startsWith('CHK:') ? 'CHK:' : ''
-    const restOfTitle = prefix ? title.substring(prefix.length).trim() : title
+    const prefix = title.startsWith('FINAL:') ? '🏁 FINAL 🏁' : 
+                   title.startsWith('CHK:') ? '🚩 CHECKPOINT 🚩' : '' // Using emoji flags
+    const restOfTitle = prefix ? title.substring(title.startsWith('CHK:') ? 4 : prefix.length).trim() : title
     
     return { prefix, restOfTitle }
   }
@@ -45,55 +45,74 @@ const WeekEventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
   return (
     <div
       onClick={() => onClick(event)}
-      className="w-full mb-2 p-3 cursor-pointer hover:opacity-80"
+      className="w-full mb-2 cursor-pointer hover:opacity-80"
       style={{
         backgroundColor: getBgColor(),
         border: '1px solid #000000',
         borderRadius: '0px',
         color: '#F5EEDC',
-        minHeight: '60px',
+        minHeight: '70px',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        overflow: 'hidden',
+        boxSizing: 'border-box'
       }}
       title={event.title}
     >
-      <div className="flex-1">
-        {prefix && (
+      {/* Inner container with border and padding */}
+      <div style={{
+        border: '1px solid #000000',
+        margin: '3px',
+        padding: '6px',
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        overflow: 'hidden',
+        boxSizing: 'border-box'
+      }}>
+        {/* Title section */}
+        <div style={{ marginBottom: '6px' }}>
+          {prefix && (
+            <div style={{
+              fontFamily: 'Stalinist One, Arial Black, sans-serif',
+              fontSize: '8px', // Smaller to fit horizontally
+              fontWeight: '900',
+              textTransform: 'uppercase',
+              letterSpacing: '0.02em',
+              marginBottom: '3px',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
+            }}>
+              {prefix}
+            </div>
+          )}
           <div style={{
-            fontFamily: 'Stalinist One, Arial Black, sans-serif',
+            fontFamily: 'Roboto Condensed, sans-serif',
             fontSize: '10px',
-            fontWeight: '900',
+            fontWeight: 'bold',
             textTransform: 'uppercase',
-            letterSpacing: '0.05em',
-            marginBottom: '4px'
+            lineHeight: '1.3',
+            wordWrap: 'break-word',
+            overflow: 'hidden'
           }}>
-            {prefix}
+            {restOfTitle.length > 35 ? `${restOfTitle.substring(0, 35)}...` : restOfTitle}
           </div>
-        )}
+        </div>
+        
+        {/* Due date at bottom */}
         <div style={{
           fontFamily: 'Roboto Condensed, sans-serif',
-          fontSize: '12px',
-          fontWeight: 'bold',
-          textTransform: 'uppercase',
-          lineHeight: '1.3',
-          wordWrap: 'break-word'
+          fontSize: '8px',
+          fontWeight: 'normal',
+          opacity: 0.9,
+          borderTop: '1px solid rgba(245, 238, 220, 0.3)',
+          paddingTop: '3px'
         }}>
-          {restOfTitle.length > 50 ? `${restOfTitle.substring(0, 50)}...` : restOfTitle}
+          DUE: {moment(event.date).format('MMM DD')}
         </div>
-      </div>
-      
-      {/* Due date at bottom */}
-      <div style={{
-        fontFamily: 'Roboto Condensed, sans-serif',
-        fontSize: '10px',
-        fontWeight: 'normal',
-        opacity: 0.9,
-        marginTop: '8px',
-        borderTop: '1px solid rgba(245, 238, 220, 0.3)',
-        paddingTop: '4px'
-      }}>
-        DUE: {moment(event.date).format('MMM DD')}
       </div>
     </div>
   )
@@ -112,10 +131,10 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
   }
 
   const formatTitle = (title: string) => {
-    // Extract prefix and rest of title
-    const prefix = title.startsWith('FINAL:') ? 'FINAL:' : 
-                   title.startsWith('CHK:') ? 'CHK:' : ''
-    const restOfTitle = prefix ? title.substring(prefix.length).trim() : title
+    // Extract prefix and rest of title for month view - using emojis
+    const prefix = title.startsWith('FINAL:') ? '🏁' : 
+                   title.startsWith('CHK:') ? '🚩' : '' // Using emoji flags
+    const restOfTitle = prefix ? title.substring(title.startsWith('CHK:') ? 4 : prefix.length).trim() : title
     
     return { prefix, restOfTitle }
   }
@@ -125,46 +144,45 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
   return (
     <div
       onClick={() => onClick(event)}
-      className="w-full mb-1 px-2 py-1 cursor-pointer hover:opacity-80"
+      className="w-full mb-1 cursor-pointer hover:opacity-80"
       style={{
         backgroundColor: getBgColor(),
         border: '1px solid #000000',
         borderRadius: '0px',
-        color: '#F5EEDC', // Beige text for better contrast
-        minHeight: '16px',
+        color: '#F5EEDC',
+        minHeight: '18px',
         display: 'flex',
         alignItems: 'center',
-        overflow: 'hidden' // Prevent horizontal scrollbars
+        overflow: 'hidden',
+        boxSizing: 'border-box' // Critical for proper sizing with borders
       }}
       title={event.title}
     >
-      <div className="w-full overflow-hidden">
-        {prefix && (
-          <span
-            style={{
-              fontFamily: 'Stalinist One, Arial Black, sans-serif',
-              fontSize: '8px',
-              fontWeight: '900',
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em'
-            }}
-          >
-            {prefix}
-          </span>
-        )}
-        {prefix && <span> </span>}
-        <span
-          style={{
-            fontFamily: 'Roboto Condensed, sans-serif',
-            fontSize: '9px',
-            fontWeight: 'bold',
-            textTransform: 'uppercase',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis'
-          }}
-        >
-          {restOfTitle.length > 15 ? `${restOfTitle.substring(0, 15)}...` : restOfTitle}
+      {/* Inner container with border and padding */}
+      <div style={{
+        border: '1px solid #000000',
+        margin: '1px',
+        padding: '2px 4px',
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        overflow: 'hidden',
+        boxSizing: 'border-box',
+        minHeight: '12px'
+      }}>
+        {/* Single line: emoji + title */}
+        <span style={{ 
+          whiteSpace: 'nowrap', 
+          overflow: 'hidden', 
+          textOverflow: 'ellipsis', 
+          width: '100%',
+          fontSize: '8px',
+          fontFamily: 'Roboto Condensed, sans-serif',
+          fontWeight: 'bold',
+          textTransform: 'uppercase'
+        }}>
+          {prefix && <span style={{ marginRight: '2px' }}>{prefix}</span>}
+          {restOfTitle.length > 8 ? `${restOfTitle.substring(0, 8)}...` : restOfTitle}
         </span>
       </div>
     </div>
@@ -372,7 +390,7 @@ const CustomCalendar: React.FC = () => {
               return (
                 <div 
                   key={day.format('YYYY-MM-DD')} 
-                  className={`border border-black p-1 overflow-y-auto ${
+                  className={`border border-black p-1 overflow-hidden ${
                     isToday ? 'bg-red-600 text-white' : 
                     isCurrentMonth ? 'bg-white' : 'bg-gray-100'
                   }`}
@@ -423,7 +441,7 @@ const CustomCalendar: React.FC = () => {
             return (
               <div 
                 key={day.format('YYYY-MM-DD')} 
-                className={`border-r border-black p-2 overflow-y-auto ${
+                className={`border-r border-black p-2 overflow-hidden ${
                   isToday ? 'bg-red-50' : 'bg-white'
                 }`}
               >
