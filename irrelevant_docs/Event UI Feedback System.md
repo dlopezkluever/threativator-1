@@ -62,3 +62,16 @@
 
   What do you think? Want to implement the pass/fail notification modals first?
  
+ ##Yes let's implement Phase C first and then move forward and take a moment to try and understand how our calender system works 
+
+
+ Okay we recently made corrections to our backend grading pipeline, but we currently have the probelm that the UI / user expereice actually has no idea what happens after they submit something for a checkpoint or deadline when using our calander in the dashboard, and we want to improve it so  users get real-time visibility into this working system through status indicators, result notifications, and resubmission flows.
+
+   The documentation  provides everything needed to implement, BUT NOTE THEY ARE SUGGESTIONS; you MUST CHECK THAT THE RECOMMENDATIONS ARE CORRECT cuase they made hastily, and thus aren't extremely reliable:
+  1. Real-time status badges on calendar/sidebar
+  2. Pass/fail notification modals
+  3. Resubmission flows for failed attempts
+  4. Submission history viewing
+
+Additionally we made changes to to our calander system cuz our old was having problems, You can read about that here: 
+

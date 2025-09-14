@@ -9,20 +9,23 @@ import CustomCalendar from './CustomCalendar'
 import VisibleStakesDisplay from './VisibleStakesDisplay'
 import ImmediateDirectivesSidebar from './ImmediateDirectivesSidebar'
 import { useModalState, MODAL_NAMES } from '../../hooks/useModalState'
+// import { useConsequenceNotificationsReal as useConsequenceNotifications } from '../../hooks/useConsequenceNotificationsReal'
+// import { useConsequenceNotifications } from '../../hooks/useConsequenceNotifications'
 import { useConsequenceNotificationsSafe as useConsequenceNotifications } from '../../hooks/useConsequenceNotificationsSafe'
-import { useSubmissionStatusNotifications } from '../../hooks/useSubmissionStatusNotifications'
 import PaymentModal from '../modals/PaymentModal'
 import KompromatModal from '../modals/KompromatModal'
 import ContactModal from '../modals/ContactModal'
 import SocialMediaModal from '../modals/SocialMediaModal'
-import GradingResultModal from '../modals/GradingResultModal'
+import ConsequenceModal from './ConsequenceModal'
+import SimpleTestModal from './SimpleTestModal'
+import ConsequenceModalFixed from './ConsequenceModalFixed'
 import ConsequenceModalCompact from './ConsequenceModalCompact'
 
 const DashboardLayout: React.FC = () => {
   const { user, signOut } = useAuth()
   const { } = useGoals()
   const navigate = useNavigate()
-
+  
   // Modal state management
   const [, modalControl] = useModalState([
     MODAL_NAMES.PAYMENT,
@@ -31,38 +34,22 @@ const DashboardLayout: React.FC = () => {
     MODAL_NAMES.SOCIAL_MEDIA
   ])
 
-  // Consequence notifications (existing system)
+  // Consequence notifications (real system)
   const {
     pendingConsequence,
     isModalOpen: isConsequenceModalOpen,
     dismissConsequence,
-    queueLength
+    queueLength,
+    debugInfo
   } = useConsequenceNotifications()
-
-  // Grading result notifications (new system)
-  const {
-    pendingNotification,
-    isModalOpen: isGradingModalOpen,
-    dismissNotification,
-    queueLength: gradingQueueLength
-  } = useSubmissionStatusNotifications()
-
+  
   // Log queue status for debugging
   useEffect(() => {
     if (queueLength > 0) {
       console.log(`📊 Consequence queue: ${queueLength} pending`)
     }
-    if (gradingQueueLength > 0) {
-      console.log(`📝 Grading result queue: ${gradingQueueLength} pending`)
-    }
-  }, [queueLength, gradingQueueLength])
+  }, [queueLength])
 
-  // Handle resubmission from grading modal
-  const handleResubmit = (checkpointId: string) => {
-    // Navigate to submission modal or trigger submission flow
-    console.log('🔄 Resubmission requested for checkpoint:', checkpointId)
-    // TODO: Implement resubmission flow - could open submission modal directly
-  }
 
   // Action handlers
   const handleRequestNewMission = async () => {
@@ -91,6 +78,7 @@ const DashboardLayout: React.FC = () => {
       navigate('/create-goal')
     }
   }
+
 
   const handleEstablishCollateral = () => {
     modalControl.openModal(MODAL_NAMES.PAYMENT)
@@ -121,7 +109,7 @@ const DashboardLayout: React.FC = () => {
       <header className="bg-[var(--color-background-beige)] border-b-[6px] border-[var(--color-accent-black)]">
         <div className="container mx-auto px-[var(--space-6)] py-[var(--space-6)] max-w-[var(--container-max-width)]">
           <div className="flex justify-between items-center">
-
+            
             {/* Left: Dominant KOMPROMATOR Title */}
             <div className="flex items-center gap-[var(--space-6)]">
               {/* Soviet Star Icon - Larger */}
@@ -130,7 +118,7 @@ const DashboardLayout: React.FC = () => {
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                 </svg>
               </div>
-
+              
               {/* Main Title */}
               <div className="flex flex-col">
                 <h1 className="text-propaganda-title text-[var(--color-primary-crimson)]">
@@ -141,7 +129,7 @@ const DashboardLayout: React.FC = () => {
                 </div>
               </div>
             </div>
-
+            
             {/* Right: User Status */}
             <div className="flex flex-col items-end gap-2 text-right">
               <div className="text-[var(--color-text-primary)] text-[var(--font-size-sm)] font-[var(--font-family-body)] uppercase font-bold" style={{color: 'var(--color-text-primary)'}}>
@@ -157,17 +145,17 @@ const DashboardLayout: React.FC = () => {
                 </div>
               </div>
             </div>
-
+            
           </div>
         </div>
       </header>
 
       {/* Main Dashboard - 2-Column Layout inspired by reference */}
       <div className="container mx-auto px-[var(--space-4)] py-[var(--space-4)] max-w-[var(--container-max-width)]">
-
+        
         {/* Primary Row: Calendar (75%) + Tasks Sidebar (25%) - FORCE HORIZONTAL */}
         <div className="flex gap-[var(--space-4)] min-h-[calc(100vh-200px)] mb-[var(--space-4)]">
-
+          
           {/* Left: IMMEDIATE DIRECTIVES Sidebar (25% width) */}
           <div className="w-1/4 min-w-[280px]">
             <Card className="h-full">
@@ -200,12 +188,12 @@ const DashboardLayout: React.FC = () => {
               </CardContent>
             </Card>
           </div>
-
+          
         </div>
 
         {/* Bottom Row: State Management - FORCE HORIZONTAL */}
         <div className="flex gap-[var(--space-4)] h-[250px]">
-
+          
           {/* State Collateral (25% width) */}
           <div className="flex-[1]">
             <Card className="h-full">
@@ -269,7 +257,7 @@ const DashboardLayout: React.FC = () => {
             </Card>
           </div>
 
-          {/* Classified Intel (25% width) - Now shows queue status */}
+          {/* Classified Intel (25% width) */}
           <div className="flex-[1]">
             <Card className="h-full">
               <CardHeader className="py-[var(--space-3)]">
@@ -282,12 +270,8 @@ const DashboardLayout: React.FC = () => {
                   <span className="text-[var(--color-primary-crimson)] font-[var(--font-family-display)] text-[var(--font-size-xl)] font-bold">0</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-[var(--font-size-base)] font-[var(--font-family-body)] uppercase font-bold">PENALTIES QUEUED:</span>
-                  <span className="text-[var(--color-primary-crimson)] font-[var(--font-family-display)] text-[var(--font-size-lg)] font-bold">{queueLength}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-[var(--font-size-base)] font-[var(--font-family-body)] uppercase font-bold">RESULTS PENDING:</span>
-                  <span className="text-[var(--color-success-muted)] font-[var(--font-family-display)] text-[var(--font-size-lg)] font-bold">{gradingQueueLength}</span>
+                  <span className="text-[var(--font-size-base)] font-[var(--font-family-body)] uppercase font-bold">COMPLIANCE RATE:</span>
+                  <span className="text-[var(--color-success-muted)] font-[var(--font-family-display)] text-[var(--font-size-lg)] font-bold">N/A</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-[var(--font-size-base)] font-[var(--font-family-body)] uppercase font-bold">SECURITY LEVEL:</span>
@@ -296,9 +280,9 @@ const DashboardLayout: React.FC = () => {
               </CardContent>
             </Card>
           </div>
-
+          
         </div>
-
+        
       </div>
 
       {/* Bottom Status Bar - Compressed */}
@@ -308,16 +292,16 @@ const DashboardLayout: React.FC = () => {
             {/* Left: System Status */}
             <div className="flex items-center gap-[var(--space-4)] text-[var(--color-text-primary)] text-[var(--font-size-sm)] font-[var(--font-family-body)]">
               <span className="uppercase font-bold">STATE NETWORK: <span className="text-[var(--color-success-muted)]">ACTIVE</span></span>
-              <span className="uppercase font-bold">AI GRADING: <span className="text-[var(--color-success-muted)]">ENABLED</span></span>
+              <span className="uppercase font-bold">SURVEILLANCE: <span className="text-[var(--color-success-muted)]">ENABLED</span></span>
               <span className="uppercase font-bold">CONSEQUENCES: <span className="text-[var(--color-primary-crimson)]">ARMED</span></span>
             </div>
-
+            
             {/* Right: Warning Message */}
             <div className="flex items-center gap-[var(--space-2)] text-[var(--color-primary-crimson)] font-[var(--font-family-display)] text-[var(--font-size-sm)] uppercase tracking-wide font-bold">
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
-              <span className="whitespace-nowrap">🔐 REAL-TIME MONITORING</span>
+              <span className="whitespace-nowrap">🔐 MILITARY-GRADE ENCRYPTION</span>
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
@@ -327,32 +311,24 @@ const DashboardLayout: React.FC = () => {
       </footer>
 
       {/* Modals */}
-      <PaymentModal
-        isOpen={modalControl.isModalOpen(MODAL_NAMES.PAYMENT)}
-        onClose={() => modalControl.closeModal(MODAL_NAMES.PAYMENT)}
+      <PaymentModal 
+        isOpen={modalControl.isModalOpen(MODAL_NAMES.PAYMENT)} 
+        onClose={() => modalControl.closeModal(MODAL_NAMES.PAYMENT)} 
       />
-      <KompromatModal
-        isOpen={modalControl.isModalOpen(MODAL_NAMES.KOMPROMAT)}
-        onClose={() => modalControl.closeModal(MODAL_NAMES.KOMPROMAT)}
+      <KompromatModal 
+        isOpen={modalControl.isModalOpen(MODAL_NAMES.KOMPROMAT)} 
+        onClose={() => modalControl.closeModal(MODAL_NAMES.KOMPROMAT)} 
       />
-      <ContactModal
-        isOpen={modalControl.isModalOpen(MODAL_NAMES.CONTACT)}
-        onClose={() => modalControl.closeModal(MODAL_NAMES.CONTACT)}
+      <ContactModal 
+        isOpen={modalControl.isModalOpen(MODAL_NAMES.CONTACT)} 
+        onClose={() => modalControl.closeModal(MODAL_NAMES.CONTACT)} 
       />
-      <SocialMediaModal
-        isOpen={modalControl.isModalOpen(MODAL_NAMES.SOCIAL_MEDIA)}
-        onClose={() => modalControl.closeModal(MODAL_NAMES.SOCIAL_MEDIA)}
+      <SocialMediaModal 
+        isOpen={modalControl.isModalOpen(MODAL_NAMES.SOCIAL_MEDIA)} 
+        onClose={() => modalControl.closeModal(MODAL_NAMES.SOCIAL_MEDIA)} 
       />
-
-      {/* Grading Result Modal - Higher priority, shows first */}
-      <GradingResultModal
-        isOpen={isGradingModalOpen && !isConsequenceModalOpen}
-        onClose={dismissNotification}
-        result={pendingNotification}
-        onResubmit={handleResubmit}
-      />
-
-      {/* Consequence Modal - Shows after grading results */}
+      
+      {/* Compact Consequence Modal with Fixed Contrast */}
       <ConsequenceModalCompact
         isOpen={isConsequenceModalOpen}
         onClose={dismissConsequence}

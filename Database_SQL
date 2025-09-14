@@ -1,0 +1,116 @@
+-- WARNING: This schema is for context only and is not meant to be run.
+-- Table order and constraints may not be valid for execution.
+
+CREATE TABLE public.app_config (
+  key text NOT NULL,
+  value text NOT NULL,
+  created_at timestamp with time zone DEFAULT now(),
+  updated_at timestamp with time zone DEFAULT now(),
+  CONSTRAINT app_config_pkey PRIMARY KEY (key)
+);
+CREATE TABLE public.checkpoints (
+  id uuid NOT NULL DEFAULT uuid_generate_v4(),
+  goal_id uuid NOT NULL,
+  title text NOT NULL CHECK (char_length(title) >= 3 AND char_length(title) <= 200),
+  description text,
+  deadline timestamp with time zone NOT NULL,
+  order_position integer NOT NULL CHECK (order_position > 0),
+  requirements text,
+  status USER-DEFINED DEFAULT 'pending'::checkpoint_status,
+  created_at timestamp with time zone DEFAULT now(),
+  completed_at timestamp with time zone,
+  CONSTRAINT checkpoints_pkey PRIMARY KEY (id),
+  CONSTRAINT checkpoints_goal_id_fkey FOREIGN KEY (goal_id) REFERENCES public.goals(id)
+);
+CREATE TABLE public.consequences (
+  id uuid NOT NULL DEFAULT uuid_generate_v4(),
+  checkpoint_id uuid,
+  goal_id uuid,
+  user_id uuid NOT NULL,
+  consequence_type USER-DEFINED NOT NULL,
+  monetary_amount numeric,
+  charity_destination USER-DEFINED,
+  kompromat_id uuid,
+  target_contact_id uuid,
+  social_platform text,
+  triggered_at timestamp with time zone DEFAULT now(),
+  executed_at timestamp with time zone,
+  execution_status USER-DEFINED DEFAULT 'pending'::execution_status_enum,
+  execution_details jsonb,
+  acknowledged_at timestamp with time zone,
+  notification_shown boolean DEFAULT false,
+  CONSTRAINT consequences_pkey PRIMARY KEY (id),
+  CONSTRAINT consequences_goal_id_fkey FOREIGN KEY (goal_id) REFERENCES public.goals(id),
+  CONSTRAINT consequences_checkpoint_id_fkey FOREIGN KEY (checkpoint_id) REFERENCES public.checkpoints(id),
+  CONSTRAINT consequences_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth.users(id),
+  CONSTRAINT consequences_kompromat_id_fkey FOREIGN KEY (kompromat_id) REFERENCES public.kompromat(id),
+  CONSTRAINT consequences_target_contact_id_fkey FOREIGN KEY (target_contact_id) REFERENCES public.contacts(id)
+);
+CREATE TABLE public.contacts (
+  id uuid NOT NULL DEFAULT uuid_generate_v4(),
+  user_id uuid NOT NULL,
+  name text NOT NULL,
+  email text NOT NULL CHECK (email ~ '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'::text),
+  roles ARRAY NOT NULL DEFAULT '{}'::contact_role[] CHECK (array_length(roles, 1) > 0),
+  verified boolean DEFAULT false,
+  created_at timestamp with time zone DEFAULT now(),
+  CONSTRAINT contacts_pkey PRIMARY KEY (id),
+  CONSTRAINT contacts_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth.users(id)
+);
+CREATE TABLE public.goals (
+  id uuid NOT NULL DEFAULT uuid_generate_v4(),
+  user_id uuid NOT NULL,
+  title text NOT NULL CHECK (char_length(title) >= 3 AND char_length(title) <= 200),
+  description text,
+  final_deadline timestamp with time zone NOT NULL CHECK (final_deadline > now()),
+  grading_rubric text NOT NULL CHECK (char_length(grading_rubric) >= 10),
+  referee_type USER-DEFINED NOT NULL DEFAULT 'ai'::grading_type,
+  witness_contact_id uuid,
+  monetary_stake numeric DEFAULT 0.00 CHECK (monetary_stake >= 0::numeric),
+  charity_destination USER-DEFINED,
+  minor_kompromat_id uuid,
+  major_kompromat_id uuid,
+  status USER-DEFINED DEFAULT 'active'::goal_status,
+  created_at timestamp with time zone DEFAULT now(),
+  completed_at timestamp with time zone,
+  priority text DEFAULT 'medium'::text,
+  CONSTRAINT goals_pkey PRIMARY KEY (id),
+  CONSTRAINT goals_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth.users(id),
+  CONSTRAINT goals_witness_contact_id_fkey FOREIGN KEY (witness_contact_id) REFERENCES public.contacts(id),
+  CONSTRAINT goals_major_kompromat_id_fkey FOREIGN KEY (major_kompromat_id) REFERENCES public.kompromat(id),
+  CONSTRAINT goals_minor_kompromat_id_fkey FOREIGN KEY (minor_kompromat_id) REFERENCES public.kompromat(id)
+);
+CREATE TABLE public.kompromat (
+  id uuid NOT NULL DEFAULT uuid_generate_v4(),
+  user_id uuid NOT NULL,
+  original_filename text NOT NULL,
+  file_path text NOT NULL,
+  file_type text NOT NULL,
+  file_size_bytes integer CHECK (file_size_bytes > 0),
+  severity USER-DEFINED NOT NULL CHECK (severity = ANY (ARRAY['minor'::kompromat_severity, 'major'::kompromat_severity])),
+  description text,
+  created_at timestamp with time zone DEFAULT now(),
+  CONSTRAINT kompromat_pkey PRIMARY KEY (id),
+  CONSTRAINT kompromat_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth.users(id)
+);
+CREATE TABLE public.submissions (
+  id uuid NOT NULL DEFAULT uuid_generate_v4(),
+  checkpoint_id uuid NOT NULL,
+  user_id uuid NOT NULL,
+  submission_type USER-DEFINED NOT NULL,
+  file_path text,
+  external_url text,
+  description text,
+  ai_analysis_result jsonb,
+  human_verdict USER-DEFINED,
+  feedback_text text,
+  confidence_score numeric CHECK (confidence_score >= 0.00 AND confidence_score <= 1.00),
+  status USER-DEFINED DEFAULT 'pending'::submission_status,
+  submitted_at timestamp with time zone DEFAULT now(),
+  graded_at timestamp with time zone,
+  trigger_test_log text,
+  CONSTRAINT submissions_pkey PRIMARY KEY (id),
+  CONSTRAINT submissions_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth.users(id),
+  CONSTRAINT submissions_checkpoint_id_fkey FOREIGN KEY (checkpoint_id) REFERENCES public.checkpoints(id)
+);
+
