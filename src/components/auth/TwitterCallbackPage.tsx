@@ -58,20 +58,19 @@ const TwitterCallbackPage: React.FC = () => {
           throw new Error(`Token exchange failed: ${tokenError.message}`)
         }
 
-        // Update user profile with Twitter tokens
+        // Update user metadata with Twitter tokens
         if (!user) {
           throw new Error('User not authenticated')
         }
 
-        const { error: updateError } = await supabase
-          .from('users')
-          .update({
+        const { error: updateError } = await supabase.auth.updateUser({
+          data: {
             twitter_access_token: tokenData.access_token,
             twitter_refresh_token: tokenData.refresh_token,
             twitter_username: tokenData.username,
-            updated_at: new Date().toISOString()
-          })
-          .eq('id', user.id)
+            twitter_has_write_scope: true // Mark that this connection has posting permissions
+          }
+        })
 
         if (updateError) {
           throw new Error('Failed to save Twitter credentials')
