@@ -3,7 +3,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { crypto } from "https://deno.land/std@0.168.0/crypto/mod.ts"
 import { processStripeTransfer, isValidCharity } from './stripe-utils.ts'
 import { sendHumiliationEmail } from './sendgrid-utils.ts'
-import { postHumiliationTweet, disconnectTwitterAccount } from './twitter-utils.ts'
+import { postHumiliationTweet, disconnectTwitterAccount, testTwitterPost } from './twitter-utils.ts'
 import { NotificationService, shouldSendNotification, getUnsubscribeUrl } from '../shared/notification-service.ts'
 
 console.log("triggerConsequence Edge Function loaded")
@@ -39,6 +39,7 @@ serve(async (req) => {
     const requestBody = await req.json()
     const internalCall = requestBody?.internal_call === true || requestBody?.source === 'pg_cron_automation'
     const isDisconnectAction = requestBody?.action === 'disconnect_twitter'
+    const isTestTwitterAction = requestBody?.action === 'test_twitter'
     const authHeader = req.headers.get('authorization')
     
     console.log('Debug auth check:', {
@@ -49,13 +50,13 @@ serve(async (req) => {
       'authHeader': authHeader ? 'present' : 'missing'
     })
     
-    // Allow internal calls, disconnect actions, or proper authorization
-    if (!internalCall && !isDisconnectAction && (!authHeader || !authHeader.startsWith('Bearer '))) {
-      console.log('Auth failed: not internal call, not disconnect action, and no valid auth header')
-      return new Response('Unauthorized - requires internal flag, disconnect action, or auth', { status: 401 })
+    // Allow internal calls, disconnect actions, test actions, or proper authorization
+    if (!internalCall && !isDisconnectAction && !isTestTwitterAction && (!authHeader || !authHeader.startsWith('Bearer '))) {
+      console.log('Auth failed: not internal call, not disconnect action, not test action, and no valid auth header')
+      return new Response('Unauthorized - requires internal flag, disconnect action, test action, or auth', { status: 401 })
     }
-    
-    console.log('✅ Auth success. Request source:', internalCall ? 'pg_cron (internal)' : (isDisconnectAction ? 'disconnect action' : 'authenticated user'))
+
+    console.log('✅ Auth success. Request source:', internalCall ? 'pg_cron (internal)' : (isDisconnectAction ? 'disconnect action' : (isTestTwitterAction ? 'test twitter action' : 'authenticated user')))
 
     // Initialize Supabase client with service role for elevated permissions
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!
@@ -81,6 +82,34 @@ serve(async (req) => {
       const disconnectResult = await disconnectTwitterAccount(supabase, userId)
       return new Response(JSON.stringify(disconnectResult), {
         status: disconnectResult.success ? 200 : 500,
+        headers: { 'Content-Type': 'application/json' }
+      })
+    }
+
+    // Handle Twitter test action
+    if (isTestTwitterAction) {
+      const userId = requestBody.user_id
+      if (!userId) {
+        return new Response(JSON.stringify({ success: false, error: 'Missing user_id for test' }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' }
+        })
+      }
+
+      // Get user's Twitter tokens from metadata
+      const { data: userRecord } = await supabase.auth.admin.getUserById(userId)
+      const userMetadata = userRecord?.user?.user_metadata || {}
+
+      if (!userMetadata.twitter_access_token) {
+        return new Response(JSON.stringify({ success: false, error: 'No Twitter account connected' }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' }
+        })
+      }
+
+      const testResult = await testTwitterPost(userMetadata.twitter_access_token)
+      return new Response(JSON.stringify(testResult), {
+        status: testResult.success ? 200 : 500,
         headers: { 'Content-Type': 'application/json' }
       })
     }
@@ -225,7 +254,7 @@ async function processConsequence(supabase: any, item: OverdueItem): Promise<Con
           result = await processHumiliationConsequence(supabase, item)
           break
         case 'humiliation_social':
-          result = await processTwitterConsequence(supabase, item)
+          result = await processTwitterConsequenceWithFallback(supabase, item)
           break
         default:
           console.log(`Unknown consequence type: ${consequenceType}`)
@@ -426,7 +455,7 @@ async function processHumiliationConsequence(supabase: any, item: OverdueItem): 
 async function processTwitterConsequence(supabase: any, item: OverdueItem): Promise<any> {
   console.log('Processing Twitter social media consequence')
 
-  const kompromátId = item.failure_type === 'final_deadline' ? 
+  const kompromátId = item.failure_type === 'final_deadline' ?
     item.major_kompromat_id : item.minor_kompromat_id
 
   if (!kompromátId) {
@@ -436,7 +465,7 @@ async function processTwitterConsequence(supabase: any, item: OverdueItem): Prom
   // Get user's Twitter tokens from metadata
   const { data: userRecord } = await supabase.auth.admin.getUserById(item.user_id)
   const userMetadata = userRecord?.user?.user_metadata || {}
-  
+
   const twitterTokens = {
     access_token: userMetadata.twitter_access_token,
     refresh_token: userMetadata.twitter_refresh_token,
@@ -444,9 +473,9 @@ async function processTwitterConsequence(supabase: any, item: OverdueItem): Prom
   }
 
   if (!twitterTokens.access_token) {
-    return { 
-      success: false, 
-      error: 'No Twitter account connected - user must connect Twitter for social consequences' 
+    return {
+      success: false,
+      error: 'No Twitter account connected - user must connect Twitter for social consequences'
     }
   }
 
@@ -461,13 +490,28 @@ async function processTwitterConsequence(supabase: any, item: OverdueItem): Prom
     return { success: false, error: 'Failed to fetch kompromat for Twitter post' }
   }
 
-  // Post humiliation tweet
+  // Get goal's Twitter settings
+  const { data: goalData } = await supabase
+    .from('goals')
+    .select('twitter_message_preset, twitter_custom_message, twitter_include_kompromat')
+    .eq('id', item.goal_id)
+    .single()
+
+  // Build custom settings from goal data
+  const customSettings = goalData ? {
+    message_preset: goalData.twitter_message_preset,
+    custom_message: goalData.twitter_custom_message,
+    include_kompromat: goalData.twitter_include_kompromat ?? true
+  } : undefined
+
+  // Post humiliation tweet with custom settings
   const twitterResult = await postHumiliationTweet(
     kompromat,
     item.failure_type,
     twitterTokens,
     supabase,
-    item.user_id
+    item.user_id,
+    customSettings
   )
 
   if (!twitterResult.success) {
@@ -480,7 +524,66 @@ async function processTwitterConsequence(supabase: any, item: OverdueItem): Prom
     tweet_url: twitterResult.tweet_url,
     kompromat_filename: kompromat.original_filename,
     kompromat_severity: kompromat.severity,
-    twitter_username: twitterTokens.username
+    twitter_username: twitterTokens.username,
+    custom_settings_used: !!customSettings
+  }
+}
+
+// Wrapper function that attempts Twitter consequence with email fallback
+async function processTwitterConsequenceWithFallback(supabase: any, item: OverdueItem): Promise<any> {
+  console.log('Processing Twitter consequence with email fallback enabled')
+
+  // First attempt Twitter consequence
+  const twitterResult = await processTwitterConsequence(supabase, item)
+
+  // If Twitter succeeded, return the result
+  if (twitterResult.success) {
+    return {
+      ...twitterResult,
+      fallback_used: false
+    }
+  }
+
+  // Twitter failed - attempt email fallback
+  console.log(`Twitter consequence failed: ${twitterResult.error}. Attempting email fallback...`)
+
+  try {
+    const emailResult = await processHumiliationConsequence(supabase, item)
+
+    if (emailResult.success) {
+      console.log('✅ Email fallback successful')
+      return {
+        success: true,
+        twitter_attempted: true,
+        twitter_error: twitterResult.error,
+        fallback_used: 'email',
+        email_result: emailResult,
+        recipient: emailResult.recipient,
+        kompromat_filename: emailResult.kompromat_filename,
+        kompromat_severity: emailResult.kompromat_severity
+      }
+    } else {
+      // Both Twitter and email failed
+      console.error('❌ Both Twitter and email fallback failed')
+      return {
+        success: false,
+        twitter_attempted: true,
+        twitter_error: twitterResult.error,
+        fallback_used: 'email',
+        email_error: emailResult.error,
+        error: `Twitter failed: ${twitterResult.error}. Email fallback also failed: ${emailResult.error}`
+      }
+    }
+  } catch (fallbackError) {
+    console.error('Error during email fallback:', fallbackError)
+    return {
+      success: false,
+      twitter_attempted: true,
+      twitter_error: twitterResult.error,
+      fallback_used: 'email',
+      fallback_error: fallbackError.message,
+      error: `Twitter failed: ${twitterResult.error}. Email fallback error: ${fallbackError.message}`
+    }
   }
 }
 
