@@ -80,6 +80,10 @@ export type Database = {
           status: 'active' | 'completed' | 'failed' | 'paused';
           created_at: string;
           completed_at: string | null;
+          // Twitter consequence settings
+          twitter_message_preset: 'dramatic_shame' | 'public_confession' | 'accountability_notice' | 'custom' | null;
+          twitter_custom_message: string | null;
+          twitter_include_kompromat: boolean | null;
         };
         Insert: {
           id?: string;
@@ -97,6 +101,10 @@ export type Database = {
           status?: 'active' | 'completed' | 'failed' | 'paused';
           created_at?: string;
           completed_at?: string | null;
+          // Twitter consequence settings
+          twitter_message_preset?: 'dramatic_shame' | 'public_confession' | 'accountability_notice' | 'custom' | null;
+          twitter_custom_message?: string | null;
+          twitter_include_kompromat?: boolean | null;
         };
         Update: {
           id?: string;
@@ -114,6 +122,10 @@ export type Database = {
           status?: 'active' | 'completed' | 'failed' | 'paused';
           created_at?: string;
           completed_at?: string | null;
+          // Twitter consequence settings
+          twitter_message_preset?: 'dramatic_shame' | 'public_confession' | 'accountability_notice' | 'custom' | null;
+          twitter_custom_message?: string | null;
+          twitter_include_kompromat?: boolean | null;
         };
       };
       contacts: {
