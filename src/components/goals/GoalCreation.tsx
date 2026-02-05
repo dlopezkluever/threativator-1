@@ -9,6 +9,7 @@ import GoalDefinitionStep from './steps/GoalDefinitionStep'
 import CheckpointStep from './steps/CheckpointStep'
 import StakesStep from './steps/StakesStep'
 import RefereeStep from './steps/RefereeStep'
+import TwitterSettingsStep from './steps/TwitterSettingsStep'
 import ReviewStep from './steps/ReviewStep'
 
 export interface CheckpointData {
@@ -30,6 +31,10 @@ export interface GoalFormData {
   majorKompromatId: string
   refereeType: 'ai' | 'human_witness'
   witnessContactId: string
+  // Twitter consequence settings
+  twitterMessagePreset: 'dramatic_shame' | 'public_confession' | 'accountability_notice' | 'custom'
+  twitterCustomMessage: string
+  twitterIncludeKompromat: boolean
 }
 
 const initialFormData: GoalFormData = {
@@ -44,7 +49,11 @@ const initialFormData: GoalFormData = {
   minorKompromatIds: [],
   majorKompromatId: '',
   refereeType: 'ai',
-  witnessContactId: ''
+  witnessContactId: '',
+  // Twitter defaults
+  twitterMessagePreset: 'dramatic_shame',
+  twitterCustomMessage: '',
+  twitterIncludeKompromat: true
 }
 
 const GoalCreation: React.FC = () => {
@@ -59,7 +68,8 @@ const GoalCreation: React.FC = () => {
     1: false,
     2: false,
     3: false,
-    4: false
+    4: false,
+    5: false
   })
 
   const updateFormData = (updates: Partial<GoalFormData>) => {
@@ -76,6 +86,10 @@ const GoalCreation: React.FC = () => {
         return !!(formData.monetaryStake > 0 && formData.charityDestination)
       case 4:
         return !!(formData.refereeType && (formData.refereeType === 'ai' || formData.witnessContactId))
+      case 5:
+        // Twitter settings - always valid (custom message validated in component if preset is 'custom')
+        return formData.twitterMessagePreset !== 'custom' ||
+          (!!formData.twitterCustomMessage && formData.twitterCustomMessage.length <= 280)
       default:
         return false
     }
@@ -84,7 +98,7 @@ const GoalCreation: React.FC = () => {
   const handleNext = () => {
     if (validateCurrentStep()) {
       setStepValidation(prev => ({ ...prev, [currentStep]: true }))
-      setCurrentStep(prev => Math.min(prev + 1, 5))
+      setCurrentStep(prev => Math.min(prev + 1, 6))
     }
   }
 
@@ -116,7 +130,11 @@ const GoalCreation: React.FC = () => {
           monetary_stake: formData.monetaryStake,
           charity_destination: formData.charityDestination,
           minor_kompromat_id: formData.minorKompromatIds[0] || null,
-          major_kompromat_id: formData.majorKompromatId || null
+          major_kompromat_id: formData.majorKompromatId || null,
+          // Twitter consequence settings
+          twitter_message_preset: formData.twitterMessagePreset,
+          twitter_custom_message: formData.twitterMessagePreset === 'custom' ? formData.twitterCustomMessage : null,
+          twitter_include_kompromat: formData.twitterIncludeKompromat
         })
         .select()
         .single()
@@ -224,6 +242,14 @@ const GoalCreation: React.FC = () => {
         )
       case 5:
         return (
+          <TwitterSettingsStep
+            formData={formData}
+            updateFormData={updateFormData}
+            onValidationChange={(isValid) => setStepValidation(prev => ({ ...prev, 5: isValid }))}
+          />
+        )
+      case 6:
+        return (
           <ReviewStep
             formData={formData}
             onEditStep={handleStepJump}
@@ -252,15 +278,15 @@ const GoalCreation: React.FC = () => {
         <Card className="mb-[var(--space-6)]">
           <CardContent className="py-[var(--space-4)]">
             <div className="flex justify-between items-center">
-              {[1, 2, 3, 4, 5].map((step) => (
+              {[1, 2, 3, 4, 5, 6].map((step) => (
                 <div key={step} className="flex flex-col items-center">
                   <button
                     onClick={() => handleStepJump(step)}
                     disabled={step > currentStep && !stepValidation[step as keyof typeof stepValidation]}
-                    className={`w-12 h-12 border-[var(--border-width-thick)] border-[var(--color-accent-black)] flex items-center justify-center font-[var(--font-family-display)] font-bold text-lg transition-colors
-                      ${currentStep === step 
-                        ? 'bg-[var(--color-primary-crimson)] text-[var(--color-background-beige)]' 
-                        : stepValidation[step as keyof typeof stepValidation] 
+                    className={`w-10 h-10 md:w-12 md:h-12 border-[var(--border-width-thick)] border-[var(--color-accent-black)] flex items-center justify-center font-[var(--font-family-display)] font-bold text-base md:text-lg transition-colors
+                      ${currentStep === step
+                        ? 'bg-[var(--color-primary-crimson)] text-[var(--color-background-beige)]'
+                        : stepValidation[step as keyof typeof stepValidation]
                           ? 'bg-[var(--color-success-muted)] text-[var(--color-background-beige)]'
                           : 'bg-[var(--color-background-beige)] text-[var(--color-text-primary)]'
                       }
@@ -269,12 +295,13 @@ const GoalCreation: React.FC = () => {
                   >
                     {step}
                   </button>
-                  <span className="mt-2 text-[var(--font-size-xs)] font-[var(--font-family-body)] uppercase text-center leading-tight">
+                  <span className="mt-2 text-[10px] md:text-[var(--font-size-xs)] font-[var(--font-family-body)] uppercase text-center leading-tight">
                     {step === 1 && 'DEFINE'}
-                    {step === 2 && 'CHECKPOINTS'}
+                    {step === 2 && 'CHECKS'}
                     {step === 3 && 'STAKES'}
                     {step === 4 && 'REFEREE'}
-                    {step === 5 && 'REVIEW'}
+                    {step === 5 && 'TWITTER'}
+                    {step === 6 && 'REVIEW'}
                   </span>
                 </div>
               ))}
@@ -310,7 +337,7 @@ const GoalCreation: React.FC = () => {
                 CANCEL MISSION
               </Button>
 
-              {currentStep < 5 ? (
+              {currentStep < 6 ? (
                 <Button
                   variant="command"
                   onClick={handleNext}
