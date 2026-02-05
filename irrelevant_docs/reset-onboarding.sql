@@ -12,4 +12,5 @@ WHERE email = 'your-email@example.com';
 -- Option 3: Check current user status
 SELECT id, email, onboarding_completed, stripe_customer_id, twitter_username 
 FROM users 
-ORDER BY created_at DESC;
+ORDER BY created_at DESC; 
+
