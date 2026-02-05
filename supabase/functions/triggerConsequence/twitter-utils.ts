@@ -22,14 +22,21 @@ interface TwitterTokenData {
   username?: string
 }
 
+interface TwitterCustomSettings {
+  message_preset?: 'dramatic_shame' | 'public_confession' | 'accountability_notice' | 'custom'
+  custom_message?: string
+  include_kompromat?: boolean
+}
+
 export async function postHumiliationTweet(
   kompromat: KompromatData,
   failureType: 'checkpoint' | 'final_deadline',
   twitterTokens: TwitterTokenData,
   supabase: any,
-  userId: string
+  userId: string,
+  customSettings?: TwitterCustomSettings
 ): Promise<TwitterResult> {
-  
+
   console.log(`Preparing Twitter humiliation post for user ${userId}`)
 
   try {
@@ -38,23 +45,34 @@ export async function postHumiliationTweet(
       return { success: false, error: 'No Twitter access token available' }
     }
 
-    // Generate dramatic tweet content based on failure type and kompromat severity
-    const tweetContent = generateHumiliationTweetContent(kompromat, failureType)
-    
+    // Generate tweet content based on custom settings or fallback to default
+    let tweetContent: string
+    if (customSettings?.message_preset === 'custom' && customSettings.custom_message) {
+      // Use user's custom message
+      tweetContent = customSettings.custom_message
+    } else if (customSettings?.message_preset && customSettings.message_preset !== 'custom') {
+      // Use preset template
+      tweetContent = generatePresetTweetContent(kompromat, failureType, customSettings.message_preset)
+    } else {
+      // Fallback to original random dramatic content
+      tweetContent = generateHumiliationTweetContent(kompromat, failureType)
+    }
+
     // Prepare tweet data
     const tweetData: any = {
       text: tweetContent
     }
 
-    // Handle media attachment for images
+    // Handle media attachment for images (check custom settings)
+    const shouldIncludeKompromat = customSettings?.include_kompromat !== false // Default to true
     let mediaId = null
-    if (kompromat.file_type.startsWith('image/')) {
+    if (shouldIncludeKompromat && kompromat.file_type.startsWith('image/')) {
       mediaId = await uploadTwitterMedia(
         kompromat,
         twitterTokens.access_token,
         supabase
       )
-      
+
       if (mediaId) {
         tweetData.media = { media_ids: [mediaId] }
       }
@@ -238,29 +256,58 @@ function generateHumiliationTweetContent(
 ): string {
   const isFinalDeadline = failureType === 'final_deadline'
   const severity = kompromat.severity.toUpperCase()
-  
+
   if (isFinalDeadline) {
     // Major consequence - more dramatic
     const majorMessages = [
       `🚨 ACCOUNTABILITY PROTOCOL EXECUTED 🚨\n\nI have FAILED my commitment completely and must face the consequences. This is my ${severity} shame material as proof of my lack of discipline.\n\n#AccountabilityFail #Threativator #GreatDishonor`,
-      
+
       `📢 OFFICIAL FAILURE NOTICE 📢\n\nThe State has executed judgment upon me for missing my FINAL DEADLINE. I am sharing my ${severity} kompromat as proof of my inadequate commitment to excellence.\n\n#ConsequenceExecuted #Threativator #SelfDisciplineFailure`,
-      
+
       `⚠️ MAXIMUM DISHONOR ACHIEVED ⚠️\n\nI have failed my goal completely and must now display my ${severity} shame material publicly. This is what happens when discipline fails.\n\n#FailureConsequence #PublicShame #Threativator`
     ]
-    
+
     return majorMessages[Math.floor(Math.random() * majorMessages.length)]
   } else {
     // Checkpoint failure - less severe but still dramatic
     const minorMessages = [
       `⚡ MINOR CONSEQUENCE TRIGGERED ⚡\n\nThe accountability roulette has not been kind. I missed a checkpoint and must share this ${severity} shame material as motivation to do better.\n\n#CheckpointFail #Threativator #AccountabilityCheck`,
-      
+
       `🎯 DISCIPLINE CHECKPOINT MISSED 🎯\n\nRussian Roulette decided my fate - I must post this ${severity} kompromat for missing my deadline. The state demands accountability.\n\n#MissedDeadline #ConsequenceRoulette #Threativator`,
-      
+
       `🔔 ACCOUNTABILITY ALERT 🔔\n\nI failed to meet a commitment deadline and the consequences have been triggered. Here is my ${severity} shame material as proof.\n\n#DeadlineMissed #SelfImposedConsequence #Threativator`
     ]
-    
+
     return minorMessages[Math.floor(Math.random() * minorMessages.length)]
+  }
+}
+
+function generatePresetTweetContent(
+  kompromat: KompromatData,
+  failureType: 'checkpoint' | 'final_deadline',
+  preset: 'dramatic_shame' | 'public_confession' | 'accountability_notice'
+): string {
+  const isFinalDeadline = failureType === 'final_deadline'
+  const severity = kompromat.severity.toUpperCase()
+  const failureLabel = isFinalDeadline ? 'FINAL DEADLINE' : 'checkpoint'
+
+  switch (preset) {
+    case 'dramatic_shame':
+      return isFinalDeadline
+        ? `🚨 ACCOUNTABILITY PROTOCOL EXECUTED 🚨\n\nI have FAILED my commitment completely and must face the consequences. This is my ${severity} shame material as proof of my lack of discipline.\n\n#AccountabilityFail #Threativator #GreatDishonor`
+        : `⚡ MINOR CONSEQUENCE TRIGGERED ⚡\n\nThe accountability roulette has not been kind. I missed a ${failureLabel} and must share this ${severity} shame material as motivation to do better.\n\n#CheckpointFail #Threativator #AccountabilityCheck`
+
+    case 'public_confession':
+      return isFinalDeadline
+        ? `📢 OFFICIAL FAILURE NOTICE 📢\n\nThe State has executed judgment upon me for missing my ${failureLabel}. I am sharing my ${severity} kompromat as proof of my inadequate commitment to excellence.\n\n#ConsequenceExecuted #Threativator`
+        : `📢 I missed my ${failureLabel} and must publicly confess my failure. Here is my ${severity} shame material to hold myself accountable.\n\n#Threativator #AccountabilityMoment`
+
+    case 'accountability_notice':
+      return `⚡ I failed to meet my ${failureLabel} and must share this as proof of my commitment to accountability. #Threativator #SelfAccountability`
+
+    default:
+      // Fallback to dramatic shame
+      return generateHumiliationTweetContent(kompromat, failureType)
   }
 }
 
