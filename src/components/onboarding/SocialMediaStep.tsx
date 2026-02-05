@@ -13,14 +13,18 @@ const SocialMediaStep: React.FC<SocialMediaStepProps> = ({ onComplete, onError }
   const [connectionStatus, setConnectionStatus] = useState<{
     connected: boolean
     username?: string
+    needsReauth?: boolean
   }>({ connected: false })
 
   useEffect(() => {
     // Check if user has Twitter connection from metadata
     if (user?.user_metadata) {
+      const hasToken = !!user.user_metadata.twitter_access_token
+      const hasWriteScope = !!user.user_metadata.twitter_has_write_scope
       setConnectionStatus({
-        connected: !!user.user_metadata.twitter_access_token,
-        username: user.user_metadata.twitter_username
+        connected: hasToken,
+        username: user.user_metadata.twitter_username,
+        needsReauth: hasToken && !hasWriteScope // Connected but without posting permissions
       })
     } else {
       setConnectionStatus({ connected: false })
@@ -55,7 +59,7 @@ const SocialMediaStep: React.FC<SocialMediaStepProps> = ({ onComplete, onError }
       // Store state for verification
       sessionStorage.setItem('twitter_oauth_state', state)
       
-      const scopes = ['tweet.read', 'users.read', 'offline.access'].join(' ')
+      const scopes = ['tweet.read', 'tweet.write', 'users.read', 'media.write', 'offline.access'].join(' ')
       
       const authUrl = new URL('https://twitter.com/i/oauth2/authorize')
       authUrl.searchParams.append('response_type', 'code')
@@ -152,9 +156,22 @@ const SocialMediaStep: React.FC<SocialMediaStepProps> = ({ onComplete, onError }
           <div className="flex items-center space-x-2">
             {connectionStatus.connected ? (
               <>
-                <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-green-100 text-green-800">
-                  ✅ Connected
+                <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-medium ${
+                  connectionStatus.needsReauth
+                    ? 'bg-yellow-100 text-yellow-800'
+                    : 'bg-green-100 text-green-800'
+                }`}>
+                  {connectionStatus.needsReauth ? '⚠️ Needs Reauthorization' : '✅ Connected'}
                 </span>
+                {connectionStatus.needsReauth && (
+                  <button
+                    onClick={initiateTwitterOAuth}
+                    disabled={isConnecting}
+                    className="bg-yellow-500 text-white px-3 py-1 rounded-md text-xs font-medium hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isConnecting ? 'Reconnecting...' : 'Reauthorize'}
+                  </button>
+                )}
                 <button
                   onClick={disconnectTwitter}
                   disabled={isConnecting}
@@ -179,9 +196,16 @@ const SocialMediaStep: React.FC<SocialMediaStepProps> = ({ onComplete, onError }
           <h4 className="text-sm font-medium text-blue-800 mb-2">What this enables:</h4>
           <ul className="text-sm text-blue-700 space-y-1">
             <li>• Post embarrassing content when you fail goals</li>
-            <li>• Share your progress and achievements</li>
+            <li>• Attach kompromat images to shame tweets</li>
             <li>• Create public accountability</li>
           </ul>
+          {connectionStatus.needsReauth && (
+            <div className="mt-3 pt-3 border-t border-blue-200">
+              <p className="text-xs text-yellow-700 font-medium">
+                ⚠️ Your connection needs to be reauthorized to enable posting. Click "Reauthorize" above.
+              </p>
+            </div>
+          )}
         </div>
       </div>
 
